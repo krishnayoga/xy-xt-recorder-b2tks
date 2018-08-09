@@ -44,11 +44,11 @@ namespace AI_StreamingAI
               return;
          }
 
-			int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
-			int sectionLength = waveformAiCtrl1.Record.SectionLength;
-			m_dataScaled = new double[chanCount * sectionLength];
+		 int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
+		 int sectionLength = waveformAiCtrl1.Record.SectionLength;
+		 m_dataScaled = new double[chanCount * sectionLength];
 
-			this.Text = "Streaming AI(" + waveformAiCtrl1.SelectedDevice.Description + ")";
+		 this.Text = "Streaming AI(" + waveformAiCtrl1.SelectedDevice.Description + ")";
 
          button_start.Enabled = true;
          button_stop.Enabled = false;
@@ -68,7 +68,7 @@ namespace AI_StreamingAI
       {
           ErrorCode err = ErrorCode.Success;
 
-			 err = waveformAiCtrl1.Prepare();
+		  err = waveformAiCtrl1.Prepare();
           m_xInc = 1.0 / waveformAiCtrl1.Conversion.ClockRate;
           if (err == ErrorCode.Success)
           {
@@ -89,17 +89,16 @@ namespace AI_StreamingAI
 
 		private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
       {
-            Console.WriteLine("halooooooooooooooooooooo");
 			try
          {
-				//The WaveformAiCtrl has been disposed.
-				if (waveformAiCtrl1.State == ControlState.Idle)
+			//The WaveformAiCtrl has been disposed.
+			if (waveformAiCtrl1.State == ControlState.Idle)
             {
-					return;
+				return;
             }
             if (m_dataScaled.Length < args.Count)
             {
-               m_dataScaled = new double[args.Count];
+                m_dataScaled = new double[args.Count];
             }
 
             ErrorCode err = ErrorCode.Success;
@@ -140,17 +139,26 @@ namespace AI_StreamingAI
                         label1.Text = arrAvgData[0];
                         label2.Text = arrAvgData[1];
                         label3.Text = arrAvgData[2];
-                        Console.WriteLine("i ke " + i + " arrsumdata :" + arrSumData[i]);
-                        chartXY.Series[0].Points.AddY(arrAvgData[0]);
+                        //Console.WriteLine("i ke " + i + " arrsumdata :" + arrSumData[i]);
+
+                        if (checkBox_holdX.Checked)
+                        {
+                            chartXY.Series[0].Points.AddXY(0.01, arrAvgData[0]);
+                        }
+                        else
+                        {
+                            chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
+                        }
 
                     }
-                    //editListViewItems(listViewAi, 0, arrAvgData);
-
-                    //listViewAi.EndUpdate();
                 }));
 
             }
-			catch (System.Exception) { }   
+            catch
+            {
+                MessageBox.Show("nilai x dan y salah!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }   
        }
 
       private void button_pause_Click(object sender, EventArgs e)

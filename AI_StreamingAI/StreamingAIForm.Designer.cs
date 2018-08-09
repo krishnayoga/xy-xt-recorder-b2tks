@@ -41,6 +41,7 @@ namespace AI_StreamingAI
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.chartXY = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.checkBox_holdX = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartXY)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,11 +130,22 @@ namespace AI_StreamingAI
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
             // 
+            // checkBox_holdX
+            // 
+            this.checkBox_holdX.AutoSize = true;
+            this.checkBox_holdX.Location = new System.Drawing.Point(502, 429);
+            this.checkBox_holdX.Name = "checkBox_holdX";
+            this.checkBox_holdX.Size = new System.Drawing.Size(75, 22);
+            this.checkBox_holdX.TabIndex = 24;
+            this.checkBox_holdX.Text = "Hold X";
+            this.checkBox_holdX.UseVisualStyleBackColor = true;
+            // 
             // StreamingAIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 496);
+            this.Controls.Add(this.checkBox_holdX);
             this.Controls.Add(this.chartXY);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -164,6 +176,7 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartXY;
+        private System.Windows.Forms.CheckBox checkBox_holdX;
     }
 }
 
