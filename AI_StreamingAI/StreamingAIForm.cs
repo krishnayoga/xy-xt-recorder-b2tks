@@ -4,6 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Web.UI.DataVisualization;
+using System.Windows.Forms.DataVisualization;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Forms;
 using Automation.BDaq;
 
@@ -21,6 +24,11 @@ namespace AI_StreamingAI
         string[] arrAvgData;
         string[] arrData;
         double[] arrSumData;
+
+        double max_x = 0;
+        double min_x = 1000;
+        double max_y = 0;
+        double min_y = 1000;
         #endregion
 
         public StreamingAIForm()
@@ -53,8 +61,14 @@ namespace AI_StreamingAI
          button_start.Enabled = true;
          button_stop.Enabled = false;
          button_pause.Enabled = false;
-      
-      }
+
+            //chartXY.Series[0].BorderWidth = 10;
+
+
+            //initChart();
+
+
+        }
 
       private void HandleError(ErrorCode err)
       {
@@ -85,14 +99,16 @@ namespace AI_StreamingAI
          button_start.Enabled = false;
          button_pause.Enabled = true;
          button_stop.Enabled = true;
-      }
+
+            
+        }
 
 		private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
       {
 			try
          {
-			//The WaveformAiCtrl has been disposed.
-			if (waveformAiCtrl1.State == ControlState.Idle)
+                //The WaveformAiCtrl has been disposed.
+                if (waveformAiCtrl1.State == ControlState.Idle)
             {
 				return;
             }
@@ -111,7 +127,7 @@ namespace AI_StreamingAI
                HandleError(err);
                return;
             }
-            System.Diagnostics.Debug.WriteLine(args.Count.ToString());
+            //System.Diagnostics.Debug.WriteLine(args.Count.ToString());
 
                 this.Invoke(new Action(() =>
                 {
@@ -141,15 +157,30 @@ namespace AI_StreamingAI
                         label3.Text = arrAvgData[2];
                         //Console.WriteLine("i ke " + i + " arrsumdata :" + arrSumData[i]);
 
-                        if (checkBox_holdX.Checked)
+                        chartXY.Series[0].Points.AddXY(arrAvgData[0],arrAvgData[1]);
+                        
+                        if(Convert.ToDouble(arrAvgData[0]) > max_x)
                         {
-                            chartXY.Series[0].Points.AddXY(0.01, arrAvgData[0]);
+                            max_x = Convert.ToDouble(arrAvgData[0]);
                         }
-                        else
+                        if(Convert.ToDouble(arrAvgData[0]) < min_x)
                         {
-                            chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
+                            min_x = Convert.ToDouble(arrAvgData[0]);
                         }
+                        if(Convert.ToDouble(arrAvgData[1]) > max_y)
+                        {
+                            max_y = Convert.ToDouble(arrAvgData[1]);
+                        }
+                        if(Convert.ToDouble(arrAvgData[1]) < min_y)
+                        {
+                            min_y = Convert.ToDouble(arrAvgData[1]);
+                        }
+                        //chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
 
+                        label4.Text = max_x.ToString();
+                        label5.Text = min_x.ToString();
+                        label6.Text = max_y.ToString();
+                        label7.Text = min_y.ToString();
                     }
                 }));
 
@@ -157,7 +188,7 @@ namespace AI_StreamingAI
             catch
             {
                 MessageBox.Show("nilai x dan y salah!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
+                //this.Close();
             }   
        }
 
@@ -204,6 +235,31 @@ namespace AI_StreamingAI
                 MessageBox.Show("WaveformAiOverrun");
                 m_isFirstOverRun = false;
             }
+        }
+
+        private void initChart()
+        {
+            chartXY.Series.Clear();
+            chartXY.Series.Add("X vs Y");
+            
+            chartXY.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chartXY.Series[0].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+
+            DateTime dt = DateTime.MinValue;
+            chartXY.ChartAreas[0].AxisX.Minimum = dt.AddSeconds(0).ToOADate();
+            chartXY.ChartAreas[0].AxisX.Maximum = dt.AddSeconds(600).ToOADate();
+            chartXY.ChartAreas[0].AxisX.Interval = 10;
+            chartXY.ChartAreas[0].AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+            chartXY.ChartAreas[0].AxisX.MajorGrid.Interval = 15;
+            chartXY.ChartAreas[0].AxisX.MajorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+            chartXY.ChartAreas[0].AxisX.MinorGrid.Interval = 5;
+            chartXY.ChartAreas[0].AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+            chartXY.ChartAreas[0].AxisX.LabelStyle.Interval = 60;
+            chartXY.ChartAreas[0].AxisX.LabelStyle.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+            chartXY.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
+
+            chartXY.Series[0].BorderWidth = 10;
+
         }
     }
 }
