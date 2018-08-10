@@ -21,6 +21,8 @@ namespace AI_StreamingAI
       bool         m_isFirstOverRun = true;
       double       m_xInc;
 
+        int dataCount = 0;
+
         string[] arrAvgData;
         string[] arrData;
         double[] arrSumData;
@@ -64,8 +66,9 @@ namespace AI_StreamingAI
 
             //chartXY.Series[0].BorderWidth = 10;
 
+            chartXY.Series[0].IsXValueIndexed = false;
 
-            //initChart();
+            initChart();
 
 
         }
@@ -88,7 +91,8 @@ namespace AI_StreamingAI
           {
 				 err = waveformAiCtrl1.Start();
                 //waveformAiCtrl1.DataReady += new EventHandler<BfdAiEventArgs>(waveformAiCtrl1_DataReady);
-          }
+                //chartXY.Series[0].Points.AddXY(arrAvgData[1], arrAvgData[0]);
+            }
 
           if (err != ErrorCode.Success)
           {
@@ -103,31 +107,33 @@ namespace AI_StreamingAI
             
         }
 
-		private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
+	  private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
       {
 			try
-         {
+            {
                 //The WaveformAiCtrl has been disposed.
                 if (waveformAiCtrl1.State == ControlState.Idle)
-            {
-				return;
-            }
-            if (m_dataScaled.Length < args.Count)
-            {
-                m_dataScaled = new double[args.Count];
-            }
+                {
+				    return;
+                }
+                if (m_dataScaled.Length < args.Count)
+                {
+                    m_dataScaled = new double[args.Count];
+                }
 
-            ErrorCode err = ErrorCode.Success;
+                //Console.WriteLine(args.Count);
+
+                ErrorCode err = ErrorCode.Success;
 				int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
 				int sectionLength = waveformAiCtrl1.Record.SectionLength;
-            err = waveformAiCtrl1.GetData(args.Count, m_dataScaled);
+                err = waveformAiCtrl1.GetData(args.Count, m_dataScaled);
 
-            if (err != ErrorCode.Success && err != ErrorCode.WarningRecordEnd)
-            {
-               HandleError(err);
-               return;
-            }
-            //System.Diagnostics.Debug.WriteLine(args.Count.ToString());
+                if (err != ErrorCode.Success && err != ErrorCode.WarningRecordEnd)
+                {
+                    HandleError(err);
+                return;
+                }
+                //System.Diagnostics.Debug.WriteLine(args.Count.ToString());
 
                 this.Invoke(new Action(() =>
                 {
@@ -140,26 +146,24 @@ namespace AI_StreamingAI
                         for (int j = 0; j < chanCount; j++)
                         {
                             int cnt = i * chanCount + j;
-                            arrData[j] = m_dataScaled[cnt].ToString("F4");
+                            arrData[j] = m_dataScaled[cnt].ToString("F1");
                             arrSumData[j] += m_dataScaled[cnt];
-                            Console.WriteLine("j ke " + j + " arrsumdata :" + arrSumData[j] + " m_datascaled: " + m_dataScaled[cnt] + " cnt: " + cnt + " chancount: " + chanCount);
+                            //Console.WriteLine("j ke " + j + " arrsumdata :" + arrSumData[j] + " m_datascaled: " + m_dataScaled[cnt] + " cnt: " + cnt + " chancount: " + chanCount);
                         }
                         //addListViewItems(listViewAi, arrData);
                     }
-
                     arrAvgData = new string[arrSumData.Length];
 
                     for (int i = 0; i < arrSumData.Length; i++)
                     {
-                        arrAvgData[i] = (arrSumData[i] / sectionLength).ToString("F4");
+                        arrAvgData[i] = (arrSumData[i] / sectionLength).ToString("F1");
                         label1.Text = arrAvgData[0];
                         label2.Text = arrAvgData[1];
-                        label3.Text = arrAvgData[2];
+                        //label3.Text = arrAvgData[2];
                         //Console.WriteLine("i ke " + i + " arrsumdata :" + arrSumData[i]);
+                        dataCount++;
 
-                        chartXY.Series[0].Points.AddXY(arrAvgData[0],arrAvgData[1]);
-                        
-                        if(Convert.ToDouble(arrAvgData[0]) > max_x)
+                        if (Convert.ToDouble(arrAvgData[0]) > max_x)
                         {
                             max_x = Convert.ToDouble(arrAvgData[0]);
                         }
@@ -176,14 +180,17 @@ namespace AI_StreamingAI
                             min_y = Convert.ToDouble(arrAvgData[1]);
                         }
                         //chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
-
-                        label4.Text = max_x.ToString();
-                        label5.Text = min_x.ToString();
-                        label6.Text = max_y.ToString();
-                        label7.Text = min_y.ToString();
+                        
+                        label9.Text = max_x.ToString();
+                        label10.Text = min_x.ToString();
+                        label11.Text = max_y.ToString();
+                        label12.Text = min_y.ToString();
+                        
                     }
+                    plotChart(arrAvgData);
                 }));
-
+                Console.WriteLine(dataCount / 3);
+                
             }
             catch
             {
@@ -239,6 +246,26 @@ namespace AI_StreamingAI
 
         private void initChart()
         {
+            
+            chartXY.Series.Clear();
+            chartXY.Series.Add("X vs Y");
+            chartXY.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+            
+
+            this.chartXY.Titles.Add("pt. B2TKS - BPPT");
+            
+            chartXY.ChartAreas[0].AxisX.Maximum = 10;
+            chartXY.ChartAreas[0].AxisX.Minimum = 0;
+            chartXY.ChartAreas[0].AxisY.Maximum = 10;
+            chartXY.ChartAreas[0].AxisY.Minimum = 0;
+            //chartXY.ChartAreas[0].AxisX.Interval = 1;
+            //chartXY.ChartAreas[0].AxisY.Interval = 1;
+            
+            chartXY.ChartAreas[0].AxisX.Title = "waktu";
+            chartXY.ChartAreas[0].AxisY.Title = "nilai";
+            
+            /*
             chartXY.Series.Clear();
             chartXY.Series.Add("X vs Y");
             
@@ -257,9 +284,50 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisX.LabelStyle.Interval = 60;
             chartXY.ChartAreas[0].AxisX.LabelStyle.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
             chartXY.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
-
+            
             chartXY.Series[0].BorderWidth = 10;
+            */
+        }
 
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void plotChart(string[] data)
+        {
+            
+
+            if (!checkBox_holdX.Checked)
+            {
+                
+                chartXY.Series[0].Points.AddXY(Convert.ToDouble(last_x), Convert.ToDouble(arrAvgData[1]));
+            }
+            if (checkBox_holdX.Checked)
+            {
+                
+                chartXY.Series[0].Points.AddXY(Convert.ToDouble(last_x), Convert.ToDouble(arrAvgData[1]));
+            }
+        }
+
+        private void button_save_Click(object sender, EventArgs e)
+        {
+            this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
         }
     }
 }
