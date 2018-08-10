@@ -162,7 +162,6 @@ namespace AI_StreamingAI
                         //label3.Text = arrAvgData[2];
                         //Console.WriteLine("i ke " + i + " arrsumdata :" + arrSumData[i]);
                         dataCount++;
-
                         if (Convert.ToDouble(arrAvgData[0]) > max_x)
                         {
                             max_x = Convert.ToDouble(arrAvgData[0]);
