@@ -187,12 +187,14 @@ namespace AI_StreamingAI
                         label12.Text = min_y.ToString();
                         
                     }
+
                     if(checkBox_holdX.Checked && firstChecked)
                     {
-                        //last_x = arrAvgData[0];
-                        last_x = dataCount.ToString();
+                        last_x = arrAvgData[0];
+                        //last_x = dataCount.ToString();
                         firstChecked = false;
                     }
+
                     plotChart(arrAvgData);
                 }));
                 Console.WriteLine(dataCount / 3);
@@ -201,7 +203,7 @@ namespace AI_StreamingAI
             catch
             {
                 MessageBox.Show("nilai x dan y salah!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //this.Close();
+                
             }   
        }
 
@@ -257,11 +259,9 @@ namespace AI_StreamingAI
             chartXY.Series.Add("X vs Y");
             chartXY.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 
-            
-
             this.chartXY.Titles.Add("pt. B2TKS - BPPT");
             
-            chartXY.ChartAreas[0].AxisX.Maximum = 10000;
+            chartXY.ChartAreas[0].AxisX.Maximum = 10;
             chartXY.ChartAreas[0].AxisX.Minimum = 0;
             chartXY.ChartAreas[0].AxisY.Maximum = 10;
             chartXY.ChartAreas[0].AxisY.Minimum = 0;
@@ -317,15 +317,18 @@ namespace AI_StreamingAI
 
         private void plotChart(string[] data)
         {
+         
             if (!checkBox_holdX.Checked)
             {
-                chartXY.Series[0].Points.AddXY(Convert.ToDouble(dataCount), Convert.ToDouble(arrAvgData[1]));
+                chartXY.Series[0].Points.AddXY(Convert.ToDouble(arrAvgData[0]), Convert.ToDouble(arrAvgData[1]));
                 firstChecked = true;
             }
+
             if (checkBox_holdX.Checked)
             {
                 chartXY.Series[0].Points.AddXY(Convert.ToDouble(last_x), Convert.ToDouble(arrAvgData[1]));
             }
+            
         }
 
         private void button_save_Click(object sender, EventArgs e)
