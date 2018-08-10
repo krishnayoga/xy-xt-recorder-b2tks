@@ -14,7 +14,7 @@ namespace AI_StreamingAI
       {
          Application.EnableVisualStyles();
          Application.SetCompatibleTextRenderingDefault(false);
-         Application.Run(new StreamingAIForm());
+         Application.Run(new MainMenu());
       }
    }
 }
