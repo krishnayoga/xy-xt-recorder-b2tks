@@ -21,19 +21,19 @@ namespace AI_StreamingAI
       bool         m_isFirstOverRun = true;
       double       m_xInc;
 
-        int dataCount = 0;
+      int dataCount = 0;
+      string last_x;
+      bool firstChecked = true;
+      string[] arrAvgData;
+      string[] arrData;
+      double[] arrSumData;
+      double max_x = 0;
+      double min_x = 1000;
+      double max_y = 0;
+      double min_y = 1000;
+      #endregion
 
-        string[] arrAvgData;
-        string[] arrData;
-        double[] arrSumData;
-
-        double max_x = 0;
-        double min_x = 1000;
-        double max_y = 0;
-        double min_y = 1000;
-        #endregion
-
-        public StreamingAIForm()
+      public StreamingAIForm()
       {
          InitializeComponent();
       }
@@ -187,6 +187,12 @@ namespace AI_StreamingAI
                         label12.Text = min_y.ToString();
                         
                     }
+                    if(checkBox_holdX.Checked && firstChecked)
+                    {
+                        //last_x = arrAvgData[0];
+                        last_x = dataCount.ToString();
+                        firstChecked = false;
+                    }
                     plotChart(arrAvgData);
                 }));
                 Console.WriteLine(dataCount / 3);
@@ -255,7 +261,7 @@ namespace AI_StreamingAI
 
             this.chartXY.Titles.Add("pt. B2TKS - BPPT");
             
-            chartXY.ChartAreas[0].AxisX.Maximum = 10;
+            chartXY.ChartAreas[0].AxisX.Maximum = 10000;
             chartXY.ChartAreas[0].AxisX.Minimum = 0;
             chartXY.ChartAreas[0].AxisY.Maximum = 10;
             chartXY.ChartAreas[0].AxisY.Minimum = 0;
@@ -311,16 +317,13 @@ namespace AI_StreamingAI
 
         private void plotChart(string[] data)
         {
-            
-
             if (!checkBox_holdX.Checked)
             {
-                
-                chartXY.Series[0].Points.AddXY(Convert.ToDouble(last_x), Convert.ToDouble(arrAvgData[1]));
+                chartXY.Series[0].Points.AddXY(Convert.ToDouble(dataCount), Convert.ToDouble(arrAvgData[1]));
+                firstChecked = true;
             }
             if (checkBox_holdX.Checked)
             {
-                
                 chartXY.Series[0].Points.AddXY(Convert.ToDouble(last_x), Convert.ToDouble(arrAvgData[1]));
             }
         }
