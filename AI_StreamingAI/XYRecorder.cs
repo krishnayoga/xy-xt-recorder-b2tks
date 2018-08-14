@@ -16,23 +16,30 @@ namespace AI_StreamingAI
     public partial class XYRecorder : Form
     {
         #region fields  
-        double[]            m_dataScaled;
-        bool                m_isFirstOverRun = true;
-        double              m_xInc;
-        int dataCount       = 0;
-        string              last_x_0, last_x_1;
-        bool firstChecked   = true;
-        string[]            arrAvgData;
-        string[]            arrData;
-        double[]            arrSumData;
-        double max_x        = 0;
-        double min_x        = 1000;
-        double max_y        = 0;
-        double min_y        = 1000;
-        int                 max_x_chart;
-        int                 min_x_chart;
-        int                 max_y_chart;
-        int                 min_y_chart;
+
+        double[] m_dataScaled;
+        bool m_isFirstOverRun = true;
+        double m_xInc;
+        int dataCount = 0;
+        double last_x_0;
+        double last_x_1;
+        bool firstChecked = true;
+        string[] arrAvgData;
+        string[] arrData;
+        double[] arrSumData;
+        double[] dataPrint;
+        double max_x_1 = 0;
+        double min_x_1 = 1000;
+        double max_x_2 = 0;
+        double min_x_2 = 1000;
+        double max_y = 0;
+        double min_y = 1000;
+        int factor_baca_x_1 = 1, factor_baca_x_2 = 1, factor_baca_y = 1;
+        int max_x_chart;
+        int min_x_chart;
+        int max_y_chart;
+        int min_y_chart;
+
         #endregion
 
         public XYRecorder()
@@ -59,15 +66,16 @@ namespace AI_StreamingAI
 		    int sectionLength = waveformAiCtrl1.Record.SectionLength;
 		    m_dataScaled = new double[chanCount * sectionLength];
 
-		    this.Text = "Streaming AI(" + waveformAiCtrl1.SelectedDevice.Description + ")";
+            dataPrint = new double[3];
+
+            this.Text = "Streaming AI(" + waveformAiCtrl1.SelectedDevice.Description + ")";
 
             button_start.Enabled = true;
             button_stop.Enabled = false;
             button_pause.Enabled = false;
 
-            //chartXY.Series[0].BorderWidth = 10;
             chartXY.Series[0].IsXValueIndexed = false;
-            initChart();
+            
         }
 
         private void HandleError(ErrorCode err)
@@ -132,44 +140,90 @@ namespace AI_StreamingAI
                     for (int i = 0; i < arrSumData.Length; i++)
                     {
                         arrAvgData[i] = (arrSumData[i] / sectionLength).ToString("F1");
-                        ValueX1.Text = arrAvgData[0];
-                        ValueY.Text = arrAvgData[1];
+                        //ValueX1.Text = arrAvgData[0];
+                        //ValueY.Text = arrAvgData[1];
                         //label3.Text = arrAvgData[2];
                         //Console.WriteLine("i ke " + i + " arrsumdata :" + arrSumData[i]);
                         dataCount++;
 
-                        if (Convert.ToDouble(arrAvgData[0]) > max_x)
-                        {
-                            max_x = Convert.ToDouble(arrAvgData[0]);
-                        }
-                        if(Convert.ToDouble(arrAvgData[0]) < min_x)
-                        {
-                            min_x = Convert.ToDouble(arrAvgData[0]);
-                        }
-                        if(Convert.ToDouble(arrAvgData[1]) > max_y)
-                        {
-                            max_y = Convert.ToDouble(arrAvgData[1]);
-                        }
-                        if(Convert.ToDouble(arrAvgData[1]) < min_y)
-                        {
-                            min_y = Convert.ToDouble(arrAvgData[1]);
-                        }
-                        //chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
-                        
-                        MaxX1.Text = max_x.ToString();
-                        MinX1.Text = min_x.ToString();
-                        MaxY.Text = max_y.ToString();
-                        MinY.Text = min_y.ToString();
                         
                     }
-                    if(checkBox_holdX.Checked && firstChecked)
+
+                    dataPrint[0] = Convert.ToDouble(arrAvgData[0]) * factor_baca_x_1;
+                    dataPrint[1] = Convert.ToDouble(arrAvgData[1]) * factor_baca_x_2;
+                    dataPrint[2] = Convert.ToDouble(arrAvgData[2]) * factor_baca_y;
+
+                    if (checkBox_invertX1.Checked)
                     {
-                        last_x_0 = arrAvgData[0];
-                        last_x_1 = arrAvgData[1];
+                        dataPrint[0] = -dataPrint[0];
+                    }
+                    if (checkBox_invertX2.Checked)
+                    {
+                        dataPrint[1] = -dataPrint[1];
+                    }
+                    if (checkBox_invertY.Checked)
+                    {
+                        dataPrint[2] = -dataPrint[2];
+                    }
+
+                    ValueX1.Text = dataPrint[0].ToString();
+                    ValueX2.Text = dataPrint[1].ToString();
+                    ValueY.Text = dataPrint[2].ToString();
+
+                    //channel 0
+                    if (dataPrint[0] > max_x_1)
+                    {
+                        max_x_1 = dataPrint[0];
+                    }
+
+                    if (dataPrint[0] < min_x_1)
+                    {
+                        min_x_1 = dataPrint[0];
+                    }
+                    
+                    //channel 1
+                    if (dataPrint[1] > max_x_2)
+                    {
+                        max_x_2 = dataPrint[1];
+                    }
+
+                    if (dataPrint[1] < min_x_2)
+                    {
+                        min_x_2 = dataPrint[1];
+                    }
+
+                    //channel 2
+                    if (dataPrint[2] > max_y)
+                    {
+                        max_y = dataPrint[2];
+                    }
+
+                    if (dataPrint[2] < min_y)
+                    {
+                        min_y = dataPrint[2];
+                    }
+
+                    //chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
+
+                    Console.WriteLine(max_x_2);
+
+                    MaxX1.Text = max_x_1.ToString();
+                    MinX1.Text = min_x_1.ToString();
+                    MaxX2.Text = max_x_2.ToString();
+                    minX2.Text = min_x_2.ToString();
+                    MaxY.Text = max_y.ToString();
+                    MinY.Text = min_y.ToString();
+
+                    if (checkBox_holdX.Checked && firstChecked)
+                    {
+                        last_x_0 = dataPrint[0];
+                        last_x_1 = dataPrint[1];
                         //last_x = dataCount.ToString();
                         firstChecked = false;
                     }
-                    plotChart(arrAvgData);
+
+                    plotChart(dataPrint);
+                    
                 }));
                 Console.WriteLine(dataCount / 3);
                 
@@ -181,6 +235,7 @@ namespace AI_StreamingAI
             }   
         }
 
+        #region not used 2
         private void button_pause_Click(object sender, EventArgs e)
         {
          
@@ -190,8 +245,9 @@ namespace AI_StreamingAI
         {
 			
         }
-     
-		private void waveformAiCtrl1_CacheOverflow(object sender, BfdAiEventArgs e)
+        #endregion
+
+        private void waveformAiCtrl1_CacheOverflow(object sender, BfdAiEventArgs e)
         {
             MessageBox.Show("WaveformAiCacheOverflow");
         }
@@ -205,20 +261,30 @@ namespace AI_StreamingAI
             }
         }
 
-        private void initChart()
-        {    
+        private void startChart()
+        {
             chartXY.Series.Clear();
             chartXY.Series.Add("Series 1");
             chartXY.Series.Add("Series 2");
             chartXY.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chartXY.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 
+        }
+
+        private void initChart()
+        {
+            max_x_chart = Convert.ToInt32(rangeX_chart.Text);
+            min_x_chart = -max_x_chart;
+            max_y_chart = Convert.ToInt32(rangeY_chart.Text);
+            min_y_chart = -max_y_chart;
+
+            
             //this.chartXY.Titles.Add("pt. B2TKS - BPPT");
 
-            chartXY.ChartAreas[0].AxisX.Maximum = 10;
-            chartXY.ChartAreas[0].AxisX.Minimum = 0;
-            chartXY.ChartAreas[0].AxisY.Maximum = 10;
-            chartXY.ChartAreas[0].AxisY.Minimum = 0;
+            chartXY.ChartAreas[0].AxisX.Maximum = max_x_chart;
+            chartXY.ChartAreas[0].AxisX.Minimum = min_x_chart;
+            chartXY.ChartAreas[0].AxisY.Maximum = max_y_chart;
+            chartXY.ChartAreas[0].AxisY.Minimum = min_y_chart;
             chartXY.ChartAreas[0].AxisX.Interval = 1;
             chartXY.ChartAreas[0].AxisY.Interval = 1;
             
@@ -227,6 +293,7 @@ namespace AI_StreamingAI
             
         }
 
+        #region not used 1
         private void label4_Click(object sender, EventArgs e)
         {
 
@@ -241,19 +308,51 @@ namespace AI_StreamingAI
         {
 
         }
+        #endregion
 
-        private void plotChart(string[] data)
+        private void plotChart(double[] data)
         {
+            /*
+            if (checkBox2.Checked)
+            {
+                dataPrint[0] = -(Convert.ToDouble(arrAvgData[0]));
+                Console.WriteLine("halo" + dataPrint[0]);
+                last_x_0 = -last_x_0;
+            }
+            if (checkBox3.Checked)
+            {
+                dataPrint[1] = -(Convert.ToDouble(arrAvgData[1]));
+                last_x_1 = -last_x_1;
+            }
+            if (checkBox1.Checked)
+            {
+                dataPrint[2] = -(Convert.ToDouble(arrAvgData[2]));
+            }
+            */
+
             if (!checkBox_holdX.Checked)
             {
-                chartXY.Series[0].Points.AddXY(Convert.ToDouble(arrAvgData[0]), Convert.ToDouble(arrAvgData[2]));
-                chartXY.Series[1].Points.AddXY(Convert.ToDouble(arrAvgData[1]), Convert.ToDouble(arrAvgData[2]));
+                if (check1.Checked)
+                {
+                    chartXY.Series[0].Points.AddXY(dataPrint[0], dataPrint[2]);
+                }
+                if (check2.Checked)
+                {
+                    chartXY.Series[1].Points.AddXY(dataPrint[1], dataPrint[2]);
+                }
                 firstChecked = true;
             }
+
             if (checkBox_holdX.Checked)
             {
-                chartXY.Series[0].Points.AddXY(Convert.ToDouble(last_x_0), Convert.ToDouble(arrAvgData[2]));
-                chartXY.Series[1].Points.AddXY(Convert.ToDouble(last_x_1), Convert.ToDouble(arrAvgData[2]));
+                if (check1.Checked)
+                {
+                    chartXY.Series[0].Points.AddXY(last_x_0, dataPrint[2]);
+                }
+                if (check2.Checked)
+                {
+                    chartXY.Series[1].Points.AddXY(last_x_1, dataPrint[2]);
+                }
             }
         }
 
@@ -285,6 +384,20 @@ namespace AI_StreamingAI
             button_start.Enabled = false;
             button_pause.Enabled = true;
             button_stop.Enabled = true;
+
+            if (check1.Checked)
+            {
+                factor_baca_x_1 = Convert.ToInt32(factor_x_1.Text);
+            }
+            if (check2.Checked)
+            {
+                factor_baca_x_2 = Convert.ToInt32(factor_x_2.Text);
+            }
+            
+            factor_baca_y = Convert.ToInt32(factor_y.Text);
+
+            startChart();
+            initChart();
         }
 
         private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
@@ -292,7 +405,7 @@ namespace AI_StreamingAI
 
         }
 
-        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        private void toolStripMenuItem3_Click(object sender, EventArgs e) //pause
         {
             ErrorCode err = ErrorCode.Success;
             err = waveformAiCtrl1.Stop();
@@ -306,7 +419,7 @@ namespace AI_StreamingAI
             button_pause.Enabled = false;
         }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        private void toolStripMenuItem2_Click(object sender, EventArgs e) //stop
         {
             ErrorCode err = ErrorCode.Success;
             err = waveformAiCtrl1.Stop();
@@ -333,6 +446,7 @@ namespace AI_StreamingAI
             this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
         }
 
+        #region not used 6
         private void label9_Click(object sender, EventArgs e)
         {
 
@@ -362,6 +476,7 @@ namespace AI_StreamingAI
         {
 
         }
+        #endregion
 
         private void SensorY_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -480,6 +595,7 @@ namespace AI_StreamingAI
             U1.Text = UnitY.Text;
         }
 
+        #region not used 5
         private void panel5_Paint(object sender, PaintEventArgs e)
         {
 
@@ -494,6 +610,7 @@ namespace AI_StreamingAI
         {
 
         }
+        #endregion
 
         private void UnitX1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -516,6 +633,7 @@ namespace AI_StreamingAI
             U3.Text = UnitX2.Text;
         }
 
+        #region not used 4
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -525,6 +643,25 @@ namespace AI_StreamingAI
         {
 
         }
+        #endregion
+
+        private void balanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (check1.Checked)
+            {
+                chartXY.Series[0].Points.Clear();
+            }
+            if (check2.Checked)
+            {
+                chartXY.Series[1].Points.Clear();
+            }
+            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
+        }
+
+        private void replotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            initChart();
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -533,10 +670,11 @@ namespace AI_StreamingAI
             SenseMain.Text = Sense1.Text + " dan " + Sense2.Text + " vs " + Sense3.Text;
 
         }
-
+        #region not used 3
         private void Consumer_TextChanged(object sender, EventArgs e)
         {
 
         }
+        #endregion  
     }
 }
