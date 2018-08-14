@@ -556,6 +556,19 @@ namespace AI_StreamingAI
 
         }
 
+        //fungsi untuk print to png
+        private void printToPNGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
+            }
+            catch
+            {
+                MessageBox.Show("Gagal menyimpan chart", "Save PNG Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
 
 
@@ -649,6 +662,7 @@ namespace AI_StreamingAI
         {
 
         }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 

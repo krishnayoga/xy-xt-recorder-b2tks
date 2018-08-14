@@ -30,9 +30,9 @@ namespace AI_StreamingAI
       {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XYRecorder));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.waveformAiCtrl1 = new Automation.BDaq.WaveformAiCtrl(this.components);
             this.chartXY = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -130,6 +130,8 @@ namespace AI_StreamingAI
             this.Waktu = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.printToPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printToPrinterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.chartXY)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -150,18 +152,18 @@ namespace AI_StreamingAI
             // 
             // chartXY
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea4);
-            legend4.Enabled = false;
-            legend4.Name = "Legend1";
-            this.chartXY.Legends.Add(legend4);
+            chartArea6.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea6);
+            legend6.Enabled = false;
+            legend6.Name = "Legend1";
+            this.chartXY.Legends.Add(legend6);
             this.chartXY.Location = new System.Drawing.Point(0, 194);
             this.chartXY.Name = "chartXY";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chartXY.Series.Add(series4);
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.chartXY.Series.Add(series6);
             this.chartXY.Size = new System.Drawing.Size(1059, 511);
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
@@ -238,6 +240,9 @@ namespace AI_StreamingAI
             // 
             // printToolStripMenuItem
             // 
+            this.printToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.printToPNGToolStripMenuItem,
+            this.printToPrinterToolStripMenuItem});
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
             this.printToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
             this.printToolStripMenuItem.Text = "Print(Save)";
@@ -1139,6 +1144,19 @@ namespace AI_StreamingAI
             this.label13.TabIndex = 48;
             this.label13.Text = "*";
             // 
+            // printToPNGToolStripMenuItem
+            // 
+            this.printToPNGToolStripMenuItem.Name = "printToPNGToolStripMenuItem";
+            this.printToPNGToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.printToPNGToolStripMenuItem.Text = "Print to .PNG";
+            this.printToPNGToolStripMenuItem.Click += new System.EventHandler(this.printToPNGToolStripMenuItem_Click);
+            // 
+            // printToPrinterToolStripMenuItem
+            // 
+            this.printToPrinterToolStripMenuItem.Name = "printToPrinterToolStripMenuItem";
+            this.printToPrinterToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.printToPrinterToolStripMenuItem.Text = "Print to Printer";
+            // 
             // XYRecorder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -1285,6 +1303,8 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label Waktu;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ToolStripMenuItem printToPNGToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printToPrinterToolStripMenuItem;
     }
 }
 
