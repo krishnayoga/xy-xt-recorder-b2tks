@@ -39,11 +39,11 @@
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(10, 10);
+            this.richTextBox1.Location = new System.Drawing.Point(13, 12);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(1);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(396, 160);
+            this.richTextBox1.Size = new System.Drawing.Size(528, 197);
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
@@ -51,23 +51,24 @@
             // 
             this.EXIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.EXIT.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.EXIT.Location = new System.Drawing.Point(325, 176);
+            this.EXIT.Location = new System.Drawing.Point(433, 217);
             this.EXIT.Margin = new System.Windows.Forms.Padding(1);
             this.EXIT.Name = "EXIT";
-            this.EXIT.Size = new System.Drawing.Size(76, 22);
+            this.EXIT.Size = new System.Drawing.Size(101, 27);
             this.EXIT.TabIndex = 10;
-            this.EXIT.Text = "EXIT";
+            this.EXIT.Text = "&Tutup";
             this.EXIT.UseVisualStyleBackColor = true;
             this.EXIT.Click += new System.EventHandler(this.EXIT_Click);
             // 
             // MainHelp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(411, 208);
+            this.ClientSize = new System.Drawing.Size(548, 256);
             this.Controls.Add(this.EXIT);
             this.Controls.Add(this.richTextBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "MainHelp";
             this.Text = "MainHelp";

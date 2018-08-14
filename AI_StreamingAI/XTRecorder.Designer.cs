@@ -30,9 +30,9 @@ namespace AI_StreamingAI
       {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XTRecorder));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.waveformAiCtrl1 = new Automation.BDaq.WaveformAiCtrl(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -149,7 +149,7 @@ namespace AI_StreamingAI
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Location = new System.Drawing.Point(41, 450);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(2, 17);
+            this.label1.Size = new System.Drawing.Size(2, 20);
             this.label1.TabIndex = 20;
             // 
             // label2
@@ -158,7 +158,7 @@ namespace AI_StreamingAI
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label2.Location = new System.Drawing.Point(136, 452);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(2, 17);
+            this.label2.Size = new System.Drawing.Size(2, 20);
             this.label2.TabIndex = 21;
             // 
             // label3
@@ -167,24 +167,24 @@ namespace AI_StreamingAI
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label3.Location = new System.Drawing.Point(266, 452);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(2, 17);
+            this.label3.Size = new System.Drawing.Size(2, 20);
             this.label3.TabIndex = 22;
             // 
             // chartXY
             // 
             this.chartXY.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            chartArea1.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chartXY.Legends.Add(legend1);
+            chartArea10.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea10);
+            legend10.Enabled = false;
+            legend10.Name = "Legend1";
+            this.chartXY.Legends.Add(legend10);
             this.chartXY.Location = new System.Drawing.Point(12, 151);
             this.chartXY.Name = "chartXY";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartXY.Series.Add(series1);
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series10.Legend = "Legend1";
+            series10.Name = "Series1";
+            this.chartXY.Series.Add(series10);
             this.chartXY.Size = new System.Drawing.Size(1077, 545);
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
@@ -192,6 +192,7 @@ namespace AI_StreamingAI
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileNameToolStripMenuItem,
             this.button_start,
@@ -205,7 +206,7 @@ namespace AI_StreamingAI
             this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1348, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1348, 28);
             this.menuStrip1.TabIndex = 24;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -213,67 +214,67 @@ namespace AI_StreamingAI
             // fileNameToolStripMenuItem
             // 
             this.fileNameToolStripMenuItem.Name = "fileNameToolStripMenuItem";
-            this.fileNameToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.fileNameToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.fileNameToolStripMenuItem.Text = "File Name";
             // 
             // button_start
             // 
             this.button_start.Name = "button_start";
-            this.button_start.Size = new System.Drawing.Size(43, 20);
+            this.button_start.Size = new System.Drawing.Size(52, 24);
             this.button_start.Text = "Start";
             this.button_start.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
             // button_stop
             // 
             this.button_stop.Name = "button_stop";
-            this.button_stop.Size = new System.Drawing.Size(78, 20);
+            this.button_stop.Size = new System.Drawing.Size(97, 24);
             this.button_stop.Text = "Stop (Stop)";
             this.button_stop.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
             // 
             // balanceToolStripMenuItem
             // 
             this.balanceToolStripMenuItem.Name = "balanceToolStripMenuItem";
-            this.balanceToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.balanceToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
             this.balanceToolStripMenuItem.Text = "Balance";
             // 
             // startRecordToolStripMenuItem
             // 
             this.startRecordToolStripMenuItem.Name = "startRecordToolStripMenuItem";
-            this.startRecordToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.startRecordToolStripMenuItem.Size = new System.Drawing.Size(99, 24);
             this.startRecordToolStripMenuItem.Text = "StartRecord";
             this.startRecordToolStripMenuItem.Click += new System.EventHandler(this.startRecordToolStripMenuItem_Click);
             // 
             // button_pause
             // 
             this.button_pause.Name = "button_pause";
-            this.button_pause.Size = new System.Drawing.Size(122, 20);
+            this.button_pause.Size = new System.Drawing.Size(150, 24);
             this.button_pause.Text = "StopRecord (Pause)";
             this.button_pause.Click += new System.EventHandler(this.stopRecordToolStripMenuItem_Click);
             // 
             // replotToolStripMenuItem
             // 
             this.replotToolStripMenuItem.Name = "replotToolStripMenuItem";
-            this.replotToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.replotToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
             this.replotToolStripMenuItem.Text = "Replot";
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
             this.printToolStripMenuItem.Text = "Print(Save)";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(45, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -314,11 +315,11 @@ namespace AI_StreamingAI
             this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label32.AutoSize = true;
             this.label32.ForeColor = System.Drawing.Color.Red;
-            this.label32.Location = new System.Drawing.Point(116, 270);
+            this.label32.Location = new System.Drawing.Point(174, 270);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(152, 15);
+            this.label32.Size = new System.Drawing.Size(92, 18);
             this.label32.TabIndex = 34;
-            this.label32.Text = "* Harus di-klik/di-pilih/di-isi";
+            this.label32.Text = "* Harus di-isi";
             // 
             // Sensor2
             // 
@@ -332,7 +333,7 @@ namespace AI_StreamingAI
             "Volt"});
             this.Sensor2.Location = new System.Drawing.Point(6, 158);
             this.Sensor2.Name = "Sensor2";
-            this.Sensor2.Size = new System.Drawing.Size(87, 23);
+            this.Sensor2.Size = new System.Drawing.Size(87, 26);
             this.Sensor2.TabIndex = 44;
             this.Sensor2.SelectedIndexChanged += new System.EventHandler(this.Sensor2_SelectedIndexChanged);
             // 
@@ -352,7 +353,7 @@ namespace AI_StreamingAI
             "200"});
             this.RangeY.Location = new System.Drawing.Point(6, 262);
             this.RangeY.Name = "RangeY";
-            this.RangeY.Size = new System.Drawing.Size(87, 23);
+            this.RangeY.Size = new System.Drawing.Size(87, 26);
             this.RangeY.TabIndex = 43;
             // 
             // label18
@@ -360,7 +361,7 @@ namespace AI_StreamingAI
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(3, 244);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(105, 15);
+            this.label18.Size = new System.Drawing.Size(125, 18);
             this.label18.TabIndex = 42;
             this.label18.Text = "Range Max Y1/Y2";
             // 
@@ -370,7 +371,7 @@ namespace AI_StreamingAI
             this.Unit2.FormattingEnabled = true;
             this.Unit2.Location = new System.Drawing.Point(127, 158);
             this.Unit2.Name = "Unit2";
-            this.Unit2.Size = new System.Drawing.Size(87, 23);
+            this.Unit2.Size = new System.Drawing.Size(87, 26);
             this.Unit2.TabIndex = 41;
             this.Unit2.SelectedIndexChanged += new System.EventHandler(this.Unit2_SelectedIndexChanged);
             // 
@@ -379,7 +380,7 @@ namespace AI_StreamingAI
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(76, 213);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(52, 15);
+            this.label12.Size = new System.Drawing.Size(63, 18);
             this.label12.TabIndex = 33;
             this.label12.Text = "Unit/Volt";
             // 
@@ -387,7 +388,7 @@ namespace AI_StreamingAI
             // 
             this.Factor2.Location = new System.Drawing.Point(8, 209);
             this.Factor2.Name = "Factor2";
-            this.Factor2.Size = new System.Drawing.Size(62, 21);
+            this.Factor2.Size = new System.Drawing.Size(62, 24);
             this.Factor2.TabIndex = 40;
             // 
             // panel3
@@ -396,9 +397,9 @@ namespace AI_StreamingAI
             this.panel3.Controls.Add(this.radioButton3);
             this.panel3.Controls.Add(this.radioButton4);
             this.panel3.Controls.Add(this.label13);
-            this.panel3.Location = new System.Drawing.Point(134, 191);
+            this.panel3.Location = new System.Drawing.Point(149, 191);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(82, 62);
+            this.panel3.Size = new System.Drawing.Size(102, 62);
             this.panel3.TabIndex = 39;
             // 
             // radioButton3
@@ -406,7 +407,7 @@ namespace AI_StreamingAI
             this.radioButton3.AutoSize = true;
             this.radioButton3.Location = new System.Drawing.Point(6, 36);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(54, 19);
+            this.radioButton3.Size = new System.Drawing.Size(64, 22);
             this.radioButton3.TabIndex = 2;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Invert";
@@ -417,7 +418,7 @@ namespace AI_StreamingAI
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(6, 18);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(56, 19);
+            this.radioButton4.Size = new System.Drawing.Size(67, 22);
             this.radioButton4.TabIndex = 1;
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Norm";
@@ -428,7 +429,7 @@ namespace AI_StreamingAI
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(3, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(71, 15);
+            this.label13.Size = new System.Drawing.Size(87, 18);
             this.label13.TabIndex = 0;
             this.label13.Text = "Polarity - Y2";
             // 
@@ -437,7 +438,7 @@ namespace AI_StreamingAI
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(5, 191);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(65, 15);
+            this.label15.Size = new System.Drawing.Size(81, 18);
             this.label15.TabIndex = 37;
             this.label15.Text = "Factor - Y2";
             // 
@@ -446,7 +447,7 @@ namespace AI_StreamingAI
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(124, 139);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(53, 15);
+            this.label17.Size = new System.Drawing.Size(64, 18);
             this.label17.TabIndex = 35;
             this.label17.Text = "Unit - Y2";
             // 
@@ -455,7 +456,7 @@ namespace AI_StreamingAI
             this.check2.AutoSize = true;
             this.check2.Location = new System.Drawing.Point(8, 139);
             this.check2.Name = "check2";
-            this.check2.Size = new System.Drawing.Size(89, 19);
+            this.check2.Size = new System.Drawing.Size(108, 22);
             this.check2.TabIndex = 32;
             this.check2.Text = "Sensor - Y2";
             this.check2.UseVisualStyleBackColor = true;
@@ -465,7 +466,7 @@ namespace AI_StreamingAI
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(74, 92);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(52, 15);
+            this.label11.Size = new System.Drawing.Size(63, 18);
             this.label11.TabIndex = 3;
             this.label11.Text = "Unit/Volt";
             // 
@@ -473,7 +474,7 @@ namespace AI_StreamingAI
             // 
             this.Factor1.Location = new System.Drawing.Point(6, 88);
             this.Factor1.Name = "Factor1";
-            this.Factor1.Size = new System.Drawing.Size(62, 21);
+            this.Factor1.Size = new System.Drawing.Size(62, 24);
             this.Factor1.TabIndex = 31;
             // 
             // panel2
@@ -482,9 +483,9 @@ namespace AI_StreamingAI
             this.panel2.Controls.Add(this.radioButton2);
             this.panel2.Controls.Add(this.radioButton1);
             this.panel2.Controls.Add(this.label10);
-            this.panel2.Location = new System.Drawing.Point(132, 70);
+            this.panel2.Location = new System.Drawing.Point(141, 70);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(82, 62);
+            this.panel2.Size = new System.Drawing.Size(104, 62);
             this.panel2.TabIndex = 30;
             // 
             // radioButton2
@@ -492,7 +493,7 @@ namespace AI_StreamingAI
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(6, 36);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(54, 19);
+            this.radioButton2.Size = new System.Drawing.Size(64, 22);
             this.radioButton2.TabIndex = 2;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Invert";
@@ -503,7 +504,7 @@ namespace AI_StreamingAI
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(6, 18);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(56, 19);
+            this.radioButton1.Size = new System.Drawing.Size(67, 22);
             this.radioButton1.TabIndex = 1;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Norm";
@@ -514,7 +515,7 @@ namespace AI_StreamingAI
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(3, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(71, 15);
+            this.label10.Size = new System.Drawing.Size(87, 18);
             this.label10.TabIndex = 0;
             this.label10.Text = "Polarity - Y1";
             // 
@@ -524,7 +525,7 @@ namespace AI_StreamingAI
             this.label8.ForeColor = System.Drawing.Color.Red;
             this.label8.Location = new System.Drawing.Point(77, 70);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(12, 15);
+            this.label8.Size = new System.Drawing.Size(14, 18);
             this.label8.TabIndex = 29;
             this.label8.Text = "*";
             // 
@@ -533,7 +534,7 @@ namespace AI_StreamingAI
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(3, 70);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 15);
+            this.label9.Size = new System.Drawing.Size(81, 18);
             this.label9.TabIndex = 28;
             this.label9.Text = "Factor - Y1";
             // 
@@ -543,7 +544,7 @@ namespace AI_StreamingAI
             this.label7.ForeColor = System.Drawing.Color.Red;
             this.label7.Location = new System.Drawing.Point(183, 18);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(12, 15);
+            this.label7.Size = new System.Drawing.Size(14, 18);
             this.label7.TabIndex = 26;
             this.label7.Text = "*";
             // 
@@ -552,7 +553,7 @@ namespace AI_StreamingAI
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(124, 18);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 15);
+            this.label6.Size = new System.Drawing.Size(64, 18);
             this.label6.TabIndex = 5;
             this.label6.Text = "Unit - Y1";
             // 
@@ -562,7 +563,7 @@ namespace AI_StreamingAI
             this.Unit1.FormattingEnabled = true;
             this.Unit1.Location = new System.Drawing.Point(127, 37);
             this.Unit1.Name = "Unit1";
-            this.Unit1.Size = new System.Drawing.Size(87, 23);
+            this.Unit1.Size = new System.Drawing.Size(87, 26);
             this.Unit1.TabIndex = 4;
             this.Unit1.SelectedIndexChanged += new System.EventHandler(this.Unit1_SelectedIndexChanged);
             // 
@@ -578,7 +579,7 @@ namespace AI_StreamingAI
             "Volt"});
             this.Sensor1.Location = new System.Drawing.Point(6, 37);
             this.Sensor1.Name = "Sensor1";
-            this.Sensor1.Size = new System.Drawing.Size(87, 23);
+            this.Sensor1.Size = new System.Drawing.Size(87, 26);
             this.Sensor1.TabIndex = 3;
             this.Sensor1.SelectedIndexChanged += new System.EventHandler(this.Sensor1_SelectedIndexChanged);
             // 
@@ -588,7 +589,7 @@ namespace AI_StreamingAI
             this.label5.ForeColor = System.Drawing.Color.Red;
             this.label5.Location = new System.Drawing.Point(98, 18);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(12, 15);
+            this.label5.Size = new System.Drawing.Size(14, 18);
             this.label5.TabIndex = 2;
             this.label5.Text = "*";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -598,7 +599,7 @@ namespace AI_StreamingAI
             this.check1.AutoSize = true;
             this.check1.Location = new System.Drawing.Point(6, 18);
             this.check1.Name = "check1";
-            this.check1.Size = new System.Drawing.Size(89, 19);
+            this.check1.Size = new System.Drawing.Size(108, 22);
             this.check1.TabIndex = 1;
             this.check1.Text = "Sensor - Y1";
             this.check1.UseVisualStyleBackColor = true;
@@ -608,7 +609,7 @@ namespace AI_StreamingAI
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(1, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 15);
+            this.label4.Size = new System.Drawing.Size(66, 18);
             this.label4.TabIndex = 0;
             this.label4.Text = "Setting Y";
             // 
@@ -625,7 +626,7 @@ namespace AI_StreamingAI
             this.panel4.Controls.Add(this.label21);
             this.panel4.Controls.Add(this.RangeX);
             this.panel4.Controls.Add(this.label19);
-            this.panel4.Location = new System.Drawing.Point(1077, 325);
+            this.panel4.Location = new System.Drawing.Point(1077, 319);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(271, 88);
             this.panel4.TabIndex = 26;
@@ -634,9 +635,9 @@ namespace AI_StreamingAI
             // 
             this.checkBox3.AutoSize = true;
             this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox3.Location = new System.Drawing.Point(6, 67);
+            this.checkBox3.Location = new System.Drawing.Point(17, 65);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(78, 19);
+            this.checkBox3.Size = new System.Drawing.Size(92, 22);
             this.checkBox3.TabIndex = 33;
             this.checkBox3.Text = "Hold - X";
             this.checkBox3.UseVisualStyleBackColor = true;
@@ -645,18 +646,19 @@ namespace AI_StreamingAI
             // 
             this.label22.AutoSize = true;
             this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(165, 19);
+            this.label22.Location = new System.Drawing.Point(201, 17);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(12, 15);
+            this.label22.Size = new System.Drawing.Size(14, 18);
             this.label22.TabIndex = 32;
             this.label22.Text = "*";
+            this.label22.Click += new System.EventHandler(this.label22_Click);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(116, 19);
+            this.label23.Location = new System.Drawing.Point(149, 17);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(47, 15);
+            this.label23.Size = new System.Drawing.Size(57, 18);
             this.label23.TabIndex = 31;
             this.label23.Text = "Unit - X";
             // 
@@ -667,9 +669,9 @@ namespace AI_StreamingAI
             this.UnitX.Items.AddRange(new object[] {
             "Minute",
             "Second"});
-            this.UnitX.Location = new System.Drawing.Point(119, 38);
+            this.UnitX.Location = new System.Drawing.Point(149, 38);
             this.UnitX.Name = "UnitX";
-            this.UnitX.Size = new System.Drawing.Size(87, 23);
+            this.UnitX.Size = new System.Drawing.Size(87, 26);
             this.UnitX.TabIndex = 30;
             this.UnitX.SelectedIndexChanged += new System.EventHandler(this.comboBox7_SelectedIndexChanged);
             // 
@@ -677,9 +679,9 @@ namespace AI_StreamingAI
             // 
             this.label20.AutoSize = true;
             this.label20.ForeColor = System.Drawing.Color.Red;
-            this.label20.Location = new System.Drawing.Point(98, 19);
+            this.label20.Location = new System.Drawing.Point(118, 17);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(12, 15);
+            this.label20.Size = new System.Drawing.Size(14, 18);
             this.label20.TabIndex = 29;
             this.label20.Text = "*";
             // 
@@ -688,20 +690,22 @@ namespace AI_StreamingAI
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(118, 71);
+            this.label14.Location = new System.Drawing.Point(174, 67);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(152, 15);
+            this.label14.Size = new System.Drawing.Size(92, 18);
             this.label14.TabIndex = 27;
-            this.label14.Text = "* Harus di-klik/di-pilih/di-isi";
+            this.label14.Text = "* Harus di-isi";
+            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(3, 19);
+            this.label21.Location = new System.Drawing.Point(17, 18);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(89, 15);
+            this.label21.Size = new System.Drawing.Size(106, 18);
             this.label21.TabIndex = 28;
             this.label21.Text = "Range Max - X";
+            this.label21.Click += new System.EventHandler(this.label21_Click);
             // 
             // RangeX
             // 
@@ -717,18 +721,18 @@ namespace AI_StreamingAI
             "100",
             "150",
             "200"});
-            this.RangeX.Location = new System.Drawing.Point(6, 38);
+            this.RangeX.Location = new System.Drawing.Point(18, 38);
             this.RangeX.Name = "RangeX";
-            this.RangeX.Size = new System.Drawing.Size(87, 23);
+            this.RangeX.Size = new System.Drawing.Size(87, 26);
             this.RangeX.TabIndex = 27;
             this.RangeX.SelectedIndexChanged += new System.EventHandler(this.RangeX_SelectedIndexChanged);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(0, 4);
+            this.label19.Location = new System.Drawing.Point(0, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(95, 15);
+            this.label19.Size = new System.Drawing.Size(114, 18);
             this.label19.TabIndex = 1;
             this.label19.Text = "Setting X (Time)";
             // 
@@ -756,7 +760,7 @@ namespace AI_StreamingAI
             this.panel5.Controls.Add(this.MaxY1);
             this.panel5.Controls.Add(this.ValueY1);
             this.panel5.Controls.Add(this.label16);
-            this.panel5.Location = new System.Drawing.Point(1077, 540);
+            this.panel5.Location = new System.Drawing.Point(1077, 532);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(271, 143);
             this.panel5.TabIndex = 28;
@@ -764,18 +768,18 @@ namespace AI_StreamingAI
             // U2
             // 
             this.U2.AutoSize = true;
-            this.U2.Location = new System.Drawing.Point(221, 64);
+            this.U2.Location = new System.Drawing.Point(232, 64);
             this.U2.Name = "U2";
-            this.U2.Size = new System.Drawing.Size(29, 15);
+            this.U2.Size = new System.Drawing.Size(34, 18);
             this.U2.TabIndex = 59;
             this.U2.Text = "Unit";
             // 
             // U1
             // 
             this.U1.AutoSize = true;
-            this.U1.Location = new System.Drawing.Point(221, 40);
+            this.U1.Location = new System.Drawing.Point(232, 40);
             this.U1.Name = "U1";
-            this.U1.Size = new System.Drawing.Size(29, 15);
+            this.U1.Size = new System.Drawing.Size(34, 18);
             this.U1.TabIndex = 58;
             this.U1.Text = "Unit";
             // 
@@ -784,7 +788,7 @@ namespace AI_StreamingAI
             this.label31.AutoSize = true;
             this.label31.Location = new System.Drawing.Point(172, 92);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(49, 15);
+            this.label31.Size = new System.Drawing.Size(59, 18);
             this.label31.TabIndex = 57;
             this.label31.Text = "Second";
             // 
@@ -793,16 +797,16 @@ namespace AI_StreamingAI
             this.label30.AutoSize = true;
             this.label30.Location = new System.Drawing.Point(118, 92);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(45, 15);
+            this.label30.Size = new System.Drawing.Size(52, 18);
             this.label30.TabIndex = 56;
             this.label30.Text = "Minute";
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(1, 113);
+            this.label29.Location = new System.Drawing.Point(0, 113);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(57, 15);
+            this.label29.Size = new System.Drawing.Size(68, 18);
             this.label29.TabIndex = 55;
             this.label29.Text = "Time (m)";
             // 
@@ -811,18 +815,18 @@ namespace AI_StreamingAI
             this.ValY2.AutoSize = true;
             this.ValY2.Location = new System.Drawing.Point(1, 67);
             this.ValY2.Name = "ValY2";
-            this.ValY2.Size = new System.Drawing.Size(38, 15);
+            this.ValY2.Size = new System.Drawing.Size(65, 18);
             this.ValY2.TabIndex = 54;
-            this.ValY2.Text = "Value";
+            this.ValY2.Text = "Value Y2";
             // 
             // ValY1
             // 
             this.ValY1.AutoSize = true;
-            this.ValY1.Location = new System.Drawing.Point(1, 40);
+            this.ValY1.Location = new System.Drawing.Point(-1, 40);
             this.ValY1.Name = "ValY1";
-            this.ValY1.Size = new System.Drawing.Size(38, 15);
+            this.ValY1.Size = new System.Drawing.Size(65, 18);
             this.ValY1.TabIndex = 53;
-            this.ValY1.Text = "Value";
+            this.ValY1.Text = "Value Y1";
             this.ValY1.Click += new System.EventHandler(this.ValY1_Click);
             // 
             // label26
@@ -830,7 +834,7 @@ namespace AI_StreamingAI
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(183, 19);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(28, 15);
+            this.label26.Size = new System.Drawing.Size(32, 18);
             this.label26.TabIndex = 52;
             this.label26.Text = "Min";
             // 
@@ -839,7 +843,7 @@ namespace AI_StreamingAI
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(131, 19);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(31, 15);
+            this.label25.Size = new System.Drawing.Size(36, 18);
             this.label25.TabIndex = 51;
             this.label25.Text = "Max";
             // 
@@ -848,80 +852,80 @@ namespace AI_StreamingAI
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(72, 19);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(38, 15);
+            this.label24.Size = new System.Drawing.Size(44, 18);
             this.label24.TabIndex = 50;
             this.label24.Text = "Value";
             // 
             // Second
             // 
-            this.Second.Location = new System.Drawing.Point(173, 110);
+            this.Second.Location = new System.Drawing.Point(188, 110);
             this.Second.Name = "Second";
             this.Second.ReadOnly = true;
-            this.Second.Size = new System.Drawing.Size(48, 21);
+            this.Second.Size = new System.Drawing.Size(48, 24);
             this.Second.TabIndex = 49;
             // 
             // Minute
             // 
-            this.Minute.Location = new System.Drawing.Point(119, 110);
+            this.Minute.Location = new System.Drawing.Point(134, 107);
             this.Minute.Name = "Minute";
             this.Minute.ReadOnly = true;
-            this.Minute.Size = new System.Drawing.Size(48, 21);
+            this.Minute.Size = new System.Drawing.Size(48, 24);
             this.Minute.TabIndex = 48;
             // 
             // Time
             // 
-            this.Time.Location = new System.Drawing.Point(64, 110);
+            this.Time.Location = new System.Drawing.Point(77, 110);
             this.Time.Name = "Time";
             this.Time.ReadOnly = true;
-            this.Time.Size = new System.Drawing.Size(48, 21);
+            this.Time.Size = new System.Drawing.Size(48, 24);
             this.Time.TabIndex = 47;
             // 
             // MinY2
             // 
-            this.MinY2.Location = new System.Drawing.Point(173, 64);
+            this.MinY2.Location = new System.Drawing.Point(183, 64);
             this.MinY2.Name = "MinY2";
             this.MinY2.ReadOnly = true;
-            this.MinY2.Size = new System.Drawing.Size(48, 21);
+            this.MinY2.Size = new System.Drawing.Size(48, 24);
             this.MinY2.TabIndex = 46;
             // 
             // MaxY2
             // 
-            this.MaxY2.Location = new System.Drawing.Point(119, 64);
+            this.MaxY2.Location = new System.Drawing.Point(132, 64);
             this.MaxY2.Name = "MaxY2";
             this.MaxY2.ReadOnly = true;
-            this.MaxY2.Size = new System.Drawing.Size(48, 21);
+            this.MaxY2.Size = new System.Drawing.Size(48, 24);
             this.MaxY2.TabIndex = 45;
             // 
             // ValueY2
             // 
-            this.ValueY2.Location = new System.Drawing.Point(64, 64);
+            this.ValueY2.Location = new System.Drawing.Point(77, 67);
             this.ValueY2.Name = "ValueY2";
             this.ValueY2.ReadOnly = true;
-            this.ValueY2.Size = new System.Drawing.Size(48, 21);
+            this.ValueY2.Size = new System.Drawing.Size(48, 24);
             this.ValueY2.TabIndex = 44;
             // 
             // MinY1
             // 
-            this.MinY1.Location = new System.Drawing.Point(173, 37);
+            this.MinY1.Location = new System.Drawing.Point(183, 34);
             this.MinY1.Name = "MinY1";
             this.MinY1.ReadOnly = true;
-            this.MinY1.Size = new System.Drawing.Size(48, 21);
+            this.MinY1.Size = new System.Drawing.Size(48, 24);
             this.MinY1.TabIndex = 43;
             // 
             // MaxY1
             // 
-            this.MaxY1.Location = new System.Drawing.Point(119, 37);
+            this.MaxY1.Location = new System.Drawing.Point(134, 37);
             this.MaxY1.Name = "MaxY1";
             this.MaxY1.ReadOnly = true;
-            this.MaxY1.Size = new System.Drawing.Size(48, 21);
+            this.MaxY1.Size = new System.Drawing.Size(48, 24);
             this.MaxY1.TabIndex = 42;
             // 
             // ValueY1
             // 
-            this.ValueY1.Location = new System.Drawing.Point(64, 37);
+            this.ValueY1.Location = new System.Drawing.Point(79, 37);
             this.ValueY1.Name = "ValueY1";
             this.ValueY1.ReadOnly = true;
-            this.ValueY1.Size = new System.Drawing.Size(48, 21);
+            this.ValueY1.Size = new System.Drawing.Size(48, 24);
             this.ValueY1.TabIndex = 41;
             this.ValueY1.TextChanged += new System.EventHandler(this.ValueY1_TextChanged);
             // 
@@ -930,7 +934,7 @@ namespace AI_StreamingAI
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(3, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(87, 15);
+            this.label16.Size = new System.Drawing.Size(102, 18);
             this.label16.TabIndex = 0;
             this.label16.Text = "Decimal Value";
             // 
@@ -938,9 +942,9 @@ namespace AI_StreamingAI
             // 
             this.SenseMain.AutoSize = true;
             this.SenseMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenseMain.Location = new System.Drawing.Point(540, 120);
+            this.SenseMain.Location = new System.Drawing.Point(522, 121);
             this.SenseMain.Name = "SenseMain";
-            this.SenseMain.Size = new System.Drawing.Size(247, 29);
+            this.SenseMain.Size = new System.Drawing.Size(308, 36);
             this.SenseMain.TabIndex = 30;
             this.SenseMain.Text = "Sensor X vs Sensor Y";
             this.SenseMain.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -949,9 +953,9 @@ namespace AI_StreamingAI
             // 
             this.ConsumerMain.AutoSize = true;
             this.ConsumerMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConsumerMain.Location = new System.Drawing.Point(561, 85);
+            this.ConsumerMain.Location = new System.Drawing.Point(564, 85);
             this.ConsumerMain.Name = "ConsumerMain";
-            this.ConsumerMain.Size = new System.Drawing.Size(187, 29);
+            this.ConsumerMain.Size = new System.Drawing.Size(227, 36);
             this.ConsumerMain.TabIndex = 31;
             this.ConsumerMain.Text = "Nama Customer";
             this.ConsumerMain.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -962,14 +966,14 @@ namespace AI_StreamingAI
             this.TitleMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TitleMain.Location = new System.Drawing.Point(561, 46);
             this.TitleMain.Name = "TitleMain";
-            this.TitleMain.Size = new System.Drawing.Size(185, 29);
+            this.TitleMain.Size = new System.Drawing.Size(230, 36);
             this.TitleMain.TabIndex = 29;
             this.TitleMain.Text = "Judul Pengujian";
-            this.TitleMain.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.TitleMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel6
             // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.button1);
             this.panel6.Controls.Add(this.Sense2);
@@ -981,7 +985,7 @@ namespace AI_StreamingAI
             this.panel6.Controls.Add(this.label35);
             this.panel6.Controls.Add(this.label28);
             this.panel6.Controls.Add(this.label27);
-            this.panel6.Location = new System.Drawing.Point(1077, 419);
+            this.panel6.Location = new System.Drawing.Point(1077, 408);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(271, 119);
             this.panel6.TabIndex = 32;
@@ -1000,28 +1004,28 @@ namespace AI_StreamingAI
             // 
             this.Sense2.Location = new System.Drawing.Point(162, 79);
             this.Sense2.Name = "Sense2";
-            this.Sense2.Size = new System.Drawing.Size(100, 21);
+            this.Sense2.Size = new System.Drawing.Size(100, 24);
             this.Sense2.TabIndex = 42;
             // 
             // Sense1
             // 
             this.Sense1.Location = new System.Drawing.Point(162, 37);
             this.Sense1.Name = "Sense1";
-            this.Sense1.Size = new System.Drawing.Size(100, 21);
+            this.Sense1.Size = new System.Drawing.Size(100, 24);
             this.Sense1.TabIndex = 41;
             // 
             // Consumer
             // 
             this.Consumer.Location = new System.Drawing.Point(15, 79);
             this.Consumer.Name = "Consumer";
-            this.Consumer.Size = new System.Drawing.Size(139, 21);
+            this.Consumer.Size = new System.Drawing.Size(139, 24);
             this.Consumer.TabIndex = 40;
             // 
             // Title
             // 
             this.Title.Location = new System.Drawing.Point(14, 38);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(140, 21);
+            this.Title.Size = new System.Drawing.Size(140, 24);
             this.Title.TabIndex = 39;
             // 
             // label37
@@ -1029,7 +1033,7 @@ namespace AI_StreamingAI
             this.label37.AutoSize = true;
             this.label37.Location = new System.Drawing.Point(159, 20);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(63, 15);
+            this.label37.Size = new System.Drawing.Size(77, 18);
             this.label37.TabIndex = 38;
             this.label37.Text = "Sensor Y1";
             // 
@@ -1038,7 +1042,7 @@ namespace AI_StreamingAI
             this.label36.AutoSize = true;
             this.label36.Location = new System.Drawing.Point(159, 61);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(63, 15);
+            this.label36.Size = new System.Drawing.Size(77, 18);
             this.label36.TabIndex = 37;
             this.label36.Text = "Sensor Y2";
             // 
@@ -1047,7 +1051,7 @@ namespace AI_StreamingAI
             this.label35.AutoSize = true;
             this.label35.Location = new System.Drawing.Point(11, 61);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(104, 15);
+            this.label35.Size = new System.Drawing.Size(124, 18);
             this.label35.TabIndex = 36;
             this.label35.Text = "Nama Konsumen";
             // 
@@ -1056,7 +1060,7 @@ namespace AI_StreamingAI
             this.label28.AutoSize = true;
             this.label28.Location = new System.Drawing.Point(11, 20);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(100, 15);
+            this.label28.Size = new System.Drawing.Size(119, 18);
             this.label28.TabIndex = 35;
             this.label28.Text = "Judul Percobaan";
             // 
@@ -1065,7 +1069,7 @@ namespace AI_StreamingAI
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(6, 1);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(72, 15);
+            this.label27.Size = new System.Drawing.Size(84, 18);
             this.label27.TabIndex = 34;
             this.label27.Text = "Panel Judul";
             // 
@@ -1081,7 +1085,7 @@ namespace AI_StreamingAI
             // 
             // XTRecorder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1348, 687);
