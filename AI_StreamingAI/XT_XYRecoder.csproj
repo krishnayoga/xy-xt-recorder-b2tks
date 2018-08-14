@@ -151,12 +151,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\xy-xt-recorder-b2tks-master\xy-xt-recorder-b2tks-master\AI_StreamingAI\AI_StreamingAI.csproj">
-      <Project>{3896869f-7105-452c-a123-3283e96c5d67}</Project>
-      <Name>AI_StreamingAI</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

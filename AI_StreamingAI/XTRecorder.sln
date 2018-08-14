@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XT_XYRecoder", "XT_XYRecoder.csproj", "{B04BEA06-9EE7-49E3-B4DE-46B1D4AD6367}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI_StreamingAI", "..\..\..\..\xy-xt-recorder-b2tks-master\xy-xt-recorder-b2tks-master\AI_StreamingAI\AI_StreamingAI.csproj", "{3896869F-7105-452C-A123-3283E96C5D67}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{B04BEA06-9EE7-49E3-B4DE-46B1D4AD6367}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B04BEA06-9EE7-49E3-B4DE-46B1D4AD6367}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B04BEA06-9EE7-49E3-B4DE-46B1D4AD6367}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3896869F-7105-452C-A123-3283E96C5D67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3896869F-7105-452C-A123-3283E96C5D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3896869F-7105-452C-A123-3283E96C5D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3896869F-7105-452C-A123-3283E96C5D67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
