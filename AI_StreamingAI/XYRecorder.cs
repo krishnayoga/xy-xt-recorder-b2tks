@@ -12,88 +12,80 @@ using Automation.BDaq;
 
 namespace AI_StreamingAI
 {
-   public partial class XYRecorder : Form
-   {
-      #region fields  
+    public partial class XYRecorder : Form
+    {
+        #region fields  
+        double[]            m_dataScaled;
+        bool                m_isFirstOverRun = true;
+        double              m_xInc;
+        int dataCount       = 0;
+        string              last_x_0, last_x_1;
+        bool firstChecked   = true;
+        string[]            arrAvgData;
+        string[]            arrData;
+        double[]            arrSumData;
+        double max_x        = 0;
+        double min_x        = 1000;
+        double max_y        = 0;
+        double min_y        = 1000;
+        int                 max_x_chart;
+        int                 min_x_chart;
+        int                 max_y_chart;
+        int                 min_y_chart;
+        #endregion
 
-      double[]     m_dataScaled;
-
-      bool         m_isFirstOverRun = true;
-      double       m_xInc;
-
-      int dataCount = 0;
-      string last_x_0, last_x_1;
-      bool firstChecked = true;
-      string[] arrAvgData;
-      string[] arrData;
-      double[] arrSumData;
-      double max_x = 0;
-      double min_x = 1000;
-      double max_y = 0;
-      double min_y = 1000;
-      #endregion
-
-      public XYRecorder()
-      {
-         InitializeComponent();
-      }
-
-      public XYRecorder(int deviceNumber)
-      {
-         InitializeComponent();
-			waveformAiCtrl1.SelectedDevice = new DeviceInformation(deviceNumber);
-      }
-      
-      private void StreamingBufferedAiForm_Load(object sender, EventArgs e)
-      {
-         //The default device of project is demo device, users can choose other devices according to their needs. 
-		  if (!waveformAiCtrl1.Initialized)
-         {
-            MessageBox.Show("No device be selected or device open failed!", "StreamingAI");
-              this.Close();
-              return;
-         }
-
-		 int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
-		 int sectionLength = waveformAiCtrl1.Record.SectionLength;
-		 m_dataScaled = new double[chanCount * sectionLength];
-
-		 this.Text = "Streaming AI(" + waveformAiCtrl1.SelectedDevice.Description + ")";
-
-            Console.WriteLine("testetstes");
-
-         button_start.Enabled = true;
-         button_stop.Enabled = false;
-         button_pause.Enabled = false;
-
-            //chartXY.Series[0].BorderWidth = 10;
-
-            chartXY.Series[0].IsXValueIndexed = false;
-
-            initChart();
-
-
+        public XYRecorder()
+        {
+            InitializeComponent();
         }
 
-      private void HandleError(ErrorCode err)
-      {
-         if ((err >= ErrorCode.ErrorHandleNotValid) && (err != ErrorCode.Success))
-         {
-				MessageBox.Show("Sorry ! Some errors happened, the error code is: " + err.ToString(), "StreamingAI");
-         }
-      }
+        public XYRecorder(int deviceNumber)
+        {
+            InitializeComponent();
+			waveformAiCtrl1.SelectedDevice = new DeviceInformation(deviceNumber);
+        }
+      
+        private void StreamingBufferedAiForm_Load(object sender, EventArgs e)
+        {
+            if (!waveformAiCtrl1.Initialized)
+            {
+                MessageBox.Show("No device be selected or device open failed!", "StreamingAI");
+                this.Close();
+                return;
+            }
 
-      private void button_start_Click(object sender, EventArgs e)
-      {
+		    int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
+		    int sectionLength = waveformAiCtrl1.Record.SectionLength;
+		    m_dataScaled = new double[chanCount * sectionLength];
+
+		    this.Text = "Streaming AI(" + waveformAiCtrl1.SelectedDevice.Description + ")";
+
+            button_start.Enabled = true;
+            button_stop.Enabled = false;
+            button_pause.Enabled = false;
+
+            //chartXY.Series[0].BorderWidth = 10;
+            chartXY.Series[0].IsXValueIndexed = false;
+            initChart();
+        }
+
+        private void HandleError(ErrorCode err)
+        {
+            if ((err >= ErrorCode.ErrorHandleNotValid) && (err != ErrorCode.Success))
+            {
+		        MessageBox.Show("Sorry ! Some errors happened, the error code is: " + err.ToString(), "StreamingAI");
+            }
+        }
+
+        private void button_start_Click(object sender, EventArgs e)
+        {
             
         }
 
-	  private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
-      {
-			try
+	    private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
+        {
+	        try
             {
-                Console.WriteLine("halo");
-                //The WaveformAiCtrl has been disposed.
                 if (waveformAiCtrl1.State == ControlState.Idle)
                 {
 				    return;
@@ -113,7 +105,7 @@ namespace AI_StreamingAI
                 if (err != ErrorCode.Success && err != ErrorCode.WarningRecordEnd)
                 {
                     HandleError(err);
-                return;
+                    return;
                 }
                 //System.Diagnostics.Debug.WriteLine(args.Count.ToString());
 
@@ -186,22 +178,22 @@ namespace AI_StreamingAI
                 MessageBox.Show("nilai x dan y salah!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }   
-       }
+        }
 
-      private void button_pause_Click(object sender, EventArgs e)
-      {
+        private void button_pause_Click(object sender, EventArgs e)
+        {
          
-      }
+        }
 
-      private void button_stop_Click(object sender, EventArgs e)
-      {
+        private void button_stop_Click(object sender, EventArgs e)
+        {
 			
-      }
+        }
      
 		private void waveformAiCtrl1_CacheOverflow(object sender, BfdAiEventArgs e)
-      {
-         MessageBox.Show("WaveformAiCacheOverflow");
-      }
+        {
+            MessageBox.Show("WaveformAiCacheOverflow");
+        }
 
         private void waveformAiCtrl1_Overrun(object sender, BfdAiEventArgs e)
         {
@@ -213,8 +205,7 @@ namespace AI_StreamingAI
         }
 
         private void initChart()
-        {
-            
+        {    
             chartXY.Series.Clear();
             chartXY.Series.Add("Series 1");
             chartXY.Series.Add("Series 2");
@@ -297,8 +288,6 @@ namespace AI_StreamingAI
 
         private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-
 
         }
 
