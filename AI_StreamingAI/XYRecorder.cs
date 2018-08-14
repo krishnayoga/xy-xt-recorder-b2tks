@@ -75,7 +75,6 @@ namespace AI_StreamingAI
             button_pause.Enabled = false;
 
             chartXY.Series[0].IsXValueIndexed = false;
-            
         }
 
         private void HandleError(ErrorCode err)
@@ -84,11 +83,6 @@ namespace AI_StreamingAI
             {
 		        MessageBox.Show("Sorry ! Some errors happened, the error code is: " + err.ToString(), "StreamingAI");
             }
-        }
-
-        private void button_start_Click(object sender, EventArgs e)
-        {
-            
         }
 
 	    private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
@@ -145,8 +139,6 @@ namespace AI_StreamingAI
                         //label3.Text = arrAvgData[2];
                         //Console.WriteLine("i ke " + i + " arrsumdata :" + arrSumData[i]);
                         dataCount++;
-
-                        
                     }
 
                     dataPrint[0] = Convert.ToDouble(arrAvgData[0]) * factor_baca_x_1;
@@ -235,18 +227,6 @@ namespace AI_StreamingAI
             }   
         }
 
-        #region not used 2
-        private void button_pause_Click(object sender, EventArgs e)
-        {
-         
-        }
-
-        private void button_stop_Click(object sender, EventArgs e)
-        {
-			
-        }
-        #endregion
-
         private void waveformAiCtrl1_CacheOverflow(object sender, BfdAiEventArgs e)
         {
             MessageBox.Show("WaveformAiCacheOverflow");
@@ -292,23 +272,6 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisY.Title = "";
             
         }
-
-        #region not used 1
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
 
         private void plotChart(double[] data)
         {
@@ -356,11 +319,6 @@ namespace AI_StreamingAI
             }
         }
 
-        private void button_save_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ErrorCode err = ErrorCode.Success;
@@ -400,11 +358,6 @@ namespace AI_StreamingAI
             initChart();
         }
 
-        private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void toolStripMenuItem3_Click(object sender, EventArgs e) //pause
         {
             ErrorCode err = ErrorCode.Success;
@@ -436,47 +389,10 @@ namespace AI_StreamingAI
 
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
         }
-
-        #region not used 6
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox_holdX_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label21_Click(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
 
         private void SensorY_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -508,11 +424,6 @@ namespace AI_StreamingAI
                     UnitY.Items.Add("mV");
                     break;
             }
-        }
-
-        private void ValX1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -595,23 +506,6 @@ namespace AI_StreamingAI
             U1.Text = UnitY.Text;
         }
 
-        #region not used 5
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void ValX2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ValueX2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
-
         private void UnitX1_SelectedIndexChanged(object sender, EventArgs e)
         {
             U2.Text = UnitX1.Text;
@@ -633,18 +527,7 @@ namespace AI_StreamingAI
             U3.Text = UnitX2.Text;
         }
 
-        #region not used 4
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
-
+        //fungsi untuk menu balance
         private void balanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (check1.Checked)
@@ -658,11 +541,13 @@ namespace AI_StreamingAI
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
         }
 
+        //fungsi untuk menu replot
         private void replotToolStripMenuItem_Click(object sender, EventArgs e)
         {
             initChart();
         }
 
+        //fungsi untuk tombol update
         private void button1_Click(object sender, EventArgs e)
         {
             TitleMain.Text = Title.Text;
@@ -670,11 +555,108 @@ namespace AI_StreamingAI
             SenseMain.Text = Sense1.Text + " dan " + Sense2.Text + " vs " + Sense3.Text;
 
         }
-        #region not used 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #region void kosong
         private void Consumer_TextChanged(object sender, EventArgs e)
         {
 
+        }  
+        private void button_start_Click(object sender, EventArgs e)
+        {
+
         }
-        #endregion  
+        private void button_pause_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void button_stop_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void button_save_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void checkBox_holdX_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ValX1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void ValX2_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ValueX2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

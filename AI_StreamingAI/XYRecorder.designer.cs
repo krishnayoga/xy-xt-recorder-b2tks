@@ -30,9 +30,9 @@ namespace AI_StreamingAI
       {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XYRecorder));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.waveformAiCtrl1 = new Automation.BDaq.WaveformAiCtrl(this.components);
             this.chartXY = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -128,6 +128,8 @@ namespace AI_StreamingAI
             this.File = new System.Windows.Forms.Label();
             this.Date = new System.Windows.Forms.Label();
             this.Waktu = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartXY)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -148,18 +150,18 @@ namespace AI_StreamingAI
             // 
             // chartXY
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chartXY.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea4);
+            legend4.Enabled = false;
+            legend4.Name = "Legend1";
+            this.chartXY.Legends.Add(legend4);
             this.chartXY.Location = new System.Drawing.Point(0, 194);
             this.chartXY.Name = "chartXY";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartXY.Series.Add(series1);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chartXY.Series.Add(series4);
             this.chartXY.Size = new System.Drawing.Size(1059, 511);
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
@@ -587,6 +589,7 @@ namespace AI_StreamingAI
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.label13);
             this.panel4.Controls.Add(this.panel2);
             this.panel4.Controls.Add(this.rangeY_chart);
             this.panel4.Controls.Add(this.label38);
@@ -1030,6 +1033,7 @@ namespace AI_StreamingAI
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.SensorX2);
             this.panel1.Controls.Add(this.rangeX_chart);
@@ -1114,6 +1118,26 @@ namespace AI_StreamingAI
             this.Waktu.Size = new System.Drawing.Size(137, 18);
             this.Waktu.TabIndex = 47;
             this.Waktu.Text = "Waktul Pembacaan";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(110, 186);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(14, 18);
+            this.label10.TabIndex = 47;
+            this.label10.Text = "*";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.Red;
+            this.label13.Location = new System.Drawing.Point(241, 68);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(14, 18);
+            this.label13.TabIndex = 48;
+            this.label13.Text = "*";
             // 
             // XYRecorder
             // 
@@ -1259,6 +1283,8 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label File;
         private System.Windows.Forms.Label Date;
         private System.Windows.Forms.Label Waktu;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label10;
     }
 }
 
