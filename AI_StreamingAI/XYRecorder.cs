@@ -9,6 +9,7 @@ using System.Windows.Forms.DataVisualization;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Forms;
 using Automation.BDaq;
+using System.IO;
 
 namespace AI_StreamingAI
 {
@@ -401,7 +402,13 @@ namespace AI_StreamingAI
 
         private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            SaveFileDialog save = new SaveFileDialog();
+            save.Title = "Save File";
+            save.Filter = "CSV Files (*.csv)|*.csv|Text Files(*.txt)|*.txt";
+            save.ShowDialog();
+            File.Text = save.FileName.ToString();
+            Date.Text = DateTime.Now.ToShortDateString();
+            Waktu.Text = DateTime.Now.ToLongTimeString();
         }
 
         private void SensorX1_SelectedIndexChanged(object sender, EventArgs e)
@@ -511,6 +518,19 @@ namespace AI_StreamingAI
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TitleMain.Text = Title.Text;
+            ConsumerMain.Text = Consumer.Text;
+            SenseMain.Text = Sense1.Text + " dan " + Sense2.Text + " vs " + Sense3.Text;
 
         }
 
