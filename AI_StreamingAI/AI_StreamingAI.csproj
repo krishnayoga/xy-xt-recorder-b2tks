@@ -53,7 +53,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
@@ -62,6 +61,24 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HelpXTRec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpXTRec.Designer.cs">
+      <DependentUpon>HelpXTRec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainHelp.Designer.cs">
+      <DependentUpon>MainHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimpleGraph.cs" />
     <Compile Include="StreamingAIForm.cs">
       <SubType>Form</SubType>
@@ -71,6 +88,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XTRec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XTRec.Designer.cs">
+      <DependentUpon>XTRec.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="HelpXTRec.resx">
+      <DependentUpon>HelpXTRec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainHelp.resx">
+      <DependentUpon>MainHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StreamingAIForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>StreamingAIForm.cs</DependentUpon>
@@ -85,6 +117,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="XTRec.resx">
+      <DependentUpon>XTRec.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

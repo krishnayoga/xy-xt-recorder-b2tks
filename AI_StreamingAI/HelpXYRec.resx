@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>*Setting Y
+  XY Recorder hanya dapat menerima input untuk arah Y dengan 1 buah input 
+  Input sensor arah Y dilakukan sebagai berikut :
+  &gt;Sensor - Y	: Untuk memilih jenis sensor sebagai input arah Y ke 1. 
+                                    (misal Load Cell).
+  &gt;Unit - Y     	: Untuk memilih satuan dari sensor untuk input arah  Y ke 1. 
+                                    (misal kN)
+  &gt;Factor - Y	: Untuk mengisi nilai faktor dari Unit Sensor - Y1/Volt.
+                                    (misalkan kapasitas LC 100 kN/10 V, berarti 10 kN/Volt, 
+                                     maka faktor diisi : 10)
+  &gt;Polarity - Y1 terdapat 2 pilihan :
+	1. Norm, nilai data ukur tidak dibalik (Normal).
+	2. Invert, jika nilai data ukur ingin dibalik (Negatif menjadi positif).
+  &gt;Untuk setting Sensor - Y2 , Unit - Y2, Factor - Y2 dan Polarity - Y2 memiliki cara 
+     yang sama dengan setting Sensor - Y1, Unit - Y1, Factor - Y1, dan Polarity - Y1.
+  &gt;Range Max Y
+     untuk memilih/mengisi skala maksimum dari nilai data ukur sensor Y.
+     (misalkan kapasitas LC 100 kN/10 V, maka Range Max diisi : 100)
+
+*Setting X
+  XY Recorder dapat menerima input untuk arah X dengan 2 buah input.
+  Input sensor arah X dilakukan sebagai berikut :
+  &gt;Sensor - X - 1	: Untuk memilih jenis sensor sebagai input arah X ke 1. 
+                                    (misal Load Cell).
+  &gt;Unit - X - 1     	: Untuk memilih satuan dari sensor untuk input arah  X ke 1. 
+                                    (misal kN)
+  &gt;Factor - X -1	: Untuk mengisi nilai faktor dari Unit Sensor - X1/Volt.
+                                    (misalkan kapasitas LC 100 kN/10 V, berarti 10 kN/Volt, 
+                                     maka faktor diisi : 10)
+  &gt;Sensor - X - 2	: Untuk memilih jenis sensor sebagai input arah X ke 1. 
+                                    (misal Load Cell).
+  &gt;Unit - X - 2     	: Untuk memilih satuan dari sensor untuk input arah  X ke 1. 
+                                    (misal kN)
+  &gt;Factor - X -2	: Untuk mengisi nilai faktor dari Unit Sensor - X1/Volt.
+                                    (misalkan kapasitas LC 100 kN/10 V, berarti 10 kN/Volt, 
+                                     maka faktor diisi : 10)
+  &gt;Untuk setting Sensor - Y2 , Unit - Y2, Factor - Y2 dan Polarity - Y2 memiliki cara 
+     yang sama dengan setting Sensor - Y1, Unit - Y1, Factor - Y1, dan Polarity - Y1.
+  &gt;Range Max - X
+     untuk memilih/mengisi skala maksimum dari waktu (t) dalam satuan menit.
+     (misalkan perkiraan pengujian dilakukan selama 5 menit, diisi: 5 atau lebih)
+  &gt;Hold - X,
+     jika pada saat pengujian, ada waktu berhenti sesaat, klik checkbox 
+     Hold - X dan jika ingin melanjutkan klik checkbox Hold - X kembali (hilangkan 
+     tanda check).
+
+*Decimal Value
+  untuk menampilkan nilai data ukur yang sedang berlangsung, dan juga nilai 
+  maksimum/minimumnya.
+
+*Menu Filename
+  untuk memilih folder tempat penyimpanan file data dan mengisi nama fila data.
+  (sebaiknya dibuat folder-nya)
+
+*Menu Title
+  untuk memanggil form Title yang dapat mengisi :
+  &gt; Title - 1, untuk jenis pengujian. 
+      (misal Pengujian Statis)
+  &gt; Title - 2, untuk nama customer. 
+      (misal PT. Wijaya Karya)
+  &gt; Title - 3, untuk label sumbu Y dan X. 
+      (misal Load vs Time atau Displacement vs Time)
+
+*Menu Start
+  untuk memulai/mengawali pembacaan/pengecekan setelah setting diatas 
+  dilakukan untuk mengecek setting benar/tidak dapat dilakukan dengan 
+  memberi input tegangan dan amplifier atau kalibrator.
+
+*Menu Stop
+  untuk menghentikan pembacaan.
+
+*Menu Balance
+  untuk mengubah kondisi harga awal pembacaan menjadi 0.
+
+*Menu StartRecord
+  untuk memulai pengujian dan pengukuran sekaligus perekaman data.
+
+*Menu Replot
+  untuk menggambar kembali grafik data pengukuran yang baru saja dilakukan 
+  dengan skala yang berbeda, namun sebelumnya harus dirubah dahulu skala Y 
+  pada Range Max Y, dan juga mengubah skala X pada Range Max X yang 
+  diinginkan.
+
+*Menu Print
+  untuk mencetak grafik yang sedang tampil di layar ke printer.
+
+*Menu Exit
+  untuk keluar dari Software ini.</value>
+  </data>
+</root>
