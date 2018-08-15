@@ -552,8 +552,13 @@ namespace AI_StreamingAI
         {
             TitleMain.Text = Title.Text;
             ConsumerMain.Text = Consumer.Text;
-            SenseMain.Text = Sense1.Text + " dan " + Sense2.Text + " vs " + Sense3.Text;
-
+            if (check1.Checked && check2.Checked)
+            {
+                SenseMain.Text = Sense3.Text + " dan " + Sense2.Text + " vs " + Sense1.Text;
+            } else
+            {
+                SenseMain.Text = Sense3.Text + Sense2.Text + " vs " + Sense1.Text;
+            }
         }
 
         //fungsi untuk print to png
@@ -612,7 +617,26 @@ namespace AI_StreamingAI
         }
         private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            StreamWriter write = new StreamWriter(File.Text);
+            write.WriteLine("Judul,");
+            write.WriteLine("Konsumen,");
+            write.WriteLine("Grafik," );
+            write.WriteLine("Tanggal,");
+            write.WriteLine("Waktu,");
+            write.WriteLine("SensorY," );
+            write.WriteLine("UnitY," );
+            write.WriteLine("SensorX1," );
+            write.WriteLine("UnitX1," );
+            write.WriteLine("SensorX2," );
+            write.WriteLine("UnitX2," );
+            write.WriteLine("MaxY," );
+            write.WriteLine("MinY," );
+            write.WriteLine("MaxX1," );
+            write.WriteLine("MinX1," );
+            write.WriteLine("Max2," );
+            write.WriteLine("MinX2," );
 
+            write.WriteLine("," );
         }
         private void button_save_Click(object sender, EventArgs e)
         {
@@ -661,6 +685,79 @@ namespace AI_StreamingAI
         private void ValueX2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void chartXY_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void check2_CheckedChanged(object sender, EventArgs e)
+        {
+            SensorX2.Items.Clear();
+            if (check2.Checked)
+            {
+                SensorX2.Items.Add("Volt");
+                SensorX2.Items.Add("Pressure");
+                SensorX2.Items.Add("SG");
+                SensorX2.Items.Add("LVDT");
+                SensorX2.Items.Add("Load Cell");
+                factor_x_2.ReadOnly = false;
+                factor_x_2.Text = "1";
+                Sense3.ReadOnly = false;
+                ValX2.Text = "Value X2";
+                star4.Text = "*";
+                star5.Text = "*";
+                star6.Text = "*";
+            } else
+            {
+                factor_x_2.ReadOnly = true;
+                factor_x_2.Text = "-";
+                Sense3.ReadOnly = true;
+                Sense3.Text = "";
+                ValX2.Text = "---";
+                star4.Text = "";
+                star5.Text = "";
+                star6.Text = "";
+            }
+            
+        }
+
+        private void check1_CheckedChanged(object sender, EventArgs e)
+        {
+            SensorX1.Items.Clear();
+            if (check1.Checked)
+            {
+                SensorX1.Items.Add("Volt");
+                SensorX1.Items.Add("Pressure");
+                SensorX1.Items.Add("SG");
+                SensorX1.Items.Add("LVDT");
+                SensorX1.Items.Add("Load Cell");
+                factor_x_1.ReadOnly = false;
+                factor_x_1.Text = "1";
+                Sense2.ReadOnly = false;
+                ValX1.Text = "Value X1";
+                star1.Text = "*";
+                star2.Text = "*";
+                star3.Text = "*";
+            }
+            else
+            {
+                factor_x_1.ReadOnly = true;
+                factor_x_1.Text = "-";
+                Sense2.ReadOnly = true;
+                Sense2.Text = "";
+                ValX1.Text = "---";
+                star1.Text = "";
+                star2.Text = "";
+                star3.Text = "";
+            }
+            
+        }
+
+        private void Date_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

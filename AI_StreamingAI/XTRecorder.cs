@@ -405,5 +405,20 @@ namespace AI_StreamingAI
         {
 
         }
+
+        private void TitleMain_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void U2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void U1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

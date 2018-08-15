@@ -107,6 +107,12 @@
     <Compile Include="XYRecorder.designer.cs">
       <DependentUpon>XYRecorder.cs</DependentUpon>
     </Compile>
+    <Compile Include="XYReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XYReport.Designer.cs">
+      <DependentUpon>XYReport.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="HelpXTRec.resx">
       <DependentUpon>HelpXTRec.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XYRecorder.resx">
       <DependentUpon>XYRecorder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XYReport.resx">
+      <DependentUpon>XYReport.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
