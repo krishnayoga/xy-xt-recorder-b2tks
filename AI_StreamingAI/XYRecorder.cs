@@ -77,14 +77,6 @@ namespace AI_StreamingAI
             chartXY.Series[0].IsXValueIndexed = false;
         }
 
-        private void HandleError(ErrorCode err)
-        {
-            if ((err >= ErrorCode.ErrorHandleNotValid) && (err != ErrorCode.Success))
-            {
-		        MessageBox.Show("Sorry ! Some errors happened, the error code is: " + err.ToString(), "StreamingAI");
-            }
-        }
-
 	    private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
         {
 	        try
@@ -197,8 +189,6 @@ namespace AI_StreamingAI
 
                     //chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
 
-                    Console.WriteLine(max_x_2);
-
                     MaxX1.Text = max_x_1.ToString();
                     MinX1.Text = min_x_1.ToString();
                     MaxX2.Text = max_x_2.ToString();
@@ -241,6 +231,7 @@ namespace AI_StreamingAI
             }
         }
 
+        #region chart
         private void startChart()
         {
             chartXY.Series.Clear();
@@ -318,7 +309,10 @@ namespace AI_StreamingAI
                 }
             }
         }
+        #endregion
 
+        #region menu button
+        //fungsi untuk menu start button
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ErrorCode err = ErrorCode.Success;
@@ -328,7 +322,7 @@ namespace AI_StreamingAI
             if (err == ErrorCode.Success)
             {
                 err = waveformAiCtrl1.Start();
-                Console.WriteLine("halooo");
+                //Console.WriteLine("halooo");
                 //waveformAiCtrl1.DataReady += new EventHandler<BfdAiEventArgs>(waveformAiCtrl1_DataReady);
                 //chartXY.Series[0].Points.AddXY(arrAvgData[1], arrAvgData[0]);
             }
@@ -358,21 +352,8 @@ namespace AI_StreamingAI
             initChart();
         }
 
-        private void toolStripMenuItem3_Click(object sender, EventArgs e) //pause
-        {
-            ErrorCode err = ErrorCode.Success;
-            err = waveformAiCtrl1.Stop();
-            if (err != ErrorCode.Success)
-            {
-                HandleError(err);
-                return;
-            }
-
-            button_start.Enabled = true;
-            button_pause.Enabled = false;
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e) //stop
+        //fungsi untuk menu stop button
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             ErrorCode err = ErrorCode.Success;
             err = waveformAiCtrl1.Stop();
@@ -389,43 +370,7 @@ namespace AI_StreamingAI
 
         }
 
-        private void printToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
-        }
-
-        private void SensorY_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ValY.Text = SensorY.Text;
-            UnitY.Items.Clear();
-            switch (SensorY.Text)
-            {
-                case "Load Cell":
-                    UnitY.Items.Add("kg");
-                    UnitY.Items.Add("N");
-                    UnitY.Items.Add("kN");
-                    UnitY.Items.Add("Ton");
-                    break;
-                case "LVDT":
-                    UnitY.Items.Add("cm");
-                    UnitY.Items.Add("mm");
-                    break;
-                case "SG":
-                    UnitY.Items.Add("uS");
-                    break;
-                case "Pressure":
-                    UnitY.Items.Add("Kg/cm2");
-                    UnitY.Items.Add("Mpa");
-                    UnitY.Items.Add("Psi");
-                    UnitY.Items.Add("Bar");
-                    break;
-                case "Volt":
-                    UnitY.Items.Add("V");
-                    UnitY.Items.Add("mV");
-                    break;
-            }
-        }
-
+        //Button isi filename
         private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
@@ -437,6 +382,160 @@ namespace AI_StreamingAI
             Waktu.Text = DateTime.Now.ToLongTimeString();
         }
 
+        //fungsi untuk menu balance
+        private void balanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (check1.Checked)
+            {
+                chartXY.Series[0].Points.Clear();
+            }
+            if (check2.Checked)
+            {
+                chartXY.Series[1].Points.Clear();
+            }
+            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
+        }
+
+        //fungsi untuk menu replot
+        private void replotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            initChart();
+        }
+
+        //fungsi untuk tombol update
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TitleMain.Text = Title.Text;
+            ConsumerMain.Text = Consumer.Text;
+            if (check1.Checked && check2.Checked)
+            {
+                SenseMain.Text = Sense3.Text + " dan " + Sense2.Text + " vs " + Sense1.Text;
+            } else
+            {
+                SenseMain.Text = Sense3.Text + Sense2.Text + " vs " + Sense1.Text;
+            }
+        }
+
+        //fungsi untuk print to png
+        private void printToPNGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
+            }
+            catch
+            {
+                MessageBox.Show("Gagal menyimpan chart", "Save PNG Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //fungsi untuk menu start record
+        private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StreamWriter write = new StreamWriter(File.Text);
+            write.WriteLine("Judul,");
+            write.WriteLine("Konsumen,");
+            write.WriteLine("Grafik,");
+            write.WriteLine("Tanggal,");
+            write.WriteLine("Waktu,");
+            write.WriteLine("SensorY,");
+            write.WriteLine("UnitY,");
+            write.WriteLine("SensorX1,");
+            write.WriteLine("UnitX1,");
+            write.WriteLine("SensorX2,");
+            write.WriteLine("UnitX2,");
+            write.WriteLine("MaxY,");
+            write.WriteLine("MinY,");
+            write.WriteLine("MaxX1,");
+            write.WriteLine("MinX1,");
+            write.WriteLine("Max2,");
+            write.WriteLine("MinX2,");
+
+            write.WriteLine(",");
+        }
+
+        //fungsi untuk menu stop record button
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            ErrorCode err = ErrorCode.Success;
+            err = waveformAiCtrl1.Stop();
+            if (err != ErrorCode.Success)
+            {
+                HandleError(err);
+                return;
+            }
+
+            button_start.Enabled = true;
+            button_pause.Enabled = false;
+        }
+
+
+        #endregion
+
+        #region unnecessary
+        private void check2_CheckedChanged(object sender, EventArgs e)
+        {
+            SensorX2.Items.Clear();
+            if (check2.Checked)
+            {
+                SensorX2.Items.Add("Volt");
+                SensorX2.Items.Add("Pressure");
+                SensorX2.Items.Add("SG");
+                SensorX2.Items.Add("LVDT");
+                SensorX2.Items.Add("Load Cell");
+                factor_x_2.ReadOnly = false;
+                factor_x_2.Text = "1";
+                Sense3.ReadOnly = false;
+                ValX2.Text = "Value X2";
+                star4.Text = "*";
+                star5.Text = "*";
+                star6.Text = "*";
+            }
+            else
+            {
+                factor_x_2.ReadOnly = true;
+                factor_x_2.Text = "-";
+                Sense3.ReadOnly = true;
+                Sense3.Text = "";
+                ValX2.Text = "---";
+                star4.Text = "";
+                star5.Text = "";
+                star6.Text = "";
+            }
+
+        }
+
+        private void check1_CheckedChanged(object sender, EventArgs e)
+        {
+            SensorX1.Items.Clear();
+            if (check1.Checked)
+            {
+                SensorX1.Items.Add("Volt");
+                SensorX1.Items.Add("Pressure");
+                SensorX1.Items.Add("SG");
+                SensorX1.Items.Add("LVDT");
+                SensorX1.Items.Add("Load Cell");
+                factor_x_1.ReadOnly = false;
+                factor_x_1.Text = "1";
+                Sense2.ReadOnly = false;
+                ValX1.Text = "Value X1";
+                star1.Text = "*";
+                star2.Text = "*";
+                star3.Text = "*";
+            }
+            else
+            {
+                factor_x_1.ReadOnly = true;
+                factor_x_1.Text = "-";
+                Sense2.ReadOnly = true;
+                Sense2.Text = "";
+                ValX1.Text = "---";
+                star1.Text = "";
+                star2.Text = "";
+                star3.Text = "";
+            }
+
+        }
         private void SensorX1_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValX1.Text = SensorX1.Text;
@@ -501,6 +600,37 @@ namespace AI_StreamingAI
             }
         }
 
+        private void SensorY_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ValY.Text = SensorY.Text;
+            UnitY.Items.Clear();
+            switch (SensorY.Text)
+            {
+                case "Load Cell":
+                    UnitY.Items.Add("kg");
+                    UnitY.Items.Add("N");
+                    UnitY.Items.Add("kN");
+                    UnitY.Items.Add("Ton");
+                    break;
+                case "LVDT":
+                    UnitY.Items.Add("cm");
+                    UnitY.Items.Add("mm");
+                    break;
+                case "SG":
+                    UnitY.Items.Add("uS");
+                    break;
+                case "Pressure":
+                    UnitY.Items.Add("Kg/cm2");
+                    UnitY.Items.Add("Mpa");
+                    UnitY.Items.Add("Psi");
+                    UnitY.Items.Add("Bar");
+                    break;
+                case "Volt":
+                    UnitY.Items.Add("V");
+                    UnitY.Items.Add("mV");
+                    break;
+            }
+        }
         private void UnitY_SelectedIndexChanged(object sender, EventArgs e)
         {
             U1.Text = UnitY.Text;
@@ -527,53 +657,14 @@ namespace AI_StreamingAI
             U3.Text = UnitX2.Text;
         }
 
-        //fungsi untuk menu balance
-        private void balanceToolStripMenuItem_Click(object sender, EventArgs e)
+        private void HandleError(ErrorCode err)
         {
-            if (check1.Checked)
+            if ((err >= ErrorCode.ErrorHandleNotValid) && (err != ErrorCode.Success))
             {
-                chartXY.Series[0].Points.Clear();
-            }
-            if (check2.Checked)
-            {
-                chartXY.Series[1].Points.Clear();
-            }
-            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
-        }
-
-        //fungsi untuk menu replot
-        private void replotToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            initChart();
-        }
-
-        //fungsi untuk tombol update
-        private void button1_Click(object sender, EventArgs e)
-        {
-            TitleMain.Text = Title.Text;
-            ConsumerMain.Text = Consumer.Text;
-            if (check1.Checked && check2.Checked)
-            {
-                SenseMain.Text = Sense3.Text + " dan " + Sense2.Text + " vs " + Sense1.Text;
-            } else
-            {
-                SenseMain.Text = Sense3.Text + Sense2.Text + " vs " + Sense1.Text;
+                MessageBox.Show("Sorry ! Some errors happened, the error code is: " + err.ToString(), "StreamingAI");
             }
         }
-
-        //fungsi untuk print to png
-        private void printToPNGToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
-            }
-            catch
-            {
-                MessageBox.Show("Gagal menyimpan chart", "Save PNG Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+        #endregion
 
 
 
@@ -615,29 +706,7 @@ namespace AI_StreamingAI
         {
 
         }
-        private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            StreamWriter write = new StreamWriter(File.Text);
-            write.WriteLine("Judul,");
-            write.WriteLine("Konsumen,");
-            write.WriteLine("Grafik," );
-            write.WriteLine("Tanggal,");
-            write.WriteLine("Waktu,");
-            write.WriteLine("SensorY," );
-            write.WriteLine("UnitY," );
-            write.WriteLine("SensorX1," );
-            write.WriteLine("UnitX1," );
-            write.WriteLine("SensorX2," );
-            write.WriteLine("UnitX2," );
-            write.WriteLine("MaxY," );
-            write.WriteLine("MinY," );
-            write.WriteLine("MaxX1," );
-            write.WriteLine("MinX1," );
-            write.WriteLine("Max2," );
-            write.WriteLine("MinX2," );
-
-            write.WriteLine("," );
-        }
+        
         private void button_save_Click(object sender, EventArgs e)
         {
 
@@ -686,78 +755,18 @@ namespace AI_StreamingAI
         {
 
         }
-
         private void chartXY_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void check2_CheckedChanged(object sender, EventArgs e)
-        {
-            SensorX2.Items.Clear();
-            if (check2.Checked)
-            {
-                SensorX2.Items.Add("Volt");
-                SensorX2.Items.Add("Pressure");
-                SensorX2.Items.Add("SG");
-                SensorX2.Items.Add("LVDT");
-                SensorX2.Items.Add("Load Cell");
-                factor_x_2.ReadOnly = false;
-                factor_x_2.Text = "1";
-                Sense3.ReadOnly = false;
-                ValX2.Text = "Value X2";
-                star4.Text = "*";
-                star5.Text = "*";
-                star6.Text = "*";
-            } else
-            {
-                factor_x_2.ReadOnly = true;
-                factor_x_2.Text = "-";
-                Sense3.ReadOnly = true;
-                Sense3.Text = "";
-                ValX2.Text = "---";
-                star4.Text = "";
-                star5.Text = "";
-                star6.Text = "";
-            }
-            
-        }
-
-        private void check1_CheckedChanged(object sender, EventArgs e)
-        {
-            SensorX1.Items.Clear();
-            if (check1.Checked)
-            {
-                SensorX1.Items.Add("Volt");
-                SensorX1.Items.Add("Pressure");
-                SensorX1.Items.Add("SG");
-                SensorX1.Items.Add("LVDT");
-                SensorX1.Items.Add("Load Cell");
-                factor_x_1.ReadOnly = false;
-                factor_x_1.Text = "1";
-                Sense2.ReadOnly = false;
-                ValX1.Text = "Value X1";
-                star1.Text = "*";
-                star2.Text = "*";
-                star3.Text = "*";
-            }
-            else
-            {
-                factor_x_1.ReadOnly = true;
-                factor_x_1.Text = "-";
-                Sense2.ReadOnly = true;
-                Sense2.Text = "";
-                ValX1.Text = "---";
-                star1.Text = "";
-                star2.Text = "";
-                star3.Text = "";
-            }
-            
-        }
-
         private void Date_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void printToPrinterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -767,6 +776,10 @@ namespace AI_StreamingAI
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
         }
         #endregion
     }
