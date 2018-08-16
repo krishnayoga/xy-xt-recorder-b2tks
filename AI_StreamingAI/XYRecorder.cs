@@ -10,6 +10,8 @@ using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Forms;
 using Automation.BDaq;
 using System.IO;
+using Microsoft.Office.Interop.Excel;
+
 
 namespace AI_StreamingAI
 {
@@ -39,6 +41,7 @@ namespace AI_StreamingAI
         int min_x_chart;
         int max_y_chart;
         int min_y_chart;
+        bool recordData;
 
         #endregion
 
@@ -89,6 +92,7 @@ namespace AI_StreamingAI
         {
 	        try
             {
+                
                 if (waveformAiCtrl1.State == ControlState.Idle)
                 {
 				    return;
@@ -112,7 +116,7 @@ namespace AI_StreamingAI
                 }
                 //System.Diagnostics.Debug.WriteLine(args.Count.ToString());
 
-                this.Invoke(new Action(() =>
+                this.Invoke(new System.Action(() =>
                 {
                     arrSumData = new double[chanCount];
                     //listViewAi.BeginUpdate();
@@ -144,6 +148,15 @@ namespace AI_StreamingAI
                     dataPrint[0] = Convert.ToDouble(arrAvgData[0]) * factor_baca_x_1;
                     dataPrint[1] = Convert.ToDouble(arrAvgData[1]) * factor_baca_x_2;
                     dataPrint[2] = Convert.ToDouble(arrAvgData[2]) * factor_baca_y;
+
+                    
+                    if (recordData)
+                    {
+                        StreamWriter sw = new StreamWriter(File.Text,append:true);
+                        sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss.fff"), dataPrint[0], dataPrint[1], dataPrint[2]);
+                        sw.Close();
+                    }
+                    
 
                     if (checkBox_invertX1.Checked)
                     {
@@ -197,7 +210,7 @@ namespace AI_StreamingAI
 
                     //chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
 
-                    Console.WriteLine(max_x_2);
+                    //Console.WriteLine(max_x_2);
 
                     MaxX1.Text = max_x_1.ToString();
                     MinX1.Text = min_x_1.ToString();
@@ -217,7 +230,7 @@ namespace AI_StreamingAI
                     plotChart(dataPrint);
                     
                 }));
-                Console.WriteLine(dataCount / 3);
+                Console.WriteLine(dataCount / 3 + " " + dataPrint[0]);
                 
             }
             catch
@@ -249,6 +262,10 @@ namespace AI_StreamingAI
             chartXY.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chartXY.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 
+            chartXY.Series[0].Color = Color.Blue;
+            chartXY.Series[1].Color = Color.Red;
+
+
         }
 
         private void initChart()
@@ -265,12 +282,12 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisX.Minimum = min_x_chart;
             chartXY.ChartAreas[0].AxisY.Maximum = max_y_chart;
             chartXY.ChartAreas[0].AxisY.Minimum = min_y_chart;
-            chartXY.ChartAreas[0].AxisX.Interval = 1;
-            chartXY.ChartAreas[0].AxisY.Interval = 1;
+            chartXY.ChartAreas[0].AxisX.Interval = max_x_chart/10;
+            chartXY.ChartAreas[0].AxisY.Interval = max_y_chart/10;
             
-            chartXY.ChartAreas[0].AxisX.Title = "";
-            chartXY.ChartAreas[0].AxisY.Title = "";
-            
+            chartXY.ChartAreas[0].AxisX.Title = SensorX1.Text + " (" + UnitX1.Text + ") " + SensorX2.Text + " (" + UnitX2.Text + ") ";
+
+            chartXY.ChartAreas[0].AxisY.Title = SensorY.Text +" ("+ UnitY.Text+")";
         }
 
         private void plotChart(double[] data)
@@ -321,14 +338,15 @@ namespace AI_StreamingAI
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
+ 
             ErrorCode err = ErrorCode.Success;
-
+            //recordData = true;
             err = waveformAiCtrl1.Prepare();
             m_xInc = 1.0 / waveformAiCtrl1.Conversion.ClockRate;
             if (err == ErrorCode.Success)
             {
                 err = waveformAiCtrl1.Start();
-                Console.WriteLine("halooo");
+                //Console.WriteLine("halooo");
                 //waveformAiCtrl1.DataReady += new EventHandler<BfdAiEventArgs>(waveformAiCtrl1_DataReady);
                 //chartXY.Series[0].Points.AddXY(arrAvgData[1], arrAvgData[0]);
             }
@@ -339,7 +357,7 @@ namespace AI_StreamingAI
                 return;
             }
 
-            button_start.Enabled = false;
+            button_start.Enabled = true;
             button_pause.Enabled = true;
             button_stop.Enabled = true;
 
@@ -356,10 +374,14 @@ namespace AI_StreamingAI
 
             startChart();
             initChart();
+            
         }
 
+        //stop record
         private void toolStripMenuItem3_Click(object sender, EventArgs e) //pause
         {
+            recordData = false;
+            label_record.Text = "";
             ErrorCode err = ErrorCode.Success;
             err = waveformAiCtrl1.Stop();
             if (err != ErrorCode.Success)
@@ -430,7 +452,7 @@ namespace AI_StreamingAI
         {
             SaveFileDialog save = new SaveFileDialog();
             save.Title = "Save File";
-            save.Filter = "CSV Files (*.csv)|*.csv|Text Files(*.txt)|*.txt";
+            save.Filter = "CSV Files (*.csv)|*.csv";
             save.ShowDialog();
             File.Text = save.FileName.ToString();
             Date.Text = DateTime.Now.ToShortDateString();
@@ -530,6 +552,14 @@ namespace AI_StreamingAI
         //fungsi untuk menu balance
         private void balanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ErrorCode err = ErrorCode.Success;
+            err = waveformAiCtrl1.Stop();
+            if (err != ErrorCode.Success)
+            {
+                HandleError(err);
+                return;
+            }
+
             if (check1.Checked)
             {
                 chartXY.Series[0].Points.Clear();
@@ -538,6 +568,7 @@ namespace AI_StreamingAI
             {
                 chartXY.Series[1].Points.Clear();
             }
+
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
         }
 
@@ -574,6 +605,117 @@ namespace AI_StreamingAI
             }
         }
 
+        //fungsi untuk start record
+        private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            max_x_1 = 0;
+            max_x_2 = 0;
+            max_y = 0;
+            min_x_1 = 1000;
+            min_x_2 = 1000;
+            min_y = 1000;
+            recordData = true;
+            label_record.Text = "Recording In Progress...";
+            StreamWriter write = new StreamWriter(File.Text);
+
+            /*Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+            Workbook wb = excel.Workbooks.Open(File.Text);
+            Worksheet esheet = wb.ActiveSheet;*/
+
+            write.WriteLine("Judul," + TitleMain.Text);
+            write.WriteLine("Konsumen, " + ConsumerMain.Text);
+            write.WriteLine("Grafik," + SenseMain.Text);
+            write.WriteLine("Tanggal," + Date.Text);
+            write.WriteLine("Waktu," + Waktu.Text);
+            write.WriteLine("SensorY, " + SensorY.Text + "," + "MaxY");
+            write.WriteLine("UnitY," + UnitY.Text + "," + "MinY");
+            write.WriteLine("SensorX1," + SensorX1.Text + "," + "MaxX1");
+            write.WriteLine("UnitX1," + UnitX1.Text + "," + "MinX1");
+            write.WriteLine("SensorX2," + SensorX2.Text + "," + "MaxX2");
+            write.WriteLine("UnitX2," + UnitX2.Text + "," + "MinX2");
+            write.WriteLine("Waktu Pembacaan,DataX1,DataX2,DataY");
+
+
+
+            /*esheet.Cells[6, 4].Value = MaxY.Text;
+            esheet.Cells[7, 4].Value = MinY.Text;
+            esheet.Cells[8, 4].Value = MaxX1.Text;
+            esheet.Cells[9, 4].Value = MinX1.Text;
+            esheet.Cells[10, 4].Value = MaxX2.Text;
+            esheet.Cells[11, 4].Value = minX2.Text;*/
+            //esheet.Columns["1:5"].AutoFit();
+
+            //write.Dispose();
+            write.Close();
+            //write.Dispose();
+
+            button_start.Enabled = false;
+            button_pause.Enabled = true;
+        }
+
+        private void check2_CheckedChanged(object sender, EventArgs e)
+        {
+            SensorX2.Items.Clear();
+            if (check2.Checked)
+            {
+                SensorX2.Items.Add("Volt");
+                SensorX2.Items.Add("Pressure");
+                SensorX2.Items.Add("SG");
+                SensorX2.Items.Add("LVDT");
+                SensorX2.Items.Add("Load Cell");
+                factor_x_2.ReadOnly = false;
+                factor_x_2.Text = "1";
+                Sense3.ReadOnly = false;
+                ValX2.Text = "Value X2";
+                star4.Text = "*";
+                star5.Text = "*";
+                star6.Text = "*";
+            }
+            else
+            {
+                factor_x_2.ReadOnly = true;
+                factor_x_2.Text = "-";
+                Sense3.ReadOnly = true;
+                Sense3.Text = "";
+                ValX2.Text = "---";
+                star4.Text = "";
+                star5.Text = "";
+                star6.Text = "";
+            }
+
+        }
+
+        private void check1_CheckedChanged(object sender, EventArgs e)
+        {
+            SensorX1.Items.Clear();
+            if (check1.Checked)
+            {
+                SensorX1.Items.Add("Volt");
+                SensorX1.Items.Add("Pressure");
+                SensorX1.Items.Add("SG");
+                SensorX1.Items.Add("LVDT");
+                SensorX1.Items.Add("Load Cell");
+                factor_x_1.ReadOnly = false;
+                factor_x_1.Text = "1";
+                Sense2.ReadOnly = false;
+                ValX1.Text = "Value X1";
+                star1.Text = "*";
+                star2.Text = "*";
+                star3.Text = "*";
+            }
+            else
+            {
+                factor_x_1.ReadOnly = true;
+                factor_x_1.Text = "-";
+                Sense2.ReadOnly = true;
+                Sense2.Text = "";
+                ValX1.Text = "---";
+                star1.Text = "";
+                star2.Text = "";
+                star3.Text = "";
+            }
+
+        }
 
 
 
@@ -614,29 +756,6 @@ namespace AI_StreamingAI
         private void label8_Click(object sender, EventArgs e)
         {
 
-        }
-        private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            StreamWriter write = new StreamWriter(File.Text);
-            write.WriteLine("Judul,");
-            write.WriteLine("Konsumen,");
-            write.WriteLine("Grafik," );
-            write.WriteLine("Tanggal,");
-            write.WriteLine("Waktu,");
-            write.WriteLine("SensorY," );
-            write.WriteLine("UnitY," );
-            write.WriteLine("SensorX1," );
-            write.WriteLine("UnitX1," );
-            write.WriteLine("SensorX2," );
-            write.WriteLine("UnitX2," );
-            write.WriteLine("MaxY," );
-            write.WriteLine("MinY," );
-            write.WriteLine("MaxX1," );
-            write.WriteLine("MinX1," );
-            write.WriteLine("Max2," );
-            write.WriteLine("MinX2," );
-
-            write.WriteLine("," );
         }
         private void button_save_Click(object sender, EventArgs e)
         {
@@ -690,69 +809,6 @@ namespace AI_StreamingAI
         private void chartXY_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void check2_CheckedChanged(object sender, EventArgs e)
-        {
-            SensorX2.Items.Clear();
-            if (check2.Checked)
-            {
-                SensorX2.Items.Add("Volt");
-                SensorX2.Items.Add("Pressure");
-                SensorX2.Items.Add("SG");
-                SensorX2.Items.Add("LVDT");
-                SensorX2.Items.Add("Load Cell");
-                factor_x_2.ReadOnly = false;
-                factor_x_2.Text = "1";
-                Sense3.ReadOnly = false;
-                ValX2.Text = "Value X2";
-                star4.Text = "*";
-                star5.Text = "*";
-                star6.Text = "*";
-            } else
-            {
-                factor_x_2.ReadOnly = true;
-                factor_x_2.Text = "-";
-                Sense3.ReadOnly = true;
-                Sense3.Text = "";
-                ValX2.Text = "---";
-                star4.Text = "";
-                star5.Text = "";
-                star6.Text = "";
-            }
-            
-        }
-
-        private void check1_CheckedChanged(object sender, EventArgs e)
-        {
-            SensorX1.Items.Clear();
-            if (check1.Checked)
-            {
-                SensorX1.Items.Add("Volt");
-                SensorX1.Items.Add("Pressure");
-                SensorX1.Items.Add("SG");
-                SensorX1.Items.Add("LVDT");
-                SensorX1.Items.Add("Load Cell");
-                factor_x_1.ReadOnly = false;
-                factor_x_1.Text = "1";
-                Sense2.ReadOnly = false;
-                ValX1.Text = "Value X1";
-                star1.Text = "*";
-                star2.Text = "*";
-                star3.Text = "*";
-            }
-            else
-            {
-                factor_x_1.ReadOnly = true;
-                factor_x_1.Text = "-";
-                Sense2.ReadOnly = true;
-                Sense2.Text = "";
-                ValX1.Text = "---";
-                star1.Text = "";
-                star2.Text = "";
-                star3.Text = "";
-            }
-            
         }
 
         private void Date_Click(object sender, EventArgs e)
