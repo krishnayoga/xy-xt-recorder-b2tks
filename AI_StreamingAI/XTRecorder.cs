@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Automation.BDaq;
 
+
 namespace AI_StreamingAI
 {
     public partial class XTRecorder : Form
@@ -373,7 +374,7 @@ namespace AI_StreamingAI
         {
             TitleMain.Text = Title.Text;
             ConsumerMain.Text = Consumer.Text;
-            SenseMain.Text = Sense1.Text + "&" + Sense2.Text + "Vs Waktu";
+            SenseMain.Text = Sensor1.Text + "&" + Sensor2.Text + "Vs Waktu";
         }
 
         private void titleToolStripMenuItem_Click(object sender, EventArgs e)
