@@ -621,6 +621,7 @@ namespace AI_StreamingAI
             this.rangeY_chart.Size = new System.Drawing.Size(87, 26);
             this.rangeY_chart.TabIndex = 46;
             this.rangeY_chart.Text = "10";
+            this.rangeY_chart.SelectedIndexChanged += new System.EventHandler(this.rangeY_chart_SelectedIndexChanged);
             // 
             // label38
             // 

@@ -30,9 +30,9 @@ namespace AI_StreamingAI
       {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XTRecorder));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.waveformAiCtrl1 = new Automation.BDaq.WaveformAiCtrl(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -167,18 +167,18 @@ namespace AI_StreamingAI
             // chartXY
             // 
             this.chartXY.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            chartArea2.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea2);
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chartXY.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chartXY.Legends.Add(legend1);
             this.chartXY.Location = new System.Drawing.Point(12, 151);
             this.chartXY.Name = "chartXY";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartXY.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartXY.Series.Add(series1);
             this.chartXY.Size = new System.Drawing.Size(1077, 545);
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
@@ -385,6 +385,7 @@ namespace AI_StreamingAI
             this.RangeY.Name = "RangeY";
             this.RangeY.Size = new System.Drawing.Size(87, 26);
             this.RangeY.TabIndex = 43;
+            this.RangeY.Text = "10";
             // 
             // label18
             // 
@@ -420,6 +421,7 @@ namespace AI_StreamingAI
             this.Factor2.Name = "Factor2";
             this.Factor2.Size = new System.Drawing.Size(62, 24);
             this.Factor2.TabIndex = 40;
+            this.Factor2.Text = "1";
             // 
             // label15
             // 
@@ -464,6 +466,7 @@ namespace AI_StreamingAI
             this.Factor1.Name = "Factor1";
             this.Factor1.Size = new System.Drawing.Size(62, 24);
             this.Factor1.TabIndex = 31;
+            this.Factor1.Text = "1";
             // 
             // label8
             // 
@@ -543,6 +546,8 @@ namespace AI_StreamingAI
             // check1
             // 
             this.check1.AutoSize = true;
+            this.check1.Checked = true;
+            this.check1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.check1.Location = new System.Drawing.Point(6, 18);
             this.check1.Name = "check1";
             this.check1.Size = new System.Drawing.Size(108, 22);
@@ -671,6 +676,7 @@ namespace AI_StreamingAI
             this.RangeX.Name = "RangeX";
             this.RangeX.Size = new System.Drawing.Size(87, 26);
             this.RangeX.TabIndex = 27;
+            this.RangeX.Text = "10";
             this.RangeX.SelectedIndexChanged += new System.EventHandler(this.RangeX_SelectedIndexChanged);
             // 
             // label19

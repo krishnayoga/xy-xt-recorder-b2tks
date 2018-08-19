@@ -256,6 +256,9 @@ namespace AI_StreamingAI
             chartXY.Series.Add("Series 2");
             chartXY.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chartXY.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+            chartXY.Series[0].Color = Color.Blue;
+            chartXY.Series[1].Color = Color.Red;
         }
 
         private void initChart()
@@ -291,8 +294,7 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gainsboro;
             chartXY.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gainsboro;
 
-            chartXY.Series[0].Color = Color.Blue;
-            chartXY.Series[0].Color = Color.Red;
+            
 
             //chartXY.Series[0].XValueType = ChartValueType.DateTime;
             //chartXY.Series[1].XValueType = ChartValueType.DateTime;
@@ -397,7 +399,7 @@ namespace AI_StreamingAI
         //itu
 
         private void plotChart(object sender, EventArgs e)
-        {
+        { 
             if (check1.Checked)
             {
                 chartXY.Series[0].Points.AddY(dataPrint[0]); //ini untuk plot Y1

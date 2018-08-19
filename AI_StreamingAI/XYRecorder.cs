@@ -262,6 +262,12 @@ namespace AI_StreamingAI
             chartXY.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chartXY.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 
+            chartXY.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gainsboro;
+            chartXY.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gainsboro;
+
+            chartXY.Series[0].Color = Color.Blue;
+            chartXY.Series[1].Color = Color.Red;
+
         }
 
         private void initChart()
@@ -278,11 +284,11 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisX.Minimum = min_x_chart;
             chartXY.ChartAreas[0].AxisY.Maximum = max_y_chart;
             chartXY.ChartAreas[0].AxisY.Minimum = min_y_chart;
-            chartXY.ChartAreas[0].AxisX.Interval = 1;
-            chartXY.ChartAreas[0].AxisY.Interval = 1;
+            chartXY.ChartAreas[0].AxisX.Interval = max_x_chart/10;
+            chartXY.ChartAreas[0].AxisY.Interval = max_y_chart/10;
             
-            chartXY.ChartAreas[0].AxisX.Title = "";
-            chartXY.ChartAreas[0].AxisY.Title = "";
+            //chartXY.ChartAreas[0].AxisX.Title = "";
+            //chartXY.ChartAreas[0].AxisY.Title = "";
             
         }
 
@@ -796,6 +802,11 @@ namespace AI_StreamingAI
         }
 
         private void TitleMain_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rangeY_chart_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
