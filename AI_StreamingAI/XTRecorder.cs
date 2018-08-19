@@ -46,20 +46,18 @@ namespace AI_StreamingAI
         bool m_isFirstOverRun = true;
         double m_xInc;
         int dataCount = 0;
-        double last_x_0;
-        double last_x_1;
+        double last_y_0;
+        double last_y_1;
         bool firstChecked = true;
         string[] arrAvgData;
         string[] arrData;
         double[] arrSumData;
         double[] dataPrint;
-        double max_x_1 = 0;
-        double min_x_1 = 1000;
-        double max_x_2 = 0;
-        double min_x_2 = 0;
-        double max_y = 0;
-        double min_y = 1000;
-        int factor_baca_x_1 = 1, factor_baca_x_2 = 1, factor_baca_y = 1;
+        double max_y_1 = 0;
+        double min_y_1 = 1000;
+        double max_y_2 = 0;
+        double min_y_2 = 0;
+        int factor_baca_y_1 = 1, factor_baca_y_2 = 1;
         int max_x_chart;
         int min_x_chart;
         int max_y_chart;
@@ -80,6 +78,7 @@ namespace AI_StreamingAI
 
         //ini
         Timer timer = new Timer();
+        Timer timer_plot = new Timer();
         List<DateTime> TimeList = new List<DateTime>();
 
         Stopwatch watch = new Stopwatch();
@@ -89,8 +88,11 @@ namespace AI_StreamingAI
         {
             InitializeComponent();
             //ini
-            timer.Tick += new EventHandler(timer_tick);
-            timer.Interval = 100;
+            timer.Tick += new EventHandler(timer_stopwatch);
+            timer.Interval = 10;
+
+            timer_plot.Tick += new EventHandler(plotChart);
+            timer_plot.Interval = 100;
             //itu
         }
 
@@ -181,78 +183,59 @@ namespace AI_StreamingAI
                         dataCount++;
                     }
 
-                    dataPrint[0] = Convert.ToDouble(arrAvgData[0]) * factor_baca_x_1;
-                    dataPrint[1] = Convert.ToDouble(arrAvgData[1]) * factor_baca_x_2;
-                    dataPrint[2] = Convert.ToDouble(arrAvgData[2]) * factor_baca_y;
+                    dataPrint[0] = Convert.ToDouble(arrAvgData[0]) * factor_baca_y_1;
+                    dataPrint[1] = Convert.ToDouble(arrAvgData[1]) * factor_baca_y_2;
 
-                    if (checkBox_invertX1.Checked)
+                    if (checkBox_InvertY1.Checked)
                     {
                         dataPrint[0] = -dataPrint[0];
                     }
-                    if (checkBox_invertX2.Checked)
+                    if (checkBox_InvertY2.Checked)
                     {
                         dataPrint[1] = -dataPrint[1];
                     }
-                    if (checkBox_invertY.Checked)
-                    {
-                        dataPrint[2] = -dataPrint[2];
-                    }
 
-                    ValueX1.Text = dataPrint[0].ToString();
-                    ValueX2.Text = dataPrint[1].ToString();
-                    ValueY.Text = dataPrint[2].ToString();
-
+                    ValueY1.Text = dataPrint[0].ToString();
+                    ValueY2.Text = dataPrint[1].ToString();
+                    
                     //channel 0
-                    if (dataPrint[0] > max_x_1)
+                    if (dataPrint[0] > max_y_1)
                     {
-                        max_x_1 = dataPrint[0];
+                        max_y_1 = dataPrint[0];
                     }
 
-                    if (dataPrint[0] < min_x_1)
+                    if (dataPrint[0] < min_y_1)
                     {
-                        min_x_1 = dataPrint[0];
+                        min_y_1 = dataPrint[0];
                     }
 
                     //channel 1
-                    if (dataPrint[1] > max_x_2)
+                    if (dataPrint[1] > max_y_2)
                     {
-                        max_x_2 = dataPrint[1];
+                        max_y_2 = dataPrint[1];
                     }
 
-                    if (dataPrint[1] < min_x_2)
+                    if (dataPrint[1] < min_y_2)
                     {
-                        min_x_2 = dataPrint[1];
+                        min_y_2 = dataPrint[1];
                     }
-
-                    //channel 2
-                    if (dataPrint[2] > max_y)
-                    {
-                        max_y = dataPrint[2];
-                    }
-
-                    if (dataPrint[2] < min_y)
-                    {
-                        min_y = dataPrint[2];
-                    }
-
+                    
                     //chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
 
-                    MaxX1.Text = max_x_1.ToString();
-                    MinX1.Text = min_x_1.ToString();
-                    MaxX2.Text = max_x_2.ToString();
-                    minX2.Text = min_x_2.ToString();
-                    MaxY.Text = max_y.ToString();
-                    MinY.Text = min_y.ToString();
+                    MaxY1.Text = max_y_1.ToString();
+                    MinY1.Text = min_y_1.ToString();
+                    MaxY2.Text = max_y_2.ToString();
+                    MinY2.Text = min_y_2.ToString();
 
                     if (checkBox_holdX.Checked && firstChecked)
                     {
-                        last_x_0 = dataPrint[0];
-                        last_x_1 = dataPrint[1];
+                        last_y_0 = dataPrint[0];
+                        last_y_1 = dataPrint[1];
                         //last_x = dataCount.ToString();
                         firstChecked = false;
                     }
 
-                    plotChart(dataPrint);
+                    //plotChart(dataPrint);
 
                 }));
                 Console.WriteLine(dataCount / 3);
@@ -278,10 +261,10 @@ namespace AI_StreamingAI
         private void initChart()
         {
             //ini
-            max_x_chart = Convert.ToInt32(textBox2.Text) * 61 * 9 + 1;
+            max_x_chart = Convert.ToInt32(RangeX.Text) * 61 * 9 + 1;
             //itu
             min_x_chart = -max_x_chart;
-            max_y_chart = Convert.ToInt32(rangeY_chart.Text);
+            max_y_chart = Convert.ToInt32(RangeY.Text);
             min_y_chart = -max_y_chart;
 
             /*
@@ -307,6 +290,9 @@ namespace AI_StreamingAI
 
             chartXY.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gainsboro;
             chartXY.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gainsboro;
+
+            chartXY.Series[0].Color = Color.Blue;
+            chartXY.Series[0].Color = Color.Red;
 
             //chartXY.Series[0].XValueType = ChartValueType.DateTime;
             //chartXY.Series[1].XValueType = ChartValueType.DateTime;
@@ -400,43 +386,27 @@ namespace AI_StreamingAI
         }
 
         //ini
-        void timer_tick(object sender, EventArgs e)
+        void timer_stopwatch(object sender, EventArgs e)
         {
             //DateTime now = DateTime.Now;
             //TimeList.Add(now);
 
-            if (!checkBox_holdX.Checked)
-            {
-                if (check1.Checked)
-                {
-                    chartXY.Series[0].Points.AddY(dataPrint[0]); //ini untuk plot Y1
-                }
-                if (check2.Checked)
-                {
-                    chartXY.Series[1].Points.AddY(dataPrint[1]); //ini untuk plot Y2
-                }
-                firstChecked = true;
-            }
-
-            if (checkBox_holdX.Checked)
-            {
-                if (check1.Checked)
-                {
-                    chartXY.Series[0].Points.AddY(dataPrint[0]); //ini untuk plot Y1
-                }
-                if (check2.Checked)
-                {
-                    chartXY.Series[1].Points.AddY(dataPrint[1]); //ini untuk plot Y2
-                }
-            }
-
-            labelhr.Text = watch.Elapsed.ToString(); // ini untuk timer sejak di klik start, ganti nama labelnya itu
-
+           
+            Time.Text = watch.Elapsed.ToString(); // ini untuk timer sejak di klik start, ganti nama labelnya itu
         }
         //itu
 
-        private void plotChart(double[] data)
+        private void plotChart(object sender, EventArgs e)
         {
+            if (check1.Checked)
+            {
+                chartXY.Series[0].Points.AddY(dataPrint[0]); //ini untuk plot Y1
+            }
+            if (check2.Checked)
+            {
+                chartXY.Series[1].Points.AddY(dataPrint[1]); //ini untuk plot Y2
+            }
+
             /*
             if (checkBox2.Checked)
             {
@@ -517,20 +487,18 @@ namespace AI_StreamingAI
 
             if (check1.Checked)
             {
-                factor_baca_x_1 = Convert.ToInt32(factor_x_1.Text);
+                factor_baca_y_1 = Convert.ToInt32(Factor1.Text);
             }
             if (check2.Checked)
             {
-                factor_baca_x_2 = Convert.ToInt32(factor_x_2.Text);
+                factor_baca_y_2 = Convert.ToInt32(Factor2.Text);
             }
-
-            factor_baca_y = Convert.ToInt32(factor_y.Text);
 
             startChart();
             initChart();
             //ini
             timer.Start();
-
+            timer_plot.Start();
             watch.Start();
             //itu
         }
@@ -547,12 +515,15 @@ namespace AI_StreamingAI
                 chartXY.Series[1].Points.Clear();
             }
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
-            max_x_1 = 0;
-            min_x_1 = 0;
-            max_x_2 = 0;
-            min_x_2 = 0;
-            max_y = 0;
-            min_y = 0;
+
+            timer.Stop();
+            timer_plot.Stop();
+            watch.Stop();
+
+            max_y_1 = 0;
+            min_y_1 = 0;
+            max_y_2 = 0;
+            min_y_2 = 0;
         }
 
         //button stop menu
@@ -568,6 +539,7 @@ namespace AI_StreamingAI
 
             //ini
             timer.Stop();
+            timer_plot.Stop();
             watch.Stop();
             //itu
 
@@ -615,6 +587,7 @@ namespace AI_StreamingAI
 
             //ini
             timer.Stop();
+            timer_plot.Stop();
             watch.Stop();
             //itu
 
@@ -748,11 +721,6 @@ namespace AI_StreamingAI
             SenseMain.Text = Sensor1.Text + "&" + Sensor2.Text + "Vs Waktu";
         }
 
-        private void Unit1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            U1.Text = Unit1.Text;
-        }
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -766,9 +734,14 @@ namespace AI_StreamingAI
             }
         }
 
+        private void Unit1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            label_unitY1.Text = Unit1.Text;
+        }
+
         private void Unit2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            U2.Text = Unit2.Text;
+            label_unitY2.Text = Unit2.Text;
         }
         #endregion
 
@@ -844,6 +817,11 @@ namespace AI_StreamingAI
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void label_unitY1_Click(object sender, EventArgs e)
         {
 
         }

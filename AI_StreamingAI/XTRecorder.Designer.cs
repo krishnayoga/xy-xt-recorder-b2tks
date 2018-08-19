@@ -30,9 +30,9 @@ namespace AI_StreamingAI
       {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XTRecorder));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.waveformAiCtrl1 = new Automation.BDaq.WaveformAiCtrl(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,6 +47,8 @@ namespace AI_StreamingAI
             this.button_pause = new System.Windows.Forms.ToolStripMenuItem();
             this.replotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printToPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printToPrinterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -74,7 +76,7 @@ namespace AI_StreamingAI
             this.check1 = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox_holdX = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.UnitX = new System.Windows.Forms.ComboBox();
@@ -84,8 +86,8 @@ namespace AI_StreamingAI
             this.RangeX = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.label_unitY2 = new System.Windows.Forms.Label();
+            this.label_unitY1 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -118,8 +120,6 @@ namespace AI_StreamingAI
             this.Waktu = new System.Windows.Forms.Label();
             this.Date = new System.Windows.Forms.Label();
             this.File = new System.Windows.Forms.Label();
-            this.printToPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printToPrinterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.chartXY)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -167,18 +167,18 @@ namespace AI_StreamingAI
             // chartXY
             // 
             this.chartXY.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            chartArea1.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chartXY.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea2);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.chartXY.Legends.Add(legend2);
             this.chartXY.Location = new System.Drawing.Point(12, 151);
             this.chartXY.Name = "chartXY";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartXY.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartXY.Series.Add(series2);
             this.chartXY.Size = new System.Drawing.Size(1077, 545);
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
@@ -263,6 +263,19 @@ namespace AI_StreamingAI
             this.printToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
             this.printToolStripMenuItem.Text = "Print(Save)";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
+            // 
+            // printToPNGToolStripMenuItem
+            // 
+            this.printToPNGToolStripMenuItem.Name = "printToPNGToolStripMenuItem";
+            this.printToPNGToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.printToPNGToolStripMenuItem.Text = "Print to .PNG";
+            this.printToPNGToolStripMenuItem.Click += new System.EventHandler(this.printToPNGToolStripMenuItem_Click);
+            // 
+            // printToPrinterToolStripMenuItem
+            // 
+            this.printToPrinterToolStripMenuItem.Name = "printToPrinterToolStripMenuItem";
+            this.printToPrinterToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.printToPrinterToolStripMenuItem.Text = "Print to Printer";
             // 
             // helpToolStripMenuItem
             // 
@@ -550,7 +563,7 @@ namespace AI_StreamingAI
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.checkBox3);
+            this.panel4.Controls.Add(this.checkBox_holdX);
             this.panel4.Controls.Add(this.label22);
             this.panel4.Controls.Add(this.label23);
             this.panel4.Controls.Add(this.UnitX);
@@ -564,16 +577,16 @@ namespace AI_StreamingAI
             this.panel4.Size = new System.Drawing.Size(271, 89);
             this.panel4.TabIndex = 26;
             // 
-            // checkBox3
+            // checkBox_holdX
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox3.Location = new System.Drawing.Point(179, 67);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(92, 22);
-            this.checkBox3.TabIndex = 33;
-            this.checkBox3.Text = "Hold - X";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox_holdX.AutoSize = true;
+            this.checkBox_holdX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox_holdX.Location = new System.Drawing.Point(179, 67);
+            this.checkBox_holdX.Name = "checkBox_holdX";
+            this.checkBox_holdX.Size = new System.Drawing.Size(92, 22);
+            this.checkBox_holdX.TabIndex = 33;
+            this.checkBox_holdX.Text = "Hold - X";
+            this.checkBox_holdX.UseVisualStyleBackColor = true;
             // 
             // label22
             // 
@@ -673,8 +686,8 @@ namespace AI_StreamingAI
             // 
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.label10);
-            this.panel5.Controls.Add(this.label13);
+            this.panel5.Controls.Add(this.label_unitY2);
+            this.panel5.Controls.Add(this.label_unitY1);
             this.panel5.Controls.Add(this.label31);
             this.panel5.Controls.Add(this.label30);
             this.panel5.Controls.Add(this.label29);
@@ -698,23 +711,24 @@ namespace AI_StreamingAI
             this.panel5.Size = new System.Drawing.Size(271, 136);
             this.panel5.TabIndex = 28;
             // 
-            // label10
+            // label_unitY2
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(229, 74);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(35, 18);
-            this.label10.TabIndex = 64;
-            this.label10.Text = "(Y2)";
+            this.label_unitY2.AutoSize = true;
+            this.label_unitY2.Location = new System.Drawing.Point(229, 74);
+            this.label_unitY2.Name = "label_unitY2";
+            this.label_unitY2.Size = new System.Drawing.Size(35, 18);
+            this.label_unitY2.TabIndex = 64;
+            this.label_unitY2.Text = "(Y2)";
             // 
-            // label13
+            // label_unitY1
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(229, 43);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 18);
-            this.label13.TabIndex = 63;
-            this.label13.Text = "(Y1)";
+            this.label_unitY1.AutoSize = true;
+            this.label_unitY1.Location = new System.Drawing.Point(229, 43);
+            this.label_unitY1.Name = "label_unitY1";
+            this.label_unitY1.Size = new System.Drawing.Size(35, 18);
+            this.label_unitY1.TabIndex = 63;
+            this.label_unitY1.Text = "(Y1)";
+            this.label_unitY1.Click += new System.EventHandler(this.label_unitY1_Click);
             // 
             // label31
             // 
@@ -1005,19 +1019,6 @@ namespace AI_StreamingAI
             this.File.Text = "File Directory";
             this.File.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // printToPNGToolStripMenuItem
-            // 
-            this.printToPNGToolStripMenuItem.Name = "printToPNGToolStripMenuItem";
-            this.printToPNGToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.printToPNGToolStripMenuItem.Text = "Print to .PNG";
-            this.printToPNGToolStripMenuItem.Click += new System.EventHandler(this.printToPNGToolStripMenuItem_Click);
-            // 
-            // printToPrinterToolStripMenuItem
-            // 
-            this.printToPrinterToolStripMenuItem.Name = "printToPrinterToolStripMenuItem";
-            this.printToPrinterToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.printToPrinterToolStripMenuItem.Text = "Print to Printer";
-            // 
             // XTRecorder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -1113,7 +1114,7 @@ namespace AI_StreamingAI
         private System.Windows.Forms.ComboBox RangeX;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.ComboBox Sensor2;
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox_holdX;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label31;
@@ -1151,8 +1152,8 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label Waktu;
         private System.Windows.Forms.Label Date;
         private System.Windows.Forms.Label File;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label_unitY2;
+        private System.Windows.Forms.Label label_unitY1;
         private System.Windows.Forms.ToolStripMenuItem printToPNGToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printToPrinterToolStripMenuItem;
     }
