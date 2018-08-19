@@ -590,7 +590,7 @@
             this.Waktu.Name = "Waktu";
             this.Waktu.Size = new System.Drawing.Size(185, 15);
             this.Waktu.TabIndex = 60;
-            this.Waktu.Text = "Waktul Pembacaan";
+            this.Waktu.Text = "Waktu Pembacaan";
             this.Waktu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Date

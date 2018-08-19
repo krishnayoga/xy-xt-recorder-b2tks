@@ -597,6 +597,29 @@ namespace AI_StreamingAI
             button_pause.Enabled = false;
         }
 
+        private void check1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (check1.Checked)
+            {
+                label_ColorY1.Text = "---";
+            } else
+            {
+                label_ColorY1.Text = " ";
+            }
+        }
+
+        private void check2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (check2.Checked)
+            {
+                label_ColorY2.Text = "---";
+            }
+            else
+            {
+                label_ColorY2.Text = " ";
+            }
+        }
+
         //button replot menu
         private void replotToolStripMenuItem_Click(object sender, EventArgs e)
         {

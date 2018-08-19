@@ -287,9 +287,9 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisX.Interval = max_x_chart/10;
             chartXY.ChartAreas[0].AxisY.Interval = max_y_chart/10;
             
-            //chartXY.ChartAreas[0].AxisX.Title = "";
-            //chartXY.ChartAreas[0].AxisY.Title = "";
-            
+            chartXY.ChartAreas[0].AxisX.Title = SensorX1.Text + " (" + UnitX1.Text +")";
+            chartXY.ChartAreas[0].AxisY.Title = SensorY.Text + " (" + UnitY.Text + ")";
+
         }
 
         private void plotChart(double[] data)
@@ -506,30 +506,27 @@ namespace AI_StreamingAI
         #region unnecessary
         private void check2_CheckedChanged(object sender, EventArgs e)
         {
-            SensorX2.Items.Clear();
-            if (check2.Checked)
+           if (check2.Checked)
             {
-                SensorX2.Items.Add("Volt");
-                SensorX2.Items.Add("Pressure");
-                SensorX2.Items.Add("SG");
-                SensorX2.Items.Add("LVDT");
-                SensorX2.Items.Add("Load Cell");
                 factor_x_2.ReadOnly = false;
                 factor_x_2.Text = "1";
-                
-                ValX2.Text = "Value X2";
-                star4.Text = "*";
+                if (SensorX1.Text == "")
+                {
+                    ValX2.Text = "Value X2";
+                } else
+                {
+                    ValX2.Text = SensorX1.Text;
+                }
                 star5.Text = "*";
-                star6.Text = "*";
+                label_ColorX2.Text = "---";
             }
             else
             {
                 factor_x_2.ReadOnly = true;
                 factor_x_2.Text = "-";
                 ValX2.Text = "---";
-                star4.Text = "";
-                star5.Text = "";
-                star6.Text = "";
+                star5.Text = " ";
+                label_ColorX2.Text = " ";
             }
 
         }
@@ -547,19 +544,16 @@ namespace AI_StreamingAI
                 factor_x_1.ReadOnly = false;
                 factor_x_1.Text = "1";
                 ValX1.Text = "Value X1";
-                star1.Text = "*";
-                star2.Text = "*";
-                star3.Text = "*";
+                label_ColorX1.Text = "---";
+
             }
             else
             {
                 factor_x_1.ReadOnly = true;
                 factor_x_1.Text = "-";
-
+                label_ColorX1.Text = " ";
                 ValX1.Text = "---";
-                star1.Text = "";
-                star2.Text = "";
-                star3.Text = "";
+                
             }
 
         }
@@ -593,38 +587,15 @@ namespace AI_StreamingAI
                     UnitX1.Items.Add("mV");
                     break;
             }
+            if (check2.Checked==true)
+            {
+                ValX2.Text = SensorX1.Text;
+            }
         }
 
         private void SensorX2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ValX2.Text = SensorX2.Text;
-            UnitX2.Items.Clear();
-            switch (SensorX2.Text)
-            {
-                case "Load Cell":
-                    UnitX2.Items.Add("kg");
-                    UnitX2.Items.Add("N");
-                    UnitX2.Items.Add("kN");
-                    UnitX2.Items.Add("Ton");
-                    break;
-                case "LVDT":
-                    UnitX2.Items.Add("cm");
-                    UnitX2.Items.Add("mm");
-                    break;
-                case "SG":
-                    UnitX2.Items.Add("uS");
-                    break;
-                case "Pressure":
-                    UnitX2.Items.Add("Kg/cm2");
-                    UnitX2.Items.Add("Mpa");
-                    UnitX2.Items.Add("Psi");
-                    UnitX2.Items.Add("Bar");
-                    break;
-                case "Volt":
-                    UnitX2.Items.Add("V");
-                    UnitX2.Items.Add("mV");
-                    break;
-            }
+
         }
 
         private void SensorY_SelectedIndexChanged(object sender, EventArgs e)
