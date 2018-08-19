@@ -30,6 +30,7 @@ using System.Web.UI.DataVisualization;
 using System.Windows.Forms.DataVisualization;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Forms;
+using System.IO;
 //ini
 using System.Diagnostics;
 //itu
@@ -93,20 +94,6 @@ namespace AI_StreamingAI
             //itu
         }
 
-        //ini
-        void timer_tick(object sender, EventArgs e)
-        {
-            //DateTime now = DateTime.Now;
-            //TimeList.Add(now);
-
-            chartXY.Series[0].Points.AddY(dataPrint[0]); //ini untuk plot Y1
-            chartXY.Series[1].Points.AddY(dataPrint[1]); //ini untuk plot Y2
-
-            labelhr.Text = watch.Elapsed.ToString(); // ini untuk timer sejak di klik start, ganti nama labelnya itu
-
-        }
-        //itu
-
         public XTRecorder(int deviceNumber)
         {
             InitializeComponent();
@@ -136,39 +123,6 @@ namespace AI_StreamingAI
 
             chartXY.Series[0].IsXValueIndexed = false;
 
-        }
-
-        private void HandleError(ErrorCode err)
-        {
-            if ((err >= ErrorCode.ErrorHandleNotValid) && (err != ErrorCode.Success))
-            {
-				MessageBox.Show("Sorry ! Some errors happened, the error code is: " + err.ToString(), "StreamingAI");
-            }
-        }
-
-        private void button_start_Click(object sender, EventArgs e)
-        {
-            /*
-            ErrorCode err = ErrorCode.Success;
-
-			err = waveformAiCtrl1.Prepare();
-            m_xInc = 1.0 / waveformAiCtrl1.Conversion.ClockRate;
-            if (err == ErrorCode.Success)
-            {
-		        err = waveformAiCtrl1.Start();
-                //waveformAiCtrl1.DataReady += new EventHandler<BfdAiEventArgs>(waveformAiCtrl1_DataReady);
-            }
-
-            if (err != ErrorCode.Success)
-            {
-			    HandleError(err);
-			    return;
-            }
-
-            button_start.Enabled = false;
-            button_pause.Enabled = true;
-            button_stop.Enabled = true;
-            */
         }
 
 		private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
@@ -319,43 +273,6 @@ namespace AI_StreamingAI
             chartXY.Series.Add("Series 2");
             chartXY.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chartXY.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-
-        }
-
-        private void balanceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (check1.Checked)
-            {
-                chartXY.Series[0].Points.Clear();
-            }
-            if (check2.Checked)
-            {
-                chartXY.Series[1].Points.Clear();
-            }
-            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
-            max_x_1 = 0;
-            min_x_1 = 0;
-            max_x_2 = 0;
-            min_x_2 = 0;
-            max_y = 0;
-            min_y = 0;
-        }
-
-        private void replotToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            initChart();
-        }
-
-        private void printToPNGToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
-            }
-            catch
-            {
-                MessageBox.Show("Gagal menyimpan chart", "Save PNG Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void initChart()
@@ -480,9 +397,43 @@ namespace AI_StreamingAI
 
             //chartXY.ChartAreas[0].AxisX.Title = "waktu";
             //chartXY.ChartAreas[0].AxisY.Title = "nilai";
+        }
 
+        //ini
+        void timer_tick(object sender, EventArgs e)
+        {
+            //DateTime now = DateTime.Now;
+            //TimeList.Add(now);
+
+            if (!checkBox_holdX.Checked)
+            {
+                if (check1.Checked)
+                {
+                    chartXY.Series[0].Points.AddY(dataPrint[0]); //ini untuk plot Y1
+                }
+                if (check2.Checked)
+                {
+                    chartXY.Series[1].Points.AddY(dataPrint[1]); //ini untuk plot Y2
+                }
+                firstChecked = true;
+            }
+
+            if (checkBox_holdX.Checked)
+            {
+                if (check1.Checked)
+                {
+                    chartXY.Series[0].Points.AddY(dataPrint[0]); //ini untuk plot Y1
+                }
+                if (check2.Checked)
+                {
+                    chartXY.Series[1].Points.AddY(dataPrint[1]); //ini untuk plot Y2
+                }
+            }
+
+            labelhr.Text = watch.Elapsed.ToString(); // ini untuk timer sejak di klik start, ganti nama labelnya itu
 
         }
+        //itu
 
         private void plotChart(double[] data)
         {
@@ -502,7 +453,7 @@ namespace AI_StreamingAI
             {
                 dataPrint[2] = -(Convert.ToDouble(arrAvgData[2]));
             }
-            */
+            
 
             if (!checkBox_holdX.Checked)
             {
@@ -528,139 +479,12 @@ namespace AI_StreamingAI
                     chartXY.Series[1].Points.AddXY(last_x_1, dataPrint[2]);
                 }
             }
+            */
         }
         #endregion
 
-        private void button_pause_Click(object sender, EventArgs e)
-        {
-            ErrorCode err = ErrorCode.Success;      
-			err = waveformAiCtrl1.Stop();
-            if (err != ErrorCode.Success)
-            {
-			    HandleError(err);
-                return;
-            }
-
-            button_start.Enabled = true;
-            button_pause.Enabled = false;
-        }
-
-        private void button_stop_Click(object sender, EventArgs e)
-        {
-
-		    ErrorCode err = ErrorCode.Success;
-			err = waveformAiCtrl1.Stop();
-            if (err != ErrorCode.Success)
-            {
-			    HandleError(err);
-                return;
-            }
-
-            //ini
-            timer.Stop();
-            watch.Stop();
-            //itu
-
-            button_start.Enabled = true;
-            button_pause.Enabled = false;
-            button_stop.Enabled = false;
-            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
-         
-        }
-     
-        private void waveformAiCtrl1_CacheOverflow(object sender, BfdAiEventArgs e)
-        {
-            MessageBox.Show("WaveformAiCacheOverflow");
-        }
-
-        private void waveformAiCtrl1_Overrun(object sender, BfdAiEventArgs e)
-        {
-            if (m_isFirstOverRun)
-            {
-                MessageBox.Show("WaveformAiOverrun");
-                m_isFirstOverRun = false;
-            }
-        }
-
-        private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            StreamWriter write = new StreamWriter(File.Text);
-            write.WriteLine("Judul,");
-            write.WriteLine("Konsumen,");
-            write.WriteLine("Grafik,");
-            write.WriteLine("Tanggal,");
-            write.WriteLine("Waktu,");
-            write.WriteLine("SensorY,");
-            write.WriteLine("UnitY,");
-            write.WriteLine("SensorX1,");
-            write.WriteLine("UnitX1,");
-            write.WriteLine("SensorX2,");
-            write.WriteLine("UnitX2,");
-            write.WriteLine("MaxY,");
-            write.WriteLine("MinY,");
-            write.WriteLine("MaxX1,");
-            write.WriteLine("MinX1,");
-            write.WriteLine("Max2,");
-            write.WriteLine("MinX2,");
-
-            write.WriteLine(",");
-        }
-
-        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ErrorCode err = ErrorCode.Success;
-            err = waveformAiCtrl1.Stop();
-            if (err != ErrorCode.Success)
-            {
-                HandleError(err);
-                return;
-            }
-
-            //ini
-            timer.Stop();
-            watch.Stop();
-            //itu
-
-            button_start.Enabled = true;
-            button_pause.Enabled = false;
-            button_stop.Enabled = false;
-            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
-        }
-
-        private void stopRecordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ErrorCode err = ErrorCode.Success;
-            err = waveformAiCtrl1.Stop();
-            if (err != ErrorCode.Success)
-            {
-                HandleError(err);
-                return;
-            }
-
-            //ini
-            timer.Stop();
-            watch.Stop();
-            //itu
-
-            button_start.Enabled = true;
-            button_pause.Enabled = false;
-        }
-
-        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
+        #region button menu strip
+        //button start menu
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ini untuk testing
@@ -711,15 +535,145 @@ namespace AI_StreamingAI
             //itu
         }
 
-        private void chartXY_Click(object sender, EventArgs e)
+        //button balance menu
+        private void balanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+            if (check1.Checked)
+            {
+                chartXY.Series[0].Points.Clear();
+            }
+            if (check2.Checked)
+            {
+                chartXY.Series[1].Points.Clear();
+            }
+            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
+            max_x_1 = 0;
+            min_x_1 = 0;
+            max_x_2 = 0;
+            min_x_2 = 0;
+            max_y = 0;
+            min_y = 0;
         }
 
+        //button stop menu
+        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ErrorCode err = ErrorCode.Success;
+            err = waveformAiCtrl1.Stop();
+            if (err != ErrorCode.Success)
+            {
+                HandleError(err);
+                return;
+            }
+
+            //ini
+            timer.Stop();
+            watch.Stop();
+            //itu
+
+            button_start.Enabled = true;
+            button_pause.Enabled = false;
+            button_stop.Enabled = false;
+            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
+        }
+
+        //button start record menu
+        private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StreamWriter write = new StreamWriter(File.Text);
+            write.WriteLine("Judul,");
+            write.WriteLine("Konsumen,");
+            write.WriteLine("Grafik,");
+            write.WriteLine("Tanggal,");
+            write.WriteLine("Waktu,");
+            write.WriteLine("SensorY,");
+            write.WriteLine("UnitY,");
+            write.WriteLine("SensorX1,");
+            write.WriteLine("UnitX1,");
+            write.WriteLine("SensorX2,");
+            write.WriteLine("UnitX2,");
+            write.WriteLine("MaxY,");
+            write.WriteLine("MinY,");
+            write.WriteLine("MaxX1,");
+            write.WriteLine("MinX1,");
+            write.WriteLine("Max2,");
+            write.WriteLine("MinX2,");
+
+            write.WriteLine(",");
+        }
+
+        //button stop record menu
+        private void stopRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ErrorCode err = ErrorCode.Success;
+            err = waveformAiCtrl1.Stop();
+            if (err != ErrorCode.Success)
+            {
+                HandleError(err);
+                return;
+            }
+
+            //ini
+            timer.Stop();
+            watch.Stop();
+            //itu
+
+            button_start.Enabled = true;
+            button_pause.Enabled = false;
+        }
+
+        //button replot menu
+        private void replotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            initChart();
+        }
+
+        //button print to png menu
+        private void printToPNGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
+            }
+            catch
+            {
+                MessageBox.Show("Gagal menyimpan chart", "Save PNG Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //button filename menu
+        private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Title = "Save File";
+            save.Filter = "CSV Files (*.csv)|*.csv|Text Files(*.txt)|*.txt";
+            save.ShowDialog();
+            File.Text = save.FileName.ToString();
+            Date.Text = DateTime.Now.ToShortDateString();
+            Waktu.Text = DateTime.Now.ToLongTimeString();
+        }
+        
+        //button help menu
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HelpXTRec helpxtrec = new HelpXTRec();
             helpxtrec.ShowDialog();
+        }
+        #endregion
+
+        #region fungsi tambahan
+        private void waveformAiCtrl1_CacheOverflow(object sender, BfdAiEventArgs e)
+        {
+            MessageBox.Show("WaveformAiCacheOverflow");
+        }
+
+        private void waveformAiCtrl1_Overrun(object sender, BfdAiEventArgs e)
+        {
+            if (m_isFirstOverRun)
+            {
+                MessageBox.Show("WaveformAiOverrun");
+                m_isFirstOverRun = false;
+            }
         }
 
         private void Sensor1_SelectedIndexChanged(object sender, EventArgs e)
@@ -786,31 +740,7 @@ namespace AI_StreamingAI
             }
         }
 
-        private void Unit1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            U1.Text = Unit1.Text;
-        }
-
-        private void ValueY1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ValY1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Unit2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            U2.Text = Unit2.Text;
-        }
-
-        private void RangeX_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        //update button
         private void button1_Click(object sender, EventArgs e)
         {
             TitleMain.Text = Title.Text;
@@ -818,14 +748,39 @@ namespace AI_StreamingAI
             SenseMain.Text = Sensor1.Text + "&" + Sensor2.Text + "Vs Waktu";
         }
 
-        private void titleToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Unit1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            U1.Text = Unit1.Text;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void HandleError(ErrorCode err)
+        {
+            if ((err >= ErrorCode.ErrorHandleNotValid) && (err != ErrorCode.Success))
+            {
+                MessageBox.Show("Sorry ! Some errors happened, the error code is: " + err.ToString(), "StreamingAI");
+            }
+        }
+
+        private void Unit2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            U2.Text = Unit2.Text;
+        }
+        #endregion
+
+        #region fungsi kosong
+        private void RangeX_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void titleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
@@ -863,15 +818,99 @@ namespace AI_StreamingAI
 
         }
 
-        private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ValueY1_TextChanged(object sender, EventArgs e)
         {
-            SaveFileDialog save = new SaveFileDialog();
-            save.Title = "Save File";
-            save.Filter = "CSV Files (*.csv)|*.csv|Text Files(*.txt)|*.txt";
-            save.ShowDialog();
-            File.Text = save.FileName.ToString();
-            Date.Text = DateTime.Now.ToShortDateString();
-            Waktu.Text = DateTime.Now.ToLongTimeString();
+
         }
+
+        private void ValY1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chartXY_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void button_start_Click(object sender, EventArgs e)
+        {
+            /*
+            ErrorCode err = ErrorCode.Success;
+
+			err = waveformAiCtrl1.Prepare();
+            m_xInc = 1.0 / waveformAiCtrl1.Conversion.ClockRate;
+            if (err == ErrorCode.Success)
+            {
+		        err = waveformAiCtrl1.Start();
+                //waveformAiCtrl1.DataReady += new EventHandler<BfdAiEventArgs>(waveformAiCtrl1_DataReady);
+            }
+
+            if (err != ErrorCode.Success)
+            {
+			    HandleError(err);
+			    return;
+            }
+
+            button_start.Enabled = false;
+            button_pause.Enabled = true;
+            button_stop.Enabled = true;
+            */
+        }
+
+        private void button_pause_Click(object sender, EventArgs e)
+        {
+            /*
+            ErrorCode err = ErrorCode.Success;      
+			err = waveformAiCtrl1.Stop();
+            if (err != ErrorCode.Success)
+            {
+			    HandleError(err);
+                return;
+            }
+
+            button_start.Enabled = true;
+            button_pause.Enabled = false;
+            */
+        }
+
+        private void button_stop_Click(object sender, EventArgs e)
+        {
+            /*
+		    ErrorCode err = ErrorCode.Success;
+			err = waveformAiCtrl1.Stop();
+            if (err != ErrorCode.Success)
+            {
+			    HandleError(err);
+                return;
+            }
+
+            //ini
+            timer.Stop();
+            watch.Stop();
+            //itu
+
+            button_start.Enabled = true;
+            button_pause.Enabled = false;
+            button_stop.Enabled = false;
+            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
+            */
+        }
+        #endregion
     }
 }
