@@ -394,6 +394,12 @@ namespace AI_StreamingAI
                 chartXY.Series[1].Points.Clear();
             }
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
+            max_x_1 = 0;
+            min_x_1 = 0;
+            max_x_2 = 0;
+            min_x_2 = 0;
+            max_y = 0;
+            min_y = 0;
         }
 
         //fungsi untuk menu replot
