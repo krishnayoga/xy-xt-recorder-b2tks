@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Automation.BDaq;
 
+
 namespace AI_StreamingAI
 {
     public partial class XTRecorder : Form
@@ -373,7 +374,7 @@ namespace AI_StreamingAI
         {
             TitleMain.Text = Title.Text;
             ConsumerMain.Text = Consumer.Text;
-            SenseMain.Text = Sense1.Text + "&" + Sense2.Text + "Vs Waktu";
+            SenseMain.Text = Sensor1.Text + "&" + Sensor2.Text + "Vs Waktu";
         }
 
         private void titleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -419,6 +420,17 @@ namespace AI_StreamingAI
         private void U1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Title = "Save File";
+            save.Filter = "CSV Files (*.csv)|*.csv|Text Files(*.txt)|*.txt";
+            save.ShowDialog();
+            File.Text = save.FileName.ToString();
+            Date.Text = DateTime.Now.ToShortDateString();
+            Waktu.Text = DateTime.Now.ToLongTimeString();
         }
     }
 }

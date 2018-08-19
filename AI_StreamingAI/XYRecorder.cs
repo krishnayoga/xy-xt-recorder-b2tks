@@ -409,11 +409,8 @@ namespace AI_StreamingAI
             ConsumerMain.Text = Consumer.Text;
             if (check1.Checked && check2.Checked)
             {
-                SenseMain.Text = Sense3.Text + " dan " + Sense2.Text + " vs " + Sense1.Text;
-            } else
-            {
-                SenseMain.Text = Sense3.Text + Sense2.Text + " vs " + Sense1.Text;
-            }
+                SenseMain.Text =  SensorX1.Text + " vs " + SensorY.Text;
+            } 
         }
 
         //fungsi untuk print to png
@@ -485,7 +482,7 @@ namespace AI_StreamingAI
                 SensorX2.Items.Add("Load Cell");
                 factor_x_2.ReadOnly = false;
                 factor_x_2.Text = "1";
-                Sense3.ReadOnly = false;
+                
                 ValX2.Text = "Value X2";
                 star4.Text = "*";
                 star5.Text = "*";
@@ -495,8 +492,6 @@ namespace AI_StreamingAI
             {
                 factor_x_2.ReadOnly = true;
                 factor_x_2.Text = "-";
-                Sense3.ReadOnly = true;
-                Sense3.Text = "";
                 ValX2.Text = "---";
                 star4.Text = "";
                 star5.Text = "";
@@ -517,7 +512,6 @@ namespace AI_StreamingAI
                 SensorX1.Items.Add("Load Cell");
                 factor_x_1.ReadOnly = false;
                 factor_x_1.Text = "1";
-                Sense2.ReadOnly = false;
                 ValX1.Text = "Value X1";
                 star1.Text = "*";
                 star2.Text = "*";
@@ -527,8 +521,7 @@ namespace AI_StreamingAI
             {
                 factor_x_1.ReadOnly = true;
                 factor_x_1.Text = "-";
-                Sense2.ReadOnly = true;
-                Sense2.Text = "";
+
                 ValX1.Text = "---";
                 star1.Text = "";
                 star2.Text = "";
@@ -633,12 +626,12 @@ namespace AI_StreamingAI
         }
         private void UnitY_SelectedIndexChanged(object sender, EventArgs e)
         {
-            U1.Text = UnitY.Text;
+            
         }
 
         private void UnitX1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            U2.Text = UnitX1.Text;
+            
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -654,7 +647,7 @@ namespace AI_StreamingAI
 
         private void UnitX2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            U3.Text = UnitX2.Text;
+            
         }
 
         private void HandleError(ErrorCode err)
@@ -773,6 +766,12 @@ namespace AI_StreamingAI
         {
 
         }
+
+        private void TitleMain_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
