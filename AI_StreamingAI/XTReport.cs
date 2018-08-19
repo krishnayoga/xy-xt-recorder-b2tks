@@ -30,5 +30,16 @@ namespace AI_StreamingAI
         {
 
         }
+
+        private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            open.Title = "Open File";
+            open.Filter = "CSV Files (*.csv)|*.csv";
+            open.ShowDialog();
+            File.Text = open.FileName.ToString();
+            Date.Text = DateTime.Now.ToShortDateString();
+            Waktu.Text = DateTime.Now.ToLongTimeString();
+        }
     }
 }

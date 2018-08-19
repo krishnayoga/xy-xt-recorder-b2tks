@@ -50,6 +50,8 @@
             this.SenseMain = new System.Windows.Forms.Label();
             this.TitleMain = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.U2 = new System.Windows.Forms.Label();
             this.U1 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
@@ -68,6 +70,8 @@
             this.MaxY1 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox_MinY = new System.Windows.Forms.ComboBox();
             this.UnitX = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox_RangeX = new System.Windows.Forms.ComboBox();
@@ -77,10 +81,6 @@
             this.Waktu = new System.Windows.Forms.Label();
             this.Date = new System.Windows.Forms.Label();
             this.File = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox_MinY = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -109,6 +109,7 @@
             this.fileNameToolStripMenuItem.Name = "fileNameToolStripMenuItem";
             this.fileNameToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.fileNameToolStripMenuItem.Text = "&File Name";
+            this.fileNameToolStripMenuItem.Click += new System.EventHandler(this.fileNameToolStripMenuItem_Click);
             // 
             // replotToolStripMenuItem
             // 
@@ -299,6 +300,24 @@
             this.panel5.Size = new System.Drawing.Size(269, 149);
             this.panel5.TabIndex = 56;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(238, 71);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(26, 13);
+            this.label8.TabIndex = 62;
+            this.label8.Text = "(Y2)";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(238, 40);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(26, 13);
+            this.label3.TabIndex = 61;
+            this.label3.Text = "(Y1)";
+            // 
             // U2
             // 
             this.U2.AutoSize = true;
@@ -461,6 +480,34 @@
             this.panel1.Size = new System.Drawing.Size(269, 130);
             this.panel1.TabIndex = 57;
             // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(22, 78);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 13);
+            this.label2.TabIndex = 44;
+            this.label2.Text = "Range Min - Y";
+            // 
+            // comboBox_MinY
+            // 
+            this.comboBox_MinY.FormattingEnabled = true;
+            this.comboBox_MinY.Items.AddRange(new object[] {
+            "10",
+            "15",
+            "20",
+            "25",
+            "50",
+            "60",
+            "90",
+            "100",
+            "150",
+            "200"});
+            this.comboBox_MinY.Location = new System.Drawing.Point(25, 97);
+            this.comboBox_MinY.Name = "comboBox_MinY";
+            this.comboBox_MinY.Size = new System.Drawing.Size(87, 21);
+            this.comboBox_MinY.TabIndex = 43;
+            this.comboBox_MinY.Text = "10";
+            // 
             // UnitX
             // 
             this.UnitX.AutoSize = true;
@@ -563,52 +610,6 @@
             this.File.TabIndex = 58;
             this.File.Text = "File Directory";
             this.File.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(22, 78);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 13);
-            this.label2.TabIndex = 44;
-            this.label2.Text = "Range Min - Y";
-            // 
-            // comboBox_MinY
-            // 
-            this.comboBox_MinY.FormattingEnabled = true;
-            this.comboBox_MinY.Items.AddRange(new object[] {
-            "10",
-            "15",
-            "20",
-            "25",
-            "50",
-            "60",
-            "90",
-            "100",
-            "150",
-            "200"});
-            this.comboBox_MinY.Location = new System.Drawing.Point(25, 97);
-            this.comboBox_MinY.Name = "comboBox_MinY";
-            this.comboBox_MinY.Size = new System.Drawing.Size(87, 21);
-            this.comboBox_MinY.TabIndex = 43;
-            this.comboBox_MinY.Text = "10";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(238, 40);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(26, 13);
-            this.label3.TabIndex = 61;
-            this.label3.Text = "(Y1)";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(238, 71);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(26, 13);
-            this.label8.TabIndex = 62;
-            this.label8.Text = "(Y2)";
             // 
             // XTRec
             // 

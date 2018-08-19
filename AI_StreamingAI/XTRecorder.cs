@@ -421,5 +421,16 @@ namespace AI_StreamingAI
         {
 
         }
+
+        private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Title = "Save File";
+            save.Filter = "CSV Files (*.csv)|*.csv|Text Files(*.txt)|*.txt";
+            save.ShowDialog();
+            File.Text = save.FileName.ToString();
+            Date.Text = DateTime.Now.ToShortDateString();
+            Waktu.Text = DateTime.Now.ToLongTimeString();
+        }
     }
 }
