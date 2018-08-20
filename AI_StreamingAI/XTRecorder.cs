@@ -79,7 +79,7 @@ namespace AI_StreamingAI
         //ini
         Timer timer = new Timer();
         Timer timer_plot = new Timer();
-        List<DateTime> TimeList = new List<DateTime>();
+        //List<DateTime> TimeList = new List<DateTime>();
 
         Stopwatch watch = new Stopwatch();
         //itu
