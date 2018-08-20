@@ -97,7 +97,7 @@ namespace AI_StreamingAI
 
             this.Text = "Streaming AI(" + waveformAiCtrl1.SelectedDevice.Description + ")";
 
-            button_start.Enabled = true;
+            button_start.Enabled = false;
             button_stop.Enabled = false;
             button_pause.Enabled = false;
 
@@ -163,17 +163,7 @@ namespace AI_StreamingAI
                     dataPrint[0] = Convert.ToDouble(arrAvgData[0]) * factor_baca_x_1;
                     dataPrint[1] = Convert.ToDouble(arrAvgData[1]) * factor_baca_x_2;
                     dataPrint[2] = Convert.ToDouble(arrAvgData[2]) * factor_baca_y;
-                    if (recordData)
-                    {
-
-                        StreamWriter sw = new StreamWriter(File.Text, append: true);
-
-                        sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), dataPrint[0], dataPrint[1], dataPrint[2]);
-                        
-                        sw.Close();
-
-                    }
-
+                    
                     if (checkBox_invertX1.Checked)
                     {
                         dataPrint[0] = -dataPrint[0];
@@ -186,6 +176,18 @@ namespace AI_StreamingAI
                     {
                         dataPrint[2] = -dataPrint[2];
                     }
+
+                    if (recordData)
+                    {
+
+                        StreamWriter sw = new StreamWriter(File.Text, append: true);
+
+                        sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), dataPrint[0], dataPrint[1], dataPrint[2]);
+
+                        sw.Close();
+
+                    }
+
 
                     ValueX1.Text = dataPrint[0].ToString();
                     ValueX2.Text = dataPrint[1].ToString();
@@ -381,7 +383,6 @@ namespace AI_StreamingAI
             }
             startStripMenuItem1.Enabled = false;
             button_start.Enabled = true;
-            button_pause.Enabled = true;
             button_stop.Enabled = true;
 
             if (check1.Checked)
@@ -398,6 +399,9 @@ namespace AI_StreamingAI
             watch.Start();
             startChart();
             initChart();
+            button_start.Enabled = true;
+            button_stop.Enabled = true;
+            balanceToolStripMenuItem.Enabled = true;
         }
 
         //fungsi untuk menu stop button
@@ -413,11 +417,12 @@ namespace AI_StreamingAI
 
             watch.Stop();
 
-            button_start.Enabled = true;
+            button_start.Enabled = false;
             button_pause.Enabled = false;
             button_stop.Enabled = false;
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
-
+            balanceToolStripMenuItem.Enabled = false;
+            startStripMenuItem1.Enabled = true;
         }
 
         //Button isi filename
@@ -431,6 +436,7 @@ namespace AI_StreamingAI
             Date.Text = DateTime.Now.ToShortDateString();
             Waktu.Text = DateTime.Now.ToLongTimeString();
             startStripMenuItem1.Enabled = true;
+            button_start.Enabled = false;
         }
 
         //fungsi untuk menu balance
@@ -451,8 +457,9 @@ namespace AI_StreamingAI
             min_x_2 = 0;
             max_y = 0;
             min_y = 0;
-            startStripMenuItem1.Enabled = true;
+            startStripMenuItem1.Enabled = false;
             button_stop.Enabled = true;
+            
         }
 
         //fungsi untuk menu replot
@@ -487,6 +494,7 @@ namespace AI_StreamingAI
         private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             button_start.Enabled = false;
+            button_pause.Enabled = true;
             recordData = true;
             StreamWriter write = new StreamWriter(File.Text);
             write.WriteLine("Judul,"+TitleMain.Text);
@@ -502,8 +510,9 @@ namespace AI_StreamingAI
             write.WriteLine("MinY,");
             write.WriteLine("MaxX1,");
             write.WriteLine("MinX1,");
-            write.WriteLine("Max2,");
+            write.WriteLine("MaxX2,");
             write.WriteLine("MinX2,");
+            write.WriteLine("Waktu,Nilai Y,Nilai X1, Nilai X2");
             write.Close();
             
         }
@@ -511,6 +520,7 @@ namespace AI_StreamingAI
         //fungsi untuk menu stop record button
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
+            button_pause.Enabled = false;
             ErrorCode err = ErrorCode.Success;
             err = waveformAiCtrl1.Stop();
             if (err != ErrorCode.Success)
@@ -566,14 +576,9 @@ namespace AI_StreamingAI
 
         private void check1_CheckedChanged(object sender, EventArgs e)
         {
-            SensorX1.Items.Clear();
+            
             if (check1.Checked)
             {
-                SensorX1.Items.Add("Volt");
-                SensorX1.Items.Add("Pressure");
-                SensorX1.Items.Add("SG");
-                SensorX1.Items.Add("LVDT");
-                SensorX1.Items.Add("Load Cell");
                 factor_x_1.ReadOnly = false;
                 factor_x_1.Text = "1";
                 ValX1.Text = SensorX1.Text;

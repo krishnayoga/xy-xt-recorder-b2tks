@@ -35,6 +35,7 @@ using System.IO;
 using System.Diagnostics;
 //itu
 using Automation.BDaq;
+using excel = Microsoft.Office.Interop.Excel;
 
 
 namespace AI_StreamingAI
@@ -74,6 +75,7 @@ namespace AI_StreamingAI
         int batas_chart_1, batas_chart_2, batas_chart_3, batas_chart_4, batas_chart_5, batas_chart_6;
         int batas_chart_7, batas_chart_8, batas_chart_9, batas_chart_10, batas_chart_11;
         //itu
+        bool recordData;
         #endregion
 
         //ini
@@ -119,7 +121,7 @@ namespace AI_StreamingAI
 
             this.Text = "Streaming AI(" + waveformAiCtrl1.SelectedDevice.Description + ")";
 
-            button_start.Enabled = true;
+            button_start.Enabled = false;
             button_stop.Enabled = false;
             button_pause.Enabled = false;
 
@@ -195,6 +197,16 @@ namespace AI_StreamingAI
                         dataPrint[1] = -dataPrint[1];
                     }
 
+                    if (recordData)
+                    {
+
+                        StreamWriter sw = new StreamWriter(File.Text, append: true);
+
+                        sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), watch.Elapsed.ToString(), dataPrint[0], dataPrint[1]);
+
+                        sw.Close();
+
+                    }
                     ValueY1.Text = dataPrint[0].ToString();
                     ValueY2.Text = dataPrint[1].ToString();
                     
@@ -395,7 +407,7 @@ namespace AI_StreamingAI
             //DateTime now = DateTime.Now;
             //TimeList.Add(now);
 
-           
+
             Time.Text = watch.Elapsed.ToString(); // ini untuk timer sejak di klik start, ganti nama labelnya itu
         }
         //itu
@@ -507,7 +519,9 @@ namespace AI_StreamingAI
 
             button_start.Enabled = false;
             button_pause.Enabled = true;
+            startRecordToolStripMenuItem.Enabled = true;
             button_stop.Enabled = true;
+            balanceToolStripMenuItem.Enabled = true;
 
             if (check1.Checked)
             {
@@ -520,11 +534,7 @@ namespace AI_StreamingAI
 
             startChart();
             initChart();
-            //ini
-            timer.Start();
             timer_plot.Start();
-            watch.Start();
-            //itu
         }
 
         //button balance menu
@@ -576,37 +586,43 @@ namespace AI_StreamingAI
             button_start.Enabled = true;
             button_pause.Enabled = false;
             button_stop.Enabled = false;
+            balanceToolStripMenuItem.Enabled = false;
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
         }
 
         //button start record menu
         private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            recordData = true;
+            //ini
+            timer.Start();
+            watch.Start();
+            //itu
             StreamWriter write = new StreamWriter(File.Text);
-            write.WriteLine("Judul,");
-            write.WriteLine("Konsumen,");
-            write.WriteLine("Grafik,");
-            write.WriteLine("Tanggal,");
-            write.WriteLine("Waktu,");
-            write.WriteLine("SensorY,");
-            write.WriteLine("UnitY,");
-            write.WriteLine("SensorX1,");
-            write.WriteLine("UnitX1,");
-            write.WriteLine("SensorX2,");
-            write.WriteLine("UnitX2,");
-            write.WriteLine("MaxY,");
-            write.WriteLine("MinY,");
-            write.WriteLine("MaxX1,");
-            write.WriteLine("MinX1,");
-            write.WriteLine("Max2,");
-            write.WriteLine("MinX2,");
-
-            write.WriteLine(",");
+            write.WriteLine("Judul," + TitleMain.Text);
+            write.WriteLine("Konsumen," + ConsumerMain.Text);
+            write.WriteLine("Grafik," + SenseMain.Text);
+            write.WriteLine("Tanggal," + Date.Text);
+            write.WriteLine("Waktu," + Waktu.Text);
+            write.WriteLine("SensorY1," + Sensor1.Text);
+            write.WriteLine("UnitY1," + Unit1.Text);
+            write.WriteLine("SensorY2," + Sensor2.Text);
+            write.WriteLine("UnitY2," + Unit2.Text);
+            write.WriteLine("MaxY1,");
+            write.WriteLine("MinY1,");
+            write.WriteLine("MaxY2,");
+            write.WriteLine("MinY2,");
+            write.WriteLine("Waktu Total");
+            write.WriteLine("Waktu Ambil,Waktu,Nilai Y1,Nilai Y2");
+            write.Close();
+            startRecordToolStripMenuItem.Enabled = false;
+            button_pause.Enabled = true;
         }
 
         //button stop record menu
         private void stopRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            recordData = false;
             ErrorCode err = ErrorCode.Success;
             err = waveformAiCtrl1.Stop();
             if (err != ErrorCode.Success)
@@ -624,8 +640,21 @@ namespace AI_StreamingAI
             last_x = 0;
             last_x_holdX = 0;
 
-            button_start.Enabled = true;
+            excel.Application ex = new excel.Application();
+            excel.Workbook book = ex.Workbooks.Open(File.Text);
+            excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
+            res.Cells[10, 2] = MaxY1.Text;
+            res.Cells[11, 2] = MinY1.Text;
+            res.Cells[12, 2] = MaxY2.Text;
+            res.Cells[13, 2] = MinY2.Text;
+            res.Cells[14, 2] = Time.Text;
+            res.Columns.AutoFit();
+            book.SaveAs(File.Text);
+            book.Close();
+            ex.Quit();
+            button_start.Enabled = false;
             button_pause.Enabled = false;
+            startRecordToolStripMenuItem.Enabled = true;
         }
 
         private void check1_CheckedChanged(object sender, EventArgs e)
@@ -648,6 +677,7 @@ namespace AI_StreamingAI
             } else
             {
                 Factor1.ReadOnly = true;
+                Factor1.Text = "-";
                 label_ColorY1.Text = " ";
                 label_star1.Text = "";
                 label_star2.Text = "";
@@ -657,6 +687,7 @@ namespace AI_StreamingAI
 
         private void check2_CheckedChanged(object sender, EventArgs e)
         {
+            Sensor2.Items.Clear();
             if (check2.Checked)
             {
                 Sensor2.Items.Add("Volt");
@@ -665,7 +696,7 @@ namespace AI_StreamingAI
                 Sensor2.Items.Add("LVDT");
                 Sensor2.Items.Add("Load Cell");
                 Factor2.ReadOnly = false;
-                Factor1.Text = "1";
+                Factor2.Text = "1";
                 label_star5.Text = "*";
                 label_star6.Text = "*";
                 label_star7.Text = "*";
@@ -673,11 +704,18 @@ namespace AI_StreamingAI
             }
             else
             {
+                Factor2.ReadOnly = true;
+                Factor2.Text = "-";
                 label_star5.Text = "";
                 label_star6.Text = "";
                 label_star7.Text = "";
                 label_ColorY2.Text = " ";
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         //button replot menu
@@ -709,6 +747,7 @@ namespace AI_StreamingAI
             File.Text = save.FileName.ToString();
             Date.Text = DateTime.Now.ToShortDateString();
             Waktu.Text = DateTime.Now.ToLongTimeString();
+            button_start.Enabled = true;
         }
         
         //button help menu
@@ -803,7 +842,7 @@ namespace AI_StreamingAI
         {
             TitleMain.Text = Title.Text;
             ConsumerMain.Text = Consumer.Text;
-            SenseMain.Text = Sensor1.Text + "&" + Sensor2.Text + "Vs Waktu";
+            SenseMain.Text = Sensor1.Text + " dan " + Sensor2.Text + "Vs Waktu";
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
