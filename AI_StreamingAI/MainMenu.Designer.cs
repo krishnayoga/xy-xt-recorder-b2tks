@@ -56,8 +56,7 @@
             this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1067, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -67,21 +66,21 @@
             this.xTToolStripMenuItem,
             this.xYToolStripMenuItem});
             this.recorderToolStripMenuItem.Name = "recorderToolStripMenuItem";
-            this.recorderToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.recorderToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.recorderToolStripMenuItem.Text = "&Recorder";
             this.recorderToolStripMenuItem.Click += new System.EventHandler(this.recorderToolStripMenuItem_Click);
             // 
             // xTToolStripMenuItem
             // 
             this.xTToolStripMenuItem.Name = "xTToolStripMenuItem";
-            this.xTToolStripMenuItem.Size = new System.Drawing.Size(101, 26);
+            this.xTToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
             this.xTToolStripMenuItem.Text = "X&T";
             this.xTToolStripMenuItem.Click += new System.EventHandler(this.xTToolStripMenuItem_Click);
             // 
             // xYToolStripMenuItem
             // 
             this.xYToolStripMenuItem.Name = "xYToolStripMenuItem";
-            this.xYToolStripMenuItem.Size = new System.Drawing.Size(101, 26);
+            this.xYToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
             this.xYToolStripMenuItem.Text = "X&Y";
             this.xYToolStripMenuItem.Click += new System.EventHandler(this.xYToolStripMenuItem_Click);
             // 
@@ -91,32 +90,32 @@
             this.xTToolStripMenuItem1,
             this.xYToolStripMenuItem1});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.reportToolStripMenuItem.Text = "R&eport";
             // 
             // xTToolStripMenuItem1
             // 
             this.xTToolStripMenuItem1.Name = "xTToolStripMenuItem1";
-            this.xTToolStripMenuItem1.Size = new System.Drawing.Size(101, 26);
+            this.xTToolStripMenuItem1.Size = new System.Drawing.Size(88, 22);
             this.xTToolStripMenuItem1.Text = "X&T";
             // 
             // xYToolStripMenuItem1
             // 
             this.xYToolStripMenuItem1.Name = "xYToolStripMenuItem1";
-            this.xYToolStripMenuItem1.Size = new System.Drawing.Size(101, 26);
+            this.xYToolStripMenuItem1.Size = new System.Drawing.Size(88, 22);
             this.xYToolStripMenuItem1.Text = "X&Y";
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(45, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -125,34 +124,34 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(283, 279);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(212, 227);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(505, 54);
+            this.label1.Size = new System.Drawing.Size(403, 42);
             this.label1.TabIndex = 1;
             this.label1.Text = "Digital XT/XY Recorder";
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(367, 90);
+            this.pictureBox1.Location = new System.Drawing.Point(275, 73);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(351, 169);
+            this.pictureBox1.Size = new System.Drawing.Size(263, 137);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 34;
             this.pictureBox1.TabStop = false;
             // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1067, 481);
+            this.ClientSize = new System.Drawing.Size(800, 391);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainMenu";
             this.Text = "Digital XT/XY Recorder";
             this.Load += new System.EventHandler(this.MainMenu_Load);

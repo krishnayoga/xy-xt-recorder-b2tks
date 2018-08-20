@@ -30,6 +30,7 @@ using System.Web.UI.DataVisualization;
 using System.Windows.Forms.DataVisualization;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Forms;
+using System.Diagnostics;
 using Automation.BDaq;
 using System.IO;
 using excel = Microsoft.Office.Interop.Excel;
@@ -66,11 +67,16 @@ namespace AI_StreamingAI
 
         #endregion
 
+        Timer stopwatch = new Timer();
+        Stopwatch watch = new Stopwatch();
+
         DateTime saat_ini = DateTime.Now;
 
         public XYRecorder()
         {
             InitializeComponent();
+            stopwatch.Tick += new EventHandler(timer_stopwatch);
+            stopwatch.Interval = 10;
         }
 
         public XYRecorder(int deviceNumber)
@@ -360,6 +366,7 @@ namespace AI_StreamingAI
         //fungsi untuk menu start button
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            watch.Reset();
             ErrorCode err = ErrorCode.Success;
 
             err = waveformAiCtrl1.Prepare();
@@ -393,6 +400,8 @@ namespace AI_StreamingAI
             
             factor_baca_y = Convert.ToInt32(factor_y.Text);
 
+            stopwatch.Start();
+            watch.Start();
             startChart();
             initChart();
         }
@@ -407,6 +416,9 @@ namespace AI_StreamingAI
                 HandleError(err);
                 return;
             }
+
+            stopwatch.Stop();
+            watch.Stop();
 
             button_start.Enabled = true;
             button_pause.Enabled = false;
@@ -446,6 +458,8 @@ namespace AI_StreamingAI
             min_x_2 = 0;
             max_y = 0;
             min_y = 0;
+            startStripMenuItem1.Enabled = true;
+            button_stop.Enabled = true;
         }
 
         //fungsi untuk menu replot
@@ -527,6 +541,9 @@ namespace AI_StreamingAI
             book.SaveAs(File.Text);
             book.Close();
             ex.Quit();
+
+            stopwatch.Stop();
+            watch.Stop();
             
         }
 
@@ -534,13 +551,16 @@ namespace AI_StreamingAI
         #endregion
 
         #region unnecessary
+        private void timer_stopwatch(object sender, EventArgs e)
+        {
+            textBox_stopwatch.Text = watch.Elapsed.ToString();
+        }
         private void check2_CheckedChanged(object sender, EventArgs e)
         {
            if (check2.Checked)
             {
                 factor_x_2.ReadOnly = false;
                 factor_x_2.Text = "1";
-                if (SensorX1.Text == "")
                 ValX2.Text = SensorX1.Text;
                 star5.Text = "*";
                 label_ColorX2.Text = "---";
@@ -812,6 +832,11 @@ namespace AI_StreamingAI
         }
 
         private void SenseMain_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
