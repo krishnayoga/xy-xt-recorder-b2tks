@@ -67,16 +67,11 @@ namespace AI_StreamingAI
 
         #endregion
 
-        Timer stopwatch = new Timer();
         Stopwatch watch = new Stopwatch();
-
-        DateTime saat_ini = DateTime.Now;
-
+        
         public XYRecorder()
         {
             InitializeComponent();
-            stopwatch.Tick += new EventHandler(timer_stopwatch);
-            stopwatch.Interval = 10;
         }
 
         public XYRecorder(int deviceNumber)
@@ -247,7 +242,7 @@ namespace AI_StreamingAI
                     }
 
                     plotChart(dataPrint);
-                    
+                    textBox_stopwatch.Text = watch.Elapsed.ToString();
                 }));
                 Console.WriteLine(dataCount / 3);
                 
@@ -400,7 +395,6 @@ namespace AI_StreamingAI
             
             factor_baca_y = Convert.ToInt32(factor_y.Text);
 
-            stopwatch.Start();
             watch.Start();
             startChart();
             initChart();
@@ -417,7 +411,6 @@ namespace AI_StreamingAI
                 return;
             }
 
-            stopwatch.Stop();
             watch.Stop();
 
             button_start.Enabled = true;
@@ -542,7 +535,6 @@ namespace AI_StreamingAI
             book.Close();
             ex.Quit();
 
-            stopwatch.Stop();
             watch.Stop();
             
         }
@@ -551,10 +543,6 @@ namespace AI_StreamingAI
         #endregion
 
         #region unnecessary
-        private void timer_stopwatch(object sender, EventArgs e)
-        {
-            textBox_stopwatch.Text = watch.Elapsed.ToString();
-        }
         private void check2_CheckedChanged(object sender, EventArgs e)
         {
            if (check2.Checked)
