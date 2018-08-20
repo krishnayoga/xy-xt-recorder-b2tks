@@ -1,28 +1,99 @@
+/*
+ * Dibuat Oleh:
+ * Ida Bagus Krishna Yoga Utama <email: hello@krishna.my.id >
+ * Arbariyanto Mahmud Wicaksono <email: arbariyantom@gmail.com>
+ * 
+ * Teknik Elektro 2015
+ * Departemen Teknik Elektro
+ * Universitas Indonesia
+ * 
+ * Dibuat pada Agustus 2018
+ * Untuk BPPT B2TKS Divisi SBPI
+*/
+
+/*
+ * Configuration waveformAICtrl1:
+ * Channel Count = 3;
+ * Frequency (Convert Clock Rate) = 8000;
+ * Section Length = 32;
+ * 
+ * Konfigurasi untuk sampling rate 10Hz (10 data per detik)
+*/
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Web.UI.DataVisualization;
+using System.Windows.Forms.DataVisualization;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Forms;
+using System.IO;
+//ini
+using System.Diagnostics;
+//itu
 using Automation.BDaq;
+
 
 namespace AI_StreamingAI
 {
     public partial class XTRecorder : Form
     {
         #region fields  
-        double[]     m_dataScaled;
-        bool         m_isFirstOverRun = true;
-        double       m_xInc;
-        string[]    arrAvgData;
-        string[]    arrData;
-        double[]    arrSumData;
+        double[] m_dataScaled;
+        bool m_isFirstOverRun = true;
+        double m_xInc;
+        int dataCount = 0;
+        double last_y_0;
+        double last_y_1;
+        bool firstChecked = true;
+        string[] arrAvgData;
+        string[] arrData;
+        double[] arrSumData;
+        double[] dataPrint;
+        double max_y_1 = 0;
+        double min_y_1 = 1000;
+        double max_y_2 = 0;
+        double min_y_2 = 0;
+        int factor_baca_y_1 = 1, factor_baca_y_2 = 1;
+        int max_x_chart;
+        int min_x_chart;
+        int max_y_chart;
+        int min_y_chart;
+        //ini untuk testing
+        int ms = 0, s, m, h;
+        int zero = 0, ten = 10;
+        //itu untuk testing
+        //ini
+        double label_chart_1, label_chart_2, label_chart_3, label_chart_4, label_chart_5, label_chart_6;
+        double label_chart_7, label_chart_8, label_chart_9, label_chart_10, label_chart_11;
+        double pos_label_1, pos_label_2, pos_label_3, pos_label_4, pos_label_5, pos_label_6;
+        double pos_label_7, pos_label_8, pos_label_9, pos_label_10, pos_label_11;
+        int batas_chart_1, batas_chart_2, batas_chart_3, batas_chart_4, batas_chart_5, batas_chart_6;
+        int batas_chart_7, batas_chart_8, batas_chart_9, batas_chart_10, batas_chart_11;
+        //itu
         #endregion
+
+        //ini
+        Timer timer = new Timer();
+        Timer timer_plot = new Timer();
+        List<DateTime> TimeList = new List<DateTime>();
+
+        Stopwatch watch = new Stopwatch();
+        //itu
 
         public XTRecorder()
         {
-            InitializeComponent();             
+            InitializeComponent();
+            //ini
+            timer.Tick += new EventHandler(timer_stopwatch);
+            timer.Interval = 10;
+
+            timer_plot.Tick += new EventHandler(plotChart);
+            timer_plot.Interval = 100;
+            //itu
         }
 
         public XTRecorder(int deviceNumber)
@@ -33,73 +104,47 @@ namespace AI_StreamingAI
       
         private void StreamingBufferedAiForm_Load(object sender, EventArgs e)
         {
-		    if (!waveformAiCtrl1.Initialized)
+            if (!waveformAiCtrl1.Initialized)
             {
                 MessageBox.Show("No device be selected or device open failed!", "StreamingAI");
                 this.Close();
                 return;
             }
 
-			int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
-			int sectionLength = waveformAiCtrl1.Record.SectionLength;
-			m_dataScaled = new double[chanCount * sectionLength];
+            int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
+            int sectionLength = waveformAiCtrl1.Record.SectionLength;
+            m_dataScaled = new double[chanCount * sectionLength];
 
-			this.Text = "Streaming AI(" + waveformAiCtrl1.SelectedDevice.Description + ")";
+            dataPrint = new double[3];
+
+            this.Text = "Streaming AI(" + waveformAiCtrl1.SelectedDevice.Description + ")";
 
             button_start.Enabled = true;
             button_stop.Enabled = false;
             button_pause.Enabled = false;
-      
-        }
 
-        private void HandleError(ErrorCode err)
-        {
-            if ((err >= ErrorCode.ErrorHandleNotValid) && (err != ErrorCode.Success))
-            {
-				MessageBox.Show("Sorry ! Some errors happened, the error code is: " + err.ToString(), "StreamingAI");
-            }
-        }
+            chartXY.Series[0].IsXValueIndexed = false;
 
-        private void button_start_Click(object sender, EventArgs e)
-        {
-            ErrorCode err = ErrorCode.Success;
-
-			err = waveformAiCtrl1.Prepare();
-            m_xInc = 1.0 / waveformAiCtrl1.Conversion.ClockRate;
-            if (err == ErrorCode.Success)
-            {
-		        err = waveformAiCtrl1.Start();
-                //waveformAiCtrl1.DataReady += new EventHandler<BfdAiEventArgs>(waveformAiCtrl1_DataReady);
-            }
-
-            if (err != ErrorCode.Success)
-            {
-			    HandleError(err);
-			    return;
-            }
-
-            button_start.Enabled = false;
-            button_pause.Enabled = true;
-            button_stop.Enabled = true;
         }
 
 		private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
         {
-            Console.WriteLine("halooooooooooooooooooooo");
-			try
+            try
             {
-				if (waveformAiCtrl1.State == ControlState.Idle)
+                if (waveformAiCtrl1.State == ControlState.Idle)
                 {
-				    return;
+                    return;
                 }
                 if (m_dataScaled.Length < args.Count)
                 {
                     m_dataScaled = new double[args.Count];
                 }
 
+                //Console.WriteLine(args.Count);
+
                 ErrorCode err = ErrorCode.Success;
-				int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
-				int sectionLength = waveformAiCtrl1.Record.SectionLength;
+                int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
+                int sectionLength = waveformAiCtrl1.Record.SectionLength;
                 err = waveformAiCtrl1.GetData(args.Count, m_dataScaled);
 
                 if (err != ErrorCode.Success && err != ErrorCode.WarningRecordEnd)
@@ -107,7 +152,7 @@ namespace AI_StreamingAI
                     HandleError(err);
                     return;
                 }
-                System.Diagnostics.Debug.WriteLine(args.Count.ToString());
+                //System.Diagnostics.Debug.WriteLine(args.Count.ToString());
 
                 this.Invoke(new Action(() =>
                 {
@@ -120,68 +165,501 @@ namespace AI_StreamingAI
                         for (int j = 0; j < chanCount; j++)
                         {
                             int cnt = i * chanCount + j;
-                            arrData[j] = m_dataScaled[cnt].ToString("F4");
+                            arrData[j] = m_dataScaled[cnt].ToString("F1");
                             arrSumData[j] += m_dataScaled[cnt];
-                            Console.WriteLine("j ke " + j + " arrsumdata :" + arrSumData[j] + " m_datascaled: " + m_dataScaled[cnt] + " cnt: " + cnt + " chancount: " + chanCount);
+                            //Console.WriteLine("j ke " + j + " arrsumdata :" + arrSumData[j] + " m_datascaled: " + m_dataScaled[cnt] + " cnt: " + cnt + " chancount: " + chanCount);
                         }
                         //addListViewItems(listViewAi, arrData);
                     }
-
                     arrAvgData = new string[arrSumData.Length];
 
                     for (int i = 0; i < arrSumData.Length; i++)
                     {
-                        arrAvgData[i] = (arrSumData[i] / sectionLength).ToString("F4");
-                        ValueY1.Text = arrAvgData[0];
-                        //label2.Text = arrAvgData[1];
+                        arrAvgData[i] = (arrSumData[i] / sectionLength).ToString("F1");
+                        //ValueX1.Text = arrAvgData[0];
+                        //ValueY.Text = arrAvgData[1];
                         //label3.Text = arrAvgData[2];
                         //Console.WriteLine("i ke " + i + " arrsumdata :" + arrSumData[i]);
-                        chartXY.Series[0].Points.AddY(arrAvgData[0]);
-
+                        dataCount++;
                     }
-                    //editListViewItems(listViewAi, 0, arrAvgData);
 
-                    //listViewAi.EndUpdate();
+                    dataPrint[0] = Convert.ToDouble(arrAvgData[0]) * factor_baca_y_1;
+                    dataPrint[1] = Convert.ToDouble(arrAvgData[1]) * factor_baca_y_2;
+
+                    if (checkBox_InvertY1.Checked)
+                    {
+                        dataPrint[0] = -dataPrint[0];
+                    }
+                    if (checkBox_InvertY2.Checked)
+                    {
+                        dataPrint[1] = -dataPrint[1];
+                    }
+
+                    ValueY1.Text = dataPrint[0].ToString();
+                    ValueY2.Text = dataPrint[1].ToString();
+                    
+                    //channel 0
+                    if (dataPrint[0] > max_y_1)
+                    {
+                        max_y_1 = dataPrint[0];
+                    }
+
+                    if (dataPrint[0] < min_y_1)
+                    {
+                        min_y_1 = dataPrint[0];
+                    }
+
+                    //channel 1
+                    if (dataPrint[1] > max_y_2)
+                    {
+                        max_y_2 = dataPrint[1];
+                    }
+
+                    if (dataPrint[1] < min_y_2)
+                    {
+                        min_y_2 = dataPrint[1];
+                    }
+                    
+                    //chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
+
+                    MaxY1.Text = max_y_1.ToString();
+                    MinY1.Text = min_y_1.ToString();
+                    MaxY2.Text = max_y_2.ToString();
+                    MinY2.Text = min_y_2.ToString();
+
+                    if (checkBox_holdX.Checked && firstChecked)
+                    {
+                        last_y_0 = dataPrint[0];
+                        last_y_1 = dataPrint[1];
+                        //last_x = dataCount.ToString();
+                        firstChecked = false;
+                    }
+
+                    //plotChart(dataPrint);
+
                 }));
+                Console.WriteLine(dataCount / 3);
 
             }
-			catch (System.Exception)
+            catch
             {
-
-            }   
+                MessageBox.Show("nilai x dan y salah!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
         }
 
-        private void button_pause_Click(object sender, EventArgs e)
+        #region chart
+        private void startChart()
         {
-            ErrorCode err = ErrorCode.Success;      
-			err = waveformAiCtrl1.Stop();
+            chartXY.Series.Clear();
+            chartXY.Series.Add("Series 1");
+            chartXY.Series.Add("Series 2");
+            chartXY.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chartXY.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+            chartXY.Series[0].Color = Color.Blue;
+            chartXY.Series[1].Color = Color.Red;
+        }
+
+        private void initChart()
+        {
+            //ini
+            max_x_chart = Convert.ToInt32(RangeX.Text) * 61 * 9 + 1;
+            //itu
+            min_x_chart = -max_x_chart;
+            max_y_chart = Convert.ToInt32(RangeY.Text);
+            min_y_chart = -max_y_chart;
+
+            /*
+            //this.chartXY.Titles.Add("pt. B2TKS - BPPT");
+
+            chartXY.ChartAreas[0].AxisX.Maximum = max_x_chart;
+            chartXY.ChartAreas[0].AxisX.Minimum = min_x_chart;
+            chartXY.ChartAreas[0].AxisY.Maximum = max_y_chart;
+            chartXY.ChartAreas[0].AxisY.Minimum = min_y_chart;
+            chartXY.ChartAreas[0].AxisX.Interval = 1;
+            chartXY.ChartAreas[0].AxisY.Interval = 1;
+
+            chartXY.ChartAreas[0].AxisX.Title = "";
+            chartXY.ChartAreas[0].AxisY.Title = "";
+            */
+
+            //ini
+            //chartXY.ChartAreas[0].AxisX.Crossing = 0;
+            chartXY.ChartAreas[0].AxisY.Crossing = 0;
+
+            chartXY.ChartAreas[0].AxisX.LabelStyle.IntervalOffset = 1000000000;
+            chartXY.ChartAreas[0].AxisX.IsLabelAutoFit = false;
+
+            chartXY.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gainsboro;
+            chartXY.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gainsboro;
+
+            
+
+            //chartXY.Series[0].XValueType = ChartValueType.DateTime;
+            //chartXY.Series[1].XValueType = ChartValueType.DateTime;
+
+            //DateTime dt = DateTime.MinValue;
+
+            //chartXY.ChartAreas[0].AxisX.Minimum = dt.AddMinutes(0).ToOADate();
+            //chartXY.ChartAreas[0].AxisX.Maximum = dt.AddMinutes(50).ToOADate();
+
+            //chartXY.ChartAreas[0].AxisX.Interval = 60;
+            //chartXY.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Seconds;
+
+            //chartXY.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
+
+            //this.chartXY.Titles.Add("pt. B2TKS - BPPT");
+
+
+            chartXY.ChartAreas[0].AxisX.Maximum = max_x_chart;
+            chartXY.ChartAreas[0].AxisX.Minimum = 0;
+            chartXY.ChartAreas[0].AxisY.Maximum = max_y_chart;
+            chartXY.ChartAreas[0].AxisY.Minimum = min_y_chart;
+            chartXY.ChartAreas[0].AxisX.Interval = max_x_chart / 10;
+            chartXY.ChartAreas[0].AxisY.Interval = max_y_chart / 10;
+
+            label_chart_1 = Convert.ToDouble(max_x_chart) * 0;
+            label_chart_2 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10;
+            label_chart_3 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 2;
+            label_chart_4 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 3;
+            label_chart_5 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 4;
+            label_chart_6 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 5;
+            label_chart_7 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 6;
+            label_chart_8 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 7;
+            label_chart_9 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 8;
+            label_chart_10 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 9;
+            label_chart_11 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9;
+
+
+            pos_label_1 = max_x_chart * 0;
+            pos_label_2 = max_x_chart / 10;
+            pos_label_3 = max_x_chart / 10 * 2;
+            pos_label_4 = max_x_chart / 10 * 3;
+            pos_label_5 = max_x_chart / 10 * 4;
+            pos_label_6 = max_x_chart / 10 * 5;
+            pos_label_7 = max_x_chart / 10 * 6;
+            pos_label_8 = max_x_chart / 10 * 7;
+            pos_label_9 = max_x_chart / 10 * 8;
+            pos_label_10 = max_x_chart / 10 * 9;
+            pos_label_11 = max_x_chart;
+
+            batas_chart_1 = 1;
+            batas_chart_2 = Convert.ToInt32(pos_label_2) / 10 * 3;
+            batas_chart_3 = Convert.ToInt32(pos_label_3) / 10 * 3;
+            batas_chart_4 = Convert.ToInt32(pos_label_4) / 10 * 3;
+            batas_chart_5 = Convert.ToInt32(pos_label_5) / 10 * 3;
+            batas_chart_6 = Convert.ToInt32(pos_label_6) / 10 * 3;
+            batas_chart_7 = Convert.ToInt32(pos_label_7) / 10 * 3;
+            batas_chart_8 = Convert.ToInt32(pos_label_8) / 10 * 3;
+            batas_chart_9 = Convert.ToInt32(pos_label_9) / 10 * 3;
+            batas_chart_10 = Convert.ToInt32(pos_label_10) / 10 * 3;
+            batas_chart_11 = Convert.ToInt32(pos_label_11) / 10 * 3; ;
+
+
+            //CustomLabel chart_label = new CustomLabel(pos_label_2 - 0.5, pos_label_2 + 0.5, label_chart_2.ToString(), 1, LabelMarkStyle.None);
+
+            //chartXY.ChartAreas[0].AxisX.CustomLabels.Add(chart_label);
+
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Add(pos_label_1 - batas_chart_1, pos_label_1 + batas_chart_1, label_chart_1.ToString("F1"), 1, LabelMarkStyle.None);
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Add(pos_label_2 - batas_chart_2, pos_label_2 + batas_chart_2, label_chart_2.ToString("F1"), 1, LabelMarkStyle.None);
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Add(pos_label_3 - batas_chart_3, pos_label_3 + batas_chart_3, label_chart_3.ToString("F1"), 1, LabelMarkStyle.None);
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Add(pos_label_4 - batas_chart_4, pos_label_4 + batas_chart_4, label_chart_4.ToString("F1"), 1, LabelMarkStyle.None);
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Add(pos_label_5 - batas_chart_5, pos_label_5 + batas_chart_5, label_chart_5.ToString("F1"), 1, LabelMarkStyle.None);
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Add(pos_label_6 - batas_chart_6, pos_label_6 + batas_chart_6, label_chart_6.ToString("F1"), 1, LabelMarkStyle.None);
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Add(pos_label_7 - batas_chart_7, pos_label_7 + batas_chart_7, label_chart_7.ToString("F1"), 1, LabelMarkStyle.None);
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Add(pos_label_8 - batas_chart_8, pos_label_8 + batas_chart_8, label_chart_8.ToString("F1"), 1, LabelMarkStyle.None);
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Add(pos_label_9 - batas_chart_9, pos_label_9 + batas_chart_9, label_chart_9.ToString("F1"), 1, LabelMarkStyle.None);
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Add(pos_label_10 - batas_chart_10, pos_label_10 + batas_chart_10, label_chart_10.ToString("F1"), 1, LabelMarkStyle.None);
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Add(pos_label_11 - batas_chart_11, pos_label_11 + batas_chart_11, label_chart_11.ToString("F1"), 1, LabelMarkStyle.None);
+            //itu
+            //chartXY.ChartAreas[0].AxisX.CustomLabels.Add(0.5, 1.5, label_chart_2.ToString());
+
+            //ini untuk testing
+            //Console.WriteLine(max_x_chart);
+            //itu untuk testing
+            //chartXY.ChartAreas[0].AxisX.Interval = max_x_chart / 10;
+            //chartXY.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Seconds;
+            //chartXY.ChartAreas[0].AxisY.Interval = max_y_chart / 10;
+
+
+            //chartXY.ChartAreas[0].AxisX.Title = "waktu";
+            //chartXY.ChartAreas[0].AxisY.Title = "nilai";
+        }
+
+        //ini
+        void timer_stopwatch(object sender, EventArgs e)
+        {
+            //DateTime now = DateTime.Now;
+            //TimeList.Add(now);
+
+           
+            Time.Text = watch.Elapsed.ToString(); // ini untuk timer sejak di klik start, ganti nama labelnya itu
+        }
+        //itu
+
+        private void plotChart(object sender, EventArgs e)
+        { 
+            if (check1.Checked)
+            {
+                chartXY.Series[0].Points.AddY(dataPrint[0]); //ini untuk plot Y1
+            }
+            if (check2.Checked)
+            {
+                chartXY.Series[1].Points.AddY(dataPrint[1]); //ini untuk plot Y2
+            }
+
+            /*
+            if (checkBox2.Checked)
+            {
+                dataPrint[0] = -(Convert.ToDouble(arrAvgData[0]));
+                Console.WriteLine("halo" + dataPrint[0]);
+                last_x_0 = -last_x_0;
+            }
+            if (checkBox3.Checked)
+            {
+                dataPrint[1] = -(Convert.ToDouble(arrAvgData[1]));
+                last_x_1 = -last_x_1;
+            }
+            if (checkBox1.Checked)
+            {
+                dataPrint[2] = -(Convert.ToDouble(arrAvgData[2]));
+            }
+            
+
+            if (!checkBox_holdX.Checked)
+            {
+                if (check1.Checked)
+                {
+                    chartXY.Series[0].Points.AddXY(dataPrint[0], dataPrint[2]);
+                }
+                if (check2.Checked)
+                {
+                    chartXY.Series[1].Points.AddXY(dataPrint[1], dataPrint[2]);
+                }
+                firstChecked = true;
+            }
+
+            if (checkBox_holdX.Checked)
+            {
+                if (check1.Checked)
+                {
+                    chartXY.Series[0].Points.AddXY(last_x_0, dataPrint[2]);
+                }
+                if (check2.Checked)
+                {
+                    chartXY.Series[1].Points.AddXY(last_x_1, dataPrint[2]);
+                }
+            }
+            */
+        }
+        #endregion
+
+        #region button menu strip
+        //button start menu
+        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //ini untuk testing
+            chartXY.Series[0].Points.Clear();
+
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Clear();
+            //itu untuk testing
+
+            ErrorCode err = ErrorCode.Success;
+
+            err = waveformAiCtrl1.Prepare();
+            m_xInc = 1.0 / waveformAiCtrl1.Conversion.ClockRate;
+            if (err == ErrorCode.Success)
+            {
+                err = waveformAiCtrl1.Start();
+                //Console.WriteLine("halooo");
+                //waveformAiCtrl1.DataReady += new EventHandler<BfdAiEventArgs>(waveformAiCtrl1_DataReady);
+                //chartXY.Series[0].Points.AddXY(arrAvgData[1], arrAvgData[0]);
+            }
+
             if (err != ErrorCode.Success)
             {
-			    HandleError(err);
+                HandleError(err);
                 return;
             }
 
-            button_start.Enabled = true;
-            button_pause.Enabled = false;
+            button_start.Enabled = false;
+            button_pause.Enabled = true;
+            button_stop.Enabled = true;
+
+            if (check1.Checked)
+            {
+                factor_baca_y_1 = Convert.ToInt32(Factor1.Text);
+            }
+            if (check2.Checked)
+            {
+                factor_baca_y_2 = Convert.ToInt32(Factor2.Text);
+            }
+
+            startChart();
+            initChart();
+            //ini
+            timer.Start();
+            timer_plot.Start();
+            watch.Start();
+            //itu
         }
 
-        private void button_stop_Click(object sender, EventArgs e)
+        //button balance menu
+        private void balanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-		    ErrorCode err = ErrorCode.Success;
-			err = waveformAiCtrl1.Stop();
+            if (check1.Checked)
+            {
+                chartXY.Series[0].Points.Clear();
+            }
+            if (check2.Checked)
+            {
+                chartXY.Series[1].Points.Clear();
+            }
+            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
+
+            timer.Stop();
+            timer_plot.Stop();
+            watch.Stop();
+
+            max_y_1 = 0;
+            min_y_1 = 0;
+            max_y_2 = 0;
+            min_y_2 = 0;
+        }
+
+        //button stop menu
+        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ErrorCode err = ErrorCode.Success;
+            err = waveformAiCtrl1.Stop();
             if (err != ErrorCode.Success)
             {
-			    HandleError(err);
+                HandleError(err);
                 return;
-            }   
-          
+            }
+
+            //ini
+            timer.Stop();
+            timer_plot.Stop();
+            watch.Stop();
+            //itu
+
             button_start.Enabled = true;
             button_pause.Enabled = false;
             button_stop.Enabled = false;
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
-         
         }
-     
+
+        //button start record menu
+        private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StreamWriter write = new StreamWriter(File.Text);
+            write.WriteLine("Judul,");
+            write.WriteLine("Konsumen,");
+            write.WriteLine("Grafik,");
+            write.WriteLine("Tanggal,");
+            write.WriteLine("Waktu,");
+            write.WriteLine("SensorY,");
+            write.WriteLine("UnitY,");
+            write.WriteLine("SensorX1,");
+            write.WriteLine("UnitX1,");
+            write.WriteLine("SensorX2,");
+            write.WriteLine("UnitX2,");
+            write.WriteLine("MaxY,");
+            write.WriteLine("MinY,");
+            write.WriteLine("MaxX1,");
+            write.WriteLine("MinX1,");
+            write.WriteLine("Max2,");
+            write.WriteLine("MinX2,");
+
+            write.WriteLine(",");
+        }
+
+        //button stop record menu
+        private void stopRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ErrorCode err = ErrorCode.Success;
+            err = waveformAiCtrl1.Stop();
+            if (err != ErrorCode.Success)
+            {
+                HandleError(err);
+                return;
+            }
+
+            //ini
+            timer.Stop();
+            timer_plot.Stop();
+            watch.Stop();
+            //itu
+
+            button_start.Enabled = true;
+            button_pause.Enabled = false;
+        }
+
+        private void check1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (check1.Checked)
+            {
+                label_ColorY1.Text = "---";
+            } else
+            {
+                label_ColorY1.Text = " ";
+            }
+        }
+
+        private void check2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (check2.Checked)
+            {
+                label_ColorY2.Text = "---";
+            }
+            else
+            {
+                label_ColorY2.Text = " ";
+            }
+        }
+
+        //button replot menu
+        private void replotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            initChart();
+        }
+
+        //button print to png menu
+        private void printToPNGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
+            }
+            catch
+            {
+                MessageBox.Show("Gagal menyimpan chart", "Save PNG Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //button filename menu
+        private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Title = "Save File";
+            save.Filter = "CSV Files (*.csv)|*.csv|Text Files(*.txt)|*.txt";
+            save.ShowDialog();
+            File.Text = save.FileName.ToString();
+            Date.Text = DateTime.Now.ToShortDateString();
+            Waktu.Text = DateTime.Now.ToLongTimeString();
+        }
+        
+        //button help menu
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelpXTRec helpxtrec = new HelpXTRec();
+            helpxtrec.ShowDialog();
+        }
+        #endregion
+
+        #region fungsi tambahan
         private void waveformAiCtrl1_CacheOverflow(object sender, BfdAiEventArgs e)
         {
             MessageBox.Show("WaveformAiCacheOverflow");
@@ -194,90 +672,6 @@ namespace AI_StreamingAI
                 MessageBox.Show("WaveformAiOverrun");
                 m_isFirstOverRun = false;
             }
-        }
-
-        private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ErrorCode err = ErrorCode.Success;
-
-            err = waveformAiCtrl1.Prepare();
-            m_xInc = 1.0 / waveformAiCtrl1.Conversion.ClockRate;
-            if (err == ErrorCode.Success)
-            {
-                err = waveformAiCtrl1.Start();
-                //waveformAiCtrl1.DataReady += new EventHandler<BfdAiEventArgs>(waveformAiCtrl1_DataReady);
-            }
-
-            if (err != ErrorCode.Success)
-            {
-                HandleError(err);
-                return;
-            }
-
-            button_start.Enabled = false;
-            button_pause.Enabled = true;
-            button_stop.Enabled = true;
-        }
-
-        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ErrorCode err = ErrorCode.Success;
-            err = waveformAiCtrl1.Stop();
-            if (err != ErrorCode.Success)
-            {
-                HandleError(err);
-                return;
-            }
-
-            button_start.Enabled = true;
-            button_pause.Enabled = false;
-            button_stop.Enabled = false;
-            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
-        }
-
-        private void stopRecordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ErrorCode err = ErrorCode.Success;
-            err = waveformAiCtrl1.Stop();
-            if (err != ErrorCode.Success)
-            {
-                HandleError(err);
-                return;
-            }
-
-            button_start.Enabled = true;
-            button_pause.Enabled = false;
-        }
-
-        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void startToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chartXY_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            HelpXTRec helpxtrec = new HelpXTRec();
-            helpxtrec.ShowDialog();
         }
 
         private void Sensor1_SelectedIndexChanged(object sender, EventArgs e)
@@ -344,46 +738,47 @@ namespace AI_StreamingAI
             }
         }
 
-        private void Unit1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            U1.Text = Unit1.Text;
-        }
-
-        private void ValueY1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ValY1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Unit2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            U2.Text = Unit2.Text;
-        }
-
-        private void RangeX_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        //update button
         private void button1_Click(object sender, EventArgs e)
         {
             TitleMain.Text = Title.Text;
             ConsumerMain.Text = Consumer.Text;
-            SenseMain.Text = Sense1.Text + "&" + Sense2.Text + "Vs Waktu";
-        }
-
-        private void titleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            SenseMain.Text = Sensor1.Text + "&" + Sensor2.Text + "Vs Waktu";
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void HandleError(ErrorCode err)
+        {
+            if ((err >= ErrorCode.ErrorHandleNotValid) && (err != ErrorCode.Success))
+            {
+                MessageBox.Show("Sorry ! Some errors happened, the error code is: " + err.ToString(), "StreamingAI");
+            }
+        }
+
+        private void Unit1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            label_unitY1.Text = Unit1.Text;
+        }
+
+        private void Unit2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            label_unitY2.Text = Unit2.Text;
+        }
+        #endregion
+
+        #region fungsi kosong
+        private void RangeX_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void titleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
@@ -420,5 +815,105 @@ namespace AI_StreamingAI
         {
 
         }
+
+        private void ValueY1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ValY1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chartXY_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void label_unitY1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_start_Click(object sender, EventArgs e)
+        {
+            /*
+            ErrorCode err = ErrorCode.Success;
+
+			err = waveformAiCtrl1.Prepare();
+            m_xInc = 1.0 / waveformAiCtrl1.Conversion.ClockRate;
+            if (err == ErrorCode.Success)
+            {
+		        err = waveformAiCtrl1.Start();
+                //waveformAiCtrl1.DataReady += new EventHandler<BfdAiEventArgs>(waveformAiCtrl1_DataReady);
+            }
+
+            if (err != ErrorCode.Success)
+            {
+			    HandleError(err);
+			    return;
+            }
+
+            button_start.Enabled = false;
+            button_pause.Enabled = true;
+            button_stop.Enabled = true;
+            */
+        }
+
+        private void button_pause_Click(object sender, EventArgs e)
+        {
+            /*
+            ErrorCode err = ErrorCode.Success;      
+			err = waveformAiCtrl1.Stop();
+            if (err != ErrorCode.Success)
+            {
+			    HandleError(err);
+                return;
+            }
+
+            button_start.Enabled = true;
+            button_pause.Enabled = false;
+            */
+        }
+
+        private void button_stop_Click(object sender, EventArgs e)
+        {
+            /*
+		    ErrorCode err = ErrorCode.Success;
+			err = waveformAiCtrl1.Stop();
+            if (err != ErrorCode.Success)
+            {
+			    HandleError(err);
+                return;
+            }
+
+            //ini
+            timer.Stop();
+            watch.Stop();
+            //itu
+
+            button_start.Enabled = true;
+            button_pause.Enabled = false;
+            button_stop.Enabled = false;
+            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
+            */
+        }
+        #endregion
     }
 }

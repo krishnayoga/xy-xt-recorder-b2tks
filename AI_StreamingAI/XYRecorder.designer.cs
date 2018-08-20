@@ -49,24 +49,18 @@ namespace AI_StreamingAI
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.Sense3 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.Update = new System.Windows.Forms.Button();
-            this.Sense2 = new System.Windows.Forms.TextBox();
-            this.Sense1 = new System.Windows.Forms.TextBox();
             this.Consumer = new System.Windows.Forms.TextBox();
             this.Title = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.U3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.ValX2 = new System.Windows.Forms.Label();
-            this.U2 = new System.Windows.Forms.Label();
-            this.U1 = new System.Windows.Forms.Label();
             this.ValX1 = new System.Windows.Forms.Label();
             this.ValY = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -105,7 +99,6 @@ namespace AI_StreamingAI
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.check1 = new System.Windows.Forms.CheckBox();
-            this.star1 = new System.Windows.Forms.Label();
             this.SensorX1 = new System.Windows.Forms.ComboBox();
             this.UnitX1 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -115,19 +108,18 @@ namespace AI_StreamingAI
             this.factor_x_1 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.check2 = new System.Windows.Forms.CheckBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.factor_x_2 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.checkBox_holdX = new System.Windows.Forms.CheckBox();
-            this.UnitX2 = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.rangeX_chart = new System.Windows.Forms.ComboBox();
-            this.SensorX2 = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label_ColorX2 = new System.Windows.Forms.Label();
+            this.label_ColorX1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label_SensorX = new System.Windows.Forms.Label();
             this.star5 = new System.Windows.Forms.Label();
-            this.star6 = new System.Windows.Forms.Label();
-            this.star4 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.checkBox_invertX2 = new System.Windows.Forms.CheckBox();
@@ -135,7 +127,6 @@ namespace AI_StreamingAI
             this.File = new System.Windows.Forms.Label();
             this.Date = new System.Windows.Forms.Label();
             this.Waktu = new System.Windows.Forms.Label();
-            this.label_record = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartXY)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -168,7 +159,7 @@ namespace AI_StreamingAI
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartXY.Series.Add(series1);
-            this.chartXY.Size = new System.Drawing.Size(1059, 511);
+            this.chartXY.Size = new System.Drawing.Size(1059, 535);
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
             this.chartXY.Click += new System.EventHandler(this.chartXY_Click);
@@ -265,6 +256,7 @@ namespace AI_StreamingAI
             this.printToPrinterToolStripMenuItem.Name = "printToPrinterToolStripMenuItem";
             this.printToPrinterToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.printToPrinterToolStripMenuItem.Text = "Print to Printer";
+            this.printToPrinterToolStripMenuItem.Click += new System.EventHandler(this.printToPrinterToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -285,47 +277,24 @@ namespace AI_StreamingAI
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.Sense3);
-            this.panel6.Controls.Add(this.label2);
             this.panel6.Controls.Add(this.label32);
             this.panel6.Controls.Add(this.Update);
-            this.panel6.Controls.Add(this.Sense2);
-            this.panel6.Controls.Add(this.Sense1);
             this.panel6.Controls.Add(this.Consumer);
             this.panel6.Controls.Add(this.Title);
-            this.panel6.Controls.Add(this.label37);
-            this.panel6.Controls.Add(this.label36);
             this.panel6.Controls.Add(this.label35);
             this.panel6.Controls.Add(this.label28);
             this.panel6.Controls.Add(this.label27);
             this.panel6.Location = new System.Drawing.Point(1077, 405);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(271, 167);
+            this.panel6.Size = new System.Drawing.Size(271, 137);
             this.panel6.TabIndex = 40;
-            // 
-            // Sense3
-            // 
-            this.Sense3.Location = new System.Drawing.Point(162, 119);
-            this.Sense3.Name = "Sense3";
-            this.Sense3.ReadOnly = true;
-            this.Sense3.Size = new System.Drawing.Size(100, 21);
-            this.Sense3.TabIndex = 45;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(159, 101);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 15);
-            this.label2.TabIndex = 44;
-            this.label2.Text = "Sensor X2";
             // 
             // label32
             // 
             this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label32.AutoSize = true;
             this.label32.ForeColor = System.Drawing.Color.Red;
-            this.label32.Location = new System.Drawing.Point(4, 146);
+            this.label32.Location = new System.Drawing.Point(12, 110);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(152, 15);
             this.label32.TabIndex = 34;
@@ -333,7 +302,7 @@ namespace AI_StreamingAI
             // 
             // Update
             // 
-            this.Update.Location = new System.Drawing.Point(14, 117);
+            this.Update.Location = new System.Drawing.Point(187, 106);
             this.Update.Name = "Update";
             this.Update.Size = new System.Drawing.Size(75, 23);
             this.Update.TabIndex = 43;
@@ -341,25 +310,11 @@ namespace AI_StreamingAI
             this.Update.UseVisualStyleBackColor = true;
             this.Update.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Sense2
-            // 
-            this.Sense2.Location = new System.Drawing.Point(162, 79);
-            this.Sense2.Name = "Sense2";
-            this.Sense2.Size = new System.Drawing.Size(100, 21);
-            this.Sense2.TabIndex = 42;
-            // 
-            // Sense1
-            // 
-            this.Sense1.Location = new System.Drawing.Point(162, 37);
-            this.Sense1.Name = "Sense1";
-            this.Sense1.Size = new System.Drawing.Size(100, 21);
-            this.Sense1.TabIndex = 41;
-            // 
             // Consumer
             // 
             this.Consumer.Location = new System.Drawing.Point(15, 79);
             this.Consumer.Name = "Consumer";
-            this.Consumer.Size = new System.Drawing.Size(139, 21);
+            this.Consumer.Size = new System.Drawing.Size(247, 21);
             this.Consumer.TabIndex = 40;
             this.Consumer.TextChanged += new System.EventHandler(this.Consumer_TextChanged);
             // 
@@ -367,26 +322,8 @@ namespace AI_StreamingAI
             // 
             this.Title.Location = new System.Drawing.Point(14, 38);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(140, 21);
+            this.Title.Size = new System.Drawing.Size(248, 21);
             this.Title.TabIndex = 39;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(159, 20);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(56, 15);
-            this.label37.TabIndex = 38;
-            this.label37.Text = "Sensor Y";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(159, 61);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(64, 15);
-            this.label36.TabIndex = 37;
-            this.label36.Text = "Sensor X1";
             // 
             // label35
             // 
@@ -419,10 +356,10 @@ namespace AI_StreamingAI
             // 
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.U3);
+            this.panel5.Controls.Add(this.label2);
+            this.panel5.Controls.Add(this.label8);
+            this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.ValX2);
-            this.panel5.Controls.Add(this.U2);
-            this.panel5.Controls.Add(this.U1);
             this.panel5.Controls.Add(this.ValX1);
             this.panel5.Controls.Add(this.ValY);
             this.panel5.Controls.Add(this.label26);
@@ -438,20 +375,38 @@ namespace AI_StreamingAI
             this.panel5.Controls.Add(this.MaxY);
             this.panel5.Controls.Add(this.ValueY);
             this.panel5.Controls.Add(this.label16);
-            this.panel5.Location = new System.Drawing.Point(1077, 570);
+            this.panel5.Location = new System.Drawing.Point(1077, 541);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(271, 135);
             this.panel5.TabIndex = 39;
             this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
-            // U3
+            // label2
             // 
-            this.U3.AutoSize = true;
-            this.U3.Location = new System.Drawing.Point(221, 94);
-            this.U3.Name = "U3";
-            this.U3.Size = new System.Drawing.Size(29, 15);
-            this.U3.TabIndex = 61;
-            this.U3.Text = "Unit";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(228, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(22, 15);
+            this.label2.TabIndex = 68;
+            this.label2.Text = "(Y)";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(224, 94);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 15);
+            this.label8.TabIndex = 67;
+            this.label8.Text = "(X2)";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(224, 67);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(30, 15);
+            this.label5.TabIndex = 66;
+            this.label5.Text = "(X1)";
             // 
             // ValX2
             // 
@@ -462,24 +417,6 @@ namespace AI_StreamingAI
             this.ValX2.TabIndex = 60;
             this.ValX2.Text = "---";
             this.ValX2.Click += new System.EventHandler(this.ValX2_Click);
-            // 
-            // U2
-            // 
-            this.U2.AutoSize = true;
-            this.U2.Location = new System.Drawing.Point(221, 67);
-            this.U2.Name = "U2";
-            this.U2.Size = new System.Drawing.Size(29, 15);
-            this.U2.TabIndex = 59;
-            this.U2.Text = "Unit";
-            // 
-            // U1
-            // 
-            this.U1.AutoSize = true;
-            this.U1.Location = new System.Drawing.Point(221, 40);
-            this.U1.Name = "U1";
-            this.U1.Size = new System.Drawing.Size(29, 15);
-            this.U1.TabIndex = 58;
-            this.U1.Text = "Unit";
             // 
             // ValX1
             // 
@@ -682,6 +619,7 @@ namespace AI_StreamingAI
             this.rangeY_chart.Size = new System.Drawing.Size(87, 23);
             this.rangeY_chart.TabIndex = 46;
             this.rangeY_chart.Text = "10";
+            this.rangeY_chart.SelectedIndexChanged += new System.EventHandler(this.rangeY_chart_SelectedIndexChanged);
             // 
             // label38
             // 
@@ -804,33 +742,34 @@ namespace AI_StreamingAI
             // 
             // ConsumerMain
             // 
-            this.ConsumerMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConsumerMain.Location = new System.Drawing.Point(507, 66);
+            this.ConsumerMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConsumerMain.Location = new System.Drawing.Point(337, 86);
             this.ConsumerMain.Name = "ConsumerMain";
-            this.ConsumerMain.Size = new System.Drawing.Size(521, 29);
+            this.ConsumerMain.Size = new System.Drawing.Size(734, 50);
             this.ConsumerMain.TabIndex = 43;
             this.ConsumerMain.Text = "Nama Customer";
-            this.ConsumerMain.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ConsumerMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SenseMain
             // 
-            this.SenseMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenseMain.Location = new System.Drawing.Point(507, 102);
+            this.SenseMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SenseMain.Location = new System.Drawing.Point(338, 136);
             this.SenseMain.Name = "SenseMain";
-            this.SenseMain.Size = new System.Drawing.Size(519, 29);
+            this.SenseMain.Size = new System.Drawing.Size(733, 47);
             this.SenseMain.TabIndex = 42;
             this.SenseMain.Text = "Sensor X vs Sensor Y";
-            this.SenseMain.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.SenseMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TitleMain
             // 
-            this.TitleMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleMain.Location = new System.Drawing.Point(502, 28);
+            this.TitleMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitleMain.Location = new System.Drawing.Point(338, 36);
             this.TitleMain.Name = "TitleMain";
-            this.TitleMain.Size = new System.Drawing.Size(526, 29);
+            this.TitleMain.Size = new System.Drawing.Size(733, 50);
             this.TitleMain.TabIndex = 41;
             this.TitleMain.Text = "Judul Pengujian";
-            this.TitleMain.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.TitleMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TitleMain.Click += new System.EventHandler(this.TitleMain_Click);
             // 
             // pictureBox1
             // 
@@ -856,23 +795,13 @@ namespace AI_StreamingAI
             this.check1.AutoSize = true;
             this.check1.Checked = true;
             this.check1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.check1.Location = new System.Drawing.Point(6, 18);
+            this.check1.Location = new System.Drawing.Point(15, 71);
             this.check1.Name = "check1";
             this.check1.Size = new System.Drawing.Size(90, 19);
             this.check1.TabIndex = 1;
             this.check1.Text = "Sensor - X1";
             this.check1.UseVisualStyleBackColor = true;
             this.check1.CheckedChanged += new System.EventHandler(this.check1_CheckedChanged);
-            // 
-            // star1
-            // 
-            this.star1.AutoSize = true;
-            this.star1.ForeColor = System.Drawing.Color.Red;
-            this.star1.Location = new System.Drawing.Point(98, 18);
-            this.star1.Name = "star1";
-            this.star1.Size = new System.Drawing.Size(12, 15);
-            this.star1.TabIndex = 2;
-            this.star1.Text = "*";
             // 
             // SensorX1
             // 
@@ -884,7 +813,7 @@ namespace AI_StreamingAI
             "SG",
             "Pressure",
             "Volt"});
-            this.SensorX1.Location = new System.Drawing.Point(6, 37);
+            this.SensorX1.Location = new System.Drawing.Point(11, 37);
             this.SensorX1.Name = "SensorX1";
             this.SensorX1.Size = new System.Drawing.Size(87, 23);
             this.SensorX1.TabIndex = 3;
@@ -894,7 +823,7 @@ namespace AI_StreamingAI
             // 
             this.UnitX1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UnitX1.FormattingEnabled = true;
-            this.UnitX1.Location = new System.Drawing.Point(7, 135);
+            this.UnitX1.Location = new System.Drawing.Point(163, 37);
             this.UnitX1.Name = "UnitX1";
             this.UnitX1.Size = new System.Drawing.Size(87, 23);
             this.UnitX1.TabIndex = 4;
@@ -903,17 +832,17 @@ namespace AI_StreamingAI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 116);
+            this.label6.Location = new System.Drawing.Point(160, 18);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 15);
+            this.label6.Size = new System.Drawing.Size(47, 15);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Unit - X1";
+            this.label6.Text = "Unit - X";
             // 
             // star3
             // 
             this.star3.AutoSize = true;
             this.star3.ForeColor = System.Drawing.Color.Red;
-            this.star3.Location = new System.Drawing.Point(63, 116);
+            this.star3.Location = new System.Drawing.Point(204, 18);
             this.star3.Name = "star3";
             this.star3.Size = new System.Drawing.Size(12, 15);
             this.star3.TabIndex = 26;
@@ -922,7 +851,7 @@ namespace AI_StreamingAI
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 70);
+            this.label9.Location = new System.Drawing.Point(159, 65);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(66, 15);
             this.label9.TabIndex = 28;
@@ -932,7 +861,7 @@ namespace AI_StreamingAI
             // 
             this.star2.AutoSize = true;
             this.star2.ForeColor = System.Drawing.Color.Red;
-            this.star2.Location = new System.Drawing.Point(66, 70);
+            this.star2.Location = new System.Drawing.Point(221, 71);
             this.star2.Name = "star2";
             this.star2.Size = new System.Drawing.Size(12, 15);
             this.star2.TabIndex = 29;
@@ -940,7 +869,7 @@ namespace AI_StreamingAI
             // 
             // factor_x_1
             // 
-            this.factor_x_1.Location = new System.Drawing.Point(6, 88);
+            this.factor_x_1.Location = new System.Drawing.Point(162, 83);
             this.factor_x_1.Name = "factor_x_1";
             this.factor_x_1.Size = new System.Drawing.Size(51, 21);
             this.factor_x_1.TabIndex = 31;
@@ -949,7 +878,7 @@ namespace AI_StreamingAI
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(59, 91);
+            this.label11.Location = new System.Drawing.Point(215, 86);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(52, 15);
             this.label11.TabIndex = 3;
@@ -958,7 +887,7 @@ namespace AI_StreamingAI
             // check2
             // 
             this.check2.AutoSize = true;
-            this.check2.Location = new System.Drawing.Point(164, 18);
+            this.check2.Location = new System.Drawing.Point(15, 98);
             this.check2.Name = "check2";
             this.check2.Size = new System.Drawing.Size(90, 19);
             this.check2.TabIndex = 32;
@@ -966,19 +895,10 @@ namespace AI_StreamingAI
             this.check2.UseVisualStyleBackColor = true;
             this.check2.CheckedChanged += new System.EventHandler(this.check2_CheckedChanged);
             // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(160, 116);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(54, 15);
-            this.label17.TabIndex = 35;
-            this.label17.Text = "Unit - X2";
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(161, 70);
+            this.label15.Location = new System.Drawing.Point(160, 110);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(66, 15);
             this.label15.TabIndex = 37;
@@ -986,7 +906,7 @@ namespace AI_StreamingAI
             // 
             // factor_x_2
             // 
-            this.factor_x_2.Location = new System.Drawing.Point(164, 88);
+            this.factor_x_2.Location = new System.Drawing.Point(163, 128);
             this.factor_x_2.Name = "factor_x_2";
             this.factor_x_2.ReadOnly = true;
             this.factor_x_2.Size = new System.Drawing.Size(50, 21);
@@ -996,7 +916,7 @@ namespace AI_StreamingAI
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(215, 91);
+            this.label12.Location = new System.Drawing.Point(214, 131);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(52, 15);
             this.label12.TabIndex = 33;
@@ -1013,24 +933,14 @@ namespace AI_StreamingAI
             this.checkBox_holdX.UseVisualStyleBackColor = true;
             this.checkBox_holdX.CheckedChanged += new System.EventHandler(this.checkBox_holdX_CheckedChanged);
             // 
-            // UnitX2
-            // 
-            this.UnitX2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.UnitX2.FormattingEnabled = true;
-            this.UnitX2.Location = new System.Drawing.Point(163, 135);
-            this.UnitX2.Name = "UnitX2";
-            this.UnitX2.Size = new System.Drawing.Size(87, 23);
-            this.UnitX2.TabIndex = 41;
-            this.UnitX2.SelectedIndexChanged += new System.EventHandler(this.UnitX2_SelectedIndexChanged);
-            // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(7, 186);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(107, 15);
+            this.label18.Size = new System.Drawing.Size(82, 15);
             this.label18.TabIndex = 42;
-            this.label18.Text = "Range Max X1/X2";
+            this.label18.Text = "Range Max X";
             // 
             // rangeX_chart
             // 
@@ -1052,30 +962,19 @@ namespace AI_StreamingAI
             this.rangeX_chart.TabIndex = 43;
             this.rangeX_chart.Text = "10";
             // 
-            // SensorX2
-            // 
-            this.SensorX2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SensorX2.FormattingEnabled = true;
-            this.SensorX2.Location = new System.Drawing.Point(162, 37);
-            this.SensorX2.Name = "SensorX2";
-            this.SensorX2.Size = new System.Drawing.Size(87, 23);
-            this.SensorX2.TabIndex = 44;
-            this.SensorX2.SelectedIndexChanged += new System.EventHandler(this.SensorX2_SelectedIndexChanged);
-            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label_ColorX2);
+            this.panel1.Controls.Add(this.label_ColorX1);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label_SensorX);
             this.panel1.Controls.Add(this.star5);
-            this.panel1.Controls.Add(this.star6);
-            this.panel1.Controls.Add(this.star4);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.SensorX2);
             this.panel1.Controls.Add(this.rangeX_chart);
             this.panel1.Controls.Add(this.label18);
-            this.panel1.Controls.Add(this.UnitX2);
-            this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.factor_x_1);
@@ -1088,7 +987,6 @@ namespace AI_StreamingAI
             this.panel1.Controls.Add(this.UnitX1);
             this.panel1.Controls.Add(this.check2);
             this.panel1.Controls.Add(this.SensorX1);
-            this.panel1.Controls.Add(this.star1);
             this.panel1.Controls.Add(this.check1);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Location = new System.Drawing.Point(1077, 167);
@@ -1097,38 +995,62 @@ namespace AI_StreamingAI
             this.panel1.TabIndex = 37;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // label_ColorX2
+            // 
+            this.label_ColorX2.AutoSize = true;
+            this.label_ColorX2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_ColorX2.ForeColor = System.Drawing.Color.Red;
+            this.label_ColorX2.Location = new System.Drawing.Point(102, 93);
+            this.label_ColorX2.Name = "label_ColorX2";
+            this.label_ColorX2.Size = new System.Drawing.Size(0, 27);
+            this.label_ColorX2.TabIndex = 54;
+            this.label_ColorX2.UseCompatibleTextRendering = true;
+            // 
+            // label_ColorX1
+            // 
+            this.label_ColorX1.AutoSize = true;
+            this.label_ColorX1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_ColorX1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.label_ColorX1.Location = new System.Drawing.Point(102, 68);
+            this.label_ColorX1.Name = "label_ColorX1";
+            this.label_ColorX1.Size = new System.Drawing.Size(33, 27);
+            this.label_ColorX1.TabIndex = 53;
+            this.label_ColorX1.Text = "----";
+            this.label_ColorX1.UseCompatibleTextRendering = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(74, 18);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(12, 15);
+            this.label7.TabIndex = 52;
+            this.label7.Text = "*";
+            // 
+            // label_SensorX
+            // 
+            this.label_SensorX.AutoSize = true;
+            this.label_SensorX.Location = new System.Drawing.Point(8, 18);
+            this.label_SensorX.Name = "label_SensorX";
+            this.label_SensorX.Size = new System.Drawing.Size(64, 15);
+            this.label_SensorX.TabIndex = 51;
+            this.label_SensorX.Text = "Sensor - X";
+            // 
             // star5
             // 
             this.star5.AutoSize = true;
             this.star5.ForeColor = System.Drawing.Color.Red;
-            this.star5.Location = new System.Drawing.Point(224, 70);
+            this.star5.Location = new System.Drawing.Point(226, 110);
             this.star5.Name = "star5";
             this.star5.Size = new System.Drawing.Size(0, 15);
             this.star5.TabIndex = 50;
-            // 
-            // star6
-            // 
-            this.star6.AutoSize = true;
-            this.star6.ForeColor = System.Drawing.Color.Red;
-            this.star6.Location = new System.Drawing.Point(221, 116);
-            this.star6.Name = "star6";
-            this.star6.Size = new System.Drawing.Size(0, 15);
-            this.star6.TabIndex = 49;
-            // 
-            // star4
-            // 
-            this.star4.AutoSize = true;
-            this.star4.ForeColor = System.Drawing.Color.Red;
-            this.star4.Location = new System.Drawing.Point(256, 18);
-            this.star4.Name = "star4";
-            this.star4.Size = new System.Drawing.Size(0, 15);
-            this.star4.TabIndex = 48;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(110, 186);
+            this.label10.Location = new System.Drawing.Point(86, 186);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(12, 15);
             this.label10.TabIndex = 47;
@@ -1167,18 +1089,18 @@ namespace AI_StreamingAI
             // 
             // File
             // 
-            this.File.Location = new System.Drawing.Point(679, 140);
+            this.File.Location = new System.Drawing.Point(1074, 678);
             this.File.Name = "File";
-            this.File.Size = new System.Drawing.Size(349, 15);
+            this.File.Size = new System.Drawing.Size(271, 17);
             this.File.TabIndex = 45;
             this.File.Text = "File Directory";
             this.File.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Date
             // 
-            this.Date.Location = new System.Drawing.Point(682, 155);
+            this.Date.Location = new System.Drawing.Point(1057, 695);
             this.Date.Name = "Date";
-            this.Date.Size = new System.Drawing.Size(346, 21);
+            this.Date.Size = new System.Drawing.Size(143, 19);
             this.Date.TabIndex = 46;
             this.Date.Text = "Tanggal Pembacaan";
             this.Date.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1186,21 +1108,12 @@ namespace AI_StreamingAI
             // 
             // Waktu
             // 
-            this.Waktu.Location = new System.Drawing.Point(682, 176);
+            this.Waktu.Location = new System.Drawing.Point(1223, 699);
             this.Waktu.Name = "Waktu";
-            this.Waktu.Size = new System.Drawing.Size(346, 15);
+            this.Waktu.Size = new System.Drawing.Size(122, 15);
             this.Waktu.TabIndex = 47;
-            this.Waktu.Text = "Waktul Pembacaan";
+            this.Waktu.Text = "Waktu Pembacaan";
             this.Waktu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label_record
-            // 
-            this.label_record.AutoSize = true;
-            this.label_record.ForeColor = System.Drawing.Color.Red;
-            this.label_record.Location = new System.Drawing.Point(74, 176);
-            this.label_record.Name = "label_record";
-            this.label_record.Size = new System.Drawing.Size(0, 15);
-            this.label_record.TabIndex = 48;
             // 
             // XYRecorder
             // 
@@ -1208,7 +1121,6 @@ namespace AI_StreamingAI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1348, 729);
-            this.Controls.Add(this.label_record);
             this.Controls.Add(this.Waktu);
             this.Controls.Add(this.Date);
             this.Controls.Add(this.File);
@@ -1267,18 +1179,12 @@ namespace AI_StreamingAI
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button Update;
-        private System.Windows.Forms.TextBox Sense2;
-        private System.Windows.Forms.TextBox Sense1;
         private System.Windows.Forms.TextBox Consumer;
         private System.Windows.Forms.TextBox Title;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label U2;
-        private System.Windows.Forms.Label U1;
         private System.Windows.Forms.Label ValX1;
         private System.Windows.Forms.Label ValY;
         private System.Windows.Forms.Label label26;
@@ -1309,14 +1215,12 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label ValX2;
-        private System.Windows.Forms.Label U3;
         private System.Windows.Forms.Label ConsumerMain;
         private System.Windows.Forms.Label SenseMain;
         private System.Windows.Forms.Label TitleMain;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox check1;
-        private System.Windows.Forms.Label star1;
         private System.Windows.Forms.ComboBox SensorX1;
         private System.Windows.Forms.ComboBox UnitX1;
         private System.Windows.Forms.Label label6;
@@ -1326,23 +1230,18 @@ namespace AI_StreamingAI
         private System.Windows.Forms.TextBox factor_x_1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox check2;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox factor_x_2;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox checkBox_holdX;
-        private System.Windows.Forms.ComboBox UnitX2;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox rangeX_chart;
-        private System.Windows.Forms.ComboBox SensorX2;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox checkBox_invertY;
         private System.Windows.Forms.CheckBox checkBox_invertX2;
         private System.Windows.Forms.CheckBox checkBox_invertX1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox Sense3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label File;
         private System.Windows.Forms.Label Date;
@@ -1352,9 +1251,13 @@ namespace AI_StreamingAI
         private System.Windows.Forms.ToolStripMenuItem printToPNGToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printToPrinterToolStripMenuItem;
         private System.Windows.Forms.Label star5;
-        private System.Windows.Forms.Label star6;
-        private System.Windows.Forms.Label star4;
-        private System.Windows.Forms.Label label_record;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label_SensorX;
+        private System.Windows.Forms.Label label_ColorX2;
+        private System.Windows.Forms.Label label_ColorX1;
     }
 }
 
