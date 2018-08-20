@@ -291,7 +291,7 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisY.Title = SensorY.Text + " (" + UnitY.Text + ")";
 
         }
-
+         
         private void plotChart(double[] data)
         {
             /*
