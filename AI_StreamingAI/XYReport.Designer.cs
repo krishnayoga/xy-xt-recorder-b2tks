@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XYReport));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Waktu = new System.Windows.Forms.Label();
             this.File = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -81,6 +82,7 @@
             this.MinY = new System.Windows.Forms.TextBox();
             this.MaxY = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.loadDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -91,6 +93,7 @@
             // 
             // Waktu
             // 
+            this.Waktu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Waktu.Location = new System.Drawing.Point(1551, 608);
             this.Waktu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Waktu.Name = "Waktu";
@@ -101,6 +104,7 @@
             // 
             // File
             // 
+            this.File.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.File.Location = new System.Drawing.Point(1547, 564);
             this.File.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.File.Name = "File";
@@ -133,7 +137,7 @@
             "150",
             "200"});
             this.comboBox_MaxX.Location = new System.Drawing.Point(212, 55);
-            this.comboBox_MaxX.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_MaxX.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_MaxX.Name = "comboBox_MaxX";
             this.comboBox_MaxX.Size = new System.Drawing.Size(115, 24);
             this.comboBox_MaxX.TabIndex = 40;
@@ -174,7 +178,7 @@
             "150",
             "200"});
             this.comboBox_MaxY.Location = new System.Drawing.Point(33, 55);
-            this.comboBox_MaxY.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_MaxY.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_MaxY.Name = "comboBox_MaxY";
             this.comboBox_MaxY.Size = new System.Drawing.Size(115, 24);
             this.comboBox_MaxY.TabIndex = 33;
@@ -182,6 +186,7 @@
             // 
             // Date
             // 
+            this.Date.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Date.Location = new System.Drawing.Point(1563, 582);
             this.Date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Date.Name = "Date";
@@ -192,6 +197,7 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label_MinY);
             this.panel1.Controls.Add(this.comboBox_MinX);
@@ -203,7 +209,7 @@
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.comboBox_MaxY);
             this.panel1.Location = new System.Drawing.Point(1436, 391);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(361, 168);
             this.panel1.TabIndex = 69;
@@ -232,7 +238,7 @@
             "150",
             "200"});
             this.comboBox_MinX.Location = new System.Drawing.Point(212, 124);
-            this.comboBox_MinX.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_MinX.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_MinX.Name = "comboBox_MinX";
             this.comboBox_MinX.Size = new System.Drawing.Size(115, 24);
             this.comboBox_MinX.TabIndex = 44;
@@ -263,7 +269,7 @@
             "150",
             "200"});
             this.comboBox_MinY.Location = new System.Drawing.Point(33, 124);
-            this.comboBox_MinY.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_MinY.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_MinY.Name = "comboBox_MinY";
             this.comboBox_MinY.Size = new System.Drawing.Size(115, 24);
             this.comboBox_MinY.TabIndex = 42;
@@ -288,7 +294,8 @@
             this.replotToolStripMenuItem,
             this.printToolStripMenuItem,
             this.helpToolStripMenuItem,
-            this.exitToolStripMenuItem});
+            this.exitToolStripMenuItem,
+            this.loadDataToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -331,7 +338,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(73, 57);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(369, 161);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -358,7 +365,7 @@
             this.panel2.Controls.Add(this.comboBox5);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Location = new System.Drawing.Point(1863, 426);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(361, 81);
             this.panel2.TabIndex = 63;
@@ -388,7 +395,7 @@
             "150",
             "200"});
             this.comboBox4.Location = new System.Drawing.Point(145, 11);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox4.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(115, 24);
             this.comboBox4.TabIndex = 48;
@@ -408,7 +415,7 @@
             "150",
             "200"});
             this.comboBox5.Location = new System.Drawing.Point(145, 44);
-            this.comboBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox5.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(115, 24);
             this.comboBox5.TabIndex = 46;
@@ -436,20 +443,28 @@
             // 
             // chartXY
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chartXY.Legends.Add(legend1);
-            this.chartXY.Location = new System.Drawing.Point(0, 225);
-            this.chartXY.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chartXY.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea2.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea2);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.chartXY.Legends.Add(legend2);
+            this.chartXY.Location = new System.Drawing.Point(31, 214);
+            this.chartXY.Margin = new System.Windows.Forms.Padding(4);
             this.chartXY.Name = "chartXY";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartXY.Series.Add(series1);
-            this.chartXY.Size = new System.Drawing.Size(1412, 678);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Legend = "Legend1";
+            series4.Name = "Series2";
+            this.chartXY.Series.Add(series3);
+            this.chartXY.Series.Add(series4);
+            this.chartXY.Size = new System.Drawing.Size(1412, 474);
             this.chartXY.TabIndex = 64;
             this.chartXY.Text = "chart1";
             // 
@@ -487,7 +502,7 @@
             this.panel5.Controls.Add(this.MaxY);
             this.panel5.Controls.Add(this.label16);
             this.panel5.Location = new System.Drawing.Point(1436, 225);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(361, 166);
             this.panel5.TabIndex = 73;
@@ -605,7 +620,7 @@
             // minX2
             // 
             this.minX2.Location = new System.Drawing.Point(148, 112);
-            this.minX2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.minX2.Margin = new System.Windows.Forms.Padding(4);
             this.minX2.Name = "minX2";
             this.minX2.ReadOnly = true;
             this.minX2.Size = new System.Drawing.Size(63, 22);
@@ -614,7 +629,7 @@
             // MaxX2
             // 
             this.MaxX2.Location = new System.Drawing.Point(76, 112);
-            this.MaxX2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaxX2.Margin = new System.Windows.Forms.Padding(4);
             this.MaxX2.Name = "MaxX2";
             this.MaxX2.ReadOnly = true;
             this.MaxX2.Size = new System.Drawing.Size(63, 22);
@@ -623,7 +638,7 @@
             // MinX1
             // 
             this.MinX1.Location = new System.Drawing.Point(148, 79);
-            this.MinX1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinX1.Margin = new System.Windows.Forms.Padding(4);
             this.MinX1.Name = "MinX1";
             this.MinX1.ReadOnly = true;
             this.MinX1.Size = new System.Drawing.Size(63, 22);
@@ -632,7 +647,7 @@
             // MaxX1
             // 
             this.MaxX1.Location = new System.Drawing.Point(76, 79);
-            this.MaxX1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaxX1.Margin = new System.Windows.Forms.Padding(4);
             this.MaxX1.Name = "MaxX1";
             this.MaxX1.ReadOnly = true;
             this.MaxX1.Size = new System.Drawing.Size(63, 22);
@@ -641,7 +656,7 @@
             // MinY
             // 
             this.MinY.Location = new System.Drawing.Point(148, 46);
-            this.MinY.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinY.Margin = new System.Windows.Forms.Padding(4);
             this.MinY.Name = "MinY";
             this.MinY.ReadOnly = true;
             this.MinY.Size = new System.Drawing.Size(63, 22);
@@ -650,7 +665,7 @@
             // MaxY
             // 
             this.MaxY.Location = new System.Drawing.Point(76, 46);
-            this.MaxY.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaxY.Margin = new System.Windows.Forms.Padding(4);
             this.MaxY.Name = "MaxY";
             this.MaxY.ReadOnly = true;
             this.MaxY.Size = new System.Drawing.Size(63, 22);
@@ -665,6 +680,13 @@
             this.label16.Size = new System.Drawing.Size(98, 17);
             this.label16.TabIndex = 0;
             this.label16.Text = "Decimal Value";
+            // 
+            // loadDataToolStripMenuItem
+            // 
+            this.loadDataToolStripMenuItem.Name = "loadDataToolStripMenuItem";
+            this.loadDataToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
+            this.loadDataToolStripMenuItem.Text = "Load Data";
+            this.loadDataToolStripMenuItem.Click += new System.EventHandler(this.loadDataToolStripMenuItem_Click);
             // 
             // XYReport
             // 
@@ -684,11 +706,12 @@
             this.Controls.Add(this.SenseMain);
             this.Controls.Add(this.chartXY);
             this.Controls.Add(this.ConsumerMain);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1813, 883);
             this.Name = "XYReport";
             this.Text = "XYReport";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.XYReport_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -755,5 +778,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem loadDataToolStripMenuItem;
     }
 }

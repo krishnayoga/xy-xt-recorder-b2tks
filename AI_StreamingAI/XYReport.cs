@@ -44,12 +44,21 @@ namespace AI_StreamingAI
         double[] dataX2;
         double[] dataY;
         int jumlah_data;
+        int max_x_chart;
+        int min_x_chart;
+        int max_y_chart;
+        int min_y_chart;
 
         DateTime datee = new DateTime();
 
         public XYReport()
         {
             InitializeComponent();
+        }
+
+        private void XYReport_Load(object sender, EventArgs e)
+        {
+            //init_chart();
         }
 
         private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,23 +74,10 @@ namespace AI_StreamingAI
 
             load_judul();
 
-            dataX1 = new double[jumlah_data];
-            dataX2 = new double[jumlah_data];
-            dataY = new double[jumlah_data];
-
-            
-            load_data();
-
-            plot_chart();
             
 
-            //res.Columns.AutoFit();
-            //book.SaveAs(File.Text);
             
-
-            //button_start.Enabled = false;
-            //button_pause.Enabled = false;
-            //startRecordToolStripMenuItem.Enabled = true;
+            
         }
 
         private void load_judul()
@@ -130,7 +126,86 @@ namespace AI_StreamingAI
 
         private void plot_chart()
         {
+            
 
+            max_x_chart = Convert.ToInt32(comboBox_MaxX.Text);
+            min_x_chart = Convert.ToInt32(comboBox_MinX.Text);
+            max_y_chart = Convert.ToInt32(comboBox_MaxY.Text);
+            min_y_chart = Convert.ToInt32(comboBox_MinY.Text);
+
+
+            //this.chartXY.Titles.Add("pt. B2TKS - BPPT");
+
+            chartXY.ChartAreas[0].AxisX.Maximum = max_x_chart;
+            chartXY.ChartAreas[0].AxisX.Minimum = min_x_chart;
+            chartXY.ChartAreas[0].AxisY.Maximum = max_y_chart;
+            chartXY.ChartAreas[0].AxisY.Minimum = min_y_chart;
+            chartXY.ChartAreas[0].AxisX.Interval = max_x_chart / 10;
+            chartXY.ChartAreas[0].AxisY.Interval = max_y_chart / 10;
+
+            //chartXY.ChartAreas[0].AxisX.Title = SensorX1.Text + " (" + UnitX1.Text + ")";
+            //chartXY.ChartAreas[0].AxisY.Title = SensorY.Text + " (" + UnitY.Text + ")";
+
+            
+        }
+
+        
+
+        private void plot_data()
+        {
+            for (i = 0; i < jumlah_data; i++)
+            {
+                chartXY.Series[0].Points.AddXY(dataX1[i], dataY[i]);
+                chartXY.Series[1].Points.AddXY(dataX2[i], dataY[i]);
+            }
+        }
+
+        private void loadDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            dataX1 = new double[jumlah_data];
+            dataX2 = new double[jumlah_data];
+            dataY = new double[jumlah_data];
+
+            //init_chart();
+            load_data();
+
+            for (i = 0; i < jumlah_data; i++)
+            {
+                Console.WriteLine("dataX1: " + dataX1[i] + " dataX2: " + dataX2[i] + " dataY: " + dataY[i]);
+            }
+
+            //plot_chart();
+
+            //plot_data();
+
+
+            //res.Columns.AutoFit();
+            //book.SaveAs(File.Text);
+
+
+            //button_start.Enabled = false;
+            //button_pause.Enabled = false;
+            //startRecordToolStripMenuItem.Enabled = true;
+        }
+
+        private void init_chart()
+        {
+            chartXY.Series.Clear();
+            chartXY.Series.Add("Series 1");
+            chartXY.Series.Add("Series 2");
+            chartXY.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chartXY.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+            chartXY.ChartAreas[0].AxisX.Crossing = 0;
+            chartXY.ChartAreas[0].AxisY.Crossing = 0;
+
+            chartXY.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gainsboro;
+            chartXY.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gainsboro;
+
+            chartXY.Series[0].Color = Color.Blue;
+            chartXY.Series[1].Color = Color.Red;
+            Console.WriteLine("hehehe");
         }
     }
 }
