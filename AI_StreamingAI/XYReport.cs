@@ -33,7 +33,6 @@ using System.Windows.Forms.DataVisualization;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.IO;
 using excel = Microsoft.Office.Interop.Excel;
-using Microsoft.CSharp.RuntimeBinder;
 
 namespace AI_StreamingAI
 {
@@ -63,20 +62,25 @@ namespace AI_StreamingAI
 
         private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog open = new OpenFileDialog();
-            open.Title = "Open File";
-            open.Filter = "CSV Files (*.csv)|*.csv";
-            open.ShowDialog();
-            File.Text = open.FileName.ToString();
+            try
+            {
+                OpenFileDialog open = new OpenFileDialog();
+                open.Title = "Open File";
+                open.Filter = "CSV Files (*.csv)|*.csv";
+                open.ShowDialog();
+                File.Text = open.FileName.ToString();
+
+                load_judul();
+            }
+            catch
+            {
+                MessageBox.Show("error!");
+            }
+            
             //Date.Text = DateTime.Now.ToShortDateString();
             //Waktu.Text = DateTime.Now.ToLongTimeString();
 
-
-            load_judul();
-
-            
-
-            
+            //load_judul();
             
         }
 
@@ -103,61 +107,15 @@ namespace AI_StreamingAI
             Date.Text = Convert.ToString(datee);
 
             jumlah_data = 1000;
-
+            /*
+            chartXY.Series[0].Points.AddXY(1, 2);
+            chartXY.Series[0].Points.AddXY(2, 3);
+            chartXY.Series[0].Points.AddXY(3, 4);
+            chartXY.Series[0].Points.AddXY(4, 5);
+            chartXY.Series[0].Points.AddXY(5, 6);
+            */
             book.Close();
             ex.Quit();
-        }
-
-        private void load_data()
-        {
-            excel.Application ex = new excel.Application();
-            excel.Workbook book = ex.Workbooks.Open(File.Text);
-            excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
-
-            for (i = 16; i < jumlah_data; i++){
-                dataX1[i-16] = Convert.ToDouble(res.Cells[i,2].Value);
-                dataX2[i-16] = Convert.ToDouble(res.Cells[i, 3].Value);
-                dataY[i-16] = Convert.ToDouble(res.Cells[i, 4].Value); 
-            }
-
-            book.Close();
-            ex.Quit();
-        }
-
-        private void plot_chart()
-        {
-            
-
-            max_x_chart = Convert.ToInt32(comboBox_MaxX.Text);
-            min_x_chart = Convert.ToInt32(comboBox_MinX.Text);
-            max_y_chart = Convert.ToInt32(comboBox_MaxY.Text);
-            min_y_chart = Convert.ToInt32(comboBox_MinY.Text);
-
-
-            //this.chartXY.Titles.Add("pt. B2TKS - BPPT");
-
-            chartXY.ChartAreas[0].AxisX.Maximum = max_x_chart;
-            chartXY.ChartAreas[0].AxisX.Minimum = min_x_chart;
-            chartXY.ChartAreas[0].AxisY.Maximum = max_y_chart;
-            chartXY.ChartAreas[0].AxisY.Minimum = min_y_chart;
-            chartXY.ChartAreas[0].AxisX.Interval = max_x_chart / 10;
-            chartXY.ChartAreas[0].AxisY.Interval = max_y_chart / 10;
-
-            //chartXY.ChartAreas[0].AxisX.Title = SensorX1.Text + " (" + UnitX1.Text + ")";
-            //chartXY.ChartAreas[0].AxisY.Title = SensorY.Text + " (" + UnitY.Text + ")";
-
-            
-        }
-
-        
-
-        private void plot_data()
-        {
-            for (i = 0; i < jumlah_data; i++)
-            {
-                chartXY.Series[0].Points.AddXY(dataX1[i], dataY[i]);
-                chartXY.Series[1].Points.AddXY(dataX2[i], dataY[i]);
-            }
         }
 
         private void loadDataToolStripMenuItem_Click(object sender, EventArgs e)
@@ -167,17 +125,18 @@ namespace AI_StreamingAI
             dataX2 = new double[jumlah_data];
             dataY = new double[jumlah_data];
 
-            //init_chart();
+            
             load_data();
-
+            /*
             for (i = 0; i < jumlah_data; i++)
             {
-                Console.WriteLine("dataX1: " + dataX1[i] + " dataX2: " + dataX2[i] + " dataY: " + dataY[i]);
-            }
+                //Console.WriteLine("data ke: "+i+" dataX1: " + dataX1[i] + " dataX2: " + dataX2[i] + " dataY: " + dataY[i]);
+            }*/
 
-            //plot_chart();
+            init_chart();
+            plot_chart();
 
-            //plot_data();
+            plot_data();
 
 
             //res.Columns.AutoFit();
@@ -189,23 +148,87 @@ namespace AI_StreamingAI
             //startRecordToolStripMenuItem.Enabled = true;
         }
 
+        private void load_data()
+        {
+            excel.Application ex = new excel.Application();
+            excel.Workbook book = ex.Workbooks.Open(File.Text);
+            excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
+
+            for (i = 16; i < jumlah_data; i++)
+            {
+                dataX1[i - 16] = Convert.ToDouble(res.Cells[i, 2].Value);
+                dataX2[i - 16] = Convert.ToDouble(res.Cells[i, 3].Value);
+                dataY[i - 16] = Convert.ToDouble(res.Cells[i, 4].Value);
+            }
+
+            book.Close();
+            ex.Quit();
+        }
+
         private void init_chart()
         {
             chartXY.Series.Clear();
             chartXY.Series.Add("Series 1");
             chartXY.Series.Add("Series 2");
-            chartXY.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            chartXY.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-
-            chartXY.ChartAreas[0].AxisX.Crossing = 0;
-            chartXY.ChartAreas[0].AxisY.Crossing = 0;
+            chartXY.Series[0].ChartType = SeriesChartType.Line;
+            chartXY.Series[1].ChartType = SeriesChartType.Line;
 
             chartXY.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gainsboro;
             chartXY.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gainsboro;
 
             chartXY.Series[0].Color = Color.Blue;
             chartXY.Series[1].Color = Color.Red;
-            Console.WriteLine("hehehe");
+        }
+
+        
+
+        private void plot_chart()
+        {
+            chartXY.ChartAreas[0].AxisX.Crossing = 0;
+            chartXY.ChartAreas[0].AxisY.Crossing = 0;
+
+            max_x_chart = Convert.ToInt32(comboBox_MaxX.Text);
+            min_x_chart = Convert.ToInt32(comboBox_MinX.Text);
+            max_y_chart = Convert.ToInt32(comboBox_MaxY.Text);
+            min_y_chart = Convert.ToInt32(comboBox_MinY.Text);
+
+            Console.WriteLine(max_x_chart + "    " + min_x_chart + "   " + max_y_chart + "   " + min_y_chart);
+
+            //this.chartXY.Titles.Add("pt. B2TKS - BPPT");
+            
+            chartXY.ChartAreas[0].AxisX.Maximum = max_x_chart;
+            chartXY.ChartAreas[0].AxisX.Minimum = min_x_chart;
+            chartXY.ChartAreas[0].AxisY.Maximum = max_y_chart;
+            chartXY.ChartAreas[0].AxisY.Minimum = min_y_chart;
+            chartXY.ChartAreas[0].AxisX.Interval = max_x_chart/10;
+            chartXY.ChartAreas[0].AxisY.Interval = max_y_chart/10;
+
+            //chartXY.ChartAreas[0].AxisX.Title = SensorX1.Text + " (" + UnitX1.Text + ")";
+            //chartXY.ChartAreas[0].AxisY.Title = SensorY.Text + " (" + UnitY.Text + ")";
+            
+        }
+
+        private void plot_data()
+        {
+            for (i = 0; i < jumlah_data; i++)
+            {
+                chartXY.Series[0].Points.AddXY(dataX1[i], dataY[i]);
+                chartXY.Series[1].Points.AddXY(dataX2[i], dataY[i]);
+
+                
+            }
+            /*
+            chartXY.Series[0].Points.AddXY(1, 2);
+            chartXY.Series[0].Points.AddXY(2, 3);
+            chartXY.Series[0].Points.AddXY(3, 4);
+            chartXY.Series[0].Points.AddXY(4, 5);
+            chartXY.Series[0].Points.AddXY(5, 6);
+            */
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

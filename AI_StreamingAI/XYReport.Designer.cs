@@ -53,6 +53,7 @@
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -82,7 +83,6 @@
             this.MinY = new System.Windows.Forms.TextBox();
             this.MaxY = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.loadDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -242,7 +242,7 @@
             this.comboBox_MinX.Name = "comboBox_MinX";
             this.comboBox_MinX.Size = new System.Drawing.Size(115, 24);
             this.comboBox_MinX.TabIndex = 44;
-            this.comboBox_MinX.Text = "10";
+            this.comboBox_MinX.Text = "-10";
             // 
             // label3
             // 
@@ -273,7 +273,7 @@
             this.comboBox_MinY.Name = "comboBox_MinY";
             this.comboBox_MinY.Size = new System.Drawing.Size(115, 24);
             this.comboBox_MinY.TabIndex = 42;
-            this.comboBox_MinY.Text = "10";
+            this.comboBox_MinY.Text = "-10";
             // 
             // TitleMain
             // 
@@ -333,6 +333,14 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(45, 24);
             this.exitToolStripMenuItem.Text = "&Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // loadDataToolStripMenuItem
+            // 
+            this.loadDataToolStripMenuItem.Name = "loadDataToolStripMenuItem";
+            this.loadDataToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
+            this.loadDataToolStripMenuItem.Text = "Load Data";
+            this.loadDataToolStripMenuItem.Click += new System.EventHandler(this.loadDataToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -680,13 +688,6 @@
             this.label16.Size = new System.Drawing.Size(98, 17);
             this.label16.TabIndex = 0;
             this.label16.Text = "Decimal Value";
-            // 
-            // loadDataToolStripMenuItem
-            // 
-            this.loadDataToolStripMenuItem.Name = "loadDataToolStripMenuItem";
-            this.loadDataToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
-            this.loadDataToolStripMenuItem.Text = "Load Data";
-            this.loadDataToolStripMenuItem.Click += new System.EventHandler(this.loadDataToolStripMenuItem_Click);
             // 
             // XYReport
             // 
