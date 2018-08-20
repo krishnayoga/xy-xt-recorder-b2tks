@@ -202,7 +202,18 @@ namespace AI_StreamingAI
 
                         StreamWriter sw = new StreamWriter(File.Text, append: true);
 
-                        sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), watch.Elapsed.ToString(), dataPrint[0], dataPrint[1]);
+                        if (check1.Checked)
+                        {
+                            sw.WriteLine("{0},{1},{2}", DateTime.Now.ToString("hh:mm:ss:fff"), watch.Elapsed.ToString(), dataPrint[0]);
+                        }
+                        if (check2.Checked)
+                        {
+                            sw.WriteLine("{0},{1},{2}", DateTime.Now.ToString("hh:mm:ss:fff"), watch.Elapsed.ToString(), dataPrint[0]);
+                        }
+                        if(check1.Checked && check2.Checked)
+                        {
+                            sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), watch.Elapsed.ToString(), dataPrint[0], dataPrint[1]);
+                        }
 
                         sw.Close();
 
