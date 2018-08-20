@@ -599,12 +599,28 @@ namespace AI_StreamingAI
 
         private void check1_CheckedChanged(object sender, EventArgs e)
         {
+            Sensor1.Items.Clear();
             if (check1.Checked)
             {
+                Sensor1.Items.Add("Volt");
+                Sensor1.Items.Add("Pressure");
+                Sensor1.Items.Add("SG");
+                Sensor1.Items.Add("LVDT");
+                Sensor1.Items.Add("Load Cell");
+                Factor1.ReadOnly = false;
+                Factor1.Text = "1";
+                label_star1.Text = "*";
+                label_star2.Text = "*";
+                label_star3.Text = "*";
                 label_ColorY1.Text = "---";
+                
             } else
             {
+                Factor1.ReadOnly = true;
                 label_ColorY1.Text = " ";
+                label_star1.Text = "";
+                label_star2.Text = "";
+                label_star3.Text = "";
             }
         }
 
@@ -612,10 +628,23 @@ namespace AI_StreamingAI
         {
             if (check2.Checked)
             {
+                Sensor2.Items.Add("Volt");
+                Sensor2.Items.Add("Pressure");
+                Sensor2.Items.Add("SG");
+                Sensor2.Items.Add("LVDT");
+                Sensor2.Items.Add("Load Cell");
+                Factor2.ReadOnly = false;
+                Factor1.Text = "1";
+                label_star5.Text = "*";
+                label_star6.Text = "*";
+                label_star7.Text = "*";
                 label_ColorY2.Text = "---";
             }
             else
             {
+                label_star5.Text = "";
+                label_star6.Text = "";
+                label_star7.Text = "";
                 label_ColorY2.Text = " ";
             }
         }

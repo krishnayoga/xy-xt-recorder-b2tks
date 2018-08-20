@@ -32,6 +32,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Forms;
 using Automation.BDaq;
 using System.IO;
+using excel = Microsoft.Office.Interop.Excel;
 
 namespace AI_StreamingAI
 {
@@ -50,17 +51,18 @@ namespace AI_StreamingAI
         string[] arrData;
         double[] arrSumData;
         double[] dataPrint;
-        double max_x_1 = 0;
+        double max_x_1 = -1000;
         double min_x_1 = 1000;
-        double max_x_2 = 0;
+        double max_x_2 = -1000;
         double min_x_2 = 1000;
-        double max_y = 0;
+        double max_y = -1000;
         double min_y = 1000;
         int factor_baca_x_1 = 1, factor_baca_x_2 = 1, factor_baca_y = 1;
         int max_x_chart;
         int min_x_chart;
         int max_y_chart;
         int min_y_chart;
+        bool recordData;
 
         #endregion
 
@@ -158,6 +160,17 @@ namespace AI_StreamingAI
                     dataPrint[0] = Convert.ToDouble(arrAvgData[0]) * factor_baca_x_1;
                     dataPrint[1] = Convert.ToDouble(arrAvgData[1]) * factor_baca_x_2;
                     dataPrint[2] = Convert.ToDouble(arrAvgData[2]) * factor_baca_y;
+                    if (recordData)
+
+                    {
+
+                        StreamWriter sw = new StreamWriter(File.Text, append: true);
+
+                        sw.WriteLine("{0},{1},{2},{3}", DateTime.UtcNow.ToString("hh:mm:ss.fff"), dataPrint[0], dataPrint[1], dataPrint[2]);
+
+                        sw.Close();
+
+                    }
 
                     if (checkBox_invertX1.Checked)
                     {
@@ -360,8 +373,8 @@ namespace AI_StreamingAI
                 HandleError(err);
                 return;
             }
-
-            button_start.Enabled = false;
+            startStripMenuItem1.Enabled = false;
+            button_start.Enabled = true;
             button_pause.Enabled = true;
             button_stop.Enabled = true;
 
@@ -408,6 +421,7 @@ namespace AI_StreamingAI
             File.Text = save.FileName.ToString();
             Date.Text = DateTime.Now.ToShortDateString();
             Waktu.Text = DateTime.Now.ToLongTimeString();
+            startStripMenuItem1.Enabled = true;
         }
 
         //fungsi untuk menu balance
@@ -441,10 +455,8 @@ namespace AI_StreamingAI
         {
             TitleMain.Text = Title.Text;
             ConsumerMain.Text = Consumer.Text;
-            if (check1.Checked && check2.Checked)
-            {
-                SenseMain.Text =  SensorX1.Text + " vs " + SensorY.Text;
-            } 
+            SenseMain.Text =  SensorX1.Text + " vs " + SensorY.Text;
+             
         }
 
         //fungsi untuk print to png
@@ -463,26 +475,26 @@ namespace AI_StreamingAI
         //fungsi untuk menu start record
         private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            button_start.Enabled = false;
+            recordData = true;
             StreamWriter write = new StreamWriter(File.Text);
-            write.WriteLine("Judul,");
-            write.WriteLine("Konsumen,");
-            write.WriteLine("Grafik,");
-            write.WriteLine("Tanggal,");
-            write.WriteLine("Waktu,");
-            write.WriteLine("SensorY,");
-            write.WriteLine("UnitY,");
-            write.WriteLine("SensorX1,");
-            write.WriteLine("UnitX1,");
-            write.WriteLine("SensorX2,");
-            write.WriteLine("UnitX2,");
+            write.WriteLine("Judul,"+TitleMain.Text);
+            write.WriteLine("Konsumen,"+ConsumerMain.Text);
+            write.WriteLine("Grafik,"+SenseMain.Text);
+            write.WriteLine("Tanggal,"+Date.Text);
+            write.WriteLine("Waktu,"+Waktu.Text);
+            write.WriteLine("SensorY,"+SensorY.Text);
+            write.WriteLine("UnitY,"+UnitY.Text);
+            write.WriteLine("SensorX1,"+SensorX1.Text);
+            write.WriteLine("UnitX1,"+UnitX1.Text);
             write.WriteLine("MaxY,");
             write.WriteLine("MinY,");
             write.WriteLine("MaxX1,");
             write.WriteLine("MinX1,");
             write.WriteLine("Max2,");
             write.WriteLine("MinX2,");
-
-            write.WriteLine(",");
+            write.Close();
+            
         }
 
         //fungsi untuk menu stop record button
@@ -495,9 +507,23 @@ namespace AI_StreamingAI
                 HandleError(err);
                 return;
             }
-
+            recordData = false;
             button_start.Enabled = true;
             button_pause.Enabled = false;
+            excel.Application ex = new excel.Application();
+            excel.Workbook book = ex.Workbooks.Open(File.Text);
+            excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
+            res.Cells[10, 2] = MaxY.Text;
+            res.Cells[11, 2] = MinY.Text;
+            res.Cells[12, 2] = MaxX1.Text;
+            res.Cells[13, 2] = MinX1.Text;
+            res.Cells[14, 2] = MaxX2.Text;
+            res.Cells[15, 2] = minX2.Text;
+            res.Columns.AutoFit();
+            book.SaveAs(File.Text);
+            book.Close();
+            ex.Quit();
+            
         }
 
 
@@ -511,12 +537,7 @@ namespace AI_StreamingAI
                 factor_x_2.ReadOnly = false;
                 factor_x_2.Text = "1";
                 if (SensorX1.Text == "")
-                {
-                    ValX2.Text = "Value X2";
-                } else
-                {
-                    ValX2.Text = SensorX1.Text;
-                }
+                ValX2.Text = SensorX1.Text;
                 star5.Text = "*";
                 label_ColorX2.Text = "---";
             }
@@ -543,8 +564,9 @@ namespace AI_StreamingAI
                 SensorX1.Items.Add("Load Cell");
                 factor_x_1.ReadOnly = false;
                 factor_x_1.Text = "1";
-                ValX1.Text = "Value X1";
+                ValX1.Text = SensorX1.Text;
                 label_ColorX1.Text = "---";
+                star2.Text = "*";
 
             }
             else
@@ -553,6 +575,7 @@ namespace AI_StreamingAI
                 factor_x_1.Text = "-";
                 label_ColorX1.Text = " ";
                 ValX1.Text = "---";
+                star2.Text = "*";
                 
             }
 
@@ -561,6 +584,7 @@ namespace AI_StreamingAI
         {
             ValX1.Text = SensorX1.Text;
             UnitX1.Items.Clear();
+            UnitX1.Text = "";
             switch (SensorX1.Text)
             {
                 case "Load Cell":
@@ -602,6 +626,7 @@ namespace AI_StreamingAI
         {
             ValY.Text = SensorY.Text;
             UnitY.Items.Clear();
+            UnitY.Text = "";
             switch (SensorY.Text)
             {
                 case "Load Cell":
@@ -778,6 +803,11 @@ namespace AI_StreamingAI
         }
 
         private void rangeY_chart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SenseMain_Click(object sender, EventArgs e)
         {
 
         }
