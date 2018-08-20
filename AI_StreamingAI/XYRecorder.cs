@@ -66,6 +66,8 @@ namespace AI_StreamingAI
 
         #endregion
 
+        DateTime saat_ini = DateTime.Now;
+
         public XYRecorder()
         {
             InitializeComponent();
@@ -161,13 +163,12 @@ namespace AI_StreamingAI
                     dataPrint[1] = Convert.ToDouble(arrAvgData[1]) * factor_baca_x_2;
                     dataPrint[2] = Convert.ToDouble(arrAvgData[2]) * factor_baca_y;
                     if (recordData)
-
                     {
 
                         StreamWriter sw = new StreamWriter(File.Text, append: true);
 
-                        sw.WriteLine("{0},{1},{2},{3}", DateTime.UtcNow.ToString("hh:mm:ss.fff"), dataPrint[0], dataPrint[1], dataPrint[2]);
-
+                        sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), dataPrint[0], dataPrint[1], dataPrint[2]);
+                        
                         sw.Close();
 
                     }
@@ -274,6 +275,9 @@ namespace AI_StreamingAI
             chartXY.Series.Add("Series 2");
             chartXY.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chartXY.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+            chartXY.ChartAreas[0].AxisX.Crossing = 0;
+            chartXY.ChartAreas[0].AxisY.Crossing = 0;
 
             chartXY.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gainsboro;
             chartXY.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gainsboro;

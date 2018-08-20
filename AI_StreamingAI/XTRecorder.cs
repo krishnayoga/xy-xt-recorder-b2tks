@@ -46,8 +46,8 @@ namespace AI_StreamingAI
         bool m_isFirstOverRun = true;
         double m_xInc;
         int dataCount = 0;
-        double last_y_0;
-        double last_y_1;
+        double last_x;
+        double last_x_holdX;
         bool firstChecked = true;
         string[] arrAvgData;
         string[] arrData;
@@ -229,8 +229,10 @@ namespace AI_StreamingAI
 
                     if (checkBox_holdX.Checked && firstChecked)
                     {
-                        last_y_0 = dataPrint[0];
-                        last_y_1 = dataPrint[1];
+                        last_x_holdX = last_x;
+
+                        //last_y_0 = dataPrint[0];
+                        //last_y_1 = dataPrint[1];
                         //last_x = dataCount.ToString();
                         firstChecked = false;
                     }
@@ -399,14 +401,34 @@ namespace AI_StreamingAI
         //itu
 
         private void plotChart(object sender, EventArgs e)
-        { 
-            if (check1.Checked)
+        {
+            if (checkBox_holdX.Checked)
             {
-                chartXY.Series[0].Points.AddY(dataPrint[0]); //ini untuk plot Y1
+                if (check1.Checked)
+                {
+                    chartXY.Series[0].Points.AddXY(last_x, dataPrint[0]);
+                }
+
+                if (check2.Checked)
+                {
+                    chartXY.Series[1].Points.AddXY(last_x, dataPrint[1]);
+                }
+
             }
-            if (check2.Checked)
+
+            if (!checkBox_holdX.Checked)
             {
-                chartXY.Series[1].Points.AddY(dataPrint[1]); //ini untuk plot Y2
+                last_x += 1;
+                if (check1.Checked)
+                {
+                    chartXY.Series[0].Points.AddXY(last_x, dataPrint[0]);
+                }
+
+                if (check2.Checked)
+                {
+                    chartXY.Series[1].Points.AddXY(last_x, dataPrint[1]);
+                }
+                firstChecked = true;
             }
 
             /*
@@ -522,6 +544,9 @@ namespace AI_StreamingAI
             timer_plot.Stop();
             watch.Stop();
 
+            last_x = 0;
+            last_x_holdX = 0;
+
             max_y_1 = 0;
             min_y_1 = 0;
             max_y_2 = 0;
@@ -544,6 +569,9 @@ namespace AI_StreamingAI
             timer_plot.Stop();
             watch.Stop();
             //itu
+
+            last_x = 0;
+            last_x_holdX = 0;
 
             button_start.Enabled = true;
             button_pause.Enabled = false;
@@ -592,6 +620,9 @@ namespace AI_StreamingAI
             timer_plot.Stop();
             watch.Stop();
             //itu
+
+            last_x = 0;
+            last_x_holdX = 0;
 
             button_start.Enabled = true;
             button_pause.Enabled = false;
