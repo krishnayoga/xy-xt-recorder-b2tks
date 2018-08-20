@@ -70,5 +70,17 @@ namespace AI_StreamingAI
             XYRecorder xyrec = new XYRecorder();
             xyrec.ShowDialog();
         }
+
+        private void xTToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            XTReport xtreport = new XTReport();
+            xtreport.ShowDialog();
+        }
+
+        private void xYToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            XYReport xyreport = new XYReport();
+            xyreport.ShowDialog();
+        }
     }
 }
