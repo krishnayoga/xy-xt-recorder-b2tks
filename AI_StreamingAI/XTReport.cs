@@ -126,7 +126,7 @@ namespace AI_StreamingAI
             Waktu.Text = Convert.ToString(res.Cells[5, 2].Value);
             Time.Text = Convert.ToString(res.Cells[14, 2].Value);
 
-            jumlah_data = 100;
+            jumlah_data = 160;
 
             book.Close();
             ex.Quit();
@@ -138,12 +138,12 @@ namespace AI_StreamingAI
             dataY2 = new double[jumlah_data];
 
             load_data();
-            /*
+            
             for (i = 0; i < jumlah_data; i++)
             {
-                //Console.WriteLine("data ke: "+i+" dataX1: " + dataX1[i] + " dataX2: " + dataX2[i] + " dataY: " + dataY[i]);
-            }*/
-
+                Console.WriteLine("data ke: "+i+" dataY1: " + dataY1[i] + " dataY2: " + dataY2[i]);
+            }
+            
             init_chart();
             plot_chart();
 
@@ -156,10 +156,12 @@ namespace AI_StreamingAI
             excel.Workbook book = ex.Workbooks.Open(File.Text);
             excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
 
-            for (i = 16; i < jumlah_data; i++)
+            for (i = 16; i < (jumlah_data+16); i++)
             {
                 dataY1[i - 16] = Convert.ToDouble(res.Cells[i, 3].Value);
                 dataY2[i - 16] = Convert.ToDouble(res.Cells[i, 4].Value);
+
+                //Console.WriteLine("i ke- " + i + " dataY1: " + dataY1[i - 16] + " dataY2: " + dataY2[i - 16]);
             }
 
             book.Close();

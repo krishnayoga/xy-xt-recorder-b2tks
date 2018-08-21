@@ -154,7 +154,7 @@ namespace AI_StreamingAI
             excel.Workbook book = ex.Workbooks.Open(File.Text);
             excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
 
-            for (i = 16; i < jumlah_data; i++)
+            for (i = 16; i < (jumlah_data+16); i++)
             {
                 dataX1[i - 16] = Convert.ToDouble(res.Cells[i, 2].Value);
                 dataX2[i - 16] = Convert.ToDouble(res.Cells[i, 3].Value);
