@@ -11,9 +11,6 @@
  * Untuk BPPT B2TKS Divisi SBPI
 */
 
-
-
-
 /*
  * Configuration waveformAICtrl1:
  * Channel Count = 3;
@@ -184,9 +181,7 @@ namespace AI_StreamingAI
             chartXY.Series[0].Color = Color.Blue;
             chartXY.Series[1].Color = Color.Red;
         }
-
         
-
         private void plot_chart()
         {
             chartXY.ChartAreas[0].AxisX.Crossing = 0;

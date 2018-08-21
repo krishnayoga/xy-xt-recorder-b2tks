@@ -191,7 +191,7 @@
             this.Date.TabIndex = 71;
             this.Date.Text = "Tanggal Pembacaan";
             this.Date.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Date.Click += new System.EventHandler(this.Date_Click);
+            //this.Date.Click += new System.EventHandler(this.Date_Click);
             // 
             // panel1
             // 
