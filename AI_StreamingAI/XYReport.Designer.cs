@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XYReport));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Waktu = new System.Windows.Forms.Label();
             this.File = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,11 +49,11 @@
             this.TitleMain = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.replotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -93,16 +93,16 @@
             // 
             // Waktu
             // 
-            this.Waktu.Location = new System.Drawing.Point(1193, 504);
+            this.Waktu.Location = new System.Drawing.Point(1237, 659);
             this.Waktu.Name = "Waktu";
-            this.Waktu.Size = new System.Drawing.Size(155, 19);
+            this.Waktu.Size = new System.Drawing.Size(108, 19);
             this.Waktu.TabIndex = 72;
             this.Waktu.Text = "Waktu Pembacaan";
             this.Waktu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // File
             // 
-            this.File.Location = new System.Drawing.Point(1081, 485);
+            this.File.Location = new System.Drawing.Point(1078, 640);
             this.File.Name = "File";
             this.File.Size = new System.Drawing.Size(267, 19);
             this.File.TabIndex = 70;
@@ -136,11 +136,12 @@
             this.comboBox_MaxX.Size = new System.Drawing.Size(87, 21);
             this.comboBox_MaxX.TabIndex = 40;
             this.comboBox_MaxX.Text = "10";
+            this.comboBox_MaxX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_MaxX_KeyPress);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 2);
+            this.label4.Location = new System.Drawing.Point(-1, 6);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 39;
@@ -174,10 +175,11 @@
             this.comboBox_MaxY.Size = new System.Drawing.Size(87, 21);
             this.comboBox_MaxY.TabIndex = 33;
             this.comboBox_MaxY.Text = "10";
+            this.comboBox_MaxY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_MaxY_KeyPress);
             // 
             // Date
             // 
-            this.Date.Location = new System.Drawing.Point(1084, 504);
+            this.Date.Location = new System.Drawing.Point(1081, 659);
             this.Date.Name = "Date";
             this.Date.Size = new System.Drawing.Size(110, 19);
             this.Date.TabIndex = 71;
@@ -196,7 +198,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.comboBox_MaxY);
-            this.panel1.Location = new System.Drawing.Point(1081, 345);
+            this.panel1.Location = new System.Drawing.Point(1074, 154);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(271, 137);
             this.panel1.TabIndex = 69;
@@ -228,6 +230,7 @@
             this.comboBox_MinX.Size = new System.Drawing.Size(87, 21);
             this.comboBox_MinX.TabIndex = 44;
             this.comboBox_MinX.Text = "-10";
+            this.comboBox_MinX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_MinX_KeyPress);
             // 
             // label3
             // 
@@ -257,13 +260,14 @@
             this.comboBox_MinY.Size = new System.Drawing.Size(87, 21);
             this.comboBox_MinY.TabIndex = 42;
             this.comboBox_MinY.Text = "-10";
+            this.comboBox_MinY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_MinY_KeyPress);
             // 
             // TitleMain
             // 
             this.TitleMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleMain.Location = new System.Drawing.Point(362, 34);
+            this.TitleMain.Location = new System.Drawing.Point(335, 34);
             this.TitleMain.Name = "TitleMain";
-            this.TitleMain.Size = new System.Drawing.Size(713, 38);
+            this.TitleMain.Size = new System.Drawing.Size(740, 38);
             this.TitleMain.TabIndex = 65;
             this.TitleMain.Text = "Judul Pengujian";
             this.TitleMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -273,11 +277,11 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileNameToolStripMenuItem,
+            this.loadDataToolStripMenuItem,
             this.replotToolStripMenuItem,
             this.printToolStripMenuItem,
             this.helpToolStripMenuItem,
-            this.exitToolStripMenuItem,
-            this.loadDataToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1348, 24);
@@ -290,6 +294,14 @@
             this.fileNameToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.fileNameToolStripMenuItem.Text = "&File Name";
             this.fileNameToolStripMenuItem.Click += new System.EventHandler(this.fileNameToolStripMenuItem_Click);
+            // 
+            // loadDataToolStripMenuItem
+            // 
+            this.loadDataToolStripMenuItem.Enabled = false;
+            this.loadDataToolStripMenuItem.Name = "loadDataToolStripMenuItem";
+            this.loadDataToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.loadDataToolStripMenuItem.Text = "Load Data";
+            this.loadDataToolStripMenuItem.Click += new System.EventHandler(this.loadDataToolStripMenuItem_Click);
             // 
             // replotToolStripMenuItem
             // 
@@ -316,17 +328,10 @@
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // loadDataToolStripMenuItem
-            // 
-            this.loadDataToolStripMenuItem.Name = "loadDataToolStripMenuItem";
-            this.loadDataToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
-            this.loadDataToolStripMenuItem.Text = "Load Data";
-            this.loadDataToolStripMenuItem.Click += new System.EventHandler(this.loadDataToolStripMenuItem_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(85, 37);
+            this.pictureBox1.Location = new System.Drawing.Point(52, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(277, 131);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -415,9 +420,9 @@
             // SenseMain
             // 
             this.SenseMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenseMain.Location = new System.Drawing.Point(364, 120);
+            this.SenseMain.Location = new System.Drawing.Point(335, 120);
             this.SenseMain.Name = "SenseMain";
-            this.SenseMain.Size = new System.Drawing.Size(711, 48);
+            this.SenseMain.Size = new System.Drawing.Size(740, 48);
             this.SenseMain.TabIndex = 66;
             this.SenseMain.Text = "Sensor X vs Sensor Y";
             this.SenseMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -427,33 +432,33 @@
             this.chartXY.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea2);
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chartXY.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chartXY.Legends.Add(legend1);
             this.chartXY.Location = new System.Drawing.Point(0, 189);
             this.chartXY.Name = "chartXY";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Legend = "Legend1";
-            series4.Name = "Series2";
-            this.chartXY.Series.Add(series3);
-            this.chartXY.Series.Add(series4);
-            this.chartXY.Size = new System.Drawing.Size(1075, 504);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series2";
+            this.chartXY.Series.Add(series1);
+            this.chartXY.Series.Add(series2);
+            this.chartXY.Size = new System.Drawing.Size(1071, 504);
             this.chartXY.TabIndex = 64;
             this.chartXY.Text = "chart1";
             // 
             // ConsumerMain
             // 
             this.ConsumerMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConsumerMain.Location = new System.Drawing.Point(364, 72);
+            this.ConsumerMain.Location = new System.Drawing.Point(335, 72);
             this.ConsumerMain.Name = "ConsumerMain";
-            this.ConsumerMain.Size = new System.Drawing.Size(707, 48);
+            this.ConsumerMain.Size = new System.Drawing.Size(736, 48);
             this.ConsumerMain.TabIndex = 67;
             this.ConsumerMain.Text = "Nama Customer";
             this.ConsumerMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -479,7 +484,7 @@
             this.panel5.Controls.Add(this.MinY);
             this.panel5.Controls.Add(this.MaxY);
             this.panel5.Controls.Add(this.label16);
-            this.panel5.Location = new System.Drawing.Point(1081, 214);
+            this.panel5.Location = new System.Drawing.Point(1074, 23);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(271, 135);
             this.panel5.TabIndex = 73;
@@ -658,10 +663,10 @@
             this.Controls.Add(this.SenseMain);
             this.Controls.Add(this.chartXY);
             this.Controls.Add(this.ConsumerMain);
-            this.MaximumSize = new System.Drawing.Size(1364, 726);
+            this.MaximumSize = new System.Drawing.Size(1366, 728);
             this.MinimumSize = new System.Drawing.Size(1364, 726);
             this.Name = "XYReport";
-            this.Text = "XYReport";
+            this.Text = "Report XY Recorder";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.XYReport_Load);
             this.panel1.ResumeLayout(false);

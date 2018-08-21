@@ -59,7 +59,7 @@ namespace AI_StreamingAI
         double min_x_2 = 1000;
         double max_y = -1000;
         double min_y = 1000;
-        int factor_baca_x_1 = 1, factor_baca_x_2 = 1, factor_baca_y = 1;
+        double factor_baca_x_1 = 1, factor_baca_x_2 = 1, factor_baca_y = 1;
         int max_x_chart;
         int min_x_chart;
         int max_y_chart;
@@ -397,14 +397,14 @@ namespace AI_StreamingAI
 
             if (check1.Checked)
             {
-                factor_baca_x_1 = Convert.ToInt32(factor_x_1.Text);
+                factor_baca_x_1 = Convert.ToDouble(factor_x_1.Text);
             }
             if (check2.Checked)
             {
-                factor_baca_x_2 = Convert.ToInt32(factor_x_2.Text);
+                factor_baca_x_2 = Convert.ToDouble(factor_x_2.Text);
             }
             
-            factor_baca_y = Convert.ToInt32(factor_y.Text);
+            factor_baca_y = Convert.ToDouble(factor_y.Text);
 
             watch.Start();
             startChart();
@@ -432,7 +432,7 @@ namespace AI_StreamingAI
             button_pause.Enabled = false;
             button_stop.Enabled = false;
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
-            balanceToolStripMenuItem.Enabled = false;
+            
             startStripMenuItem1.Enabled = true;
         }
 
@@ -470,6 +470,7 @@ namespace AI_StreamingAI
             min_y = 0;
             startStripMenuItem1.Enabled = false;
             button_stop.Enabled = true;
+            watch.Reset();
             
         }
 
@@ -485,7 +486,23 @@ namespace AI_StreamingAI
             TitleMain.Text = Title.Text;
             ConsumerMain.Text = Consumer.Text;
             SenseMain.Text =  SensorX1.Text + " vs " + SensorY.Text;
-             
+            if (check1.Checked)
+            {
+                ValX1.Text = SensorX1.Text;
+            }
+            else
+            {
+                ValX1.Text = "---";
+            }
+            if (check2.Checked)
+            {
+                ValX2.Text = SensorX1.Text;
+            }
+            else
+            {
+                ValX2.Text = "---";
+            }
+
         }
 
         //fungsi untuk print to png
@@ -535,7 +552,7 @@ namespace AI_StreamingAI
             write.WriteLine("MinX2,");
             write.WriteLine("Waktu,Nilai Y,Nilai X1, Nilai X2");
             write.Close();
-            
+            label_Alert.Text = "Recording.....!!!";
         }
 
         //fungsi untuk menu stop record button
@@ -568,7 +585,7 @@ namespace AI_StreamingAI
             ex.Quit();
 
             watch.Stop();
-            
+            label_Alert.Text = "";
         }
 
 
@@ -854,6 +871,71 @@ namespace AI_StreamingAI
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void factor_x_1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch)&& ch != 8 && ch!= 46 && ch != 110)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void factor_x_2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 && ch != 110)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void rangeX_chart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rangeX_chart_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void factor_x_1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void factor_y_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void factor_y_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 )
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void rangeY_chart_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

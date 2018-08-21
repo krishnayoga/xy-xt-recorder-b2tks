@@ -129,6 +129,7 @@ namespace AI_StreamingAI
             this.File = new System.Windows.Forms.Label();
             this.Date = new System.Windows.Forms.Label();
             this.Waktu = new System.Windows.Forms.Label();
+            this.label_Alert = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartXY)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -161,7 +162,7 @@ namespace AI_StreamingAI
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartXY.Series.Add(series1);
-            this.chartXY.Size = new System.Drawing.Size(1047, 523);
+            this.chartXY.Size = new System.Drawing.Size(1061, 523);
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
             this.chartXY.Click += new System.EventHandler(this.chartXY_Click);
@@ -647,6 +648,7 @@ namespace AI_StreamingAI
             this.rangeY_chart.TabIndex = 46;
             this.rangeY_chart.Text = "10";
             this.rangeY_chart.SelectedIndexChanged += new System.EventHandler(this.rangeY_chart_SelectedIndexChanged);
+            this.rangeY_chart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rangeY_chart_KeyPress);
             // 
             // label38
             // 
@@ -673,6 +675,8 @@ namespace AI_StreamingAI
             this.factor_y.Size = new System.Drawing.Size(51, 21);
             this.factor_y.TabIndex = 44;
             this.factor_y.Text = "1";
+            this.factor_y.TextChanged += new System.EventHandler(this.factor_y_TextChanged);
+            this.factor_y.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.factor_y_KeyPress);
             // 
             // label3
             // 
@@ -759,7 +763,7 @@ namespace AI_StreamingAI
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(0, 4);
+            this.label19.Location = new System.Drawing.Point(1, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(55, 15);
             this.label19.TabIndex = 1;
@@ -898,6 +902,8 @@ namespace AI_StreamingAI
             this.factor_x_1.Size = new System.Drawing.Size(51, 21);
             this.factor_x_1.TabIndex = 31;
             this.factor_x_1.Text = "1";
+            this.factor_x_1.TextChanged += new System.EventHandler(this.factor_x_1_TextChanged);
+            this.factor_x_1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.factor_x_1_KeyPress);
             // 
             // label11
             // 
@@ -936,6 +942,7 @@ namespace AI_StreamingAI
             this.factor_x_2.Size = new System.Drawing.Size(50, 21);
             this.factor_x_2.TabIndex = 40;
             this.factor_x_2.Text = "1";
+            this.factor_x_2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.factor_x_2_KeyPress);
             // 
             // label12
             // 
@@ -985,6 +992,8 @@ namespace AI_StreamingAI
             this.rangeX_chart.Size = new System.Drawing.Size(87, 23);
             this.rangeX_chart.TabIndex = 43;
             this.rangeX_chart.Text = "10";
+            this.rangeX_chart.SelectedIndexChanged += new System.EventHandler(this.rangeX_chart_SelectedIndexChanged);
+            this.rangeX_chart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rangeX_chart_KeyPress);
             // 
             // panel1
             // 
@@ -1142,12 +1151,23 @@ namespace AI_StreamingAI
             this.Waktu.Text = "Waktu Pembacaan";
             this.Waktu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label_Alert
+            // 
+            this.label_Alert.AutoSize = true;
+            this.label_Alert.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Alert.ForeColor = System.Drawing.Color.Red;
+            this.label_Alert.Location = new System.Drawing.Point(45, 161);
+            this.label_Alert.Name = "label_Alert";
+            this.label_Alert.Size = new System.Drawing.Size(0, 39);
+            this.label_Alert.TabIndex = 48;
+            // 
             // XYRecorder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1348, 729);
+            this.Controls.Add(this.label_Alert);
             this.Controls.Add(this.Waktu);
             this.Controls.Add(this.Date);
             this.Controls.Add(this.File);
@@ -1164,6 +1184,7 @@ namespace AI_StreamingAI
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximumSize = new System.Drawing.Size(1366, 768);
             this.MinimumSize = new System.Drawing.Size(1364, 726);
             this.Name = "XYRecorder";
             this.Text = "XY Recoder";
@@ -1287,6 +1308,7 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label label_ColorX1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox_stopwatch;
+        private System.Windows.Forms.Label label_Alert;
     }
 }
 

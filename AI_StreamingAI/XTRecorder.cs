@@ -47,10 +47,10 @@ namespace AI_StreamingAI
         bool m_isFirstOverRun = true;
         double m_xInc;
         int dataCount = 0;
-        double last_x = 0;
-        double last_x_holdX = 0;
+        int recCount = 0;
+        double last_x;
+        double last_x_holdX;
         bool firstChecked = true;
-        bool firstrun = true;
         string[] arrAvgData;
         string[] arrData;
         double[] arrSumData;
@@ -58,8 +58,8 @@ namespace AI_StreamingAI
         double max_y_1 = 0;
         double min_y_1 = 1000;
         double max_y_2 = 0;
-        double min_y_2 = 1000;
-        int factor_baca_y_1 = 1, factor_baca_y_2 = 1;
+        double min_y_2 = 0;
+        double factor_baca_y_1 = 1, factor_baca_y_2 = 1;
         int max_x_chart;
         int min_x_chart;
         int max_y_chart;
@@ -92,7 +92,7 @@ namespace AI_StreamingAI
             InitializeComponent();
             //ini
             timer.Tick += new EventHandler(timer_stopwatch);
-            timer.Interval = 100;
+            timer.Interval = 10;
 
             timer_plot.Tick += new EventHandler(plotChart);
             timer_plot.Interval = 100;
@@ -215,7 +215,7 @@ namespace AI_StreamingAI
                         sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), watch.Elapsed.ToString(), dataPrint[0], dataPrint[1]);
                         
                         sw.Close();
-
+                        recCount++;
                     }
                     ValueY1.Text = dataPrint[0].ToString();
                     ValueY2.Text = dataPrint[1].ToString();
@@ -288,7 +288,7 @@ namespace AI_StreamingAI
         private void initChart()
         {
             //ini
-            max_x_chart = Convert.ToInt32(RangeX.Text) * 61 * 9 + 20;
+            max_x_chart = Convert.ToInt32(RangeX.Text) * 61 * 9 + 1;
             //itu
             min_x_chart = -max_x_chart;
             max_y_chart = Convert.ToInt32(RangeY.Text);
@@ -344,16 +344,16 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisY.Interval = max_y_chart / 10;
 
             label_chart_1 = Convert.ToDouble(max_x_chart) * 0;
-            label_chart_2 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10;
-            label_chart_3 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 2;
-            label_chart_4 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 3;
-            label_chart_5 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 4;
-            label_chart_6 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 5;
-            label_chart_7 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 6;
-            label_chart_8 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 7;
-            label_chart_9 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 8;
-            label_chart_10 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 9;
-            label_chart_11 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9;
+            label_chart_2 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10;
+            label_chart_3 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 2;
+            label_chart_4 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 3;
+            label_chart_5 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 4;
+            label_chart_6 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 5;
+            label_chart_7 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 6;
+            label_chart_8 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 7;
+            label_chart_9 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 8;
+            label_chart_10 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 9;
+            label_chart_11 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9;
 
 
             pos_label_1 = max_x_chart * 0;
@@ -428,31 +428,26 @@ namespace AI_StreamingAI
             {
                 if (check1.Checked)
                 {
-                    dataPrint[0] = 7;
                     chartXY.Series[0].Points.AddXY(last_x, dataPrint[0]);
                 }
 
                 if (check2.Checked)
                 {
-                    dataPrint[1] = 7;
                     chartXY.Series[1].Points.AddXY(last_x, dataPrint[1]);
                 }
-                firstrun = false;
+
             }
 
             if (!checkBox_holdX.Checked)
             {
-                
                 last_x += 1;
                 if (check1.Checked)
                 {
-                    dataPrint[0] = 7;
                     chartXY.Series[0].Points.AddXY(last_x, dataPrint[0]);
                 }
 
                 if (check2.Checked)
                 {
-                    dataPrint[1] = 8;
                     chartXY.Series[1].Points.AddXY(last_x, dataPrint[1]);
                 }
                 firstChecked = true;
@@ -550,6 +545,7 @@ namespace AI_StreamingAI
             startChart();
             initChart();
             timer_plot.Start();
+            recCount = 0;
         }
 
         //button balance menu
@@ -576,6 +572,9 @@ namespace AI_StreamingAI
             min_y_1 = 0;
             max_y_2 = 0;
             min_y_2 = 0;
+            button_start.Enabled = true;
+            watch.Reset();
+
         }
 
         //button stop menu
@@ -601,7 +600,6 @@ namespace AI_StreamingAI
             button_start.Enabled = true;
             button_pause.Enabled = false;
             button_stop.Enabled = false;
-            balanceToolStripMenuItem.Enabled = false;
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
         }
 
@@ -623,6 +621,18 @@ namespace AI_StreamingAI
             write.WriteLine("UnitY1," + Unit1.Text);
             write.WriteLine("SensorY2," + Sensor2.Text);
             write.WriteLine("UnitY2," + Unit2.Text);
+            if (!check2.Checked && check1.Checked)
+            {
+                write.WriteLine("Jenis, 1,Jumlah Data");
+            }
+            else if (check2.Checked && !check1.Checked)
+            {
+                write.WriteLine("Jenis, 2,Jumlah Data");
+            }
+            else if (check2.Checked && check1.Checked)
+            {
+                write.WriteLine("Jenis, 3,Jumlah Data");
+            }
             write.WriteLine("MaxY1,");
             write.WriteLine("MinY1,");
             write.WriteLine("MaxY2,");
@@ -632,6 +642,7 @@ namespace AI_StreamingAI
             write.Close();
             startRecordToolStripMenuItem.Enabled = false;
             button_pause.Enabled = true;
+            label_Alert.Text = "Recording.....!!!";
         }
 
         //button stop record menu
@@ -658,11 +669,12 @@ namespace AI_StreamingAI
             excel.Application ex = new excel.Application();
             excel.Workbook book = ex.Workbooks.Open(File.Text);
             excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
-            res.Cells[10, 2] = MaxY1.Text;
-            res.Cells[11, 2] = MinY1.Text;
-            res.Cells[12, 2] = MaxY2.Text;
-            res.Cells[13, 2] = MinY2.Text;
-            res.Cells[14, 2] = Time.Text;
+            res.Cells[10, 4] = recCount;
+            res.Cells[11, 2] = MaxY1.Text;
+            res.Cells[12, 2] = MinY1.Text;
+            res.Cells[13, 2] = MaxY2.Text;
+            res.Cells[14, 2] = MinY2.Text;
+            res.Cells[15, 2] = Time.Text;
             res.Columns.AutoFit();
             book.SaveAs(File.Text);
             book.Close();
@@ -670,6 +682,7 @@ namespace AI_StreamingAI
             button_start.Enabled = false;
             button_pause.Enabled = false;
             startRecordToolStripMenuItem.Enabled = true;
+            label_Alert.Text = "";
         }
 
         private void check1_CheckedChanged(object sender, EventArgs e)
@@ -736,6 +749,51 @@ namespace AI_StreamingAI
         private void ConsumerMain_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Factor1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 && ch != 110)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void Factor2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 && ch != 110)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void RangeY_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RangeY_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 )
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void RangeX_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 )
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
         }
 
         //button replot menu
@@ -862,7 +920,22 @@ namespace AI_StreamingAI
         {
             TitleMain.Text = Title.Text;
             ConsumerMain.Text = Consumer.Text;
-            SenseMain.Text = Sensor1.Text + " dan " + Sensor2.Text + "Vs Waktu";
+            SenseMain.Text = Sensor1.Text + " dan " + Sensor2.Text + " vs Waktu";
+            if (check1.Checked)
+            {
+                ValY1.Text = Sensor1.Text;
+            } else
+            {
+                ValY1.Text = "---";
+            }
+            if (check2.Checked)
+            {
+                ValY2.Text = Sensor2.Text;
+            }
+            else
+            {
+                ValY2.Text = "---";
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

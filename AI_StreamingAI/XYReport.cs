@@ -42,11 +42,13 @@ namespace AI_StreamingAI
         double[] dataX1;
         double[] dataX2;
         double[] dataY;
+        double jam;
         int jumlah_data;
         int max_x_chart;
         int min_x_chart;
         int max_y_chart;
         int min_y_chart;
+        
 
         DateTime datee = new DateTime();
 
@@ -76,12 +78,12 @@ namespace AI_StreamingAI
             {
                 MessageBox.Show("error!");
             }
-            
+            loadDataToolStripMenuItem.Enabled = true;
             //Date.Text = DateTime.Now.ToShortDateString();
             //Waktu.Text = DateTime.Now.ToLongTimeString();
 
             //load_judul();
-            
+
         }
 
         private void load_judul()
@@ -94,19 +96,29 @@ namespace AI_StreamingAI
             ConsumerMain.Text = Convert.ToString(res.Cells[2, 2].Value);
             SenseMain.Text = Convert.ToString(res.Cells[3, 2].Value);
 
-            MaxX1.Text = Convert.ToString(res.Cells[12, 2].Value);
-            MinX1.Text = Convert.ToString(res.Cells[13, 2].Value);
-            MaxX2.Text = Convert.ToString(res.Cells[14, 2].Value);
-            minX2.Text = Convert.ToString(res.Cells[15, 2].Value);
-            MaxY.Text = Convert.ToString(res.Cells[10, 2].Value);
-            MinY.Text = Convert.ToString(res.Cells[11, 2].Value);
+            ValY.Text = Convert.ToString(res.Cells[6, 2].Value);
+            U1.Text = Convert.ToString(res.Cells[7, 2].Value);
+            ValX1.Text = Convert.ToString(res.Cells[8, 2].Value);
+            U2.Text = Convert.ToString(res.Cells[9, 2].Value);
+            ValX2.Text = Convert.ToString(res.Cells[8, 2].Value);
+            U3.Text = Convert.ToString(res.Cells[9, 2].Value);
+
+            MaxX1.Text = Convert.ToString(res.Cells[13, 2].Value);
+            MinX1.Text = Convert.ToString(res.Cells[14, 2].Value);
+            MaxX2.Text = Convert.ToString(res.Cells[15, 2].Value);
+            minX2.Text = Convert.ToString(res.Cells[16, 2].Value);
+            MaxY.Text = Convert.ToString(res.Cells[11, 2].Value);
+            MinY.Text = Convert.ToString(res.Cells[12, 2].Value);
             
             datee = Convert.ToDateTime(res.Cells[4, 2].Value);
-            Waktu.Text = Convert.ToString(res.Cells[5, 2].Value);
+            Date.Text = datee.ToString("dd/MM/yyyy");
 
-            Date.Text = Convert.ToString(datee);
+            jam = double.Parse(Convert.ToString(res.Cells[5, 2].Value));
+            DateTime jam_text = DateTime.FromOADate(jam);
+            Waktu.Text = jam_text.ToLongTimeString();
+            
 
-            jumlah_data = 1000;
+            jumlah_data = Convert.ToInt32(res.Cells[10, 4].Value); ;
             /*
             chartXY.Series[0].Points.AddXY(1, 2);
             chartXY.Series[0].Points.AddXY(2, 3);
@@ -129,10 +141,10 @@ namespace AI_StreamingAI
 
             
             load_data();
-            /*
-            for (i = 0; i < jumlah_data; i++)
+            
+            /*for (i = 0; i < jumlah_data; i++)
             {
-                //Console.WriteLine("data ke: "+i+" dataX1: " + dataX1[i] + " dataX2: " + dataX2[i] + " dataY: " + dataY[i]);
+                Console.WriteLine("data ke: "+i+" dataX1: " + dataX1[i] + " dataX2: " + dataX2[i] + " dataY: " + dataY[i]);
             }*/
 
             init_chart();
@@ -156,11 +168,11 @@ namespace AI_StreamingAI
             excel.Workbook book = ex.Workbooks.Open(File.Text);
             excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
 
-            for (i = 16; i < (jumlah_data+16); i++)
+            for (i = 18; i < (jumlah_data+18); i++)
             {
-                dataX1[i - 16] = Convert.ToDouble(res.Cells[i, 2].Value);
-                dataX2[i - 16] = Convert.ToDouble(res.Cells[i, 3].Value);
-                dataY[i - 16] = Convert.ToDouble(res.Cells[i, 4].Value);
+                dataX1[i - 18] = Convert.ToDouble(res.Cells[i, 2].Value);
+                dataX2[i - 18] = Convert.ToDouble(res.Cells[i, 3].Value);
+                dataY[i - 18] = Convert.ToDouble(res.Cells[i, 4].Value);
             }
 
             book.Close();
@@ -214,7 +226,7 @@ namespace AI_StreamingAI
             {
                 chartXY.Series[0].Points.AddXY(dataX1[i], dataY[i]);
                 chartXY.Series[1].Points.AddXY(dataX2[i], dataY[i]);
-
+                
                 
             }
             /*
@@ -224,6 +236,46 @@ namespace AI_StreamingAI
             chartXY.Series[0].Points.AddXY(4, 5);
             chartXY.Series[0].Points.AddXY(5, 6);
             */
+        }
+
+        private void comboBox_MaxY_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void comboBox_MaxX_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void comboBox_MinY_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void comboBox_MinX_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
