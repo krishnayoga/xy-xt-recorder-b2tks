@@ -182,12 +182,12 @@ namespace AI_StreamingAI
                     {
                         if (check1.Checked&&!check2.Checked)
                         {
-                            dataPrint[2] = 0;
+                            dataPrint[1] = 0;
           
                         }
                         else if (check2.Checked&&!check1.Checked)
                         {
-                            dataPrint[1] = 0;
+                            dataPrint[0] = 0;
                         }
                         
                         StreamWriter sw = new StreamWriter(File.Text, append: true);
