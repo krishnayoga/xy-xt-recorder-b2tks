@@ -52,6 +52,11 @@ namespace AI_StreamingAI
         double pos_label_1, pos_label_2, pos_label_3, pos_label_4, pos_label_5, pos_label_6;
         double pos_label_7, pos_label_8, pos_label_9, pos_label_10, pos_label_11;
 
+        private void File_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void TitleMain_Click(object sender, EventArgs e)
         {
 

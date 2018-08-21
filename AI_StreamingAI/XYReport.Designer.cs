@@ -93,30 +93,27 @@
             // 
             // Waktu
             // 
-            this.Waktu.Location = new System.Drawing.Point(573, 503);
-            this.Waktu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Waktu.Location = new System.Drawing.Point(430, 409);
             this.Waktu.Name = "Waktu";
-            this.Waktu.Size = new System.Drawing.Size(247, 18);
+            this.Waktu.Size = new System.Drawing.Size(185, 15);
             this.Waktu.TabIndex = 72;
             this.Waktu.Text = "Waktu Pembacaan";
             this.Waktu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // File
             // 
-            this.File.Location = new System.Drawing.Point(557, 438);
-            this.File.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.File.Location = new System.Drawing.Point(418, 356);
             this.File.Name = "File";
-            this.File.Size = new System.Drawing.Size(251, 18);
+            this.File.Size = new System.Drawing.Size(188, 15);
             this.File.TabIndex = 70;
             this.File.Text = "File Directory";
             this.File.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(29, 32);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(22, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 16);
+            this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 41;
             this.label1.Text = "Range Max - Y";
             // 
@@ -134,30 +131,27 @@
             "100",
             "150",
             "200"});
-            this.comboBox_MaxX.Location = new System.Drawing.Point(212, 55);
-            this.comboBox_MaxX.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_MaxX.Location = new System.Drawing.Point(159, 45);
             this.comboBox_MaxX.Name = "comboBox_MaxX";
-            this.comboBox_MaxX.Size = new System.Drawing.Size(115, 24);
+            this.comboBox_MaxX.Size = new System.Drawing.Size(87, 21);
             this.comboBox_MaxX.TabIndex = 40;
             this.comboBox_MaxX.Text = "10";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 2);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(3, 2);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 17);
+            this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 39;
             this.label4.Text = "Setting Skala";
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(208, 32);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Location = new System.Drawing.Point(156, 26);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(101, 17);
+            this.label21.Size = new System.Drawing.Size(78, 13);
             this.label21.TabIndex = 34;
             this.label21.Text = "Range Max - X";
             // 
@@ -175,23 +169,20 @@
             "100",
             "150",
             "200"});
-            this.comboBox_MaxY.Location = new System.Drawing.Point(33, 55);
-            this.comboBox_MaxY.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_MaxY.Location = new System.Drawing.Point(25, 45);
             this.comboBox_MaxY.Name = "comboBox_MaxY";
-            this.comboBox_MaxY.Size = new System.Drawing.Size(115, 24);
+            this.comboBox_MaxY.Size = new System.Drawing.Size(87, 21);
             this.comboBox_MaxY.TabIndex = 33;
             this.comboBox_MaxY.Text = "10";
             // 
             // Date
             // 
-            this.Date.Location = new System.Drawing.Point(585, 471);
-            this.Date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Date.Location = new System.Drawing.Point(439, 383);
             this.Date.Name = "Date";
-            this.Date.Size = new System.Drawing.Size(235, 23);
+            this.Date.Size = new System.Drawing.Size(176, 19);
             this.Date.TabIndex = 71;
             this.Date.Text = "Tanggal Pembacaan";
             this.Date.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Date.Click += new System.EventHandler(this.Date_Click);
             // 
             // panel1
             // 
@@ -205,18 +196,16 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.comboBox_MaxY);
-            this.panel1.Location = new System.Drawing.Point(459, 255);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(344, 207);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(361, 168);
+            this.panel1.Size = new System.Drawing.Size(271, 137);
             this.panel1.TabIndex = 69;
             // 
             // label_MinY
             // 
-            this.label_MinY.Location = new System.Drawing.Point(29, 101);
-            this.label_MinY.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_MinY.Location = new System.Drawing.Point(22, 82);
             this.label_MinY.Name = "label_MinY";
-            this.label_MinY.Size = new System.Drawing.Size(104, 16);
+            this.label_MinY.Size = new System.Drawing.Size(78, 13);
             this.label_MinY.TabIndex = 45;
             this.label_MinY.Text = "Range Min - Y";
             // 
@@ -234,20 +223,18 @@
             "100",
             "150",
             "200"});
-            this.comboBox_MinX.Location = new System.Drawing.Point(212, 124);
-            this.comboBox_MinX.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_MinX.Location = new System.Drawing.Point(159, 101);
             this.comboBox_MinX.Name = "comboBox_MinX";
-            this.comboBox_MinX.Size = new System.Drawing.Size(115, 24);
+            this.comboBox_MinX.Size = new System.Drawing.Size(87, 21);
             this.comboBox_MinX.TabIndex = 44;
             this.comboBox_MinX.Text = "-10";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(208, 101);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(156, 82);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 17);
+            this.label3.Size = new System.Drawing.Size(75, 13);
             this.label3.TabIndex = 43;
             this.label3.Text = "Range Min - X";
             // 
@@ -265,20 +252,18 @@
             "100",
             "150",
             "200"});
-            this.comboBox_MinY.Location = new System.Drawing.Point(33, 124);
-            this.comboBox_MinY.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_MinY.Location = new System.Drawing.Point(25, 101);
             this.comboBox_MinY.Name = "comboBox_MinY";
-            this.comboBox_MinY.Size = new System.Drawing.Size(115, 24);
+            this.comboBox_MinY.Size = new System.Drawing.Size(87, 21);
             this.comboBox_MinY.TabIndex = 42;
             this.comboBox_MinY.Text = "-10";
             // 
             // TitleMain
             // 
             this.TitleMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleMain.Location = new System.Drawing.Point(-351, 45);
-            this.TitleMain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TitleMain.Location = new System.Drawing.Point(-263, 37);
             this.TitleMain.Name = "TitleMain";
-            this.TitleMain.Size = new System.Drawing.Size(1347, 47);
+            this.TitleMain.Size = new System.Drawing.Size(1010, 38);
             this.TitleMain.TabIndex = 65;
             this.TitleMain.Text = "Judul Pengujian";
             this.TitleMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -295,57 +280,55 @@
             this.loadDataToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1009, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1348, 24);
             this.menuStrip1.TabIndex = 61;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileNameToolStripMenuItem
             // 
             this.fileNameToolStripMenuItem.Name = "fileNameToolStripMenuItem";
-            this.fileNameToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
+            this.fileNameToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.fileNameToolStripMenuItem.Text = "&File Name";
             this.fileNameToolStripMenuItem.Click += new System.EventHandler(this.fileNameToolStripMenuItem_Click);
             // 
             // replotToolStripMenuItem
             // 
             this.replotToolStripMenuItem.Name = "replotToolStripMenuItem";
-            this.replotToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
+            this.replotToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.replotToolStripMenuItem.Text = "&Replot";
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.printToolStripMenuItem.Text = "&Print";
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(45, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // loadDataToolStripMenuItem
             // 
             this.loadDataToolStripMenuItem.Name = "loadDataToolStripMenuItem";
-            this.loadDataToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
+            this.loadDataToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.loadDataToolStripMenuItem.Text = "Load Data";
             this.loadDataToolStripMenuItem.Click += new System.EventHandler(this.loadDataToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(430, 45);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(322, 37);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(369, 161);
+            this.pictureBox1.Size = new System.Drawing.Size(277, 131);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 62;
             this.pictureBox1.TabStop = false;
@@ -353,10 +336,9 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 15);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(4, 12);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 17);
+            this.label5.Size = new System.Drawing.Size(72, 13);
             this.label5.TabIndex = 47;
             this.label5.Text = "Range Max Y";
             // 
@@ -369,19 +351,17 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.comboBox5);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Location = new System.Drawing.Point(1075, 426);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Location = new System.Drawing.Point(1396, 346);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(361, 81);
+            this.panel2.Size = new System.Drawing.Size(271, 66);
             this.panel2.TabIndex = 63;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(281, 48);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(211, 39);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 17);
+            this.label7.Size = new System.Drawing.Size(39, 13);
             this.label7.TabIndex = 50;
             this.label7.Text = "Minute";
             // 
@@ -399,10 +379,9 @@
             "100",
             "150",
             "200"});
-            this.comboBox4.Location = new System.Drawing.Point(145, 11);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox4.Location = new System.Drawing.Point(109, 9);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(115, 24);
+            this.comboBox4.Size = new System.Drawing.Size(87, 21);
             this.comboBox4.TabIndex = 48;
             // 
             // comboBox5
@@ -419,29 +398,26 @@
             "100",
             "150",
             "200"});
-            this.comboBox5.Location = new System.Drawing.Point(145, 44);
-            this.comboBox5.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox5.Location = new System.Drawing.Point(109, 36);
             this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(115, 24);
+            this.comboBox5.Size = new System.Drawing.Size(87, 21);
             this.comboBox5.TabIndex = 46;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(5, 48);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(4, 39);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 17);
+            this.label6.Size = new System.Drawing.Size(72, 13);
             this.label6.TabIndex = 45;
             this.label6.Text = "Range Max X";
             // 
             // SenseMain
             // 
             this.SenseMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenseMain.Location = new System.Drawing.Point(-343, 131);
-            this.SenseMain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.SenseMain.Location = new System.Drawing.Point(-257, 106);
             this.SenseMain.Name = "SenseMain";
-            this.SenseMain.Size = new System.Drawing.Size(1339, 59);
+            this.SenseMain.Size = new System.Drawing.Size(1004, 48);
             this.SenseMain.TabIndex = 66;
             this.SenseMain.Text = "Sensor X vs Sensor Y";
             this.SenseMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -456,8 +432,7 @@
             legend1.Enabled = false;
             legend1.Name = "Legend1";
             this.chartXY.Legends.Add(legend1);
-            this.chartXY.Location = new System.Drawing.Point(31, 214);
-            this.chartXY.Margin = new System.Windows.Forms.Padding(4);
+            this.chartXY.Location = new System.Drawing.Point(23, 174);
             this.chartXY.Name = "chartXY";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
@@ -469,17 +444,16 @@
             series2.Name = "Series2";
             this.chartXY.Series.Add(series1);
             this.chartXY.Series.Add(series2);
-            this.chartXY.Size = new System.Drawing.Size(624, 127);
+            this.chartXY.Size = new System.Drawing.Size(1058, 337);
             this.chartXY.TabIndex = 64;
             this.chartXY.Text = "chart1";
             // 
             // ConsumerMain
             // 
             this.ConsumerMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConsumerMain.Location = new System.Drawing.Point(-400, 92);
-            this.ConsumerMain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ConsumerMain.Location = new System.Drawing.Point(-300, 75);
             this.ConsumerMain.Name = "ConsumerMain";
-            this.ConsumerMain.Size = new System.Drawing.Size(1339, 59);
+            this.ConsumerMain.Size = new System.Drawing.Size(1004, 48);
             this.ConsumerMain.TabIndex = 67;
             this.ConsumerMain.Text = "Nama Customer";
             this.ConsumerMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -505,192 +479,173 @@
             this.panel5.Controls.Add(this.MinY);
             this.panel5.Controls.Add(this.MaxY);
             this.panel5.Controls.Add(this.label16);
-            this.panel5.Location = new System.Drawing.Point(67, 344);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4);
+            this.panel5.Location = new System.Drawing.Point(50, 280);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(361, 166);
+            this.panel5.Size = new System.Drawing.Size(271, 135);
             this.panel5.TabIndex = 73;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(328, 49);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(246, 40);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(27, 17);
+            this.label9.Size = new System.Drawing.Size(20, 13);
             this.label9.TabIndex = 65;
             this.label9.Text = "(Y)";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(320, 112);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(240, 91);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 17);
+            this.label8.Size = new System.Drawing.Size(26, 13);
             this.label8.TabIndex = 64;
             this.label8.Text = "(X2)";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(320, 79);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(240, 64);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 17);
+            this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 63;
             this.label2.Text = "(X1)";
             // 
             // U3
             // 
             this.U3.AutoSize = true;
-            this.U3.Location = new System.Drawing.Point(212, 116);
-            this.U3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.U3.Location = new System.Drawing.Point(159, 94);
             this.U3.Name = "U3";
-            this.U3.Size = new System.Drawing.Size(33, 17);
+            this.U3.Size = new System.Drawing.Size(26, 13);
             this.U3.TabIndex = 61;
             this.U3.Text = "Unit";
             // 
             // ValX2
             // 
             this.ValX2.AutoSize = true;
-            this.ValX2.Location = new System.Drawing.Point(1, 116);
-            this.ValX2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ValX2.Location = new System.Drawing.Point(1, 94);
             this.ValX2.Name = "ValX2";
-            this.ValX2.Size = new System.Drawing.Size(65, 17);
+            this.ValX2.Size = new System.Drawing.Size(50, 13);
             this.ValX2.TabIndex = 60;
             this.ValX2.Text = "Value X2";
             // 
             // U2
             // 
             this.U2.AutoSize = true;
-            this.U2.Location = new System.Drawing.Point(212, 82);
-            this.U2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.U2.Location = new System.Drawing.Point(159, 67);
             this.U2.Name = "U2";
-            this.U2.Size = new System.Drawing.Size(33, 17);
+            this.U2.Size = new System.Drawing.Size(26, 13);
             this.U2.TabIndex = 59;
             this.U2.Text = "Unit";
             // 
             // U1
             // 
             this.U1.AutoSize = true;
-            this.U1.Location = new System.Drawing.Point(212, 49);
-            this.U1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.U1.Location = new System.Drawing.Point(159, 40);
             this.U1.Name = "U1";
-            this.U1.Size = new System.Drawing.Size(33, 17);
+            this.U1.Size = new System.Drawing.Size(26, 13);
             this.U1.TabIndex = 58;
             this.U1.Text = "Unit";
             // 
             // ValX1
             // 
             this.ValX1.AutoSize = true;
-            this.ValX1.Location = new System.Drawing.Point(1, 82);
-            this.ValX1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ValX1.Location = new System.Drawing.Point(1, 67);
             this.ValX1.Name = "ValX1";
-            this.ValX1.Size = new System.Drawing.Size(65, 17);
+            this.ValX1.Size = new System.Drawing.Size(50, 13);
             this.ValX1.TabIndex = 54;
             this.ValX1.Text = "Value X1";
             // 
             // ValY
             // 
             this.ValY.AutoSize = true;
-            this.ValY.Location = new System.Drawing.Point(1, 49);
-            this.ValY.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ValY.Location = new System.Drawing.Point(1, 40);
             this.ValY.Name = "ValY";
-            this.ValY.Size = new System.Drawing.Size(57, 17);
+            this.ValY.Size = new System.Drawing.Size(44, 13);
             this.ValY.TabIndex = 53;
             this.ValY.Text = "Value Y";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(161, 23);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label26.Location = new System.Drawing.Point(121, 19);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(30, 17);
+            this.label26.Size = new System.Drawing.Size(24, 13);
             this.label26.TabIndex = 52;
             this.label26.Text = "Min";
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(92, 23);
-            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label25.Location = new System.Drawing.Point(69, 19);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(33, 17);
+            this.label25.Size = new System.Drawing.Size(27, 13);
             this.label25.TabIndex = 51;
             this.label25.Text = "Max";
             // 
             // minX2
             // 
-            this.minX2.Location = new System.Drawing.Point(148, 112);
-            this.minX2.Margin = new System.Windows.Forms.Padding(4);
+            this.minX2.Location = new System.Drawing.Point(111, 91);
             this.minX2.Name = "minX2";
             this.minX2.ReadOnly = true;
-            this.minX2.Size = new System.Drawing.Size(63, 22);
+            this.minX2.Size = new System.Drawing.Size(48, 20);
             this.minX2.TabIndex = 49;
             // 
             // MaxX2
             // 
-            this.MaxX2.Location = new System.Drawing.Point(76, 112);
-            this.MaxX2.Margin = new System.Windows.Forms.Padding(4);
+            this.MaxX2.Location = new System.Drawing.Point(57, 91);
             this.MaxX2.Name = "MaxX2";
             this.MaxX2.ReadOnly = true;
-            this.MaxX2.Size = new System.Drawing.Size(63, 22);
+            this.MaxX2.Size = new System.Drawing.Size(48, 20);
             this.MaxX2.TabIndex = 48;
             // 
             // MinX1
             // 
-            this.MinX1.Location = new System.Drawing.Point(148, 79);
-            this.MinX1.Margin = new System.Windows.Forms.Padding(4);
+            this.MinX1.Location = new System.Drawing.Point(111, 64);
             this.MinX1.Name = "MinX1";
             this.MinX1.ReadOnly = true;
-            this.MinX1.Size = new System.Drawing.Size(63, 22);
+            this.MinX1.Size = new System.Drawing.Size(48, 20);
             this.MinX1.TabIndex = 46;
             // 
             // MaxX1
             // 
-            this.MaxX1.Location = new System.Drawing.Point(76, 79);
-            this.MaxX1.Margin = new System.Windows.Forms.Padding(4);
+            this.MaxX1.Location = new System.Drawing.Point(57, 64);
             this.MaxX1.Name = "MaxX1";
             this.MaxX1.ReadOnly = true;
-            this.MaxX1.Size = new System.Drawing.Size(63, 22);
+            this.MaxX1.Size = new System.Drawing.Size(48, 20);
             this.MaxX1.TabIndex = 45;
             // 
             // MinY
             // 
-            this.MinY.Location = new System.Drawing.Point(148, 46);
-            this.MinY.Margin = new System.Windows.Forms.Padding(4);
+            this.MinY.Location = new System.Drawing.Point(111, 37);
             this.MinY.Name = "MinY";
             this.MinY.ReadOnly = true;
-            this.MinY.Size = new System.Drawing.Size(63, 22);
+            this.MinY.Size = new System.Drawing.Size(48, 20);
             this.MinY.TabIndex = 43;
             // 
             // MaxY
             // 
-            this.MaxY.Location = new System.Drawing.Point(76, 46);
-            this.MaxY.Margin = new System.Windows.Forms.Padding(4);
+            this.MaxY.Location = new System.Drawing.Point(57, 37);
             this.MaxY.Name = "MaxY";
             this.MaxY.ReadOnly = true;
-            this.MaxY.Size = new System.Drawing.Size(63, 22);
+            this.MaxY.Size = new System.Drawing.Size(48, 20);
             this.MaxY.TabIndex = 42;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(-1, 5);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(-1, 4);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(98, 17);
+            this.label16.Size = new System.Drawing.Size(75, 13);
             this.label16.TabIndex = 0;
             this.label16.Text = "Decimal Value";
             // 
             // XYReport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1009, 550);
+            this.ClientSize = new System.Drawing.Size(1348, 687);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.Waktu);
             this.Controls.Add(this.File);
@@ -703,9 +658,8 @@
             this.Controls.Add(this.SenseMain);
             this.Controls.Add(this.chartXY);
             this.Controls.Add(this.ConsumerMain);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximumSize = new System.Drawing.Size(1027, 597);
-            this.MinimumSize = new System.Drawing.Size(1027, 597);
+            this.MaximumSize = new System.Drawing.Size(1364, 726);
+            this.MinimumSize = new System.Drawing.Size(1364, 726);
             this.Name = "XYReport";
             this.Text = "XYReport";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
