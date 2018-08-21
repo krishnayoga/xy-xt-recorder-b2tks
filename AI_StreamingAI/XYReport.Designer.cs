@@ -93,8 +93,7 @@
             // 
             // Waktu
             // 
-            this.Waktu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Waktu.Location = new System.Drawing.Point(763, 608);
+            this.Waktu.Location = new System.Drawing.Point(573, 503);
             this.Waktu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Waktu.Name = "Waktu";
             this.Waktu.Size = new System.Drawing.Size(247, 18);
@@ -104,8 +103,7 @@
             // 
             // File
             // 
-            this.File.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.File.Location = new System.Drawing.Point(759, 564);
+            this.File.Location = new System.Drawing.Point(557, 438);
             this.File.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.File.Name = "File";
             this.File.Size = new System.Drawing.Size(251, 18);
@@ -186,18 +184,17 @@
             // 
             // Date
             // 
-            this.Date.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Date.Location = new System.Drawing.Point(775, 582);
+            this.Date.Location = new System.Drawing.Point(585, 471);
             this.Date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Date.Name = "Date";
             this.Date.Size = new System.Drawing.Size(235, 23);
             this.Date.TabIndex = 71;
             this.Date.Text = "Tanggal Pembacaan";
             this.Date.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Date.Click += new System.EventHandler(this.Date_Click);
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label_MinY);
             this.panel1.Controls.Add(this.comboBox_MinX);
@@ -208,7 +205,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.comboBox_MaxY);
-            this.panel1.Location = new System.Drawing.Point(648, 391);
+            this.panel1.Location = new System.Drawing.Point(459, 255);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(361, 168);
@@ -278,7 +275,7 @@
             // TitleMain
             // 
             this.TitleMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleMain.Location = new System.Drawing.Point(451, 46);
+            this.TitleMain.Location = new System.Drawing.Point(60, 45);
             this.TitleMain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TitleMain.Name = "TitleMain";
             this.TitleMain.Size = new System.Drawing.Size(1347, 47);
@@ -441,7 +438,7 @@
             // SenseMain
             // 
             this.SenseMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenseMain.Location = new System.Drawing.Point(459, 151);
+            this.SenseMain.Location = new System.Drawing.Point(66, 151);
             this.SenseMain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SenseMain.Name = "SenseMain";
             this.SenseMain.Size = new System.Drawing.Size(1339, 59);
@@ -479,7 +476,7 @@
             // ConsumerMain
             // 
             this.ConsumerMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConsumerMain.Location = new System.Drawing.Point(459, 92);
+            this.ConsumerMain.Location = new System.Drawing.Point(68, 92);
             this.ConsumerMain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ConsumerMain.Name = "ConsumerMain";
             this.ConsumerMain.Size = new System.Drawing.Size(1339, 59);
@@ -489,7 +486,6 @@
             // 
             // panel5
             // 
-            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.label9);
             this.panel5.Controls.Add(this.label8);
@@ -509,7 +505,7 @@
             this.panel5.Controls.Add(this.MinY);
             this.panel5.Controls.Add(this.MaxY);
             this.panel5.Controls.Add(this.label16);
-            this.panel5.Location = new System.Drawing.Point(648, 225);
+            this.panel5.Location = new System.Drawing.Point(67, 344);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(361, 166);

@@ -197,7 +197,10 @@ namespace AI_StreamingAI
             chartXY.Series[1].Color = Color.Red;
         }
 
-        
+        private void Date_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void plot_chart()
         {
