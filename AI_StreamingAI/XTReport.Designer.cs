@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XTReport));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.replotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,7 +103,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1797, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1009, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -176,7 +176,7 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.comboBox5);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Location = new System.Drawing.Point(1863, 422);
+            this.panel2.Location = new System.Drawing.Point(1075, 422);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(361, 81);
@@ -244,19 +244,19 @@
             // 
             // chartXY
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea2);
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chartXY.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea4);
+            legend4.Enabled = false;
+            legend4.Name = "Legend1";
+            this.chartXY.Legends.Add(legend4);
             this.chartXY.Location = new System.Drawing.Point(0, 222);
             this.chartXY.Margin = new System.Windows.Forms.Padding(4);
             this.chartXY.Name = "chartXY";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartXY.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chartXY.Series.Add(series4);
             this.chartXY.Size = new System.Drawing.Size(1412, 678);
             this.chartXY.TabIndex = 51;
             this.chartXY.Text = "chart1";
@@ -296,7 +296,6 @@
             // 
             // panel5
             // 
-            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.label8);
             this.panel5.Controls.Add(this.label3);
@@ -508,7 +507,6 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.comboBox_MinY);
@@ -638,7 +636,6 @@
             // 
             // Waktu
             // 
-            this.Waktu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Waktu.Location = new System.Drawing.Point(1551, 652);
             this.Waktu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Waktu.Name = "Waktu";
@@ -649,7 +646,6 @@
             // 
             // Date
             // 
-            this.Date.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Date.Location = new System.Drawing.Point(1563, 626);
             this.Date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Date.Name = "Date";
@@ -660,7 +656,6 @@
             // 
             // File
             // 
-            this.File.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.File.Location = new System.Drawing.Point(1439, 608);
             this.File.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.File.Name = "File";
@@ -674,7 +669,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1797, 897);
+            this.ClientSize = new System.Drawing.Size(1009, 550);
             this.Controls.Add(this.Waktu);
             this.Controls.Add(this.Date);
             this.Controls.Add(this.File);
@@ -689,7 +684,8 @@
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1813, 883);
+            this.MaximumSize = new System.Drawing.Size(1027, 597);
+            this.MinimumSize = new System.Drawing.Size(1027, 597);
             this.Name = "XTReport";
             this.Text = "Report XT Recorder";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

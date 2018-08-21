@@ -54,6 +54,8 @@ namespace AI_StreamingAI
         int batas_chart_1, batas_chart_2, batas_chart_3, batas_chart_4, batas_chart_5, batas_chart_6;
         int batas_chart_7, batas_chart_8, batas_chart_9, batas_chart_10, batas_chart_11;
 
+        double tanggal, jam, elapsed_time;
+
         public XTReport()
         {
             InitializeComponent();
@@ -121,11 +123,21 @@ namespace AI_StreamingAI
             MinY1.Text = Convert.ToString(res.Cells[11, 2].Value);
             MaxY2.Text = Convert.ToString(res.Cells[12, 2].Value);
             MinY2.Text = Convert.ToString(res.Cells[13, 2].Value);
-            
-            Date.Text = Convert.ToString(res.Cells[4, 2].Value);
-            Waktu.Text = Convert.ToString(res.Cells[5, 2].Value);
-            Time.Text = Convert.ToString(res.Cells[14, 2].Value);
 
+            //tanggal = double.Parse(Convert.ToString(res.Cells[4, 2].Value));
+            jam = double.Parse(Convert.ToString(res.Cells[5, 2].Value));
+            elapsed_time = double.Parse(Convert.ToString(res.Cells[14, 2].Value));
+
+            Console.WriteLine("tanggal: " + tanggal + " jam: " + jam + " elapsed_time: " + elapsed_time);
+
+
+            Date.Text = Convert.ToString(res.Cells[4, 2].Value);
+            DateTime jam_text = DateTime.FromOADate(jam);
+            DateTime elapsed_time_text = DateTime.FromOADate(elapsed_time);
+
+            Waktu.Text = Convert.ToString(jam_text);
+            Time.Text = Convert.ToString(elapsed_time);
+            
             jumlah_data = 160;
 
             book.Close();
@@ -141,7 +153,7 @@ namespace AI_StreamingAI
             
             for (i = 0; i < jumlah_data; i++)
             {
-                Console.WriteLine("data ke: "+i+" dataY1: " + dataY1[i] + " dataY2: " + dataY2[i]);
+                //Console.WriteLine("data ke: "+i+" dataY1: " + dataY1[i] + " dataY2: " + dataY2[i]);
             }
             
             init_chart();

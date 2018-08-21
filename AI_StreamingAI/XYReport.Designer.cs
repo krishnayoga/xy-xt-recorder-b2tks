@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XYReport));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Waktu = new System.Windows.Forms.Label();
             this.File = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -94,7 +94,7 @@
             // Waktu
             // 
             this.Waktu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Waktu.Location = new System.Drawing.Point(1551, 608);
+            this.Waktu.Location = new System.Drawing.Point(763, 608);
             this.Waktu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Waktu.Name = "Waktu";
             this.Waktu.Size = new System.Drawing.Size(247, 18);
@@ -105,7 +105,7 @@
             // File
             // 
             this.File.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.File.Location = new System.Drawing.Point(1547, 564);
+            this.File.Location = new System.Drawing.Point(759, 564);
             this.File.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.File.Name = "File";
             this.File.Size = new System.Drawing.Size(251, 18);
@@ -187,7 +187,7 @@
             // Date
             // 
             this.Date.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Date.Location = new System.Drawing.Point(1563, 582);
+            this.Date.Location = new System.Drawing.Point(775, 582);
             this.Date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Date.Name = "Date";
             this.Date.Size = new System.Drawing.Size(235, 23);
@@ -208,7 +208,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.comboBox_MaxY);
-            this.panel1.Location = new System.Drawing.Point(1436, 391);
+            this.panel1.Location = new System.Drawing.Point(648, 391);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(361, 168);
@@ -299,7 +299,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1797, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1009, 28);
             this.menuStrip1.TabIndex = 61;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -372,7 +372,7 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.comboBox5);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Location = new System.Drawing.Point(1863, 426);
+            this.panel2.Location = new System.Drawing.Point(1075, 426);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(361, 81);
@@ -454,25 +454,25 @@
             this.chartXY.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea2);
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chartXY.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chartXY.Legends.Add(legend1);
             this.chartXY.Location = new System.Drawing.Point(31, 214);
             this.chartXY.Margin = new System.Windows.Forms.Padding(4);
             this.chartXY.Name = "chartXY";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Legend = "Legend1";
-            series4.Name = "Series2";
-            this.chartXY.Series.Add(series3);
-            this.chartXY.Series.Add(series4);
-            this.chartXY.Size = new System.Drawing.Size(1412, 474);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series2";
+            this.chartXY.Series.Add(series1);
+            this.chartXY.Series.Add(series2);
+            this.chartXY.Size = new System.Drawing.Size(624, 127);
             this.chartXY.TabIndex = 64;
             this.chartXY.Text = "chart1";
             // 
@@ -509,7 +509,7 @@
             this.panel5.Controls.Add(this.MinY);
             this.panel5.Controls.Add(this.MaxY);
             this.panel5.Controls.Add(this.label16);
-            this.panel5.Location = new System.Drawing.Point(1436, 225);
+            this.panel5.Location = new System.Drawing.Point(648, 225);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(361, 166);
@@ -694,7 +694,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1797, 897);
+            this.ClientSize = new System.Drawing.Size(1009, 550);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.Waktu);
             this.Controls.Add(this.File);
@@ -708,7 +708,8 @@
             this.Controls.Add(this.chartXY);
             this.Controls.Add(this.ConsumerMain);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1813, 883);
+            this.MaximumSize = new System.Drawing.Size(1027, 597);
+            this.MinimumSize = new System.Drawing.Size(1027, 597);
             this.Name = "XYReport";
             this.Text = "XYReport";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
