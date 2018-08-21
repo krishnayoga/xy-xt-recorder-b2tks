@@ -133,6 +133,8 @@ namespace AI_StreamingAI
             */
             book.Close();
             ex.Quit();
+
+
         }
 
         private void loadDataToolStripMenuItem_Click(object sender, EventArgs e)

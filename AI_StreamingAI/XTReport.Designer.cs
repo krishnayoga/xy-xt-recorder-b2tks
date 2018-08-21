@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XTReport));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.replotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -244,19 +244,19 @@
             // 
             // chartXY
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea4);
-            legend4.Enabled = false;
-            legend4.Name = "Legend1";
-            this.chartXY.Legends.Add(legend4);
+            chartArea3.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea3);
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.chartXY.Legends.Add(legend3);
             this.chartXY.Location = new System.Drawing.Point(0, 222);
             this.chartXY.Margin = new System.Windows.Forms.Padding(4);
             this.chartXY.Name = "chartXY";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chartXY.Series.Add(series4);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartXY.Series.Add(series3);
             this.chartXY.Size = new System.Drawing.Size(1412, 678);
             this.chartXY.TabIndex = 51;
             this.chartXY.Text = "chart1";
@@ -264,7 +264,7 @@
             // ConsumerMain
             // 
             this.ConsumerMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConsumerMain.Location = new System.Drawing.Point(451, 108);
+            this.ConsumerMain.Location = new System.Drawing.Point(-167, 99);
             this.ConsumerMain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ConsumerMain.Name = "ConsumerMain";
             this.ConsumerMain.Size = new System.Drawing.Size(1347, 59);
@@ -275,7 +275,7 @@
             // SenseMain
             // 
             this.SenseMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenseMain.Location = new System.Drawing.Point(453, 158);
+            this.SenseMain.Location = new System.Drawing.Point(-129, 158);
             this.SenseMain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SenseMain.Name = "SenseMain";
             this.SenseMain.Size = new System.Drawing.Size(1344, 60);
@@ -286,13 +286,14 @@
             // TitleMain
             // 
             this.TitleMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleMain.Location = new System.Drawing.Point(451, 53);
+            this.TitleMain.Location = new System.Drawing.Point(-167, 44);
             this.TitleMain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TitleMain.Name = "TitleMain";
             this.TitleMain.Size = new System.Drawing.Size(1347, 55);
             this.TitleMain.TabIndex = 53;
             this.TitleMain.Text = "Nama Pengujian";
             this.TitleMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TitleMain.Click += new System.EventHandler(this.TitleMain_Click);
             // 
             // panel5
             // 
@@ -316,7 +317,7 @@
             this.panel5.Controls.Add(this.MinY1);
             this.panel5.Controls.Add(this.MaxY1);
             this.panel5.Controls.Add(this.label16);
-            this.panel5.Location = new System.Drawing.Point(1439, 251);
+            this.panel5.Location = new System.Drawing.Point(458, 222);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(358, 183);
@@ -516,7 +517,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.comboBox_MaxY);
-            this.panel1.Location = new System.Drawing.Point(1439, 434);
+            this.panel1.Location = new System.Drawing.Point(431, 374);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(358, 160);
@@ -636,7 +637,7 @@
             // 
             // Waktu
             // 
-            this.Waktu.Location = new System.Drawing.Point(1551, 652);
+            this.Waktu.Location = new System.Drawing.Point(227, 345);
             this.Waktu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Waktu.Name = "Waktu";
             this.Waktu.Size = new System.Drawing.Size(247, 18);
@@ -646,7 +647,7 @@
             // 
             // Date
             // 
-            this.Date.Location = new System.Drawing.Point(1563, 626);
+            this.Date.Location = new System.Drawing.Point(288, 322);
             this.Date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Date.Name = "Date";
             this.Date.Size = new System.Drawing.Size(235, 23);
@@ -656,7 +657,7 @@
             // 
             // File
             // 
-            this.File.Location = new System.Drawing.Point(1439, 608);
+            this.File.Location = new System.Drawing.Point(126, 304);
             this.File.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.File.Name = "File";
             this.File.Size = new System.Drawing.Size(359, 18);

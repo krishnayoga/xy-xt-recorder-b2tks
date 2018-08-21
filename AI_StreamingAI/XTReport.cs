@@ -51,10 +51,32 @@ namespace AI_StreamingAI
         double label_chart_7, label_chart_8, label_chart_9, label_chart_10, label_chart_11;
         double pos_label_1, pos_label_2, pos_label_3, pos_label_4, pos_label_5, pos_label_6;
         double pos_label_7, pos_label_8, pos_label_9, pos_label_10, pos_label_11;
+
+        private void TitleMain_Click(object sender, EventArgs e)
+        {
+
+        }
+
         int batas_chart_1, batas_chart_2, batas_chart_3, batas_chart_4, batas_chart_5, batas_chart_6;
         int batas_chart_7, batas_chart_8, batas_chart_9, batas_chart_10, batas_chart_11;
 
         double tanggal, jam, elapsed_time;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public XTReport()
         {
