@@ -275,7 +275,7 @@
             // TitleMain
             // 
             this.TitleMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleMain.Location = new System.Drawing.Point(60, 45);
+            this.TitleMain.Location = new System.Drawing.Point(-351, 45);
             this.TitleMain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TitleMain.Name = "TitleMain";
             this.TitleMain.Size = new System.Drawing.Size(1347, 47);
@@ -342,7 +342,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(73, 57);
+            this.pictureBox1.Location = new System.Drawing.Point(430, 45);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(369, 161);
@@ -438,7 +438,7 @@
             // SenseMain
             // 
             this.SenseMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenseMain.Location = new System.Drawing.Point(66, 151);
+            this.SenseMain.Location = new System.Drawing.Point(-343, 131);
             this.SenseMain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SenseMain.Name = "SenseMain";
             this.SenseMain.Size = new System.Drawing.Size(1339, 59);
@@ -476,7 +476,7 @@
             // ConsumerMain
             // 
             this.ConsumerMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConsumerMain.Location = new System.Drawing.Point(68, 92);
+            this.ConsumerMain.Location = new System.Drawing.Point(-400, 92);
             this.ConsumerMain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ConsumerMain.Name = "ConsumerMain";
             this.ConsumerMain.Size = new System.Drawing.Size(1339, 59);
