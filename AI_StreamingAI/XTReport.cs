@@ -82,6 +82,11 @@ namespace AI_StreamingAI
             //Input hanya angka
         }
 
+        private void ValY1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void comboBox_MaxY_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
@@ -149,7 +154,7 @@ namespace AI_StreamingAI
             {
                 MessageBox.Show("Error open file");
             }
-            
+            loadDataToolStripMenuItem.Enabled = true;
 
             load_judul();
 
@@ -177,6 +182,12 @@ namespace AI_StreamingAI
             TitleMain.Text = Convert.ToString(res.Cells[1, 2].Value);
             ConsumerMain.Text = Convert.ToString(res.Cells[2, 2].Value);
             SenseMain.Text = Convert.ToString(res.Cells[3, 2].Value);
+
+            ValY1.Text = Convert.ToString(res.Cells[6, 2].Value);
+            U1.Text = Convert.ToString(res.Cells[7, 2].Value);
+            ValY2.Text = Convert.ToString(res.Cells[8, 2].Value);
+            U2.Text = Convert.ToString(res.Cells[9, 2].Value);
+          
 
             MaxY1.Text = Convert.ToString(res.Cells[11, 2].Value);
             MinY1.Text = Convert.ToString(res.Cells[12, 2].Value);

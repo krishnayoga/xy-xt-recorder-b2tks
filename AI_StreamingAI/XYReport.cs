@@ -78,12 +78,12 @@ namespace AI_StreamingAI
             {
                 MessageBox.Show("error!");
             }
-            
+            loadDataToolStripMenuItem.Enabled = true;
             //Date.Text = DateTime.Now.ToShortDateString();
             //Waktu.Text = DateTime.Now.ToLongTimeString();
 
             //load_judul();
-            
+
         }
 
         private void load_judul()
@@ -95,6 +95,13 @@ namespace AI_StreamingAI
             TitleMain.Text = Convert.ToString(res.Cells[1, 2].Value);
             ConsumerMain.Text = Convert.ToString(res.Cells[2, 2].Value);
             SenseMain.Text = Convert.ToString(res.Cells[3, 2].Value);
+
+            ValY.Text = Convert.ToString(res.Cells[6, 2].Value);
+            U1.Text = Convert.ToString(res.Cells[7, 2].Value);
+            ValX1.Text = Convert.ToString(res.Cells[8, 2].Value);
+            U2.Text = Convert.ToString(res.Cells[9, 2].Value);
+            ValX2.Text = Convert.ToString(res.Cells[8, 2].Value);
+            U3.Text = Convert.ToString(res.Cells[9, 2].Value);
 
             MaxX1.Text = Convert.ToString(res.Cells[13, 2].Value);
             MinX1.Text = Convert.ToString(res.Cells[14, 2].Value);

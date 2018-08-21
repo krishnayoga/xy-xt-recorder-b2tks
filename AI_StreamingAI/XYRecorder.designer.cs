@@ -30,9 +30,9 @@ namespace AI_StreamingAI
       {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XYRecorder));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.waveformAiCtrl1 = new Automation.BDaq.WaveformAiCtrl(this.components);
             this.chartXY = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -150,19 +150,19 @@ namespace AI_StreamingAI
             // 
             // chartXY
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea2);
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chartXY.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chartXY.Legends.Add(legend1);
             this.chartXY.Location = new System.Drawing.Point(12, 194);
             this.chartXY.Name = "chartXY";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartXY.Series.Add(series2);
-            this.chartXY.Size = new System.Drawing.Size(1047, 523);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartXY.Series.Add(series1);
+            this.chartXY.Size = new System.Drawing.Size(1061, 523);
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
             this.chartXY.Click += new System.EventHandler(this.chartXY_Click);
@@ -763,7 +763,7 @@ namespace AI_StreamingAI
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(0, 4);
+            this.label19.Location = new System.Drawing.Point(1, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(55, 15);
             this.label19.TabIndex = 1;

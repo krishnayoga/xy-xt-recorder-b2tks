@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XTReport));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.replotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -71,7 +71,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox_MinY = new System.Windows.Forms.ComboBox();
-            this.UnitX = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox_MaxX = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -111,6 +110,14 @@
             this.fileNameToolStripMenuItem.Text = "&File Name";
             this.fileNameToolStripMenuItem.Click += new System.EventHandler(this.fileNameToolStripMenuItem_Click);
             // 
+            // loadDataToolStripMenuItem
+            // 
+            this.loadDataToolStripMenuItem.Enabled = false;
+            this.loadDataToolStripMenuItem.Name = "loadDataToolStripMenuItem";
+            this.loadDataToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.loadDataToolStripMenuItem.Text = "Load Data";
+            this.loadDataToolStripMenuItem.Click += new System.EventHandler(this.loadDataToolStripMenuItem_Click);
+            // 
             // replotToolStripMenuItem
             // 
             this.replotToolStripMenuItem.Name = "replotToolStripMenuItem";
@@ -135,13 +142,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // loadDataToolStripMenuItem
-            // 
-            this.loadDataToolStripMenuItem.Name = "loadDataToolStripMenuItem";
-            this.loadDataToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
-            this.loadDataToolStripMenuItem.Text = "Load Data";
-            this.loadDataToolStripMenuItem.Click += new System.EventHandler(this.loadDataToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -234,19 +234,19 @@
             // 
             // chartXY
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea2);
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chartXY.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chartXY.Legends.Add(legend1);
             this.chartXY.Location = new System.Drawing.Point(0, 196);
             this.chartXY.Name = "chartXY";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartXY.Series.Add(series2);
-            this.chartXY.Size = new System.Drawing.Size(1059, 495);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartXY.Series.Add(series1);
+            this.chartXY.Size = new System.Drawing.Size(1073, 495);
             this.chartXY.TabIndex = 51;
             this.chartXY.Text = "chart1";
             // 
@@ -325,7 +325,7 @@
             // U2
             // 
             this.U2.AutoSize = true;
-            this.U2.Location = new System.Drawing.Point(189, 40);
+            this.U2.Location = new System.Drawing.Point(189, 71);
             this.U2.Name = "U2";
             this.U2.Size = new System.Drawing.Size(26, 13);
             this.U2.TabIndex = 59;
@@ -334,7 +334,7 @@
             // U1
             // 
             this.U1.AutoSize = true;
-            this.U1.Location = new System.Drawing.Point(189, 70);
+            this.U1.Location = new System.Drawing.Point(189, 40);
             this.U1.Name = "U1";
             this.U1.Size = new System.Drawing.Size(26, 13);
             this.U1.TabIndex = 58;
@@ -352,7 +352,7 @@
             // ValY2
             // 
             this.ValY2.AutoSize = true;
-            this.ValY2.Location = new System.Drawing.Point(4, 67);
+            this.ValY2.Location = new System.Drawing.Point(4, 70);
             this.ValY2.Name = "ValY2";
             this.ValY2.Size = new System.Drawing.Size(50, 13);
             this.ValY2.TabIndex = 54;
@@ -361,11 +361,12 @@
             // ValY1
             // 
             this.ValY1.AutoSize = true;
-            this.ValY1.Location = new System.Drawing.Point(3, 40);
+            this.ValY1.Location = new System.Drawing.Point(4, 40);
             this.ValY1.Name = "ValY1";
             this.ValY1.Size = new System.Drawing.Size(50, 13);
             this.ValY1.TabIndex = 53;
             this.ValY1.Text = "Value Y1";
+            this.ValY1.Click += new System.EventHandler(this.ValY1_Click);
             // 
             // label26
             // 
@@ -441,7 +442,6 @@
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.comboBox_MinY);
-            this.panel1.Controls.Add(this.UnitX);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.comboBox_MaxX);
             this.panel1.Controls.Add(this.label4);
@@ -470,7 +470,7 @@
             this.comboBox_MinX.Name = "comboBox_MinX";
             this.comboBox_MinX.Size = new System.Drawing.Size(87, 21);
             this.comboBox_MinX.TabIndex = 46;
-            this.comboBox_MinX.Text = "10";
+            this.comboBox_MinX.Text = "-10";
             this.comboBox_MinX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_MinX_KeyPress);
             // 
             // label10
@@ -511,15 +511,6 @@
             this.comboBox_MinY.Text = "-10";
             this.comboBox_MinY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_MinY_KeyPress);
             // 
-            // UnitX
-            // 
-            this.UnitX.AutoSize = true;
-            this.UnitX.Location = new System.Drawing.Point(116, 7);
-            this.UnitX.Name = "UnitX";
-            this.UnitX.Size = new System.Drawing.Size(36, 13);
-            this.UnitX.TabIndex = 42;
-            this.UnitX.Text = "Unit X";
-            // 
             // label1
             // 
             this.label1.Location = new System.Drawing.Point(22, 26);
@@ -553,7 +544,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 2);
+            this.label4.Location = new System.Drawing.Point(3, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 39;
@@ -693,7 +684,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox comboBox_MaxY;
-        private System.Windows.Forms.Label UnitX;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox_MaxX;
         private System.Windows.Forms.Label label4;
