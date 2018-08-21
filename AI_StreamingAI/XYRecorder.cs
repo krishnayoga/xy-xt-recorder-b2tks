@@ -45,6 +45,7 @@ namespace AI_StreamingAI
         bool m_isFirstOverRun = true;
         double m_xInc;
         int dataCount = 0;
+        int recCount = 0;
         double last_x_0;
         double last_x_1;
         bool firstChecked = true;
@@ -179,13 +180,22 @@ namespace AI_StreamingAI
 
                     if (recordData)
                     {
-
+                        if (check1.Checked&&!check2.Checked)
+                        {
+                            dataPrint[2] = 0;
+          
+                        }
+                        else if (check2.Checked&&!check1.Checked)
+                        {
+                            dataPrint[1] = 0;
+                        }
+                        
                         StreamWriter sw = new StreamWriter(File.Text, append: true);
 
                         sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), dataPrint[0], dataPrint[1], dataPrint[2]);
 
                         sw.Close();
-
+                        recCount++;
                     }
 
 
@@ -402,6 +412,7 @@ namespace AI_StreamingAI
             button_start.Enabled = true;
             button_stop.Enabled = true;
             balanceToolStripMenuItem.Enabled = true;
+            recCount = 0;
         }
 
         //fungsi untuk menu stop button
@@ -506,6 +517,16 @@ namespace AI_StreamingAI
             write.WriteLine("UnitY,"+UnitY.Text);
             write.WriteLine("SensorX1,"+SensorX1.Text);
             write.WriteLine("UnitX1,"+UnitX1.Text);
+            if (!check2.Checked && check1.Checked)
+            {
+                write.WriteLine("Jenis, 1,Jumlah Data");
+            } else if (check2.Checked && !check1.Checked)
+            {
+                write.WriteLine("Jenis, 2,Jumlah Data");
+            } else if(check2.Checked&&check1.Checked)
+            {
+                write.WriteLine("Jenis, 3,Jumlah Data");
+            }
             write.WriteLine("MaxY,");
             write.WriteLine("MinY,");
             write.WriteLine("MaxX1,");
@@ -534,12 +555,13 @@ namespace AI_StreamingAI
             excel.Application ex = new excel.Application();
             excel.Workbook book = ex.Workbooks.Open(File.Text);
             excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
-            res.Cells[10, 2] = MaxY.Text;
-            res.Cells[11, 2] = MinY.Text;
-            res.Cells[12, 2] = MaxX1.Text;
-            res.Cells[13, 2] = MinX1.Text;
-            res.Cells[14, 2] = MaxX2.Text;
-            res.Cells[15, 2] = minX2.Text;
+            res.Cells[10, 4] = recCount;
+            res.Cells[11, 2] = MaxY.Text;
+            res.Cells[12, 2] = MinY.Text;
+            res.Cells[13, 2] = MaxX1.Text;
+            res.Cells[14, 2] = MinX1.Text;
+            res.Cells[15, 2] = MaxX2.Text;
+            res.Cells[16, 2] = minX2.Text;
             res.Columns.AutoFit();
             book.SaveAs(File.Text);
             book.Close();

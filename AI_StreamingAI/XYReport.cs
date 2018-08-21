@@ -48,9 +48,7 @@ namespace AI_StreamingAI
         int max_y_chart;
         int min_y_chart;
 
-        double tanggal, jam, elapsed_time;
-
-        //DateTime datee = new DateTime();
+        DateTime datee = new DateTime();
 
         public XYReport()
         {
@@ -102,27 +100,12 @@ namespace AI_StreamingAI
             minX2.Text = Convert.ToString(res.Cells[15, 2].Value);
             MaxY.Text = Convert.ToString(res.Cells[10, 2].Value);
             MinY.Text = Convert.ToString(res.Cells[11, 2].Value);
-
-            //tanggal = double.Parse(Convert.ToString(res.Cells[4, 2].Value));
-            jam = double.Parse(Convert.ToString(res.Cells[5, 2].Value));
-            elapsed_time = double.Parse(Convert.ToString(res.Cells[14, 2].Value));
-
-            Console.WriteLine("tanggal: " + tanggal + " jam: " + jam + " elapsed_time: " + elapsed_time);
-
-            DateTime datee = DateTime.FromOADate(Convert.ToString(res.Cells[4, 2].Value));
-            Date.Text = Convert.ToString(res.Cells[4, 2].Value);
-            DateTime jam_text = DateTime.FromOADate(jam);
-            DateTime elapsed_time_text = DateTime.FromOADate(elapsed_time);
-
-            Date.Text = Convert.ToString(datee);
-            Waktu.Text = Convert.ToString(jam_text);
-            //Time.Text = Convert.ToString(elapsed_time);
-            /*
+            
             datee = Convert.ToDateTime(res.Cells[4, 2].Value);
             Waktu.Text = Convert.ToString(res.Cells[5, 2].Value);
 
             Date.Text = Convert.ToString(datee);
-            */
+
             jumlah_data = 1000;
             /*
             chartXY.Series[0].Points.AddXY(1, 2);
@@ -197,10 +180,7 @@ namespace AI_StreamingAI
             chartXY.Series[1].Color = Color.Red;
         }
 
-        private void Date_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void plot_chart()
         {
