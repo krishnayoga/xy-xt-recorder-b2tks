@@ -727,6 +727,11 @@ namespace AI_StreamingAI
 
         }
 
+        private void ConsumerMain_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //button replot menu
         private void replotToolStripMenuItem_Click(object sender, EventArgs e)
         {
