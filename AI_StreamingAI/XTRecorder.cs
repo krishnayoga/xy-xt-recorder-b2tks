@@ -47,9 +47,10 @@ namespace AI_StreamingAI
         bool m_isFirstOverRun = true;
         double m_xInc;
         int dataCount = 0;
-        double last_x;
-        double last_x_holdX;
+        double last_x = 0;
+        double last_x_holdX = 0;
         bool firstChecked = true;
+        bool firstrun = true;
         string[] arrAvgData;
         string[] arrData;
         double[] arrSumData;
@@ -57,7 +58,7 @@ namespace AI_StreamingAI
         double max_y_1 = 0;
         double min_y_1 = 1000;
         double max_y_2 = 0;
-        double min_y_2 = 0;
+        double min_y_2 = 1000;
         int factor_baca_y_1 = 1, factor_baca_y_2 = 1;
         int max_x_chart;
         int min_x_chart;
@@ -91,7 +92,7 @@ namespace AI_StreamingAI
             InitializeComponent();
             //ini
             timer.Tick += new EventHandler(timer_stopwatch);
-            timer.Interval = 10;
+            timer.Interval = 100;
 
             timer_plot.Tick += new EventHandler(plotChart);
             timer_plot.Interval = 100;
@@ -287,7 +288,7 @@ namespace AI_StreamingAI
         private void initChart()
         {
             //ini
-            max_x_chart = Convert.ToInt32(RangeX.Text) * 61 * 9 + 1;
+            max_x_chart = Convert.ToInt32(RangeX.Text) * 61 * 9 + 20;
             //itu
             min_x_chart = -max_x_chart;
             max_y_chart = Convert.ToInt32(RangeY.Text);
@@ -343,16 +344,16 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisY.Interval = max_y_chart / 10;
 
             label_chart_1 = Convert.ToDouble(max_x_chart) * 0;
-            label_chart_2 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10;
-            label_chart_3 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 2;
-            label_chart_4 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 3;
-            label_chart_5 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 4;
-            label_chart_6 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 5;
-            label_chart_7 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 6;
-            label_chart_8 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 7;
-            label_chart_9 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 8;
-            label_chart_10 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 9;
-            label_chart_11 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9;
+            label_chart_2 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10;
+            label_chart_3 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 2;
+            label_chart_4 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 3;
+            label_chart_5 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 4;
+            label_chart_6 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 5;
+            label_chart_7 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 6;
+            label_chart_8 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 7;
+            label_chart_9 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 8;
+            label_chart_10 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 9;
+            label_chart_11 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9;
 
 
             pos_label_1 = max_x_chart * 0;
@@ -427,26 +428,31 @@ namespace AI_StreamingAI
             {
                 if (check1.Checked)
                 {
+                    dataPrint[0] = 7;
                     chartXY.Series[0].Points.AddXY(last_x, dataPrint[0]);
                 }
 
                 if (check2.Checked)
                 {
+                    dataPrint[1] = 7;
                     chartXY.Series[1].Points.AddXY(last_x, dataPrint[1]);
                 }
-
+                firstrun = false;
             }
 
             if (!checkBox_holdX.Checked)
             {
+                
                 last_x += 1;
                 if (check1.Checked)
                 {
+                    dataPrint[0] = 7;
                     chartXY.Series[0].Points.AddXY(last_x, dataPrint[0]);
                 }
 
                 if (check2.Checked)
                 {
+                    dataPrint[1] = 8;
                     chartXY.Series[1].Points.AddXY(last_x, dataPrint[1]);
                 }
                 firstChecked = true;

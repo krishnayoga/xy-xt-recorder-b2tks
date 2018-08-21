@@ -52,6 +52,14 @@ namespace AI_StreamingAI
         double pos_label_1, pos_label_2, pos_label_3, pos_label_4, pos_label_5, pos_label_6;
         double pos_label_7, pos_label_8, pos_label_9, pos_label_10, pos_label_11;
 
+
+        int batas_chart_1, batas_chart_2, batas_chart_3, batas_chart_4, batas_chart_5, batas_chart_6;
+        int batas_chart_7, batas_chart_8, batas_chart_9, batas_chart_10, batas_chart_11;
+
+        double tanggal, jam, elapsed_time;
+
+        string jam_string, elapsed_time_string, tanggal_string;
+
         private void File_Click(object sender, EventArgs e)
         {
 
@@ -61,27 +69,6 @@ namespace AI_StreamingAI
         {
 
         }
-
-        int batas_chart_1, batas_chart_2, batas_chart_3, batas_chart_4, batas_chart_5, batas_chart_6;
-        int batas_chart_7, batas_chart_8, batas_chart_9, batas_chart_10, batas_chart_11;
-
-        double tanggal, jam, elapsed_time;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         public XTReport()
         {
@@ -155,14 +142,15 @@ namespace AI_StreamingAI
             jam = double.Parse(Convert.ToString(res.Cells[5, 2].Value));
             elapsed_time = double.Parse(Convert.ToString(res.Cells[14, 2].Value));
 
-            Console.WriteLine("tanggal: " + tanggal + " jam: " + jam + " elapsed_time: " + elapsed_time);
-
-
+            //Console.WriteLine("tanggal: " + tanggal + " jam: " + jam + " elapsed_time: " + elapsed_time);
+            
             Date.Text = Convert.ToString(res.Cells[4, 2].Value);
             DateTime jam_text = DateTime.FromOADate(jam);
             DateTime elapsed_time_text = DateTime.FromOADate(elapsed_time);
 
-            Waktu.Text = Convert.ToString(jam_text);
+            jam_string = jam_text.ToString("hh:mm:ss:fff");
+
+            Waktu.Text = jam_string;
             Time.Text = Convert.ToString(elapsed_time);
             
             jumlah_data = 160;
@@ -234,7 +222,7 @@ namespace AI_StreamingAI
             max_y_chart = Convert.ToInt32(comboBox_MaxY.Text);
             min_y_chart = Convert.ToInt32(comboBox_MinY.Text);
 
-            Console.WriteLine(max_x_chart + "    " + min_x_chart + "   " + max_y_chart + "   " + min_y_chart);
+            //Console.WriteLine(max_x_chart + "    " + min_x_chart + "   " + max_y_chart + "   " + min_y_chart);
 
             chartXY.ChartAreas[0].AxisY.Crossing = 0;
 
