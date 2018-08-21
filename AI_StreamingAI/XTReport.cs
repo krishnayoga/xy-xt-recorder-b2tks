@@ -52,16 +52,48 @@ namespace AI_StreamingAI
         double pos_label_1, pos_label_2, pos_label_3, pos_label_4, pos_label_5, pos_label_6;
         double pos_label_7, pos_label_8, pos_label_9, pos_label_10, pos_label_11;
 
-        private void File_Click(object sender, EventArgs e)
+        private void comboBox_MaxX_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
         }
 
-        private void TitleMain_Click(object sender, EventArgs e)
+        private void comboBox_MinY_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
         }
 
+        private void comboBox_MinX_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void comboBox_MaxY_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        DateTime datee = new DateTime();
+         
         int batas_chart_1, batas_chart_2, batas_chart_3, batas_chart_4, batas_chart_5, batas_chart_6;
         int batas_chart_7, batas_chart_8, batas_chart_9, batas_chart_10, batas_chart_11;
 
@@ -146,26 +178,23 @@ namespace AI_StreamingAI
             ConsumerMain.Text = Convert.ToString(res.Cells[2, 2].Value);
             SenseMain.Text = Convert.ToString(res.Cells[3, 2].Value);
 
-            MaxY1.Text = Convert.ToString(res.Cells[10, 2].Value);
-            MinY1.Text = Convert.ToString(res.Cells[11, 2].Value);
-            MaxY2.Text = Convert.ToString(res.Cells[12, 2].Value);
-            MinY2.Text = Convert.ToString(res.Cells[13, 2].Value);
+            MaxY1.Text = Convert.ToString(res.Cells[11, 2].Value);
+            MinY1.Text = Convert.ToString(res.Cells[12, 2].Value);
+            MaxY2.Text = Convert.ToString(res.Cells[13, 2].Value);
+            MinY2.Text = Convert.ToString(res.Cells[14, 2].Value);
 
-            //tanggal = double.Parse(Convert.ToString(res.Cells[4, 2].Value));
+            datee = Convert.ToDateTime(res.Cells[4, 2].Value);
+            Date.Text = datee.ToString("dd/MM/yyyy");
+
             jam = double.Parse(Convert.ToString(res.Cells[5, 2].Value));
-            elapsed_time = double.Parse(Convert.ToString(res.Cells[14, 2].Value));
-
-            Console.WriteLine("tanggal: " + tanggal + " jam: " + jam + " elapsed_time: " + elapsed_time);
-
-
-            Date.Text = Convert.ToString(res.Cells[4, 2].Value);
             DateTime jam_text = DateTime.FromOADate(jam);
-            DateTime elapsed_time_text = DateTime.FromOADate(elapsed_time);
+            Waktu.Text = jam_text.ToLongTimeString();
 
-            Waktu.Text = Convert.ToString(jam_text);
-            Time.Text = Convert.ToString(elapsed_time);
-            
-            jumlah_data = 160;
+            elapsed_time = double.Parse(Convert.ToString(res.Cells[15, 2].Value));
+            DateTime elapsed_time_text = DateTime.FromOADate(elapsed_time);
+            Time.Text = elapsed_time_text.ToString("HH:mm:ss:fff");
+
+            jumlah_data = Convert.ToInt32(res.Cells[10,4].Value);
 
             book.Close();
             ex.Quit();
@@ -195,10 +224,10 @@ namespace AI_StreamingAI
             excel.Workbook book = ex.Workbooks.Open(File.Text);
             excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
 
-            for (i = 16; i < (jumlah_data+16); i++)
+            for (i = 17; i < (jumlah_data+17); i++)
             {
-                dataY1[i - 16] = Convert.ToDouble(res.Cells[i, 3].Value);
-                dataY2[i - 16] = Convert.ToDouble(res.Cells[i, 4].Value);
+                dataY1[i - 17] = Convert.ToDouble(res.Cells[i, 3].Value);
+                dataY2[i - 17] = Convert.ToDouble(res.Cells[i, 4].Value);
 
                 //Console.WriteLine("i ke- " + i + " dataY1: " + dataY1[i - 16] + " dataY2: " + dataY2[i - 16]);
             }
@@ -321,6 +350,15 @@ namespace AI_StreamingAI
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void File_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void TitleMain_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

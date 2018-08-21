@@ -55,15 +55,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.U2 = new System.Windows.Forms.Label();
             this.U1 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.ValY2 = new System.Windows.Forms.Label();
             this.ValY1 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.Second = new System.Windows.Forms.TextBox();
-            this.Minute = new System.Windows.Forms.TextBox();
             this.Time = new System.Windows.Forms.TextBox();
             this.MinY2 = new System.Windows.Forms.TextBox();
             this.MaxY2 = new System.Windows.Forms.TextBox();
@@ -71,6 +67,8 @@
             this.MaxY1 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox_MinX = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox_MinY = new System.Windows.Forms.ComboBox();
             this.UnitX = new System.Windows.Forms.Label();
@@ -82,9 +80,6 @@
             this.Waktu = new System.Windows.Forms.Label();
             this.Date = new System.Windows.Forms.Label();
             this.File = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.comboBox_MinX = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -98,11 +93,11 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileNameToolStripMenuItem,
+            this.loadDataToolStripMenuItem,
             this.replotToolStripMenuItem,
             this.printToolStripMenuItem,
             this.helpToolStripMenuItem,
-            this.exitToolStripMenuItem,
-            this.loadDataToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1348, 24);
@@ -151,7 +146,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(55, 43);
+            this.pictureBox1.Location = new System.Drawing.Point(52, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(277, 131);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -293,22 +288,18 @@
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.U2);
             this.panel5.Controls.Add(this.U1);
-            this.panel5.Controls.Add(this.label31);
-            this.panel5.Controls.Add(this.label30);
             this.panel5.Controls.Add(this.label29);
             this.panel5.Controls.Add(this.ValY2);
             this.panel5.Controls.Add(this.ValY1);
             this.panel5.Controls.Add(this.label26);
             this.panel5.Controls.Add(this.label25);
-            this.panel5.Controls.Add(this.Second);
-            this.panel5.Controls.Add(this.Minute);
             this.panel5.Controls.Add(this.Time);
             this.panel5.Controls.Add(this.MinY2);
             this.panel5.Controls.Add(this.MaxY2);
             this.panel5.Controls.Add(this.MinY1);
             this.panel5.Controls.Add(this.MaxY1);
             this.panel5.Controls.Add(this.label16);
-            this.panel5.Location = new System.Drawing.Point(1079, 207);
+            this.panel5.Location = new System.Drawing.Point(1079, 27);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(269, 149);
             this.panel5.TabIndex = 56;
@@ -334,7 +325,7 @@
             // U2
             // 
             this.U2.AutoSize = true;
-            this.U2.Location = new System.Drawing.Point(176, 40);
+            this.U2.Location = new System.Drawing.Point(189, 40);
             this.U2.Name = "U2";
             this.U2.Size = new System.Drawing.Size(26, 13);
             this.U2.TabIndex = 59;
@@ -343,43 +334,25 @@
             // U1
             // 
             this.U1.AutoSize = true;
-            this.U1.Location = new System.Drawing.Point(176, 70);
+            this.U1.Location = new System.Drawing.Point(189, 70);
             this.U1.Name = "U1";
             this.U1.Size = new System.Drawing.Size(26, 13);
             this.U1.TabIndex = 58;
             this.U1.Text = "Unit";
             // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(183, 92);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(44, 13);
-            this.label31.TabIndex = 57;
-            this.label31.Text = "Second";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(124, 92);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(39, 13);
-            this.label30.TabIndex = 56;
-            this.label30.Text = "Minute";
-            // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(0, 113);
+            this.label29.Location = new System.Drawing.Point(4, 97);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(47, 13);
+            this.label29.Size = new System.Drawing.Size(69, 13);
             this.label29.TabIndex = 55;
-            this.label29.Text = "Time (m)";
+            this.label29.Text = "Waktu Total ";
             // 
             // ValY2
             // 
             this.ValY2.AutoSize = true;
-            this.ValY2.Location = new System.Drawing.Point(1, 67);
+            this.ValY2.Location = new System.Drawing.Point(4, 67);
             this.ValY2.Name = "ValY2";
             this.ValY2.Size = new System.Drawing.Size(50, 13);
             this.ValY2.TabIndex = 54;
@@ -397,7 +370,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(130, 19);
+            this.label26.Location = new System.Drawing.Point(143, 19);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(24, 13);
             this.label26.TabIndex = 52;
@@ -406,39 +379,23 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(78, 19);
+            this.label25.Location = new System.Drawing.Point(91, 19);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(27, 13);
             this.label25.TabIndex = 51;
             this.label25.Text = "Max";
             // 
-            // Second
-            // 
-            this.Second.Location = new System.Drawing.Point(179, 110);
-            this.Second.Name = "Second";
-            this.Second.ReadOnly = true;
-            this.Second.Size = new System.Drawing.Size(48, 20);
-            this.Second.TabIndex = 49;
-            // 
-            // Minute
-            // 
-            this.Minute.Location = new System.Drawing.Point(121, 110);
-            this.Minute.Name = "Minute";
-            this.Minute.ReadOnly = true;
-            this.Minute.Size = new System.Drawing.Size(48, 20);
-            this.Minute.TabIndex = 48;
-            // 
             // Time
             // 
-            this.Time.Location = new System.Drawing.Point(66, 110);
+            this.Time.Location = new System.Drawing.Point(79, 94);
             this.Time.Name = "Time";
             this.Time.ReadOnly = true;
-            this.Time.Size = new System.Drawing.Size(48, 20);
+            this.Time.Size = new System.Drawing.Size(102, 20);
             this.Time.TabIndex = 47;
             // 
             // MinY2
             // 
-            this.MinY2.Location = new System.Drawing.Point(120, 68);
+            this.MinY2.Location = new System.Drawing.Point(133, 68);
             this.MinY2.Name = "MinY2";
             this.MinY2.ReadOnly = true;
             this.MinY2.Size = new System.Drawing.Size(48, 20);
@@ -446,7 +403,7 @@
             // 
             // MaxY2
             // 
-            this.MaxY2.Location = new System.Drawing.Point(66, 67);
+            this.MaxY2.Location = new System.Drawing.Point(79, 67);
             this.MaxY2.Name = "MaxY2";
             this.MaxY2.ReadOnly = true;
             this.MaxY2.Size = new System.Drawing.Size(48, 20);
@@ -454,7 +411,7 @@
             // 
             // MinY1
             // 
-            this.MinY1.Location = new System.Drawing.Point(119, 37);
+            this.MinY1.Location = new System.Drawing.Point(132, 37);
             this.MinY1.Name = "MinY1";
             this.MinY1.ReadOnly = true;
             this.MinY1.Size = new System.Drawing.Size(48, 20);
@@ -462,7 +419,7 @@
             // 
             // MaxY1
             // 
-            this.MaxY1.Location = new System.Drawing.Point(65, 37);
+            this.MaxY1.Location = new System.Drawing.Point(78, 37);
             this.MaxY1.Name = "MaxY1";
             this.MaxY1.ReadOnly = true;
             this.MaxY1.Size = new System.Drawing.Size(48, 20);
@@ -480,7 +437,6 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.comboBox_MinX);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label2);
@@ -491,10 +447,40 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.comboBox_MaxY);
-            this.panel1.Location = new System.Drawing.Point(1079, 353);
+            this.panel1.Location = new System.Drawing.Point(1079, 173);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(269, 146);
             this.panel1.TabIndex = 57;
+            // 
+            // comboBox_MinX
+            // 
+            this.comboBox_MinX.FormattingEnabled = true;
+            this.comboBox_MinX.Items.AddRange(new object[] {
+            "10",
+            "15",
+            "20",
+            "25",
+            "50",
+            "60",
+            "90",
+            "100",
+            "150",
+            "200"});
+            this.comboBox_MinX.Location = new System.Drawing.Point(159, 97);
+            this.comboBox_MinX.Name = "comboBox_MinX";
+            this.comboBox_MinX.Size = new System.Drawing.Size(87, 21);
+            this.comboBox_MinX.TabIndex = 46;
+            this.comboBox_MinX.Text = "10";
+            this.comboBox_MinX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_MinX_KeyPress);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(156, 78);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(75, 13);
+            this.label10.TabIndex = 45;
+            this.label10.Text = "Range Min - X";
             // 
             // label2
             // 
@@ -523,6 +509,7 @@
             this.comboBox_MinY.Size = new System.Drawing.Size(87, 21);
             this.comboBox_MinY.TabIndex = 43;
             this.comboBox_MinY.Text = "-10";
+            this.comboBox_MinY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_MinY_KeyPress);
             // 
             // UnitX
             // 
@@ -561,6 +548,7 @@
             this.comboBox_MaxX.TabIndex = 40;
             this.comboBox_MaxX.Text = "10";
             this.comboBox_MaxX.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox_MaxX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_MaxX_KeyPress);
             // 
             // label4
             // 
@@ -599,10 +587,11 @@
             this.comboBox_MaxY.Size = new System.Drawing.Size(87, 21);
             this.comboBox_MaxY.TabIndex = 33;
             this.comboBox_MaxY.Text = "10";
+            this.comboBox_MaxY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_MaxY_KeyPress);
             // 
             // Waktu
             // 
-            this.Waktu.Location = new System.Drawing.Point(1079, 537);
+            this.Waktu.Location = new System.Drawing.Point(1101, 659);
             this.Waktu.Name = "Waktu";
             this.Waktu.Size = new System.Drawing.Size(106, 19);
             this.Waktu.TabIndex = 60;
@@ -611,60 +600,22 @@
             // 
             // Date
             // 
-            this.Date.Location = new System.Drawing.Point(1173, 537);
+            this.Date.Location = new System.Drawing.Point(1213, 659);
             this.Date.Name = "Date";
-            this.Date.Size = new System.Drawing.Size(176, 19);
+            this.Date.Size = new System.Drawing.Size(136, 19);
             this.Date.TabIndex = 59;
             this.Date.Text = "Tanggal Pembacaan";
             this.Date.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // File
             // 
-            this.File.Location = new System.Drawing.Point(1080, 522);
+            this.File.Location = new System.Drawing.Point(1076, 644);
             this.File.Name = "File";
             this.File.Size = new System.Drawing.Size(269, 15);
             this.File.TabIndex = 58;
             this.File.Text = "File Directory";
             this.File.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.File.Click += new System.EventHandler(this.File_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(156, 121);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(36, 13);
-            this.label9.TabIndex = 47;
-            this.label9.Text = "Unit X";
-            // 
-            // comboBox_MinX
-            // 
-            this.comboBox_MinX.FormattingEnabled = true;
-            this.comboBox_MinX.Items.AddRange(new object[] {
-            "10",
-            "15",
-            "20",
-            "25",
-            "50",
-            "60",
-            "90",
-            "100",
-            "150",
-            "200"});
-            this.comboBox_MinX.Location = new System.Drawing.Point(159, 97);
-            this.comboBox_MinX.Name = "comboBox_MinX";
-            this.comboBox_MinX.Size = new System.Drawing.Size(87, 21);
-            this.comboBox_MinX.TabIndex = 46;
-            this.comboBox_MinX.Text = "10";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(156, 78);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(75, 13);
-            this.label10.TabIndex = 45;
-            this.label10.Text = "Range Min - X";
             // 
             // XTReport
             // 
@@ -685,7 +636,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximumSize = new System.Drawing.Size(1364, 726);
+            this.MaximumSize = new System.Drawing.Size(1366, 728);
             this.MinimumSize = new System.Drawing.Size(1364, 726);
             this.Name = "XTReport";
             this.Text = "Report XT Recorder";
@@ -728,15 +679,11 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label U2;
         private System.Windows.Forms.Label U1;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label ValY2;
         private System.Windows.Forms.Label ValY1;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox Second;
-        private System.Windows.Forms.TextBox Minute;
         private System.Windows.Forms.TextBox Time;
         private System.Windows.Forms.TextBox MinY2;
         private System.Windows.Forms.TextBox MaxY2;
@@ -758,7 +705,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem loadDataToolStripMenuItem;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboBox_MinX;
         private System.Windows.Forms.Label label10;
     }

@@ -122,6 +122,7 @@ namespace AI_StreamingAI
             this.Waktu = new System.Windows.Forms.Label();
             this.Date = new System.Windows.Forms.Label();
             this.File = new System.Windows.Forms.Label();
+            this.label_Alert = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartXY)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -174,14 +175,14 @@ namespace AI_StreamingAI
             legend2.Enabled = false;
             legend2.Name = "Legend1";
             this.chartXY.Legends.Add(legend2);
-            this.chartXY.Location = new System.Drawing.Point(12, 174);
+            this.chartXY.Location = new System.Drawing.Point(12, 212);
             this.chartXY.Name = "chartXY";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chartXY.Series.Add(series2);
-            this.chartXY.Size = new System.Drawing.Size(1066, 522);
+            this.chartXY.Size = new System.Drawing.Size(1066, 484);
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
             this.chartXY.Click += new System.EventHandler(this.chartXY_Click);
@@ -453,6 +454,8 @@ namespace AI_StreamingAI
             this.RangeY.Size = new System.Drawing.Size(87, 23);
             this.RangeY.TabIndex = 43;
             this.RangeY.Text = "10";
+            this.RangeY.SelectedIndexChanged += new System.EventHandler(this.RangeY_SelectedIndexChanged);
+            this.RangeY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RangeY_KeyPress);
             // 
             // label18
             // 
@@ -489,6 +492,7 @@ namespace AI_StreamingAI
             this.Factor2.Size = new System.Drawing.Size(62, 21);
             this.Factor2.TabIndex = 40;
             this.Factor2.Text = "-";
+            this.Factor2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Factor2_KeyPress);
             // 
             // label15
             // 
@@ -535,6 +539,7 @@ namespace AI_StreamingAI
             this.Factor1.Size = new System.Drawing.Size(62, 21);
             this.Factor1.TabIndex = 31;
             this.Factor1.Text = "1";
+            this.Factor1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Factor1_KeyPress);
             // 
             // label_star2
             // 
@@ -745,6 +750,7 @@ namespace AI_StreamingAI
             this.RangeX.TabIndex = 27;
             this.RangeX.Text = "10";
             this.RangeX.SelectedIndexChanged += new System.EventHandler(this.RangeX_SelectedIndexChanged);
+            this.RangeX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RangeX_KeyPress);
             // 
             // label19
             // 
@@ -923,9 +929,9 @@ namespace AI_StreamingAI
             // SenseMain
             // 
             this.SenseMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenseMain.Location = new System.Drawing.Point(310, 121);
+            this.SenseMain.Location = new System.Drawing.Point(335, 121);
             this.SenseMain.Name = "SenseMain";
-            this.SenseMain.Size = new System.Drawing.Size(761, 45);
+            this.SenseMain.Size = new System.Drawing.Size(736, 45);
             this.SenseMain.TabIndex = 30;
             this.SenseMain.Text = "Sensor X vs Sensor Y";
             this.SenseMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -933,9 +939,9 @@ namespace AI_StreamingAI
             // ConsumerMain
             // 
             this.ConsumerMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConsumerMain.Location = new System.Drawing.Point(310, 83);
+            this.ConsumerMain.Location = new System.Drawing.Point(335, 83);
             this.ConsumerMain.Name = "ConsumerMain";
-            this.ConsumerMain.Size = new System.Drawing.Size(761, 38);
+            this.ConsumerMain.Size = new System.Drawing.Size(736, 38);
             this.ConsumerMain.TabIndex = 31;
             this.ConsumerMain.Text = "Nama Customer";
             this.ConsumerMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -944,9 +950,9 @@ namespace AI_StreamingAI
             // TitleMain
             // 
             this.TitleMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleMain.Location = new System.Drawing.Point(310, 28);
+            this.TitleMain.Location = new System.Drawing.Point(334, 28);
             this.TitleMain.Name = "TitleMain";
-            this.TitleMain.Size = new System.Drawing.Size(761, 47);
+            this.TitleMain.Size = new System.Drawing.Size(737, 47);
             this.TitleMain.TabIndex = 29;
             this.TitleMain.Text = "Nama Pengujian";
             this.TitleMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1021,9 +1027,9 @@ namespace AI_StreamingAI
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(71, 36);
+            this.pictureBox1.Location = new System.Drawing.Point(52, 27);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(233, 118);
+            this.pictureBox1.Size = new System.Drawing.Size(277, 131);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 33;
             this.pictureBox1.TabStop = false;
@@ -1055,12 +1061,23 @@ namespace AI_StreamingAI
             this.File.Text = "File Directory";
             this.File.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label_Alert
+            // 
+            this.label_Alert.AutoSize = true;
+            this.label_Alert.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Alert.ForeColor = System.Drawing.Color.Red;
+            this.label_Alert.Location = new System.Drawing.Point(64, 170);
+            this.label_Alert.Name = "label_Alert";
+            this.label_Alert.Size = new System.Drawing.Size(0, 39);
+            this.label_Alert.TabIndex = 51;
+            // 
             // XTRecorder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1348, 687);
+            this.Controls.Add(this.label_Alert);
             this.Controls.Add(this.Waktu);
             this.Controls.Add(this.Date);
             this.Controls.Add(this.File);
@@ -1194,6 +1211,7 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label label_star7;
         private System.Windows.Forms.Label label_star5;
         private System.Windows.Forms.Label label_star4;
+        private System.Windows.Forms.Label label_Alert;
     }
 }
 
