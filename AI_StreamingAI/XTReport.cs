@@ -51,74 +51,11 @@ namespace AI_StreamingAI
         double label_chart_7, label_chart_8, label_chart_9, label_chart_10, label_chart_11;
         double pos_label_1, pos_label_2, pos_label_3, pos_label_4, pos_label_5, pos_label_6;
         double pos_label_7, pos_label_8, pos_label_9, pos_label_10, pos_label_11;
-
-        private void comboBox_MaxX_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
-            {
-                e.Handled = true;
-            }
-            //Input hanya angka
-        }
-
-        private void comboBox_MinY_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
-            {
-                e.Handled = true;
-            }
-            //Input hanya angka
-        }
-
-        private void comboBox_MinX_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
-            {
-                e.Handled = true;
-            }
-            //Input hanya angka
-        }
-
-        private void ValY1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox_MaxY_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
-            {
-                e.Handled = true;
-            }
-            //Input hanya angka
-        }
-
-        DateTime datee = new DateTime();
-         
         int batas_chart_1, batas_chart_2, batas_chart_3, batas_chart_4, batas_chart_5, batas_chart_6;
         int batas_chart_7, batas_chart_8, batas_chart_9, batas_chart_10, batas_chart_11;
-
         double tanggal, jam, elapsed_time;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        DateTime datee = new DateTime();
 
         public XTReport()
         {
@@ -126,16 +63,6 @@ namespace AI_StreamingAI
         }
 
         private void XTRec_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -157,20 +84,6 @@ namespace AI_StreamingAI
             loadDataToolStripMenuItem.Enabled = true;
 
             load_judul();
-
-            
-            /*
-            res.Cells[10, 2] = MaxY1.Text;
-            res.Cells[11, 2] = MinY1.Text;
-            res.Cells[12, 2] = MaxY2.Text;
-            res.Cells[13, 2] = MinY2.Text;
-            res.Cells[14, 2] = Time.Text;
-            
-            res.Columns.AutoFit();
-            book.SaveAs(File.Text);
-            */
-            
-            
         }
 
         private void load_judul()
@@ -188,7 +101,6 @@ namespace AI_StreamingAI
             ValY2.Text = Convert.ToString(res.Cells[8, 2].Value);
             U2.Text = Convert.ToString(res.Cells[9, 2].Value);
           
-
             MaxY1.Text = Convert.ToString(res.Cells[11, 2].Value);
             MinY1.Text = Convert.ToString(res.Cells[12, 2].Value);
             MaxY2.Text = Convert.ToString(res.Cells[13, 2].Value);
@@ -260,23 +172,22 @@ namespace AI_StreamingAI
 
             chartXY.Series[0].Color = Color.Blue;
             chartXY.Series[1].Color = Color.Red;
+
+            chartXY.ChartAreas[0].AxisX.Crossing = 0;
+            chartXY.ChartAreas[0].AxisY.Crossing = 0;
         }
-
-
 
         private void plot_chart()
         {
-            chartXY.ChartAreas[0].AxisX.Crossing = 0;
-            chartXY.ChartAreas[0].AxisY.Crossing = 0;
 
-            max_x_chart = Convert.ToInt32(comboBox_MaxX.Text) * 61 * 9 + 1;
-            min_x_chart = -max_x_chart; //ini nani digantiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+            max_x_chart = Convert.ToInt32(comboBox_MaxX.Text) * 61 * 9 + 20;
+            min_x_chart = -max_x_chart;
             max_y_chart = Convert.ToInt32(comboBox_MaxY.Text);
             min_y_chart = Convert.ToInt32(comboBox_MinY.Text);
 
             Console.WriteLine(max_x_chart + "    " + min_x_chart + "   " + max_y_chart + "   " + min_y_chart);
 
-            chartXY.ChartAreas[0].AxisY.Crossing = 0;
+            //chartXY.ChartAreas[0].AxisY.Crossing = 0;
 
             chartXY.ChartAreas[0].AxisX.LabelStyle.IntervalOffset = 1000000000;
             chartXY.ChartAreas[0].AxisX.IsLabelAutoFit = false;
@@ -289,17 +200,16 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisY.Interval = max_y_chart / 10;
 
             label_chart_1 = Convert.ToDouble(max_x_chart) * 0;
-            label_chart_2 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10;
-            label_chart_3 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 2;
-            label_chart_4 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 3;
-            label_chart_5 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 4;
-            label_chart_6 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 5;
-            label_chart_7 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 6;
-            label_chart_8 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 7;
-            label_chart_9 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 8;
-            label_chart_10 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 9;
-            label_chart_11 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9;
-
+            label_chart_2 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10;
+            label_chart_3 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 2;
+            label_chart_4 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 3;
+            label_chart_5 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 4;
+            label_chart_6 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 5;
+            label_chart_7 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 6;
+            label_chart_8 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 7;
+            label_chart_9 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 8;
+            label_chart_10 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 9;
+            label_chart_11 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9;
 
             pos_label_1 = max_x_chart * 0;
             pos_label_2 = max_x_chart / 10;
@@ -346,21 +256,73 @@ namespace AI_StreamingAI
             {
                 chartXY.Series[0].Points.AddXY(i, dataY1[i]);
                 chartXY.Series[1].Points.AddXY(i, dataY2[i]);
-
-
             }
-            /*
-            chartXY.Series[0].Points.AddXY(1, 2);
-            chartXY.Series[0].Points.AddXY(2, 3);
-            chartXY.Series[0].Points.AddXY(3, 4);
-            chartXY.Series[0].Points.AddXY(4, 5);
-            chartXY.Series[0].Points.AddXY(5, 6);
-            */
+        }
+
+        private void replotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Clear();
+            plot_chart();
+        }
+
+        private void comboBox_MaxX_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void comboBox_MinY_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void comboBox_MinX_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void comboBox_MaxY_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ValY1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void File_Click(object sender, EventArgs e)

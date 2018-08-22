@@ -92,7 +92,7 @@ namespace AI_StreamingAI
             InitializeComponent();
             //ini
             timer.Tick += new EventHandler(timer_stopwatch);
-            timer.Interval = 10;
+            timer.Interval = 100;
 
             timer_plot.Tick += new EventHandler(plotChart);
             timer_plot.Interval = 100;
@@ -197,26 +197,7 @@ namespace AI_StreamingAI
                     {
                         dataPrint[1] = -dataPrint[1];
                     }
-
-                    if (recordData)
-                    {
-                        if (check1.Checked && !check2.Checked)
-                        {
-                            dataPrint[1] = 0;
-
-                        }
-                        else if (check2.Checked && !check1.Checked)
-                        {
-                            dataPrint[0] = 0;
-                        }
-
-                        StreamWriter sw = new StreamWriter(File.Text, append: true);
-                        
-                        sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), watch.Elapsed.ToString(), dataPrint[0], dataPrint[1]);
-                        
-                        sw.Close();
-                        recCount++;
-                    }
+                    
                     ValueY1.Text = dataPrint[0].ToString();
                     ValueY2.Text = dataPrint[1].ToString();
                     
@@ -288,7 +269,7 @@ namespace AI_StreamingAI
         private void initChart()
         {
             //ini
-            max_x_chart = Convert.ToInt32(RangeX.Text) * 61 * 9 + 1;
+            max_x_chart = Convert.ToInt32(RangeX.Text) * 61 * 9 + 20;
             //itu
             min_x_chart = -max_x_chart;
             max_y_chart = Convert.ToInt32(RangeY.Text);
@@ -344,16 +325,16 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisY.Interval = max_y_chart / 10;
 
             label_chart_1 = Convert.ToDouble(max_x_chart) * 0;
-            label_chart_2 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10;
-            label_chart_3 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 2;
-            label_chart_4 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 3;
-            label_chart_5 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 4;
-            label_chart_6 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 5;
-            label_chart_7 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 6;
-            label_chart_8 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 7;
-            label_chart_9 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 8;
-            label_chart_10 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9 / 10 * 9;
-            label_chart_11 = (Convert.ToDouble(max_x_chart) - 1) / 61 / 9;
+            label_chart_2 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10;
+            label_chart_3 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 2;
+            label_chart_4 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 3;
+            label_chart_5 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 4;
+            label_chart_6 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 5;
+            label_chart_7 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 6;
+            label_chart_8 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 7;
+            label_chart_9 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 8;
+            label_chart_10 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 9;
+            label_chart_11 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9;
 
 
             pos_label_1 = max_x_chart * 0;
@@ -451,6 +432,25 @@ namespace AI_StreamingAI
                     chartXY.Series[1].Points.AddXY(last_x, dataPrint[1]);
                 }
                 firstChecked = true;
+            }
+            if (recordData)
+            {
+                if (check1.Checked && !check2.Checked)
+                {
+                    dataPrint[1] = 0;
+
+                }
+                else if (check2.Checked && !check1.Checked)
+                {
+                    dataPrint[0] = 0;
+                }
+
+                StreamWriter sw = new StreamWriter(File.Text, append: true);
+
+                sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), watch.Elapsed.ToString(), dataPrint[0], dataPrint[1]);
+
+                sw.Close();
+                recCount++;
             }
 
             /*
@@ -799,6 +799,7 @@ namespace AI_StreamingAI
         //button replot menu
         private void replotToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Clear();
             initChart();
         }
 

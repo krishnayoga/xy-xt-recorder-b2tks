@@ -192,13 +192,14 @@ namespace AI_StreamingAI
 
             chartXY.Series[0].Color = Color.Blue;
             chartXY.Series[1].Color = Color.Red;
+
+            chartXY.ChartAreas[0].AxisX.Crossing = 0;
+            chartXY.ChartAreas[0].AxisY.Crossing = 0;
+
         }
         
         private void plot_chart()
         {
-            chartXY.ChartAreas[0].AxisX.Crossing = 0;
-            chartXY.ChartAreas[0].AxisY.Crossing = 0;
-
             max_x_chart = Convert.ToInt32(comboBox_MaxX.Text);
             min_x_chart = Convert.ToInt32(comboBox_MinX.Text);
             max_y_chart = Convert.ToInt32(comboBox_MaxY.Text);
@@ -226,16 +227,7 @@ namespace AI_StreamingAI
             {
                 chartXY.Series[0].Points.AddXY(dataX1[i], dataY[i]);
                 chartXY.Series[1].Points.AddXY(dataX2[i], dataY[i]);
-                
-                
             }
-            /*
-            chartXY.Series[0].Points.AddXY(1, 2);
-            chartXY.Series[0].Points.AddXY(2, 3);
-            chartXY.Series[0].Points.AddXY(3, 4);
-            chartXY.Series[0].Points.AddXY(4, 5);
-            chartXY.Series[0].Points.AddXY(5, 6);
-            */
         }
 
         private void comboBox_MaxY_KeyPress(object sender, KeyPressEventArgs e)
@@ -276,6 +268,12 @@ namespace AI_StreamingAI
                 e.Handled = true;
             }
             //Input hanya angka
+        }
+
+        private void replotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Clear();
+            plot_chart();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
