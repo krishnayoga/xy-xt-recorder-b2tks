@@ -564,7 +564,7 @@ namespace AI_StreamingAI
             recordData = true;
             StreamWriter write = new StreamWriter(File.Text);
             write.WriteLine("Judul,"+TitleMain.Text);
-            write.WriteLine("Konsumen,"+ConsumerMain.Text);
+            write.WriteLine("Customer,"+ConsumerMain.Text);
             write.WriteLine("Grafik,"+SenseMain.Text);
             write.WriteLine("Tanggal,"+Date.Text);
             write.WriteLine("Waktu,"+Waktu.Text);
