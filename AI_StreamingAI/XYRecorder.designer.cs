@@ -130,6 +130,7 @@ namespace AI_StreamingAI
             this.Date = new System.Windows.Forms.Label();
             this.Waktu = new System.Windows.Forms.Label();
             this.label_Alert = new System.Windows.Forms.Label();
+            this.saveConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.chartXY)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -180,7 +181,8 @@ namespace AI_StreamingAI
             this.replotToolStripMenuItem,
             this.printToolStripMenuItem,
             this.helpToolStripMenuItem,
-            this.exitToolStripMenuItem});
+            this.exitToolStripMenuItem,
+            this.saveConfigurationToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1348, 28);
@@ -1161,6 +1163,13 @@ namespace AI_StreamingAI
             this.label_Alert.Size = new System.Drawing.Size(0, 52);
             this.label_Alert.TabIndex = 48;
             // 
+            // saveConfigurationToolStripMenuItem
+            // 
+            this.saveConfigurationToolStripMenuItem.Name = "saveConfigurationToolStripMenuItem";
+            this.saveConfigurationToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.saveConfigurationToolStripMenuItem.Text = "Save Configuration";
+            this.saveConfigurationToolStripMenuItem.Click += new System.EventHandler(this.saveConfigurationToolStripMenuItem_Click);
+            // 
             // XYRecorder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -1309,6 +1318,7 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox_stopwatch;
         private System.Windows.Forms.Label label_Alert;
+        private System.Windows.Forms.ToolStripMenuItem saveConfigurationToolStripMenuItem;
     }
 }
 

@@ -51,6 +51,7 @@ namespace AI_StreamingAI
             this.printToPrinterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_star6 = new System.Windows.Forms.Label();
             this.label_star7 = new System.Windows.Forms.Label();
@@ -200,7 +201,8 @@ namespace AI_StreamingAI
             this.replotToolStripMenuItem,
             this.printToolStripMenuItem,
             this.helpToolStripMenuItem,
-            this.exitToolStripMenuItem});
+            this.exitToolStripMenuItem,
+            this.saveConfigurationToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1348, 28);
@@ -298,6 +300,13 @@ namespace AI_StreamingAI
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(45, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // saveConfigurationToolStripMenuItem
+            // 
+            this.saveConfigurationToolStripMenuItem.Name = "saveConfigurationToolStripMenuItem";
+            this.saveConfigurationToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.saveConfigurationToolStripMenuItem.Text = "Save Configuration";
+            this.saveConfigurationToolStripMenuItem.Click += new System.EventHandler(this.saveConfigurationToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -664,6 +673,7 @@ namespace AI_StreamingAI
             this.checkBox_holdX.TabIndex = 33;
             this.checkBox_holdX.Text = "Hold - X";
             this.checkBox_holdX.UseVisualStyleBackColor = true;
+            this.checkBox_holdX.CheckedChanged += new System.EventHandler(this.checkBox_holdX_CheckedChanged);
             // 
             // label22
             // 
@@ -1212,6 +1222,7 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label label_star5;
         private System.Windows.Forms.Label label_star4;
         private System.Windows.Forms.Label label_Alert;
+        private System.Windows.Forms.ToolStripMenuItem saveConfigurationToolStripMenuItem;
     }
 }
 

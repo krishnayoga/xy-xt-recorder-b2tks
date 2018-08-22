@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Dibuat Oleh:
  * Ida Bagus Krishna Yoga Utama <email: hello@krishna.my.id >
  * Arbariyanto Mahmud Wicaksono <email: arbariyantom@gmail.com>
@@ -65,6 +65,7 @@ namespace AI_StreamingAI
         int max_y_chart;
         int min_y_chart;
         bool recordData;
+        string load_data;
 
         #endregion
 
@@ -103,6 +104,43 @@ namespace AI_StreamingAI
             button_pause.Enabled = false;
 
             chartXY.Series[0].IsXValueIndexed = false;
+
+            string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            StreamReader read = new StreamReader(Path.Combine(file_path, "config.txt"));
+            for(int i = 1; i < 8; i++)
+            {
+                load_data = read.ReadLine();
+                if(i == 1)
+                {
+                    TitleMain.Text = load_data;
+                }
+                else if(i == 2)
+                {
+                    ConsumerMain.Text = load_data;
+                }
+                else if(i == 3)
+                {
+                    SenseMain.Text = load_data;
+                }
+                else if(i == 4)
+                {
+                    SensorY.Text = load_data;
+                }
+                else if(i == 5)
+                {
+                    UnitY.Text = load_data;
+                }
+                else if(i == 6)
+                {
+                    SensorX1.Text = load_data;
+                }
+                else if(i == 7)
+                {
+                    UnitX1.Text = load_data;
+                }
+
+
+            }
         }
 
 	    private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
@@ -743,6 +781,75 @@ namespace AI_StreamingAI
                 MessageBox.Show("Sorry ! Some errors happened, the error code is: " + err.ToString(), "StreamingAI");
             }
         }
+
+        private void factor_x_1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 && ch != 110)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void factor_x_2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 && ch != 110)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void rangeX_chart_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void factor_y_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void rangeY_chart_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //Input hanya angka
+        }
+
+        private void saveConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            StreamWriter write = new StreamWriter(Path.Combine(file_path, "config.txt"));
+            write.WriteLine(TitleMain.Text);
+            write.WriteLine(ConsumerMain.Text);
+            write.WriteLine(SenseMain.Text);
+            write.WriteLine(SensorY.Text);
+            write.WriteLine(UnitY.Text);
+            write.WriteLine(SensorX1.Text);
+            write.WriteLine(UnitX1.Text);
+            write.Close();
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
+        }
         #endregion
 
 
@@ -873,39 +980,9 @@ namespace AI_StreamingAI
 
         }
 
-        private void factor_x_1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!Char.IsDigit(ch)&& ch != 8 && ch!= 46 && ch != 110)
-            {
-                e.Handled = true;
-            }
-            //Input hanya angka
-        }
-
-        private void factor_x_2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 && ch != 110)
-            {
-                e.Handled = true;
-            }
-            //Input hanya angka
-        }
-
         private void rangeX_chart_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void rangeX_chart_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
-            {
-                e.Handled = true;
-            }
-            //Input hanya angka
         }
 
         private void factor_x_1_TextChanged(object sender, EventArgs e)
@@ -918,33 +995,9 @@ namespace AI_StreamingAI
 
         }
 
-        private void factor_y_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 )
-            {
-                e.Handled = true;
-            }
-            //Input hanya angka
-        }
-
-        private void rangeY_chart_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
-            {
-                e.Handled = true;
-            }
-            //Input hanya angka
-        }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
-        }
-        private void printToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
         }
         #endregion
     }

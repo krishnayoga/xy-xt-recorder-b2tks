@@ -48,8 +48,8 @@ namespace AI_StreamingAI
         double m_xInc;
         int dataCount = 0;
         int recCount = 0;
-        double last_x;
-        double last_x_holdX;
+        double last_x = 0;
+        double last_x_holdX = 0;
         bool firstChecked = true;
         string[] arrAvgData;
         string[] arrData;
@@ -77,6 +77,7 @@ namespace AI_StreamingAI
         int batas_chart_7, batas_chart_8, batas_chart_9, batas_chart_10, batas_chart_11;
         //itu
         bool recordData;
+        string load_data;
         #endregion
 
         //ini
@@ -128,6 +129,39 @@ namespace AI_StreamingAI
 
             chartXY.Series[0].IsXValueIndexed = false;
 
+            string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            StreamReader read = new StreamReader(Path.Combine(file_path, "config.txt"));
+            for(int i = 1;i < 8; i++)
+            {
+                if(i == 1)
+                {
+                    TitleMain.Text = read.ReadLine();
+                }
+                else if(i == 2)
+                {
+                    ConsumerMain.Text = read.ReadLine();
+                }
+                else if(i == 3)
+                {
+                    SenseMain.Text = read.ReadLine();
+                }
+                else if(i == 4)
+                {
+                    Sensor1.Text = read.ReadLine();
+                }
+                else if(i == 5)
+                {
+                    Unit1.Text = read.ReadLine();
+                }
+                else if(i == 6)
+                {
+                    Sensor2.Text = read.ReadLine();
+                }
+                else if(i == 7)
+                {
+                    Unit2.Text = read.ReadLine();
+                }
+            }
         }
 
 		private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
@@ -409,12 +443,12 @@ namespace AI_StreamingAI
             {
                 if (check1.Checked)
                 {
-                    chartXY.Series[0].Points.AddXY(last_x, dataPrint[0]);
+                    chartXY.Series[0].Points.AddXY(last_x_holdX, dataPrint[0]);
                 }
 
                 if (check2.Checked)
                 {
-                    chartXY.Series[1].Points.AddXY(last_x, dataPrint[1]);
+                    chartXY.Series[1].Points.AddXY(last_x_holdX, dataPrint[1]);
                 }
 
             }
@@ -796,6 +830,22 @@ namespace AI_StreamingAI
             //Input hanya angka
         }
 
+        private void saveConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            StreamWriter write = new StreamWriter(Path.Combine(file_path, "config.txt"));
+            write.WriteLine(TitleMain.Text);
+            write.WriteLine(ConsumerMain.Text);
+            write.WriteLine(SenseMain.Text);
+            write.WriteLine(Sensor1.Text);
+            write.WriteLine(Unit1.Text);
+            write.WriteLine(Sensor2.Text);
+            write.WriteLine(Unit2.Text);
+            write.Close();
+        }
+
+        
+
         //button replot menu
         private void replotToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1040,6 +1090,11 @@ namespace AI_StreamingAI
         }
 
         private void label_unitY1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox_holdX_CheckedChanged(object sender, EventArgs e)
         {
 
         }
