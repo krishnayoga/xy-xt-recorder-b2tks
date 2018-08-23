@@ -44,6 +44,7 @@
             this.EXIT.TabIndex = 14;
             this.EXIT.Text = "&Tutup";
             this.EXIT.UseVisualStyleBackColor = true;
+            this.EXIT.Click += new System.EventHandler(this.EXIT_Click);
             // 
             // richTextBox1
             // 
@@ -61,6 +62,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(496, 263);
             this.richTextBox1.TabIndex = 13;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // HelpXYReport
             // 
@@ -71,11 +73,13 @@
             this.Controls.Add(this.EXIT);
             this.Controls.Add(this.richTextBox1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(534, 350);
             this.MinimumSize = new System.Drawing.Size(534, 350);
             this.Name = "HelpXYReport";
-            this.Text = "HelpXYReport";
+            this.Text = "Help Report XY Recorder";
             this.ResumeLayout(false);
 
         }

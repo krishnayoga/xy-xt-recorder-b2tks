@@ -276,6 +276,12 @@ namespace AI_StreamingAI
             plot_chart();
         }
 
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelpXYReport helpXYReport = new HelpXYReport();
+            helpXYReport.ShowDialog();
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();

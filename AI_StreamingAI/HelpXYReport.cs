@@ -15,5 +15,15 @@ namespace AI_StreamingAI
         {
             InitializeComponent();
         }
+
+        private void EXIT_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

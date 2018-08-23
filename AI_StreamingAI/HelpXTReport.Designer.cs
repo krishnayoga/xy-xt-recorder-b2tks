@@ -61,6 +61,7 @@
             this.EXIT.TabIndex = 12;
             this.EXIT.Text = "&Tutup";
             this.EXIT.UseVisualStyleBackColor = true;
+            this.EXIT.Click += new System.EventHandler(this.EXIT_Click);
             // 
             // HelpXTReport
             // 
@@ -70,11 +71,13 @@
             this.ClientSize = new System.Drawing.Size(518, 311);
             this.Controls.Add(this.EXIT);
             this.Controls.Add(this.richTextBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(534, 350);
             this.MinimumSize = new System.Drawing.Size(534, 350);
             this.Name = "HelpXTReport";
-            this.Text = "HelpXTReport";
+            this.Text = "Help Report XT Recorder";
             this.ResumeLayout(false);
 
         }

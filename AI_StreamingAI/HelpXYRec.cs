@@ -42,5 +42,10 @@ namespace AI_StreamingAI
         {
             this.Close();
         }
+
+        private void HelpXYRec_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
