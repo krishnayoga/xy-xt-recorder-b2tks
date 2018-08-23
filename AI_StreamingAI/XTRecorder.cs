@@ -853,7 +853,7 @@ namespace AI_StreamingAI
         {
             string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             StreamWriter write = new StreamWriter(Path.Combine(file_path, "config.txt"));
-            write.WriteLine(TitleMain.Text);
+            write.WriteLine(TitleMain.Text); 
             write.WriteLine(ConsumerMain.Text);
             write.WriteLine(SenseMain.Text);
             write.WriteLine(Sensor1.Text);

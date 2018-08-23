@@ -995,6 +995,11 @@ namespace AI_StreamingAI
             write.Close();
         }
 
+        private void checkBox_invertX2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void factor_y_TextChanged(object sender, EventArgs e)
         {
 
