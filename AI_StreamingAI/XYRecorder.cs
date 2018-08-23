@@ -86,7 +86,7 @@ namespace AI_StreamingAI
         {
             if (!waveformAiCtrl1.Initialized)
             {
-                MessageBox.Show("No device be selected or device open failed!", "StreamingAI");
+                MessageBox.Show("Device belum terpasang!", "StreamingAI");
                 this.Close();
                 return;
             }
@@ -105,41 +105,47 @@ namespace AI_StreamingAI
 
             chartXY.Series[0].IsXValueIndexed = false;
 
-            string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            StreamReader read = new StreamReader(Path.Combine(file_path, "config.txt"));
-            for(int i = 1; i < 8; i++)
+            try
             {
-                load_data = read.ReadLine();
-                if(i == 1)
+                string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                StreamReader read = new StreamReader(Path.Combine(file_path, "config.txt"));
+                for (int i = 1; i < 8; i++)
                 {
-                    TitleMain.Text = load_data;
+                    load_data = read.ReadLine();
+                    if (i == 1)
+                    {
+                        TitleMain.Text = load_data;
+                    }
+                    else if (i == 2)
+                    {
+                        ConsumerMain.Text = load_data;
+                    }
+                    else if (i == 3)
+                    {
+                        SenseMain.Text = load_data;
+                    }
+                    else if (i == 4)
+                    {
+                        SensorY.Text = load_data;
+                    }
+                    else if (i == 5)
+                    {
+                        UnitY.Text = load_data;
+                    }
+                    else if (i == 6)
+                    {
+                        SensorX1.Text = load_data;
+                    }
+                    else if (i == 7)
+                    {
+                        UnitX1.Text = load_data;
+                    }
                 }
-                else if(i == 2)
-                {
-                    ConsumerMain.Text = load_data;
-                }
-                else if(i == 3)
-                {
-                    SenseMain.Text = load_data;
-                }
-                else if(i == 4)
-                {
-                    SensorY.Text = load_data;
-                }
-                else if(i == 5)
-                {
-                    UnitY.Text = load_data;
-                }
-                else if(i == 6)
-                {
-                    SensorX1.Text = load_data;
-                }
-                else if(i == 7)
-                {
-                    UnitX1.Text = load_data;
-                }
-
-
+            }
+            catch
+            {
+                MessageBox.Show("Tidak ditemukan config.txt pada Folder My Documents", "Config file tidak ada!", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                this.Close();
             }
         }
 
@@ -299,7 +305,7 @@ namespace AI_StreamingAI
             }
             catch
             {
-                MessageBox.Show("nilai x dan y salah!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Terjadi kesalahan saat akuisisi data. Silahkan restart program", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }   
         }
@@ -479,13 +485,21 @@ namespace AI_StreamingAI
         //Button isi filename
         private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog save = new SaveFileDialog();
-            save.Title = "Save File";
-            save.Filter = "CSV Files (*.csv)|*.csv|Text Files(*.txt)|*.txt";
-            save.ShowDialog();
-            File.Text = save.FileName.ToString();
-            Date.Text = DateTime.Now.ToShortDateString();
-            Waktu.Text = DateTime.Now.ToLongTimeString();
+            try
+            {
+                SaveFileDialog save = new SaveFileDialog();
+                save.Title = "Save File";
+                save.Filter = "CSV Files (*.csv)|*.csv|Text Files(*.txt)|*.txt";
+                save.ShowDialog();
+                File.Text = save.FileName.ToString();
+                Date.Text = DateTime.Now.ToShortDateString();
+                Waktu.Text = DateTime.Now.ToLongTimeString();
+            }
+            catch
+            {
+                MessageBox.Show("Gagal menyimpan file " + File.Text, "Gagal menyimpan file", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            
             startStripMenuItem1.Enabled = true;
             button_start.Enabled = false;
         }
@@ -550,7 +564,7 @@ namespace AI_StreamingAI
         {
             try
             {
-                this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
+                this.chartXY.SaveImage(File.Text+".png", ChartImageFormat.Png);
             }
             catch
             {
@@ -564,34 +578,44 @@ namespace AI_StreamingAI
             button_start.Enabled = false;
             button_pause.Enabled = true;
             recordData = true;
-            StreamWriter write = new StreamWriter(File.Text);
-            write.WriteLine("Judul,"+TitleMain.Text);
-            write.WriteLine("Customer,"+ConsumerMain.Text);
-            write.WriteLine("Grafik,"+SenseMain.Text);
-            write.WriteLine("Tanggal,"+Date.Text);
-            write.WriteLine("Waktu,"+Waktu.Text);
-            write.WriteLine("SensorY,"+SensorY.Text);
-            write.WriteLine("UnitY,"+UnitY.Text);
-            write.WriteLine("SensorX1,"+SensorX1.Text);
-            write.WriteLine("UnitX1,"+UnitX1.Text);
-            if (!check2.Checked && check1.Checked)
+            try
             {
-                write.WriteLine("Jenis, 1,Jumlah Data");
-            } else if (check2.Checked && !check1.Checked)
-            {
-                write.WriteLine("Jenis, 2,Jumlah Data");
-            } else if(check2.Checked&&check1.Checked)
-            {
-                write.WriteLine("Jenis, 3,Jumlah Data");
+                StreamWriter write = new StreamWriter(File.Text);
+                write.WriteLine("Judul," + TitleMain.Text);
+                write.WriteLine("Customer," + ConsumerMain.Text);
+                write.WriteLine("Grafik," + SenseMain.Text);
+                write.WriteLine("Tanggal," + Date.Text);
+                write.WriteLine("Waktu," + Waktu.Text);
+                write.WriteLine("SensorY," + SensorY.Text);
+                write.WriteLine("UnitY," + UnitY.Text);
+                write.WriteLine("SensorX1," + SensorX1.Text);
+                write.WriteLine("UnitX1," + UnitX1.Text);
+                if (!check2.Checked && check1.Checked)
+                {
+                    write.WriteLine("Jenis, 1,Jumlah Data");
+                }
+                else if (check2.Checked && !check1.Checked)
+                {
+                    write.WriteLine("Jenis, 2,Jumlah Data");
+                }
+                else if (check2.Checked && check1.Checked)
+                {
+                    write.WriteLine("Jenis, 3,Jumlah Data");
+                }
+                write.WriteLine("MaxY,");
+                write.WriteLine("MinY,");
+                write.WriteLine("MaxX1,");
+                write.WriteLine("MinX1,");
+                write.WriteLine("MaxX2,");
+                write.WriteLine("MinX2,");
+                write.WriteLine("Waktu,Nilai Y,Nilai X1, Nilai X2");
+                write.Close();
             }
-            write.WriteLine("MaxY,");
-            write.WriteLine("MinY,");
-            write.WriteLine("MaxX1,");
-            write.WriteLine("MinX1,");
-            write.WriteLine("MaxX2,");
-            write.WriteLine("MinX2,");
-            write.WriteLine("Waktu,Nilai Y,Nilai X1, Nilai X2");
-            write.Close();
+            catch
+            {
+                MessageBox.Show("Gagal membuka " + File.Text, "Error membuka file", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+           
             label_Alert.Text = "Recording.....!!!";
         }
 
@@ -609,20 +633,29 @@ namespace AI_StreamingAI
             recordData = false;
             button_start.Enabled = true;
             button_pause.Enabled = false;
-            excel.Application ex = new excel.Application();
-            excel.Workbook book = ex.Workbooks.Open(File.Text);
-            excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
-            res.Cells[10, 4] = recCount;
-            res.Cells[11, 2] = MaxY.Text;
-            res.Cells[12, 2] = MinY.Text;
-            res.Cells[13, 2] = MaxX1.Text;
-            res.Cells[14, 2] = MinX1.Text;
-            res.Cells[15, 2] = MaxX2.Text;
-            res.Cells[16, 2] = minX2.Text;
-            res.Columns.AutoFit();
-            book.SaveAs(File.Text);
-            book.Close();
-            ex.Quit();
+
+            try
+            {
+                excel.Application ex = new excel.Application();
+                excel.Workbook book = ex.Workbooks.Open(File.Text);
+                excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
+                res.Cells[10, 4] = recCount;
+                res.Cells[11, 2] = MaxY.Text;
+                res.Cells[12, 2] = MinY.Text;
+                res.Cells[13, 2] = MaxX1.Text;
+                res.Cells[14, 2] = MinX1.Text;
+                res.Cells[15, 2] = MaxX2.Text;
+                res.Cells[16, 2] = minX2.Text;
+                res.Columns.AutoFit();
+                book.SaveAs(File.Text);
+                book.Close();
+                ex.Quit();
+            }
+            catch
+            {
+                MessageBox.Show("Gagal menyimpan file " + File.Text, "Error menyimpan file", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            
 
             watch.Stop();
             label_Alert.Text = "";
@@ -713,10 +746,7 @@ namespace AI_StreamingAI
             }
         }
 
-        private void SensorX2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void SensorY_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -750,15 +780,7 @@ namespace AI_StreamingAI
                     break;
             }
         }
-        private void UnitY_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void UnitX1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -770,17 +792,13 @@ namespace AI_StreamingAI
         {
             this.Close();
         }
-
-        private void UnitX2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         private void HandleError(ErrorCode err)
         {
             if ((err >= ErrorCode.ErrorHandleNotValid) && (err != ErrorCode.Success))
             {
-                MessageBox.Show("Sorry ! Some errors happened, the error code is: " + err.ToString(), "StreamingAI");
+                MessageBox.Show("Terjadi kesalahan. Kode error: " + err.ToString(), "StreamingAI");
             }
         }
 
@@ -833,15 +851,11 @@ namespace AI_StreamingAI
             }
             //Input hanya angka
         }
-
-        private void saveConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.chartXY.SaveImage("D:\\chart.png", ChartImageFormat.Png);
+            this.chartXY.SaveImage(File.Text+".png", ChartImageFormat.Png);
         }
         #endregion
 
@@ -857,6 +871,26 @@ namespace AI_StreamingAI
 
 
         #region void kosong
+        private void SensorX2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void UnitY_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void UnitX1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void UnitX2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void saveConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
         private void Consumer_TextChanged(object sender, EventArgs e)
         {
 
@@ -885,7 +919,6 @@ namespace AI_StreamingAI
         {
 
         }
-        
         private void button_save_Click(object sender, EventArgs e)
         {
 
