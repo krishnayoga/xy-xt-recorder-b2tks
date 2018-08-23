@@ -785,7 +785,7 @@ namespace AI_StreamingAI
         private void factor_x_1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 && ch != 110)
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
             {
                 e.Handled = true;
             }
@@ -795,7 +795,7 @@ namespace AI_StreamingAI
         private void factor_x_2_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 && ch != 110)
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
             {
                 e.Handled = true;
             }
@@ -805,7 +805,7 @@ namespace AI_StreamingAI
         private void rangeX_chart_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 45)
             {
                 e.Handled = true;
             }
@@ -825,7 +825,7 @@ namespace AI_StreamingAI
         private void rangeY_chart_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 45)
             {
                 e.Handled = true;
             }
@@ -834,16 +834,7 @@ namespace AI_StreamingAI
 
         private void saveConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            StreamWriter write = new StreamWriter(Path.Combine(file_path, "config.txt"));
-            write.WriteLine(TitleMain.Text);
-            write.WriteLine(ConsumerMain.Text);
-            write.WriteLine(SenseMain.Text);
-            write.WriteLine(SensorY.Text);
-            write.WriteLine(UnitY.Text);
-            write.WriteLine(SensorX1.Text);
-            write.WriteLine(UnitX1.Text);
-            write.Close();
+            
         }
 
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
@@ -988,6 +979,20 @@ namespace AI_StreamingAI
         private void factor_x_1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            StreamWriter write = new StreamWriter(Path.Combine(file_path, "config.txt"));
+            write.WriteLine(TitleMain.Text);
+            write.WriteLine(ConsumerMain.Text);
+            write.WriteLine(SenseMain.Text);
+            write.WriteLine(SensorY.Text);
+            write.WriteLine(UnitY.Text);
+            write.WriteLine(SensorX1.Text);
+            write.WriteLine(UnitX1.Text);
+            write.Close();
         }
 
         private void factor_y_TextChanged(object sender, EventArgs e)

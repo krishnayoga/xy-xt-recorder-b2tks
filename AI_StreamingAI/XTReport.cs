@@ -278,7 +278,7 @@ namespace AI_StreamingAI
         private void comboBox_MinY_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            if (!Char.IsDigit(ch) && ch != 8 && ch !=45)
             {
                 e.Handled = true;
             }
@@ -288,7 +288,7 @@ namespace AI_StreamingAI
         private void comboBox_MinX_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 45)
             {
                 e.Handled = true;
             }
@@ -298,7 +298,7 @@ namespace AI_StreamingAI
         private void comboBox_MaxY_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 45)
             {
                 e.Handled = true;
             }

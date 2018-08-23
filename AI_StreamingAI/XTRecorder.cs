@@ -788,7 +788,7 @@ namespace AI_StreamingAI
         private void Factor1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 && ch != 110)
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
             {
                 e.Handled = true;
             }
@@ -798,7 +798,7 @@ namespace AI_StreamingAI
         private void Factor2_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 && ch != 110)
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
             {
                 e.Handled = true;
             }
@@ -813,7 +813,7 @@ namespace AI_StreamingAI
         private void RangeY_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 )
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 45 )
             {
                 e.Handled = true;
             }
@@ -823,7 +823,7 @@ namespace AI_StreamingAI
         private void RangeX_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46 )
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 45 )
             {
                 e.Handled = true;
             }
@@ -831,6 +831,25 @@ namespace AI_StreamingAI
         }
 
         private void saveConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        
+
+        //button replot menu
+        private void replotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Clear();
+            initChart();
+        }
+
+        private void Factor1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_SaveConfig_Click(object sender, EventArgs e)
         {
             string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             StreamWriter write = new StreamWriter(Path.Combine(file_path, "config.txt"));
@@ -842,15 +861,6 @@ namespace AI_StreamingAI
             write.WriteLine(Sensor2.Text);
             write.WriteLine(Unit2.Text);
             write.Close();
-        }
-
-        
-
-        //button replot menu
-        private void replotToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            chartXY.ChartAreas[0].AxisX.CustomLabels.Clear();
-            initChart();
         }
 
         //button print to png menu
