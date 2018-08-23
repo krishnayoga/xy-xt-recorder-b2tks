@@ -35,14 +35,13 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(16, 15);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 12);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(677, 370);
+            this.richTextBox1.Size = new System.Drawing.Size(508, 301);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
@@ -50,10 +49,10 @@
             // 
             this.EXIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.EXIT.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.EXIT.Location = new System.Drawing.Point(577, 402);
+            this.EXIT.Location = new System.Drawing.Point(433, 327);
             this.EXIT.Margin = new System.Windows.Forms.Padding(1);
             this.EXIT.Name = "EXIT";
-            this.EXIT.Size = new System.Drawing.Size(101, 27);
+            this.EXIT.Size = new System.Drawing.Size(76, 22);
             this.EXIT.TabIndex = 11;
             this.EXIT.Text = "&Tutup";
             this.EXIT.UseVisualStyleBackColor = true;
@@ -61,15 +60,16 @@
             // 
             // HelpXYRec
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(689, 442);
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ClientSize = new System.Drawing.Size(518, 359);
             this.Controls.Add(this.EXIT);
             this.Controls.Add(this.richTextBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MaximumSize = new System.Drawing.Size(707, 934);
-            this.MinimumSize = new System.Drawing.Size(707, 479);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(534, 766);
+            this.MinimumSize = new System.Drawing.Size(534, 397);
             this.Name = "HelpXYRec";
             this.Text = "Help XY Recorder";
             this.ResumeLayout(false);
