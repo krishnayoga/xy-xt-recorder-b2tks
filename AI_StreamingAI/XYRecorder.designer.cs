@@ -30,9 +30,9 @@ namespace AI_StreamingAI
       {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XYRecorder));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.waveformAiCtrl1 = new Automation.BDaq.WaveformAiCtrl(this.components);
             this.chartXY = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -50,13 +50,13 @@ namespace AI_StreamingAI
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel6 = new System.Windows.Forms.Panel();
             this.button_SaveConfig = new System.Windows.Forms.Button();
-            this.label32 = new System.Windows.Forms.Label();
             this.Update = new System.Windows.Forms.Button();
             this.Consumer = new System.Windows.Forms.TextBox();
             this.Title = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox_stopwatch = new System.Windows.Forms.TextBox();
@@ -118,7 +118,6 @@ namespace AI_StreamingAI
             this.label18 = new System.Windows.Forms.Label();
             this.rangeX_chart = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label20 = new System.Windows.Forms.Label();
             this.label_ColorX2 = new System.Windows.Forms.Label();
             this.label_ColorX1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -152,18 +151,18 @@ namespace AI_StreamingAI
             // 
             // chartXY
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea5);
-            legend5.Enabled = false;
-            legend5.Name = "Legend1";
-            this.chartXY.Legends.Add(legend5);
+            chartArea1.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chartXY.Legends.Add(legend1);
             this.chartXY.Location = new System.Drawing.Point(12, 194);
             this.chartXY.Name = "chartXY";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.chartXY.Series.Add(series5);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartXY.Series.Add(series1);
             this.chartXY.Size = new System.Drawing.Size(1061, 523);
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
@@ -309,17 +308,6 @@ namespace AI_StreamingAI
             this.button_SaveConfig.UseVisualStyleBackColor = true;
             this.button_SaveConfig.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // label32
-            // 
-            this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label32.AutoSize = true;
-            this.label32.ForeColor = System.Drawing.Color.Red;
-            this.label32.Location = new System.Drawing.Point(3, 198);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(152, 15);
-            this.label32.TabIndex = 34;
-            this.label32.Text = "* Harus di-klik/di-pilih/di-isi";
-            // 
             // Update
             // 
             this.Update.Location = new System.Drawing.Point(187, 105);
@@ -371,6 +359,17 @@ namespace AI_StreamingAI
             this.label27.Size = new System.Drawing.Size(72, 15);
             this.label27.TabIndex = 34;
             this.label27.Text = "Panel Judul";
+            // 
+            // label32
+            // 
+            this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label32.AutoSize = true;
+            this.label32.ForeColor = System.Drawing.Color.Red;
+            this.label32.Location = new System.Drawing.Point(3, 198);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(152, 15);
+            this.label32.TabIndex = 34;
+            this.label32.Text = "* Harus di-klik/di-pilih/di-isi";
             // 
             // panel5
             // 
@@ -609,6 +608,7 @@ namespace AI_StreamingAI
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(271, 142);
             this.panel4.TabIndex = 38;
+            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // label13
             // 
@@ -624,15 +624,15 @@ namespace AI_StreamingAI
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.checkBox_invertY);
-            this.panel2.Location = new System.Drawing.Point(186, 117);
+            this.panel2.Location = new System.Drawing.Point(163, 117);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(84, 24);
+            this.panel2.Size = new System.Drawing.Size(107, 24);
             this.panel2.TabIndex = 45;
             // 
             // checkBox_invertY
             // 
             this.checkBox_invertY.AutoSize = true;
-            this.checkBox_invertY.Location = new System.Drawing.Point(3, 1);
+            this.checkBox_invertY.Location = new System.Drawing.Point(3, 0);
             this.checkBox_invertY.Name = "checkBox_invertY";
             this.checkBox_invertY.Size = new System.Drawing.Size(72, 19);
             this.checkBox_invertY.TabIndex = 47;
@@ -790,6 +790,7 @@ namespace AI_StreamingAI
             this.ConsumerMain.TabIndex = 43;
             this.ConsumerMain.Text = "Nama Customer";
             this.ConsumerMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ConsumerMain.Click += new System.EventHandler(this.ConsumerMain_Click);
             // 
             // SenseMain
             // 
@@ -891,7 +892,7 @@ namespace AI_StreamingAI
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(159, 65);
+            this.label9.Location = new System.Drawing.Point(24, 92);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(66, 15);
             this.label9.TabIndex = 28;
@@ -901,7 +902,7 @@ namespace AI_StreamingAI
             // 
             this.star2.AutoSize = true;
             this.star2.ForeColor = System.Drawing.Color.Red;
-            this.star2.Location = new System.Drawing.Point(224, 63);
+            this.star2.Location = new System.Drawing.Point(89, 90);
             this.star2.Name = "star2";
             this.star2.Size = new System.Drawing.Size(12, 15);
             this.star2.TabIndex = 29;
@@ -909,7 +910,7 @@ namespace AI_StreamingAI
             // 
             // factor_x_1
             // 
-            this.factor_x_1.Location = new System.Drawing.Point(162, 83);
+            this.factor_x_1.Location = new System.Drawing.Point(27, 110);
             this.factor_x_1.Name = "factor_x_1";
             this.factor_x_1.Size = new System.Drawing.Size(51, 21);
             this.factor_x_1.TabIndex = 31;
@@ -920,7 +921,7 @@ namespace AI_StreamingAI
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(215, 86);
+            this.label11.Location = new System.Drawing.Point(80, 113);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(52, 15);
             this.label11.TabIndex = 3;
@@ -929,7 +930,7 @@ namespace AI_StreamingAI
             // check2
             // 
             this.check2.AutoSize = true;
-            this.check2.Location = new System.Drawing.Point(15, 98);
+            this.check2.Location = new System.Drawing.Point(15, 139);
             this.check2.Name = "check2";
             this.check2.Size = new System.Drawing.Size(90, 19);
             this.check2.TabIndex = 32;
@@ -940,7 +941,7 @@ namespace AI_StreamingAI
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(160, 110);
+            this.label15.Location = new System.Drawing.Point(24, 156);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(66, 15);
             this.label15.TabIndex = 37;
@@ -948,7 +949,7 @@ namespace AI_StreamingAI
             // 
             // factor_x_2
             // 
-            this.factor_x_2.Location = new System.Drawing.Point(163, 128);
+            this.factor_x_2.Location = new System.Drawing.Point(27, 174);
             this.factor_x_2.Name = "factor_x_2";
             this.factor_x_2.ReadOnly = true;
             this.factor_x_2.Size = new System.Drawing.Size(50, 21);
@@ -959,7 +960,7 @@ namespace AI_StreamingAI
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(214, 131);
+            this.label12.Location = new System.Drawing.Point(78, 177);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(52, 15);
             this.label12.TabIndex = 33;
@@ -979,7 +980,7 @@ namespace AI_StreamingAI
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(161, 152);
+            this.label18.Location = new System.Drawing.Point(160, 71);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(82, 15);
             this.label18.TabIndex = 42;
@@ -999,7 +1000,7 @@ namespace AI_StreamingAI
             "100",
             "150",
             "200"});
-            this.rangeX_chart.Location = new System.Drawing.Point(163, 174);
+            this.rangeX_chart.Location = new System.Drawing.Point(162, 93);
             this.rangeX_chart.Name = "rangeX_chart";
             this.rangeX_chart.Size = new System.Drawing.Size(87, 23);
             this.rangeX_chart.TabIndex = 43;
@@ -1012,7 +1013,6 @@ namespace AI_StreamingAI
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label32);
-            this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.label_ColorX2);
             this.panel1.Controls.Add(this.label_ColorX1);
             this.panel1.Controls.Add(this.label7);
@@ -1020,11 +1020,11 @@ namespace AI_StreamingAI
             this.panel1.Controls.Add(this.star5);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.rangeX_chart);
-            this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.rangeX_chart);
             this.panel1.Controls.Add(this.factor_x_1);
+            this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.factor_x_2);
             this.panel1.Controls.Add(this.star2);
             this.panel1.Controls.Add(this.label9);
@@ -1042,26 +1042,17 @@ namespace AI_StreamingAI
             this.panel1.TabIndex = 37;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.Color.Red;
-            this.label20.Location = new System.Drawing.Point(224, 110);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(12, 15);
-            this.label20.TabIndex = 55;
-            this.label20.Text = "*";
-            // 
             // label_ColorX2
             // 
             this.label_ColorX2.AutoSize = true;
             this.label_ColorX2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_ColorX2.ForeColor = System.Drawing.Color.Red;
-            this.label_ColorX2.Location = new System.Drawing.Point(102, 93);
+            this.label_ColorX2.Location = new System.Drawing.Point(105, 139);
             this.label_ColorX2.Name = "label_ColorX2";
             this.label_ColorX2.Size = new System.Drawing.Size(0, 27);
             this.label_ColorX2.TabIndex = 54;
             this.label_ColorX2.UseCompatibleTextRendering = true;
+            this.label_ColorX2.Click += new System.EventHandler(this.label_ColorX2_Click);
             // 
             // label_ColorX1
             // 
@@ -1098,7 +1089,7 @@ namespace AI_StreamingAI
             // 
             this.star5.AutoSize = true;
             this.star5.ForeColor = System.Drawing.Color.Red;
-            this.star5.Location = new System.Drawing.Point(226, 110);
+            this.star5.Location = new System.Drawing.Point(81, 156);
             this.star5.Name = "star5";
             this.star5.Size = new System.Drawing.Size(0, 15);
             this.star5.TabIndex = 50;
@@ -1107,7 +1098,7 @@ namespace AI_StreamingAI
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(238, 146);
+            this.label10.Location = new System.Drawing.Point(241, 71);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(12, 15);
             this.label10.TabIndex = 47;
@@ -1119,10 +1110,11 @@ namespace AI_StreamingAI
             this.panel3.Controls.Add(this.checkBox_invertX2);
             this.panel3.Controls.Add(this.checkBox_invertX1);
             this.panel3.Controls.Add(this.checkBox_holdX);
-            this.panel3.Location = new System.Drawing.Point(11, 117);
+            this.panel3.Location = new System.Drawing.Point(161, 135);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(87, 78);
+            this.panel3.Size = new System.Drawing.Size(109, 94);
             this.panel3.TabIndex = 46;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // checkBox_invertX2
             // 
@@ -1144,6 +1136,7 @@ namespace AI_StreamingAI
             this.checkBox_invertX1.TabIndex = 48;
             this.checkBox_invertX1.Text = "Invert - X1";
             this.checkBox_invertX1.UseVisualStyleBackColor = true;
+            this.checkBox_invertX1.CheckedChanged += new System.EventHandler(this.checkBox_invertX1_CheckedChanged);
             // 
             // File
             // 
@@ -1334,7 +1327,6 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox_stopwatch;
         private System.Windows.Forms.Label label_Alert;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button button_SaveConfig;
     }
 }

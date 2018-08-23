@@ -318,10 +318,10 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisY.Minimum = min_y_chart;
             chartXY.ChartAreas[0].AxisX.Interval = 1;
             chartXY.ChartAreas[0].AxisY.Interval = 1;
-
-            chartXY.ChartAreas[0].AxisX.Title = "";
-            chartXY.ChartAreas[0].AxisY.Title = "";
             */
+            chartXY.ChartAreas[0].AxisX.Title = "Waktu (Menit)";
+            chartXY.ChartAreas[0].AxisY.Title = Sensor1.Text + " (" + Unit1.Text + ")" + " & "+ Sensor2.Text + " (" + Unit2.Text + ")"; 
+            
 
             //ini
             //chartXY.ChartAreas[0].AxisX.Crossing = 0;
@@ -562,10 +562,10 @@ namespace AI_StreamingAI
             }
 
             button_start.Enabled = false;
-            button_pause.Enabled = true;
+            button_pause.Enabled = false;
             startRecordToolStripMenuItem.Enabled = true;
             button_stop.Enabled = true;
-            balanceToolStripMenuItem.Enabled = true;
+            balanceToolStripMenuItem.Enabled = false;
 
             if (check1.Checked)
             {
@@ -635,6 +635,7 @@ namespace AI_StreamingAI
             button_pause.Enabled = false;
             button_stop.Enabled = false;
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
+            balanceToolStripMenuItem.Enabled = true;
         }
 
         //button start record menu
@@ -677,6 +678,7 @@ namespace AI_StreamingAI
             startRecordToolStripMenuItem.Enabled = false;
             button_pause.Enabled = true;
             label_Alert.Text = "Recording.....!!!";
+            button_pause.Enabled = true;
         }
 
         //button stop record menu

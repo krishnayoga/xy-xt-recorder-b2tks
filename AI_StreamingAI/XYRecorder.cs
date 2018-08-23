@@ -449,8 +449,9 @@ namespace AI_StreamingAI
             initChart();
             button_start.Enabled = true;
             button_stop.Enabled = true;
-            balanceToolStripMenuItem.Enabled = true;
+            balanceToolStripMenuItem.Enabled = false;
             recCount = 0;
+            button_pause.Enabled = false;
         }
 
         //fungsi untuk menu stop button
@@ -472,6 +473,7 @@ namespace AI_StreamingAI
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
             
             startStripMenuItem1.Enabled = true;
+            balanceToolStripMenuItem.Enabled = true;
         }
 
         //Button isi filename
@@ -506,7 +508,7 @@ namespace AI_StreamingAI
             min_x_2 = 0;
             max_y = 0;
             min_y = 0;
-            startStripMenuItem1.Enabled = false;
+            startStripMenuItem1.Enabled = true;
             button_stop.Enabled = true;
             watch.Reset();
             
@@ -996,6 +998,31 @@ namespace AI_StreamingAI
         }
 
         private void checkBox_invertX2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_ColorX2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void checkBox_invertX1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConsumerMain_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
         {
 
         }
