@@ -83,6 +83,8 @@
             this.MinY = new System.Windows.Forms.TextBox();
             this.MaxY = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.printToPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printToPrinterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -315,9 +317,13 @@
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
             this.printToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.printToolStripMenuItem.Text = "&Print";
+            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.printToPNGToolStripMenuItem,
+            this.printToPrinterToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
@@ -647,6 +653,18 @@
             this.label16.TabIndex = 0;
             this.label16.Text = "Decimal Value";
             // 
+            // printToPNGToolStripMenuItem
+            // 
+            this.printToPNGToolStripMenuItem.Name = "printToPNGToolStripMenuItem";
+            this.printToPNGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printToPNGToolStripMenuItem.Text = "Print to .PNG";
+            // 
+            // printToPrinterToolStripMenuItem
+            // 
+            this.printToPrinterToolStripMenuItem.Name = "printToPrinterToolStripMenuItem";
+            this.printToPrinterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printToPrinterToolStripMenuItem.Text = "Print to Printer";
+            // 
             // XYReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -739,5 +757,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem loadDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printToPNGToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printToPrinterToolStripMenuItem;
     }
 }

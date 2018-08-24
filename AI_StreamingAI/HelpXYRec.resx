@@ -128,34 +128,30 @@
   &gt;Factor - Y	: Untuk mengisi nilai faktor dari Unit Sensor - Y1/Volt.
                                     (misalkan kapasitas LC 100 kN/10 V, berarti 10 kN/Volt, 
                                      maka faktor diisi : 10)
-  &gt;Polarity - Y1 terdapat 2 pilihan :
-	1. Norm, nilai data ukur tidak dibalik (Normal).
-	2. Invert, jika nilai data ukur ingin dibalik (Negatif menjadi positif).
-  &gt;Untuk setting Sensor - Y2 , Unit - Y2, Factor - Y2 dan Polarity - Y2 memiliki cara 
-     yang sama dengan setting Sensor - Y1, Unit - Y1, Factor - Y1, dan Polarity - Y1.
+  &gt;Invert Y, jika nilai data ukur ingin dibalik. (Negatif menjadi positif bila 
+     di-check)
   &gt;Range Max Y
      untuk memilih/mengisi skala maksimum dari nilai data ukur sensor Y.
      (misalkan kapasitas LC 100 kN/10 V, maka Range Max diisi : 100)
 
 *Setting X
-  XY Recorder dapat menerima input untuk arah X dengan 2 buah input.
+  XY Recorder dapat menerima input untuk arah X dengan 2 buah input
+  (minimal 1 buah input)
   Input sensor arah X dilakukan sebagai berikut :
-  &gt;Sensor - X - 1	: Untuk memilih jenis sensor sebagai input arah X ke 1. 
+  &gt;Sensor - X 	: Untuk memilih jenis sensor sebagai input arah X. 
                                     (misal Load Cell).
-  &gt;Unit - X - 1     	: Untuk memilih satuan dari sensor untuk input arah  X ke 1. 
+  &gt;Unit - X     	: Untuk memilih satuan dari sensor untuk input arah  X . 
                                     (misal kN)
-  &gt;Factor - X -1	: Untuk mengisi nilai faktor dari Unit Sensor - X1/Volt.
+  &gt;Factor - X1	: Untuk mengisi nilai faktor dari Unit Sensor - X1/Volt.
                                     (misalkan kapasitas LC 100 kN/10 V, berarti 10 kN/Volt, 
                                      maka faktor diisi : 10)
-  &gt;Sensor - X - 2	: Untuk memilih jenis sensor sebagai input arah X ke 1. 
-                                    (misal Load Cell).
-  &gt;Unit - X - 2     	: Untuk memilih satuan dari sensor untuk input arah  X ke 1. 
-                                    (misal kN)
-  &gt;Factor - X -2	: Untuk mengisi nilai faktor dari Unit Sensor - X1/Volt.
+  &gt;Factor - X2	: Untuk mengisi nilai faktor dari Unit Sensor - X1/Volt.
                                     (misalkan kapasitas LC 100 kN/10 V, berarti 10 kN/Volt, 
                                      maka faktor diisi : 10)
-  &gt;Untuk setting Sensor - Y2 , Unit - Y2, Factor - Y2 dan Polarity - Y2 memiliki cara 
-     yang sama dengan setting Sensor - Y1, Unit - Y1, Factor - Y1, dan Polarity - Y1.
+  &gt;Invert - X1, jika nilai data ukur X2 ingin dibalik. (Negatif menjadi positif bila 
+     di-check).
+  &gt;Invert - X2, jika nilai data ukur X2 ingin dibalik. (Negatif menjadi positif bila 
+     di-check)
   &gt;Range Max - X
      untuk memilih/mengisi skala maksimum dari waktu (t) dalam satuan menit.
      (misalkan perkiraan pengujian dilakukan selama 5 menit, diisi: 5 atau lebih)
@@ -164,6 +160,15 @@
      Hold - X dan jika ingin melanjutkan klik checkbox Hold - X kembali (hilangkan 
      tanda check).
 
+*Panel Judul
+  untuk mengubah  judul sesuai dengan keinginan customer.
+  &gt; Nama Pengujian, untuk jenis pengujian. 
+      (misal Pengujian Statis)
+  &gt; Nama Customer, untuk nama customer. 
+      (misal PT. Wijaya Karya)
+  &gt; Update, untuk label menyimpan dan mengubah bagian judul pengujian. 
+      (Judul yang tersimpan akan muncul kembalai setelah keluar program)
+
 *Decimal Value
   untuk menampilkan nilai data ukur yang sedang berlangsung, dan juga nilai 
   maksimum/minimumnya.
@@ -171,15 +176,6 @@
 *Menu Filename
   untuk memilih folder tempat penyimpanan file data dan mengisi nama fila data.
   (sebaiknya dibuat folder-nya)
-
-*Menu Title
-  untuk memanggil form Title yang dapat mengisi :
-  &gt; Title - 1, untuk jenis pengujian. 
-      (misal Pengujian Statis)
-  &gt; Title - 2, untuk nama customer. 
-      (misal PT. Wijaya Karya)
-  &gt; Title - 3, untuk label sumbu Y dan X. 
-      (misal Load vs Time atau Displacement vs Time)
 
 *Menu Start
   untuk memulai/mengawali pembacaan/pengecekan setelah setting diatas 
@@ -193,7 +189,10 @@
   untuk mengubah kondisi harga awal pembacaan menjadi 0.
 
 *Menu StartRecord
-  untuk memulai pengujian dan pengukuran sekaligus perekaman data.
+  untuk memulai perekaman data.
+
+*Menu StopRecord
+  untuk menyimpan hasil perekaman data.
 
 *Menu Replot
   untuk menggambar kembali grafik data pengukuran yang baru saja dilakukan 
@@ -202,7 +201,9 @@
   diinginkan.
 
 *Menu Print
-  untuk mencetak grafik yang sedang tampil di layar ke printer.
+  untuk mencetak grafik yang sedang tampil di layar.
+  &gt;Print to .PNG, untuk mencetak grafik sebagai bentuk gambar .PNG.
+  &gt;Print to Printer, untuk mencetak grafik melalui printer.
 
 *Menu Exit
   untuk keluar dari Software ini.</value>

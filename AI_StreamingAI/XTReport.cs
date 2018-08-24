@@ -53,6 +53,18 @@ namespace AI_StreamingAI
         double pos_label_7, pos_label_8, pos_label_9, pos_label_10, pos_label_11;
         int batas_chart_1, batas_chart_2, batas_chart_3, batas_chart_4, batas_chart_5, batas_chart_6;
 
+        private void printToPNGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.chartXY.SaveImage(File.Text + ".png", ChartImageFormat.Png);
+            }
+            catch
+            {
+                MessageBox.Show("Gagal menyimpan chart", "Save PNG Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HelpXTReport helpXTReport = new HelpXTReport();

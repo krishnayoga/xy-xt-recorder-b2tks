@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XTReport));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,6 +79,8 @@
             this.Waktu = new System.Windows.Forms.Label();
             this.Date = new System.Windows.Forms.Label();
             this.File = new System.Windows.Forms.Label();
+            this.printToPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printToPrinterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -127,6 +129,9 @@
             // 
             // printToolStripMenuItem
             // 
+            this.printToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.printToPNGToolStripMenuItem,
+            this.printToPrinterToolStripMenuItem});
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
             this.printToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.printToolStripMenuItem.Text = "&Print";
@@ -236,18 +241,18 @@
             // 
             // chartXY
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea2);
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chartXY.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea3);
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.chartXY.Legends.Add(legend3);
             this.chartXY.Location = new System.Drawing.Point(0, 196);
             this.chartXY.Name = "chartXY";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartXY.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartXY.Series.Add(series3);
             this.chartXY.Size = new System.Drawing.Size(1073, 495);
             this.chartXY.TabIndex = 51;
             this.chartXY.Text = "chart1";
@@ -610,6 +615,19 @@
             this.File.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.File.Click += new System.EventHandler(this.File_Click);
             // 
+            // printToPNGToolStripMenuItem
+            // 
+            this.printToPNGToolStripMenuItem.Name = "printToPNGToolStripMenuItem";
+            this.printToPNGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printToPNGToolStripMenuItem.Text = "Print to .PNG";
+            this.printToPNGToolStripMenuItem.Click += new System.EventHandler(this.printToPNGToolStripMenuItem_Click);
+            // 
+            // printToPrinterToolStripMenuItem
+            // 
+            this.printToPrinterToolStripMenuItem.Name = "printToPrinterToolStripMenuItem";
+            this.printToPrinterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printToPrinterToolStripMenuItem.Text = "Print to Printer";
+            // 
             // XTReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -700,5 +718,7 @@
         private System.Windows.Forms.ToolStripMenuItem loadDataToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboBox_MinX;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ToolStripMenuItem printToPNGToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printToPrinterToolStripMenuItem;
     }
 }

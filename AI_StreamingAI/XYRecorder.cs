@@ -556,7 +556,16 @@ namespace AI_StreamingAI
             {
                 ValX2.Text = "---";
             }
-
+            string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            StreamWriter write = new StreamWriter(Path.Combine(file_path, "config.txt"));
+            write.WriteLine(TitleMain.Text);
+            write.WriteLine(ConsumerMain.Text);
+            write.WriteLine(SenseMain.Text);
+            write.WriteLine(SensorY.Text);
+            write.WriteLine(UnitY.Text);
+            write.WriteLine(SensorX1.Text);
+            write.WriteLine(UnitX1.Text);
+            write.Close();
         }
 
         //fungsi untuk print to png
@@ -1018,16 +1027,7 @@ namespace AI_StreamingAI
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            StreamWriter write = new StreamWriter(Path.Combine(file_path, "config.txt"));
-            write.WriteLine(TitleMain.Text);
-            write.WriteLine(ConsumerMain.Text);
-            write.WriteLine(SenseMain.Text);
-            write.WriteLine(SensorY.Text);
-            write.WriteLine(UnitY.Text);
-            write.WriteLine(SensorX1.Text);
-            write.WriteLine(UnitX1.Text);
-            write.Close();
+            
         }
 
         private void checkBox_invertX2_CheckedChanged(object sender, EventArgs e)

@@ -49,7 +49,6 @@ namespace AI_StreamingAI
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.button_SaveConfig = new System.Windows.Forms.Button();
             this.Update = new System.Windows.Forms.Button();
             this.Consumer = new System.Windows.Forms.TextBox();
             this.Title = new System.Windows.Forms.TextBox();
@@ -286,7 +285,6 @@ namespace AI_StreamingAI
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.button_SaveConfig);
             this.panel6.Controls.Add(this.Update);
             this.panel6.Controls.Add(this.Consumer);
             this.panel6.Controls.Add(this.Title);
@@ -297,16 +295,6 @@ namespace AI_StreamingAI
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(271, 133);
             this.panel6.TabIndex = 40;
-            // 
-            // button_SaveConfig
-            // 
-            this.button_SaveConfig.Location = new System.Drawing.Point(75, 105);
-            this.button_SaveConfig.Name = "button_SaveConfig";
-            this.button_SaveConfig.Size = new System.Drawing.Size(98, 23);
-            this.button_SaveConfig.TabIndex = 44;
-            this.button_SaveConfig.Text = "Save Config";
-            this.button_SaveConfig.UseVisualStyleBackColor = true;
-            this.button_SaveConfig.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Update
             // 
@@ -1328,7 +1316,6 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox_stopwatch;
         private System.Windows.Forms.Label label_Alert;
-        private System.Windows.Forms.Button button_SaveConfig;
     }
 }
 

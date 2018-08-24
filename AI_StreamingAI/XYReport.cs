@@ -282,6 +282,11 @@ namespace AI_StreamingAI
             helpXYReport.ShowDialog();
         }
 
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();

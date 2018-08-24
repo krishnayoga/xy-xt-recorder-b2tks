@@ -130,7 +130,9 @@
   &gt;skala X pada Range Max X sesuai keinginan.
 
 *Menu Print
-  untuk mencetak grafik yang sedang tampil di layar ke printer.
+  untuk mencetak grafik yang sedang tampil di layar.
+  &gt;Print to .PNG, untuk mencetak grafik sebagai bentuk gambar .PNG.
+  &gt;Print to Printer, untuk mencetak grafik melalui printer.
 
 *Menu Exit
   untuk keluar dari Software ini.</value>

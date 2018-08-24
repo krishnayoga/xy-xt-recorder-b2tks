@@ -30,9 +30,9 @@ namespace AI_StreamingAI
       {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XTRecorder));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.waveformAiCtrl1 = new Automation.BDaq.WaveformAiCtrl(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -84,9 +84,6 @@ namespace AI_StreamingAI
             this.panel4 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
             this.checkBox_holdX = new System.Windows.Forms.CheckBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.UnitX = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.RangeX = new System.Windows.Forms.ComboBox();
@@ -112,7 +109,6 @@ namespace AI_StreamingAI
             this.ConsumerMain = new System.Windows.Forms.Label();
             this.TitleMain = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.button_SaveConfig = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.Consumer = new System.Windows.Forms.TextBox();
             this.Title = new System.Windows.Forms.TextBox();
@@ -171,18 +167,18 @@ namespace AI_StreamingAI
             // chartXY
             // 
             this.chartXY.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            chartArea1.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chartXY.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea2);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.chartXY.Legends.Add(legend2);
             this.chartXY.Location = new System.Drawing.Point(12, 212);
             this.chartXY.Name = "chartXY";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartXY.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartXY.Series.Add(series2);
             this.chartXY.Size = new System.Drawing.Size(1063, 484);
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
@@ -283,8 +279,9 @@ namespace AI_StreamingAI
             // printToPrinterToolStripMenuItem
             // 
             this.printToPrinterToolStripMenuItem.Name = "printToPrinterToolStripMenuItem";
-            this.printToPrinterToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.printToPrinterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.printToPrinterToolStripMenuItem.Text = "Print to Printer";
+            this.printToPrinterToolStripMenuItem.Click += new System.EventHandler(this.printToPrinterToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -402,15 +399,15 @@ namespace AI_StreamingAI
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.checkBox_InvertY2);
             this.panel2.Controls.Add(this.checkBox_InvertY1);
-            this.panel2.Location = new System.Drawing.Point(174, 197);
+            this.panel2.Location = new System.Drawing.Point(133, 186);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(96, 53);
+            this.panel2.Size = new System.Drawing.Size(137, 64);
             this.panel2.TabIndex = 45;
             // 
             // checkBox_InvertY2
             // 
             this.checkBox_InvertY2.AutoSize = true;
-            this.checkBox_InvertY2.Location = new System.Drawing.Point(4, 25);
+            this.checkBox_InvertY2.Location = new System.Drawing.Point(4, 33);
             this.checkBox_InvertY2.Name = "checkBox_InvertY2";
             this.checkBox_InvertY2.Size = new System.Drawing.Size(79, 19);
             this.checkBox_InvertY2.TabIndex = 1;
@@ -463,9 +460,9 @@ namespace AI_StreamingAI
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(3, 186);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(105, 15);
+            this.label18.Size = new System.Drawing.Size(81, 15);
             this.label18.TabIndex = 42;
-            this.label18.Text = "Range Max Y1/Y2";
+            this.label18.Text = "Range Max Y";
             // 
             // Unit2
             // 
@@ -644,9 +641,6 @@ namespace AI_StreamingAI
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.label32);
             this.panel4.Controls.Add(this.checkBox_holdX);
-            this.panel4.Controls.Add(this.label22);
-            this.panel4.Controls.Add(this.label23);
-            this.panel4.Controls.Add(this.UnitX);
             this.panel4.Controls.Add(this.label20);
             this.panel4.Controls.Add(this.label21);
             this.panel4.Controls.Add(this.RangeX);
@@ -671,46 +665,13 @@ namespace AI_StreamingAI
             // 
             this.checkBox_holdX.AutoSize = true;
             this.checkBox_holdX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_holdX.Location = new System.Drawing.Point(179, 67);
+            this.checkBox_holdX.Location = new System.Drawing.Point(138, 40);
             this.checkBox_holdX.Name = "checkBox_holdX";
             this.checkBox_holdX.Size = new System.Drawing.Size(78, 19);
             this.checkBox_holdX.TabIndex = 33;
             this.checkBox_holdX.Text = "Hold - X";
             this.checkBox_holdX.UseVisualStyleBackColor = true;
             this.checkBox_holdX.CheckedChanged += new System.EventHandler(this.checkBox_holdX_CheckedChanged);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(200, 18);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(12, 15);
-            this.label22.TabIndex = 32;
-            this.label22.Text = "*";
-            this.label22.Click += new System.EventHandler(this.label22_Click);
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(149, 17);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(47, 15);
-            this.label23.TabIndex = 31;
-            this.label23.Text = "Unit - X";
-            // 
-            // UnitX
-            // 
-            this.UnitX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.UnitX.FormattingEnabled = true;
-            this.UnitX.Items.AddRange(new object[] {
-            "Minute",
-            "Second"});
-            this.UnitX.Location = new System.Drawing.Point(149, 38);
-            this.UnitX.Name = "UnitX";
-            this.UnitX.Size = new System.Drawing.Size(87, 23);
-            this.UnitX.TabIndex = 30;
-            this.UnitX.SelectedIndexChanged += new System.EventHandler(this.comboBox7_SelectedIndexChanged);
             // 
             // label20
             // 
@@ -964,7 +925,6 @@ namespace AI_StreamingAI
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.button_SaveConfig);
             this.panel6.Controls.Add(this.button1);
             this.panel6.Controls.Add(this.Consumer);
             this.panel6.Controls.Add(this.Title);
@@ -975,16 +935,6 @@ namespace AI_StreamingAI
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(271, 134);
             this.panel6.TabIndex = 32;
-            // 
-            // button_SaveConfig
-            // 
-            this.button_SaveConfig.Location = new System.Drawing.Point(81, 104);
-            this.button_SaveConfig.Name = "button_SaveConfig";
-            this.button_SaveConfig.Size = new System.Drawing.Size(98, 23);
-            this.button_SaveConfig.TabIndex = 45;
-            this.button_SaveConfig.Text = "Save Config";
-            this.button_SaveConfig.UseVisualStyleBackColor = true;
-            this.button_SaveConfig.Click += new System.EventHandler(this.button_SaveConfig_Click);
             // 
             // button1
             // 
@@ -1173,9 +1123,6 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox Factor1;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.ComboBox UnitX;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox RangeX;
@@ -1225,7 +1172,6 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label label_star5;
         private System.Windows.Forms.Label label_star4;
         private System.Windows.Forms.Label label_Alert;
-        private System.Windows.Forms.Button button_SaveConfig;
         private System.Windows.Forms.Label label32;
     }
 }

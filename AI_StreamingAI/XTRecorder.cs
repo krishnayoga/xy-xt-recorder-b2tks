@@ -852,16 +852,7 @@ namespace AI_StreamingAI
 
         private void button_SaveConfig_Click(object sender, EventArgs e)
         {
-            string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            StreamWriter write = new StreamWriter(Path.Combine(file_path, "config.txt"));
-            write.WriteLine(TitleMain.Text); 
-            write.WriteLine(ConsumerMain.Text);
-            write.WriteLine(SenseMain.Text);
-            write.WriteLine(Sensor1.Text);
-            write.WriteLine(Unit1.Text);
-            write.WriteLine(Sensor2.Text);
-            write.WriteLine(Unit2.Text);
-            write.Close();
+            
         }
 
         //button print to png menu
@@ -919,6 +910,11 @@ namespace AI_StreamingAI
                 MessageBox.Show("WaveformAiOverrun");
                 m_isFirstOverRun = false;
             }
+        }
+
+        private void printToPrinterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void Sensor1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1006,6 +1002,16 @@ namespace AI_StreamingAI
             {
                 ValY2.Text = "---";
             }
+            string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            StreamWriter write = new StreamWriter(Path.Combine(file_path, "config.txt"));
+            write.WriteLine(TitleMain.Text);
+            write.WriteLine(ConsumerMain.Text);
+            write.WriteLine(SenseMain.Text);
+            write.WriteLine(Sensor1.Text);
+            write.WriteLine(Unit1.Text);
+            write.WriteLine(Sensor2.Text);
+            write.WriteLine(Unit2.Text);
+            write.Close();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
