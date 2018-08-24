@@ -1002,16 +1002,24 @@ namespace AI_StreamingAI
             {
                 ValY2.Text = "---";
             }
-            string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            StreamWriter write = new StreamWriter(Path.Combine(file_path, "config.txt"));
-            write.WriteLine(TitleMain.Text);
-            write.WriteLine(ConsumerMain.Text);
-            write.WriteLine(SenseMain.Text);
-            write.WriteLine(Sensor1.Text);
-            write.WriteLine(Unit1.Text);
-            write.WriteLine(Sensor2.Text);
-            write.WriteLine(Unit2.Text);
-            write.Close();
+            try
+            {
+                string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                StreamWriter write = new StreamWriter(Path.Combine(file_path, "config.txt"));
+                write.WriteLine(TitleMain.Text);
+                write.WriteLine(ConsumerMain.Text);
+                write.WriteLine(SenseMain.Text);
+                write.WriteLine(Sensor1.Text);
+                write.WriteLine(Unit1.Text);
+                write.WriteLine(Sensor2.Text);
+                write.WriteLine(Unit2.Text);
+                write.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Gagal menyimpan data ke configuration file", "Error save file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
