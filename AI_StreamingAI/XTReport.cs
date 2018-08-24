@@ -52,25 +52,6 @@ namespace AI_StreamingAI
         double pos_label_1, pos_label_2, pos_label_3, pos_label_4, pos_label_5, pos_label_6;
         double pos_label_7, pos_label_8, pos_label_9, pos_label_10, pos_label_11;
         int batas_chart_1, batas_chart_2, batas_chart_3, batas_chart_4, batas_chart_5, batas_chart_6;
-
-        private void printToPNGToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.chartXY.SaveImage(File.Text + ".png", ChartImageFormat.Png);
-            }
-            catch
-            {
-                MessageBox.Show("Gagal menyimpan chart", "Save PNG Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            HelpXTReport helpXTReport = new HelpXTReport();
-            helpXTReport.ShowDialog();
-        }
-
         int batas_chart_7, batas_chart_8, batas_chart_9, batas_chart_10, batas_chart_11;
         double tanggal, jam, elapsed_time;
 
@@ -204,7 +185,7 @@ namespace AI_StreamingAI
             max_y_chart = Convert.ToInt32(comboBox_MaxY.Text);
             min_y_chart = Convert.ToInt32(comboBox_MinY.Text);
 
-            Console.WriteLine(max_x_chart + "    " + min_x_chart + "   " + max_y_chart + "   " + min_y_chart);
+            //Console.WriteLine(max_x_chart + "    " + min_x_chart + "   " + max_y_chart + "   " + min_y_chart);
 
             //chartXY.ChartAreas[0].AxisY.Crossing = 0;
 
@@ -327,6 +308,51 @@ namespace AI_StreamingAI
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void printToPNGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.chartXY.SaveImage(File.Text + ".png", ChartImageFormat.Png);
+                MessageBox.Show("Sukses menyimpan chart", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Gagal menyimpan chart", "Save PNG Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void printToPrinterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Drawing.Printing.PrintDocument pd = new System.Drawing.Printing.PrintDocument();
+            pd.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(print_page);
+            pd.Print();
+        }
+
+        private void print_page(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            System.Drawing.Font printFont = new System.Drawing.Font("Arial", 12);
+            Rectangle myRec = new System.Drawing.Rectangle(30, 100, 800, 500);
+            e.Graphics.DrawString(TitleMain.Text, printFont, Brushes.Black, 30, 40);
+            e.Graphics.DrawString(ConsumerMain.Text, printFont, Brushes.Black, 30, 60);
+            e.Graphics.DrawString(SenseMain.Text, printFont, Brushes.Black, 30, 80);
+            chartXY.Printing.PrintPaint(e.Graphics, myRec);
+            e.Graphics.DrawString("Garis biru: Sensor " + ValY1.Text, printFont, Brushes.Black, 30, 620);
+            e.Graphics.DrawString("Garis merah: Sensor " + ValY2.Text, printFont, Brushes.Black, 30, 640);
+            e.Graphics.DrawString("Tanggal pengujian: " + Date.Text, printFont, Brushes.Black, 30, 660);
+            e.Graphics.DrawString("Waktu pengujian: " + Waktu.Text, printFont, Brushes.Black, 30, 680);
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HelpXTReport helpXTReport = new HelpXTReport();
+            helpXTReport.ShowDialog();
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+
         }
 
         private void ValY1_Click(object sender, EventArgs e)

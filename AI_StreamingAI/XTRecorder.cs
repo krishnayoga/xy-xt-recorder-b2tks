@@ -850,17 +850,13 @@ namespace AI_StreamingAI
             initChart();
         }
 
-        private void button_SaveConfig_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         //button print to png menu
         private void printToPNGToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 this.chartXY.SaveImage(File.Text+".png", ChartImageFormat.Png);
+                MessageBox.Show("Sukses menyimpan chart", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch
             {
@@ -914,7 +910,23 @@ namespace AI_StreamingAI
 
         private void printToPrinterToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            System.Drawing.Printing.PrintDocument pd = new System.Drawing.Printing.PrintDocument();
+            pd.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(print_page);
+            pd.Print();
+        }
 
+        private void print_page(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            System.Drawing.Font printFont = new System.Drawing.Font("Arial", 12);
+            Rectangle myRec = new System.Drawing.Rectangle(30, 100, 800, 500);
+            e.Graphics.DrawString(TitleMain.Text, printFont, Brushes.Black, 30, 40);
+            e.Graphics.DrawString(ConsumerMain.Text, printFont, Brushes.Black, 30, 60);
+            e.Graphics.DrawString(SenseMain.Text, printFont, Brushes.Black, 30, 80);
+            chartXY.Printing.PrintPaint(e.Graphics, myRec);
+            e.Graphics.DrawString("Garis biru: Sensor " + Sensor1.Text + " Y1", printFont, Brushes.Black, 30, 620);
+            e.Graphics.DrawString("Garis merah: Sensor " + Sensor2.Text + " Y2", printFont, Brushes.Black, 30, 640);
+            e.Graphics.DrawString("Tanggal pengujian: " + Date.Text, printFont, Brushes.Black, 30, 660);
+            e.Graphics.DrawString("Waktu pengujian: " + Waktu.Text, printFont, Brushes.Black, 30, 680);
         }
 
         private void Sensor1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1047,6 +1059,11 @@ namespace AI_StreamingAI
         #endregion
 
         #region fungsi kosong
+        private void button_SaveConfig_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void Factor1_TextChanged(object sender, EventArgs e)
         {
 
