@@ -83,11 +83,11 @@ namespace AI_StreamingAI
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
-            this.checkBox_holdX = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.RangeX = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.checkBox_holdX = new System.Windows.Forms.CheckBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label_HoldTime = new System.Windows.Forms.Label();
             this.textBox_HoldTime = new System.Windows.Forms.TextBox();
@@ -642,7 +642,6 @@ namespace AI_StreamingAI
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.label32);
-            this.panel4.Controls.Add(this.checkBox_holdX);
             this.panel4.Controls.Add(this.label20);
             this.panel4.Controls.Add(this.label21);
             this.panel4.Controls.Add(this.RangeX);
@@ -662,18 +661,6 @@ namespace AI_StreamingAI
             this.label32.Size = new System.Drawing.Size(152, 15);
             this.label32.TabIndex = 35;
             this.label32.Text = "* Harus di-klik/di-pilih/di-isi";
-            // 
-            // checkBox_holdX
-            // 
-            this.checkBox_holdX.AutoSize = true;
-            this.checkBox_holdX.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_holdX.Location = new System.Drawing.Point(129, 30);
-            this.checkBox_holdX.Name = "checkBox_holdX";
-            this.checkBox_holdX.Size = new System.Drawing.Size(128, 33);
-            this.checkBox_holdX.TabIndex = 33;
-            this.checkBox_holdX.Text = "Hold - X";
-            this.checkBox_holdX.UseVisualStyleBackColor = true;
-            this.checkBox_holdX.CheckedChanged += new System.EventHandler(this.checkBox_holdX_CheckedChanged);
             // 
             // label20
             // 
@@ -725,6 +712,18 @@ namespace AI_StreamingAI
             this.label19.Size = new System.Drawing.Size(95, 15);
             this.label19.TabIndex = 1;
             this.label19.Text = "Setting X (Time)";
+            // 
+            // checkBox_holdX
+            // 
+            this.checkBox_holdX.AutoSize = true;
+            this.checkBox_holdX.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox_holdX.Location = new System.Drawing.Point(902, 196);
+            this.checkBox_holdX.Name = "checkBox_holdX";
+            this.checkBox_holdX.Size = new System.Drawing.Size(128, 33);
+            this.checkBox_holdX.TabIndex = 33;
+            this.checkBox_holdX.Text = "Hold - X";
+            this.checkBox_holdX.UseVisualStyleBackColor = true;
+            this.checkBox_holdX.CheckedChanged += new System.EventHandler(this.checkBox_holdX_CheckedChanged);
             // 
             // panel5
             // 
@@ -1066,6 +1065,7 @@ namespace AI_StreamingAI
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1348, 749);
             this.Controls.Add(this.label_Alert);
+            this.Controls.Add(this.checkBox_holdX);
             this.Controls.Add(this.Waktu);
             this.Controls.Add(this.Date);
             this.Controls.Add(this.File);

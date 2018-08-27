@@ -730,6 +730,7 @@ namespace AI_StreamingAI
             button_pause.Enabled = true;
             label_Alert.Text = "Recording.....!!!";
             button_pause.Enabled = true;
+            button_stop.Enabled = false;
         }
 
         //button stop record menu
@@ -777,6 +778,7 @@ namespace AI_StreamingAI
             button_start.Enabled = false;
             button_pause.Enabled = false;
             startRecordToolStripMenuItem.Enabled = true;
+            button_stop.Enabled = true;
             label_Alert.Text = "";
 
             balance_1 = 0;

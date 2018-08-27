@@ -194,7 +194,7 @@ namespace AI_StreamingAI
                         for (int j = 0; j < chanCount; j++)
                         {
                             int cnt = i * chanCount + j;
-                            arrData[j] = m_dataScaled[cnt].ToString("F1");
+                            arrData[j] = m_dataScaled[cnt].ToString("F3");
                             arrSumData[j] += m_dataScaled[cnt];
                             //Console.WriteLine("j ke " + j + " arrsumdata :" + arrSumData[j] + " m_datascaled: " + m_dataScaled[cnt] + " cnt: " + cnt + " chancount: " + chanCount);
                         }
@@ -614,6 +614,7 @@ namespace AI_StreamingAI
         {
             button_start.Enabled = false;
             button_pause.Enabled = true;
+            button_stop.Enabled = false;
             recordData = true;
             try
             {
@@ -696,6 +697,7 @@ namespace AI_StreamingAI
 
             watch.Stop();
             label_Alert.Text = "";
+            button_stop.Enabled = true;
         }
 
 
