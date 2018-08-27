@@ -1008,7 +1008,7 @@ namespace AI_StreamingAI
         }
         private void checkBox_holdX_CheckedChanged(object sender, EventArgs e)
         {
-
+           
         }
         private void label21_Click(object sender, EventArgs e)
         {

@@ -976,6 +976,21 @@ namespace AI_StreamingAI
 
         }
 
+        private void label_star4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void Sensor1_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValY1.Text = Sensor1.Text;
@@ -1218,7 +1233,7 @@ namespace AI_StreamingAI
 
         private void checkBox_holdX_CheckedChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button_start_Click(object sender, EventArgs e)

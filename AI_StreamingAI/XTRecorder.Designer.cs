@@ -30,9 +30,9 @@ namespace AI_StreamingAI
       {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XTRecorder));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.waveformAiCtrl1 = new Automation.BDaq.WaveformAiCtrl(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -122,6 +122,7 @@ namespace AI_StreamingAI
             this.Date = new System.Windows.Forms.Label();
             this.File = new System.Windows.Forms.Label();
             this.label_Alert = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartXY)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -169,18 +170,18 @@ namespace AI_StreamingAI
             // chartXY
             // 
             this.chartXY.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            chartArea1.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chartXY.Legends.Add(legend1);
+            chartArea5.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea5);
+            legend5.Enabled = false;
+            legend5.Name = "Legend1";
+            this.chartXY.Legends.Add(legend5);
             this.chartXY.Location = new System.Drawing.Point(12, 212);
             this.chartXY.Name = "chartXY";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartXY.Series.Add(series1);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.chartXY.Series.Add(series5);
             this.chartXY.Size = new System.Drawing.Size(1063, 499);
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
@@ -367,11 +368,12 @@ namespace AI_StreamingAI
             // 
             this.label_star4.AutoSize = true;
             this.label_star4.ForeColor = System.Drawing.Color.Red;
-            this.label_star4.Location = new System.Drawing.Point(103, 186);
+            this.label_star4.Location = new System.Drawing.Point(83, 186);
             this.label_star4.Name = "label_star4";
             this.label_star4.Size = new System.Drawing.Size(12, 15);
             this.label_star4.TabIndex = 57;
             this.label_star4.Text = "*";
+            this.label_star4.Click += new System.EventHandler(this.label_star4_Click);
             // 
             // label_ColorY1
             // 
@@ -641,6 +643,7 @@ namespace AI_StreamingAI
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.label32);
             this.panel4.Controls.Add(this.label20);
             this.panel4.Controls.Add(this.label21);
@@ -666,16 +669,17 @@ namespace AI_StreamingAI
             // 
             this.label20.AutoSize = true;
             this.label20.ForeColor = System.Drawing.Color.Red;
-            this.label20.Location = new System.Drawing.Point(103, 18);
+            this.label20.Location = new System.Drawing.Point(167, 21);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(12, 15);
             this.label20.TabIndex = 29;
             this.label20.Text = "*";
+            this.label20.Click += new System.EventHandler(this.label20_Click);
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(17, 18);
+            this.label21.Location = new System.Drawing.Point(81, 21);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(89, 15);
             this.label21.TabIndex = 28;
@@ -696,7 +700,7 @@ namespace AI_StreamingAI
             "100",
             "150",
             "200"});
-            this.RangeX.Location = new System.Drawing.Point(18, 38);
+            this.RangeX.Location = new System.Drawing.Point(82, 41);
             this.RangeX.Name = "RangeX";
             this.RangeX.Size = new System.Drawing.Size(87, 23);
             this.RangeX.TabIndex = 27;
@@ -716,10 +720,10 @@ namespace AI_StreamingAI
             // checkBox_holdX
             // 
             this.checkBox_holdX.AutoSize = true;
-            this.checkBox_holdX.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_holdX.Location = new System.Drawing.Point(902, 196);
+            this.checkBox_holdX.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox_holdX.Location = new System.Drawing.Point(894, 194);
             this.checkBox_holdX.Name = "checkBox_holdX";
-            this.checkBox_holdX.Size = new System.Drawing.Size(128, 33);
+            this.checkBox_holdX.Size = new System.Drawing.Size(138, 35);
             this.checkBox_holdX.TabIndex = 33;
             this.checkBox_holdX.Text = "Hold - X";
             this.checkBox_holdX.UseVisualStyleBackColor = true;
@@ -1058,6 +1062,16 @@ namespace AI_StreamingAI
             this.label_Alert.Size = new System.Drawing.Size(0, 39);
             this.label_Alert.TabIndex = 51;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(175, 44);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 15);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "Menit";
+            this.label5.Click += new System.EventHandler(this.label5_Click_1);
+            // 
             // XTRecorder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1201,6 +1215,7 @@ namespace AI_StreamingAI
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label_HoldTime;
         private System.Windows.Forms.TextBox textBox_HoldTime;
+        private System.Windows.Forms.Label label5;
     }
 }
 
