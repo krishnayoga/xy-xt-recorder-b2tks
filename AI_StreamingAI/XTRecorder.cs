@@ -84,9 +84,12 @@ namespace AI_StreamingAI
         //ini
         Timer timer = new Timer();
         Timer timer_plot = new Timer();
+        Timer timer_hold = new Timer();
+        
         //List<DateTime> TimeList = new List<DateTime>();
 
         Stopwatch watch = new Stopwatch();
+        Stopwatch timer_holdX = new Stopwatch();
         //itu
 
         public XTRecorder()
@@ -99,6 +102,9 @@ namespace AI_StreamingAI
             timer_plot.Tick += new EventHandler(plotChart);
             timer_plot.Interval = 100;
             //itu
+
+            timer_hold.Tick += new EventHandler(timer_hold_x);
+            timer_hold.Interval = 100;
         }
 
         public XTRecorder(int deviceNumber)
@@ -284,6 +290,17 @@ namespace AI_StreamingAI
                         firstChecked = false;
                     }
 
+                    if (checkBox_holdX.Checked)
+                    {
+                        timer_hold.Start();
+                        timer_holdX.Start();
+                    }
+                    if (!checkBox_holdX.Checked)
+                    {
+                        timer_holdX.Stop();
+                        timer_holdX.Reset();
+                        timer_hold.Stop();
+                    }
                     //plotChart(dataPrint);
 
                 }));
@@ -913,6 +930,10 @@ namespace AI_StreamingAI
         #endregion
 
         #region fungsi tambahan
+        private void timer_hold_x(object sender, EventArgs e)
+        {
+            textBox_HoldTime.Text = timer_holdX.Elapsed.ToString();
+        }
         private void waveformAiCtrl1_CacheOverflow(object sender, BfdAiEventArgs e)
         {
             MessageBox.Show("WaveformAiCacheOverflow");

@@ -70,19 +70,25 @@ namespace AI_StreamingAI
 
         #endregion
 
+        Timer timer_hold = new Timer();
+
         Stopwatch watch = new Stopwatch();
-        
+        Stopwatch watch_holdx = new Stopwatch();
+
         public XYRecorder()
         {
             InitializeComponent();
+
+            timer_hold.Tick += new EventHandler(timer_holdX);
+            timer_hold.Interval = 100;
         }
 
         public XYRecorder(int deviceNumber)
         {
             InitializeComponent();
-			waveformAiCtrl1.SelectedDevice = new DeviceInformation(deviceNumber);
+            waveformAiCtrl1.SelectedDevice = new DeviceInformation(deviceNumber);
         }
-      
+
         private void StreamingBufferedAiForm_Load(object sender, EventArgs e)
         {
             if (!waveformAiCtrl1.Initialized)
@@ -92,9 +98,9 @@ namespace AI_StreamingAI
                 return;
             }
 
-		    int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
-		    int sectionLength = waveformAiCtrl1.Record.SectionLength;
-		    m_dataScaled = new double[chanCount * sectionLength];
+            int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
+            int sectionLength = waveformAiCtrl1.Record.SectionLength;
+            m_dataScaled = new double[chanCount * sectionLength];
 
             dataPrint = new double[3];
 
@@ -150,13 +156,13 @@ namespace AI_StreamingAI
             }
         }
 
-	    private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
+        private void waveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
         {
-	        try
+            try
             {
                 if (waveformAiCtrl1.State == ControlState.Idle)
                 {
-				    return;
+                    return;
                 }
                 if (m_dataScaled.Length < args.Count)
                 {
@@ -166,8 +172,8 @@ namespace AI_StreamingAI
                 //Console.WriteLine(args.Count);
 
                 ErrorCode err = ErrorCode.Success;
-				int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
-				int sectionLength = waveformAiCtrl1.Record.SectionLength;
+                int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
+                int sectionLength = waveformAiCtrl1.Record.SectionLength;
                 err = waveformAiCtrl1.GetData(args.Count, m_dataScaled);
 
                 if (err != ErrorCode.Success && err != ErrorCode.WarningRecordEnd)
@@ -209,7 +215,7 @@ namespace AI_StreamingAI
                     dataPrint[0] = Convert.ToDouble(arrAvgData[0]) * factor_baca_x_1;
                     dataPrint[1] = Convert.ToDouble(arrAvgData[1]) * factor_baca_x_2;
                     dataPrint[2] = Convert.ToDouble(arrAvgData[2]) * factor_baca_y;
-                    
+
                     if (checkBox_invertX1.Checked)
                     {
                         dataPrint[0] = -dataPrint[0];
@@ -225,60 +231,60 @@ namespace AI_StreamingAI
 
                     if (recordData)
                     {
-                        if (check1.Checked&&!check2.Checked)
+                        if (check1.Checked && !check2.Checked)
                         {
                             dataPrint[1] = 0;
-          
+
                         }
-                        else if (check2.Checked&&!check1.Checked)
+                        else if (check2.Checked && !check1.Checked)
                         {
                             dataPrint[0] = 0;
                         }
-                        
+
                         StreamWriter sw = new StreamWriter(File.Text, append: true);
 
-                        sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), dataPrint[0]-balance_1, dataPrint[1]-balance_2, dataPrint[2]-balance_3);
+                        sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), dataPrint[0] - balance_1, dataPrint[1] - balance_2, dataPrint[2] - balance_3);
 
                         sw.Close();
                         recCount++;
                     }
 
 
-                    ValueX1.Text = (dataPrint[0]-balance_1).ToString();
-                    ValueX2.Text = (dataPrint[1]-balance_2).ToString();
-                    ValueY.Text = (dataPrint[2]-balance_3).ToString();
+                    ValueX1.Text = (dataPrint[0] - balance_1).ToString();
+                    ValueX2.Text = (dataPrint[1] - balance_2).ToString();
+                    ValueY.Text = (dataPrint[2] - balance_3).ToString();
 
                     //channel 0
                     if (dataPrint[0] > max_x_1)
                     {
-                        max_x_1 = dataPrint[0]-balance_1;
+                        max_x_1 = dataPrint[0] - balance_1;
                     }
 
                     if (dataPrint[0] < min_x_1)
                     {
-                        min_x_1 = dataPrint[0]-balance_1;
+                        min_x_1 = dataPrint[0] - balance_1;
                     }
-                    
+
                     //channel 1
                     if (dataPrint[1] > max_x_2)
                     {
-                        max_x_2 = dataPrint[1]-balance_2;
+                        max_x_2 = dataPrint[1] - balance_2;
                     }
 
                     if (dataPrint[1] < min_x_2)
                     {
-                        min_x_2 = dataPrint[1]-balance_2;
+                        min_x_2 = dataPrint[1] - balance_2;
                     }
 
                     //channel 2
                     if (dataPrint[2] > max_y)
                     {
-                        max_y = dataPrint[2]-balance_3;
+                        max_y = dataPrint[2] - balance_3;
                     }
 
                     if (dataPrint[2] < min_y)
                     {
-                        min_y = dataPrint[2]-balance_3;
+                        min_y = dataPrint[2] - balance_3;
                     }
 
                     //chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
@@ -292,23 +298,35 @@ namespace AI_StreamingAI
 
                     if (checkBox_holdX.Checked && firstChecked)
                     {
-                        last_x_0 = dataPrint[0]-balance_1;
-                        last_x_1 = dataPrint[1]-balance_2;
+                        last_x_0 = dataPrint[0] - balance_1;
+                        last_x_1 = dataPrint[1] - balance_2;
                         //last_x = dataCount.ToString();
                         firstChecked = false;
                     }
 
                     plotChart(dataPrint);
                     textBox_stopwatch.Text = watch.Elapsed.ToString();
+
+                    if (checkBox_holdX.Checked)
+                    {
+                        timer_hold.Start();
+                        watch_holdx.Start();
+                    }
+                    if (!checkBox_holdX.Checked)
+                    {
+                        watch_holdx.Stop();
+                        watch_holdx.Reset();
+                        timer_hold.Stop();
+                    }
                 }));
                 Console.WriteLine(dataCount / 3);
-                
+
             }
             catch
             {
                 MessageBox.Show("Terjadi kesalahan saat akuisisi data. Silahkan restart program", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
-            }   
+            }
         }
 
         private void waveformAiCtrl1_CacheOverflow(object sender, BfdAiEventArgs e)
@@ -352,21 +370,21 @@ namespace AI_StreamingAI
             max_y_chart = Convert.ToInt32(rangeY_chart.Text);
             min_y_chart = -max_y_chart;
 
-            
+
             //this.chartXY.Titles.Add("pt. B2TKS - BPPT");
 
             chartXY.ChartAreas[0].AxisX.Maximum = max_x_chart;
             chartXY.ChartAreas[0].AxisX.Minimum = min_x_chart;
             chartXY.ChartAreas[0].AxisY.Maximum = max_y_chart;
             chartXY.ChartAreas[0].AxisY.Minimum = min_y_chart;
-            chartXY.ChartAreas[0].AxisX.Interval = max_x_chart/10;
-            chartXY.ChartAreas[0].AxisY.Interval = max_y_chart/10;
-            
-            chartXY.ChartAreas[0].AxisX.Title = SensorX1.Text + " (" + UnitX1.Text +")";
+            chartXY.ChartAreas[0].AxisX.Interval = max_x_chart / 10;
+            chartXY.ChartAreas[0].AxisY.Interval = max_y_chart / 10;
+
+            chartXY.ChartAreas[0].AxisX.Title = SensorX1.Text + " (" + UnitX1.Text + ")";
             chartXY.ChartAreas[0].AxisY.Title = SensorY.Text + " (" + UnitY.Text + ")";
 
         }
-         
+
         private void plotChart(double[] data)
         {
             /*
@@ -391,11 +409,11 @@ namespace AI_StreamingAI
             {
                 if (check1.Checked)
                 {
-                    chartXY.Series[0].Points.AddXY(dataPrint[0]-balance_1, dataPrint[2]-balance_3);
+                    chartXY.Series[0].Points.AddXY(dataPrint[0] - balance_1, dataPrint[2] - balance_3);
                 }
                 if (check2.Checked)
                 {
-                    chartXY.Series[1].Points.AddXY(dataPrint[1]-balance_2, dataPrint[2]-balance_3);
+                    chartXY.Series[1].Points.AddXY(dataPrint[1] - balance_2, dataPrint[2] - balance_3);
                 }
                 firstChecked = true;
             }
@@ -404,11 +422,11 @@ namespace AI_StreamingAI
             {
                 if (check1.Checked)
                 {
-                    chartXY.Series[0].Points.AddXY(last_x_0, dataPrint[2]-balance_3);
+                    chartXY.Series[0].Points.AddXY(last_x_0, dataPrint[2] - balance_3);
                 }
                 if (check2.Checked)
                 {
-                    chartXY.Series[1].Points.AddXY(last_x_1, dataPrint[2]-balance_3);
+                    chartXY.Series[1].Points.AddXY(last_x_1, dataPrint[2] - balance_3);
                 }
             }
         }
@@ -448,7 +466,7 @@ namespace AI_StreamingAI
             {
                 factor_baca_x_2 = Convert.ToDouble(factor_x_2.Text);
             }
-            
+
             factor_baca_y = Convert.ToDouble(factor_y.Text);
 
             watch.Start();
@@ -478,7 +496,7 @@ namespace AI_StreamingAI
             button_pause.Enabled = false;
             button_stop.Enabled = false;
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
-            
+
             startStripMenuItem1.Enabled = true;
             balanceToolStripMenuItem.Enabled = true;
         }
@@ -500,7 +518,7 @@ namespace AI_StreamingAI
             {
                 MessageBox.Show("Gagal menyimpan file " + File.Text, "Gagal menyimpan file", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
-            
+
             startStripMenuItem1.Enabled = true;
             button_start.Enabled = false;
         }
@@ -526,7 +544,7 @@ namespace AI_StreamingAI
             startStripMenuItem1.Enabled = true;
             button_stop.Enabled = true;
             watch.Reset();
-            
+
         }
 
         //fungsi untuk menu replot
@@ -540,7 +558,7 @@ namespace AI_StreamingAI
         {
             TitleMain.Text = Title.Text;
             ConsumerMain.Text = Consumer.Text;
-            SenseMain.Text =  SensorX1.Text + " vs " + SensorY.Text;
+            SenseMain.Text = SensorX1.Text + " vs " + SensorY.Text;
             if (check1.Checked)
             {
                 ValX1.Text = SensorX1.Text;
@@ -572,9 +590,9 @@ namespace AI_StreamingAI
             }
             catch
             {
-                MessageBox.Show("Gagal menyimpan data ke configuration file", "Error save file", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                MessageBox.Show("Gagal menyimpan data ke configuration file", "Error save file", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         //fungsi untuk print to png
@@ -582,7 +600,7 @@ namespace AI_StreamingAI
         {
             try
             {
-                this.chartXY.SaveImage(File.Text+".png", ChartImageFormat.Png);
+                this.chartXY.SaveImage(File.Text + ".png", ChartImageFormat.Png);
                 MessageBox.Show("Sukses menyimpan chart", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch
@@ -634,7 +652,7 @@ namespace AI_StreamingAI
             {
                 MessageBox.Show("Gagal membuka " + File.Text, "Error membuka file", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
-           
+
             label_Alert.Text = "Recording.....!!!";
         }
 
@@ -674,7 +692,7 @@ namespace AI_StreamingAI
             {
                 MessageBox.Show("Gagal menyimpan file " + File.Text, "Error menyimpan file", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
-            
+
 
             watch.Stop();
             label_Alert.Text = "";
@@ -684,6 +702,10 @@ namespace AI_StreamingAI
         #endregion
 
         #region unnecessary
+        private void timer_holdX(object sender, EventArgs e)
+        {
+            textBox_HoldTime.Text = watch_holdx.Elapsed.ToString();
+        }
         private void check2_CheckedChanged(object sender, EventArgs e)
         {
            if (check2.Checked)

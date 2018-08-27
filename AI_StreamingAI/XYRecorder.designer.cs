@@ -57,6 +57,8 @@ namespace AI_StreamingAI
             this.label27 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label_HoldTime = new System.Windows.Forms.Label();
+            this.textBox_HoldTime = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox_stopwatch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -130,8 +132,6 @@ namespace AI_StreamingAI
             this.Date = new System.Windows.Forms.Label();
             this.Waktu = new System.Windows.Forms.Label();
             this.label_Alert = new System.Windows.Forms.Label();
-            this.label_HoldTime = new System.Windows.Forms.Label();
-            this.textBox_HoldTime = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartXY)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -393,6 +393,23 @@ namespace AI_StreamingAI
             this.panel5.Size = new System.Drawing.Size(271, 177);
             this.panel5.TabIndex = 39;
             this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
+            // 
+            // label_HoldTime
+            // 
+            this.label_HoldTime.AutoSize = true;
+            this.label_HoldTime.Location = new System.Drawing.Point(-3, 149);
+            this.label_HoldTime.Name = "label_HoldTime";
+            this.label_HoldTime.Size = new System.Drawing.Size(64, 15);
+            this.label_HoldTime.TabIndex = 72;
+            this.label_HoldTime.Text = "Hold Time";
+            // 
+            // textBox_HoldTime
+            // 
+            this.textBox_HoldTime.Location = new System.Drawing.Point(64, 146);
+            this.textBox_HoldTime.Name = "textBox_HoldTime";
+            this.textBox_HoldTime.ReadOnly = true;
+            this.textBox_HoldTime.Size = new System.Drawing.Size(157, 21);
+            this.textBox_HoldTime.TabIndex = 71;
             // 
             // label14
             // 
@@ -1171,23 +1188,6 @@ namespace AI_StreamingAI
             this.label_Alert.Name = "label_Alert";
             this.label_Alert.Size = new System.Drawing.Size(0, 39);
             this.label_Alert.TabIndex = 48;
-            // 
-            // label_HoldTime
-            // 
-            this.label_HoldTime.AutoSize = true;
-            this.label_HoldTime.Location = new System.Drawing.Point(-3, 149);
-            this.label_HoldTime.Name = "label_HoldTime";
-            this.label_HoldTime.Size = new System.Drawing.Size(64, 15);
-            this.label_HoldTime.TabIndex = 72;
-            this.label_HoldTime.Text = "Hold Time";
-            // 
-            // textBox_HoldTime
-            // 
-            this.textBox_HoldTime.Location = new System.Drawing.Point(64, 146);
-            this.textBox_HoldTime.Name = "textBox_HoldTime";
-            this.textBox_HoldTime.ReadOnly = true;
-            this.textBox_HoldTime.Size = new System.Drawing.Size(157, 21);
-            this.textBox_HoldTime.TabIndex = 71;
             // 
             // XYRecorder
             // 
