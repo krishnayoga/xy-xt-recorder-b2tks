@@ -92,7 +92,7 @@ namespace AI_StreamingAI
             excel.Workbook book = ex.Workbooks.Open(File.Text);
             excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
 
-            TitleMain.Text = Convert.ToString(res.Cells[1, 2].Value);
+            TitleMain.Text = Convert.ToString(res.Cells[1, 2].Value2+res.Cells[1,3].Value2);
             ConsumerMain.Text = Convert.ToString(res.Cells[2, 2].Value);
             SenseMain.Text = Convert.ToString(res.Cells[3, 2].Value);
 

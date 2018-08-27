@@ -66,6 +66,7 @@ namespace AI_StreamingAI
         int min_y_chart;
         bool recordData;
         string load_data;
+        double balance_1 = 0, balance_2 = 0, balance_3 = 0;
 
         #endregion
 
@@ -197,7 +198,7 @@ namespace AI_StreamingAI
 
                     for (int i = 0; i < arrSumData.Length; i++)
                     {
-                        arrAvgData[i] = (arrSumData[i] / sectionLength).ToString("F1");
+                        arrAvgData[i] = (arrSumData[i] / sectionLength).ToString("F3");
                         //ValueX1.Text = arrAvgData[0];
                         //ValueY.Text = arrAvgData[1];
                         //label3.Text = arrAvgData[2];
@@ -236,48 +237,48 @@ namespace AI_StreamingAI
                         
                         StreamWriter sw = new StreamWriter(File.Text, append: true);
 
-                        sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), dataPrint[0], dataPrint[1], dataPrint[2]);
+                        sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), dataPrint[0]-balance_1, dataPrint[1]-balance_2, dataPrint[2]-balance_3);
 
                         sw.Close();
                         recCount++;
                     }
 
 
-                    ValueX1.Text = dataPrint[0].ToString();
-                    ValueX2.Text = dataPrint[1].ToString();
-                    ValueY.Text = dataPrint[2].ToString();
+                    ValueX1.Text = (dataPrint[0]-balance_1).ToString();
+                    ValueX2.Text = (dataPrint[1]-balance_2).ToString();
+                    ValueY.Text = (dataPrint[2]-balance_3).ToString();
 
                     //channel 0
                     if (dataPrint[0] > max_x_1)
                     {
-                        max_x_1 = dataPrint[0];
+                        max_x_1 = dataPrint[0]-balance_1;
                     }
 
                     if (dataPrint[0] < min_x_1)
                     {
-                        min_x_1 = dataPrint[0];
+                        min_x_1 = dataPrint[0]-balance_1;
                     }
                     
                     //channel 1
                     if (dataPrint[1] > max_x_2)
                     {
-                        max_x_2 = dataPrint[1];
+                        max_x_2 = dataPrint[1]-balance_2;
                     }
 
                     if (dataPrint[1] < min_x_2)
                     {
-                        min_x_2 = dataPrint[1];
+                        min_x_2 = dataPrint[1]-balance_2;
                     }
 
                     //channel 2
                     if (dataPrint[2] > max_y)
                     {
-                        max_y = dataPrint[2];
+                        max_y = dataPrint[2]-balance_3;
                     }
 
                     if (dataPrint[2] < min_y)
                     {
-                        min_y = dataPrint[2];
+                        min_y = dataPrint[2]-balance_3;
                     }
 
                     //chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
@@ -291,8 +292,8 @@ namespace AI_StreamingAI
 
                     if (checkBox_holdX.Checked && firstChecked)
                     {
-                        last_x_0 = dataPrint[0];
-                        last_x_1 = dataPrint[1];
+                        last_x_0 = dataPrint[0]-balance_1;
+                        last_x_1 = dataPrint[1]-balance_2;
                         //last_x = dataCount.ToString();
                         firstChecked = false;
                     }
@@ -390,11 +391,11 @@ namespace AI_StreamingAI
             {
                 if (check1.Checked)
                 {
-                    chartXY.Series[0].Points.AddXY(dataPrint[0], dataPrint[2]);
+                    chartXY.Series[0].Points.AddXY(dataPrint[0]-balance_1, dataPrint[2]-balance_3);
                 }
                 if (check2.Checked)
                 {
-                    chartXY.Series[1].Points.AddXY(dataPrint[1], dataPrint[2]);
+                    chartXY.Series[1].Points.AddXY(dataPrint[1]-balance_2, dataPrint[2]-balance_3);
                 }
                 firstChecked = true;
             }
@@ -403,11 +404,11 @@ namespace AI_StreamingAI
             {
                 if (check1.Checked)
                 {
-                    chartXY.Series[0].Points.AddXY(last_x_0, dataPrint[2]);
+                    chartXY.Series[0].Points.AddXY(last_x_0, dataPrint[2]-balance_3);
                 }
                 if (check2.Checked)
                 {
-                    chartXY.Series[1].Points.AddXY(last_x_1, dataPrint[2]);
+                    chartXY.Series[1].Points.AddXY(last_x_1, dataPrint[2]-balance_3);
                 }
             }
         }

@@ -78,6 +78,7 @@ namespace AI_StreamingAI
         //itu
         bool recordData;
         string load_data;
+        double balance_1 = 0, balance_2 = 0;
         #endregion
 
         //ini
@@ -211,7 +212,7 @@ namespace AI_StreamingAI
                         for (int j = 0; j < chanCount; j++)
                         {
                             int cnt = i * chanCount + j;
-                            arrData[j] = m_dataScaled[cnt].ToString("F1");
+                            arrData[j] = m_dataScaled[cnt].ToString("F3");
                             arrSumData[j] += m_dataScaled[cnt];
                             //Console.WriteLine("j ke " + j + " arrsumdata :" + arrSumData[j] + " m_datascaled: " + m_dataScaled[cnt] + " cnt: " + cnt + " chancount: " + chanCount);
                         }
@@ -221,7 +222,7 @@ namespace AI_StreamingAI
 
                     for (int i = 0; i < arrSumData.Length; i++)
                     {
-                        arrAvgData[i] = (arrSumData[i] / sectionLength).ToString("F1");
+                        arrAvgData[i] = (arrSumData[i] / sectionLength).ToString("F3");
                         //ValueX1.Text = arrAvgData[0];
                         //ValueY.Text = arrAvgData[1];
                         //label3.Text = arrAvgData[2];
@@ -241,29 +242,29 @@ namespace AI_StreamingAI
                         dataPrint[1] = -dataPrint[1];
                     }
                     
-                    ValueY1.Text = dataPrint[0].ToString();
-                    ValueY2.Text = dataPrint[1].ToString();
+                    ValueY1.Text = (dataPrint[0]-balance_1).ToString();
+                    ValueY2.Text = (dataPrint[1]-balance_2).ToString();
                     
                     //channel 0
                     if (dataPrint[0] > max_y_1)
                     {
-                        max_y_1 = dataPrint[0];
+                        max_y_1 = dataPrint[0] - balance_1;
                     }
 
                     if (dataPrint[0] < min_y_1)
                     {
-                        min_y_1 = dataPrint[0];
+                        min_y_1 = dataPrint[0] - balance_1;
                     }
 
                     //channel 1
                     if (dataPrint[1] > max_y_2)
                     {
-                        max_y_2 = dataPrint[1];
+                        max_y_2 = dataPrint[1] - balance_2;
                     }
 
                     if (dataPrint[1] < min_y_2)
                     {
-                        min_y_2 = dataPrint[1];
+                        min_y_2 = dataPrint[1] - balance_2;
                     }
                     
                     //chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
@@ -453,12 +454,12 @@ namespace AI_StreamingAI
             {
                 if (check1.Checked)
                 {
-                    chartXY.Series[0].Points.AddXY(last_x_holdX, dataPrint[0]);
+                    chartXY.Series[0].Points.AddXY(last_x_holdX, dataPrint[0]-balance_1);
                 }
 
                 if (check2.Checked)
                 {
-                    chartXY.Series[1].Points.AddXY(last_x_holdX, dataPrint[1]);
+                    chartXY.Series[1].Points.AddXY(last_x_holdX, dataPrint[1]-balance_2);
                 }
 
             }
@@ -468,12 +469,12 @@ namespace AI_StreamingAI
                 last_x += 1;
                 if (check1.Checked)
                 {
-                    chartXY.Series[0].Points.AddXY(last_x, dataPrint[0]);
+                    chartXY.Series[0].Points.AddXY(last_x, dataPrint[0]-balance_1);
                 }
 
                 if (check2.Checked)
                 {
-                    chartXY.Series[1].Points.AddXY(last_x, dataPrint[1]);
+                    chartXY.Series[1].Points.AddXY(last_x, dataPrint[1]-balance_2);
                 }
                 firstChecked = true;
             }
@@ -491,7 +492,7 @@ namespace AI_StreamingAI
 
                 StreamWriter sw = new StreamWriter(File.Text, append: true);
 
-                sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), watch.Elapsed.ToString(), dataPrint[0], dataPrint[1]);
+                sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), watch.Elapsed.ToString(), dataPrint[0]-balance_1, dataPrint[1]-balance_2);
 
                 sw.Close();
                 recCount++;
@@ -575,7 +576,7 @@ namespace AI_StreamingAI
             button_pause.Enabled = false;
             startRecordToolStripMenuItem.Enabled = true;
             button_stop.Enabled = true;
-            balanceToolStripMenuItem.Enabled = false;
+            balanceToolStripMenuItem.Enabled = true;
 
             if (check1.Checked)
             {
@@ -595,13 +596,18 @@ namespace AI_StreamingAI
         //button balance menu
         private void balanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Clear();
+            startChart();
+            initChart();
             if (check1.Checked)
             {
                 chartXY.Series[0].Points.Clear();
+                balance_1 = dataPrint[0];
             }
             if (check2.Checked)
             {
                 chartXY.Series[1].Points.Clear();
+                balance_2 = dataPrint[1];
             }
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
 
@@ -611,6 +617,13 @@ namespace AI_StreamingAI
 
             last_x = 0;
             last_x_holdX = 0;
+
+            timer_plot.Stop();
+            waveformAiCtrl1.Stop();
+
+            waveformAiCtrl1.Start();
+            timer_plot.Start();
+
 
             max_y_1 = 0;
             min_y_1 = 0;
@@ -646,6 +659,9 @@ namespace AI_StreamingAI
             button_stop.Enabled = false;
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
             balanceToolStripMenuItem.Enabled = true;
+
+            balance_1 = 0;
+            balance_2 = 0;
         }
 
         //button start record menu
@@ -745,6 +761,9 @@ namespace AI_StreamingAI
             button_pause.Enabled = false;
             startRecordToolStripMenuItem.Enabled = true;
             label_Alert.Text = "";
+
+            balance_1 = 0;
+            balance_2 = 0;
         }
 
         private void check1_CheckedChanged(object sender, EventArgs e)
@@ -927,6 +946,11 @@ namespace AI_StreamingAI
             e.Graphics.DrawString("Garis merah: Sensor " + Sensor2.Text + " Y2", printFont, Brushes.Black, 30, 640);
             e.Graphics.DrawString("Tanggal pengujian: " + Date.Text, printFont, Brushes.Black, 30, 660);
             e.Graphics.DrawString("Waktu pengujian: " + Waktu.Text, printFont, Brushes.Black, 30, 680);
+        }
+
+        private void Date_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void Sensor1_SelectedIndexChanged(object sender, EventArgs e)
