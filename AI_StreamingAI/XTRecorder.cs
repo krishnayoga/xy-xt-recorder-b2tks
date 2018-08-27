@@ -110,7 +110,7 @@ namespace AI_StreamingAI
         {
             if (!waveformAiCtrl1.Initialized)
             {
-                MessageBox.Show("Device belum terpasang!", "StreamingAI",MessageBoxButtons.OK,MessageBoxIcon.Error,MessageBoxDefaultButton.Button1);
+                MessageBox.Show("Device belum terpasang!", "XT Recorder",MessageBoxButtons.OK,MessageBoxIcon.Error,MessageBoxDefaultButton.Button1);
                 this.Close();
                 return;
             }
@@ -121,7 +121,7 @@ namespace AI_StreamingAI
 
             dataPrint = new double[3];
 
-            this.Text = "Streaming AI(" + waveformAiCtrl1.SelectedDevice.Description + ")";
+            this.Text = "XT Recorder (" + waveformAiCtrl1.SelectedDevice.Description + ")";
 
             button_start.Enabled = false;
             button_stop.Enabled = false;

@@ -86,7 +86,7 @@ namespace AI_StreamingAI
         {
             if (!waveformAiCtrl1.Initialized)
             {
-                MessageBox.Show("Device belum terpasang!", "StreamingAI");
+                MessageBox.Show("Device belum terpasang!", "XY Recorder");
                 this.Close();
                 return;
             }
@@ -97,7 +97,7 @@ namespace AI_StreamingAI
 
             dataPrint = new double[3];
 
-            this.Text = "Streaming AI(" + waveformAiCtrl1.SelectedDevice.Description + ")";
+            this.Text = "XY Recorder(" + waveformAiCtrl1.SelectedDevice.Description + ")";
 
             button_start.Enabled = false;
             button_stop.Enabled = false;
