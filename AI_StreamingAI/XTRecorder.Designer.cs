@@ -30,9 +30,9 @@ namespace AI_StreamingAI
       {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XTRecorder));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.waveformAiCtrl1 = new Automation.BDaq.WaveformAiCtrl(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -170,18 +170,18 @@ namespace AI_StreamingAI
             // chartXY
             // 
             this.chartXY.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            chartArea1.Name = "ChartArea1";
-            this.chartXY.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chartXY.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartXY.ChartAreas.Add(chartArea2);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.chartXY.Legends.Add(legend2);
             this.chartXY.Location = new System.Drawing.Point(12, 212);
             this.chartXY.Name = "chartXY";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartXY.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartXY.Series.Add(series2);
             this.chartXY.Size = new System.Drawing.Size(1063, 499);
             this.chartXY.TabIndex = 23;
             this.chartXY.Text = "chart1";
@@ -441,6 +441,7 @@ namespace AI_StreamingAI
             // 
             this.RangeY.FormattingEnabled = true;
             this.RangeY.Items.AddRange(new object[] {
+            "1",
             "10",
             "15",
             "20",
@@ -700,6 +701,7 @@ namespace AI_StreamingAI
             // 
             this.RangeX.FormattingEnabled = true;
             this.RangeX.Items.AddRange(new object[] {
+            "1",
             "10",
             "15",
             "20",
@@ -777,7 +779,7 @@ namespace AI_StreamingAI
             // 
             // textBox_HoldTime
             // 
-            this.textBox_HoldTime.Location = new System.Drawing.Point(65, 125);
+            this.textBox_HoldTime.Location = new System.Drawing.Point(84, 125);
             this.textBox_HoldTime.Name = "textBox_HoldTime";
             this.textBox_HoldTime.ReadOnly = true;
             this.textBox_HoldTime.Size = new System.Drawing.Size(157, 21);
@@ -786,7 +788,7 @@ namespace AI_StreamingAI
             // label_unitY2
             // 
             this.label_unitY2.AutoSize = true;
-            this.label_unitY2.Location = new System.Drawing.Point(229, 74);
+            this.label_unitY2.Location = new System.Drawing.Point(242, 71);
             this.label_unitY2.Name = "label_unitY2";
             this.label_unitY2.Size = new System.Drawing.Size(29, 15);
             this.label_unitY2.TabIndex = 64;
@@ -795,7 +797,7 @@ namespace AI_StreamingAI
             // label_unitY1
             // 
             this.label_unitY1.AutoSize = true;
-            this.label_unitY1.Location = new System.Drawing.Point(229, 43);
+            this.label_unitY1.Location = new System.Drawing.Point(242, 40);
             this.label_unitY1.Name = "label_unitY1";
             this.label_unitY1.Size = new System.Drawing.Size(29, 15);
             this.label_unitY1.TabIndex = 63;
@@ -813,19 +815,17 @@ namespace AI_StreamingAI
             // 
             // ValY2
             // 
-            this.ValY2.AutoSize = true;
             this.ValY2.Location = new System.Drawing.Point(1, 71);
             this.ValY2.Name = "ValY2";
-            this.ValY2.Size = new System.Drawing.Size(55, 15);
+            this.ValY2.Size = new System.Drawing.Size(83, 21);
             this.ValY2.TabIndex = 54;
             this.ValY2.Text = "Value Y2";
             // 
             // ValY1
             // 
-            this.ValY1.AutoSize = true;
             this.ValY1.Location = new System.Drawing.Point(0, 40);
             this.ValY1.Name = "ValY1";
-            this.ValY1.Size = new System.Drawing.Size(55, 15);
+            this.ValY1.Size = new System.Drawing.Size(84, 21);
             this.ValY1.TabIndex = 53;
             this.ValY1.Text = "Value Y1";
             this.ValY1.Click += new System.EventHandler(this.ValY1_Click);
@@ -833,7 +833,7 @@ namespace AI_StreamingAI
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(185, 22);
+            this.label26.Location = new System.Drawing.Point(204, 22);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(28, 15);
             this.label26.TabIndex = 52;
@@ -842,7 +842,7 @@ namespace AI_StreamingAI
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(133, 22);
+            this.label25.Location = new System.Drawing.Point(152, 22);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(31, 15);
             this.label25.TabIndex = 51;
@@ -851,7 +851,7 @@ namespace AI_StreamingAI
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(74, 22);
+            this.label24.Location = new System.Drawing.Point(93, 22);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(38, 15);
             this.label24.TabIndex = 50;
@@ -859,7 +859,7 @@ namespace AI_StreamingAI
             // 
             // Time
             // 
-            this.Time.Location = new System.Drawing.Point(66, 98);
+            this.Time.Location = new System.Drawing.Point(85, 98);
             this.Time.Name = "Time";
             this.Time.ReadOnly = true;
             this.Time.Size = new System.Drawing.Size(157, 21);
@@ -867,7 +867,7 @@ namespace AI_StreamingAI
             // 
             // MinY2
             // 
-            this.MinY2.Location = new System.Drawing.Point(175, 71);
+            this.MinY2.Location = new System.Drawing.Point(194, 71);
             this.MinY2.Name = "MinY2";
             this.MinY2.ReadOnly = true;
             this.MinY2.Size = new System.Drawing.Size(48, 21);
@@ -875,7 +875,7 @@ namespace AI_StreamingAI
             // 
             // MaxY2
             // 
-            this.MaxY2.Location = new System.Drawing.Point(121, 70);
+            this.MaxY2.Location = new System.Drawing.Point(140, 70);
             this.MaxY2.Name = "MaxY2";
             this.MaxY2.ReadOnly = true;
             this.MaxY2.Size = new System.Drawing.Size(48, 21);
@@ -883,7 +883,7 @@ namespace AI_StreamingAI
             // 
             // ValueY2
             // 
-            this.ValueY2.Location = new System.Drawing.Point(66, 70);
+            this.ValueY2.Location = new System.Drawing.Point(85, 70);
             this.ValueY2.Name = "ValueY2";
             this.ValueY2.ReadOnly = true;
             this.ValueY2.Size = new System.Drawing.Size(48, 21);
@@ -891,7 +891,7 @@ namespace AI_StreamingAI
             // 
             // MinY1
             // 
-            this.MinY1.Location = new System.Drawing.Point(174, 40);
+            this.MinY1.Location = new System.Drawing.Point(193, 40);
             this.MinY1.Name = "MinY1";
             this.MinY1.ReadOnly = true;
             this.MinY1.Size = new System.Drawing.Size(48, 21);
@@ -899,7 +899,7 @@ namespace AI_StreamingAI
             // 
             // MaxY1
             // 
-            this.MaxY1.Location = new System.Drawing.Point(120, 40);
+            this.MaxY1.Location = new System.Drawing.Point(139, 40);
             this.MaxY1.Name = "MaxY1";
             this.MaxY1.ReadOnly = true;
             this.MaxY1.Size = new System.Drawing.Size(48, 21);
@@ -907,7 +907,7 @@ namespace AI_StreamingAI
             // 
             // ValueY1
             // 
-            this.ValueY1.Location = new System.Drawing.Point(65, 40);
+            this.ValueY1.Location = new System.Drawing.Point(84, 40);
             this.ValueY1.Name = "ValueY1";
             this.ValueY1.ReadOnly = true;
             this.ValueY1.Size = new System.Drawing.Size(48, 21);
@@ -926,9 +926,9 @@ namespace AI_StreamingAI
             // SenseMain
             // 
             this.SenseMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenseMain.Location = new System.Drawing.Point(335, 121);
+            this.SenseMain.Location = new System.Drawing.Point(335, 100);
             this.SenseMain.Name = "SenseMain";
-            this.SenseMain.Size = new System.Drawing.Size(736, 45);
+            this.SenseMain.Size = new System.Drawing.Size(736, 37);
             this.SenseMain.TabIndex = 30;
             this.SenseMain.Text = "Sensor X vs Sensor Y";
             this.SenseMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -936,7 +936,7 @@ namespace AI_StreamingAI
             // ConsumerMain
             // 
             this.ConsumerMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConsumerMain.Location = new System.Drawing.Point(335, 83);
+            this.ConsumerMain.Location = new System.Drawing.Point(334, 65);
             this.ConsumerMain.Name = "ConsumerMain";
             this.ConsumerMain.Size = new System.Drawing.Size(736, 38);
             this.ConsumerMain.TabIndex = 31;
@@ -949,7 +949,7 @@ namespace AI_StreamingAI
             this.TitleMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TitleMain.Location = new System.Drawing.Point(334, 28);
             this.TitleMain.Name = "TitleMain";
-            this.TitleMain.Size = new System.Drawing.Size(737, 47);
+            this.TitleMain.Size = new System.Drawing.Size(737, 37);
             this.TitleMain.TabIndex = 29;
             this.TitleMain.Text = "Nama Pengujian";
             this.TitleMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

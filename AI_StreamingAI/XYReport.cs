@@ -323,6 +323,11 @@ namespace AI_StreamingAI
             e.Graphics.DrawString("Waktu pengujian: " + Waktu.Text, printFont, Brushes.Black, 30, 680);
         }
 
+        private void SenseMain_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();

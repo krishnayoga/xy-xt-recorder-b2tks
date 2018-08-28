@@ -53,6 +53,17 @@ namespace AI_StreamingAI
         double pos_label_7, pos_label_8, pos_label_9, pos_label_10, pos_label_11;
         int batas_chart_1, batas_chart_2, batas_chart_3, batas_chart_4, batas_chart_5, batas_chart_6;
         int batas_chart_7, batas_chart_8, batas_chart_9, batas_chart_10, batas_chart_11;
+
+        private void label29_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ValY2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         double tanggal, jam, elapsed_time;
 
         DateTime datee = new DateTime();
@@ -249,7 +260,7 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisX.CustomLabels.Add(pos_label_10 - batas_chart_10, pos_label_10 + batas_chart_10, label_chart_10.ToString("F1"), 1, LabelMarkStyle.None);
             chartXY.ChartAreas[0].AxisX.CustomLabels.Add(pos_label_11 - batas_chart_11, pos_label_11 + batas_chart_11, label_chart_11.ToString("F1"), 1, LabelMarkStyle.None);
             //itu
-
+            
         }
 
         private void plot_data()

@@ -469,12 +469,11 @@ namespace AI_StreamingAI
 
             factor_baca_y = Convert.ToDouble(factor_y.Text);
 
-            watch.Start();
-            startChart();
+            
             initChart();
             button_start.Enabled = true;
             button_stop.Enabled = true;
-            balanceToolStripMenuItem.Enabled = false;
+            balanceToolStripMenuItem.Enabled = true;
             recCount = 0;
             button_pause.Enabled = false;
         }
@@ -532,11 +531,14 @@ namespace AI_StreamingAI
             if (check1.Checked)
             {
                 chartXY.Series[0].Points.Clear();
+                balance_1 = dataPrint[0];
             }
             if (check2.Checked)
             {
                 chartXY.Series[1].Points.Clear();
+                balance_2 = dataPrint[1];
             }
+            balance_3 = dataPrint[2];
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
             max_x_1 = 0;
             min_x_1 = 0;
@@ -562,6 +564,7 @@ namespace AI_StreamingAI
             TitleMain.Text = Title.Text;
             ConsumerMain.Text = Consumer.Text;
             SenseMain.Text = SensorX1.Text + " vs " + SensorY.Text;
+            ValY.Text = SensorY.Text;
             if (check1.Checked)
             {
                 ValX1.Text = SensorX1.Text;
@@ -615,6 +618,28 @@ namespace AI_StreamingAI
         //fungsi untuk menu start record
         private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (check1.Checked)
+            {
+                chartXY.Series[0].Points.Clear();
+                balance_1 = dataPrint[0];
+            }
+            if (check2.Checked)
+            {
+                chartXY.Series[1].Points.Clear();
+                balance_2 = dataPrint[1];
+            }
+            balance_3 = dataPrint[2];
+            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
+            max_x_1 = 0;
+            min_x_1 = 0;
+            max_x_2 = 0;
+            min_x_2 = 0;
+            max_y = 0;
+            min_y = 0;
+            startStripMenuItem1.Enabled = true;
+            button_stop.Enabled = true;
+            watch.Reset();
+
             button_start.Enabled = false;
             button_pause.Enabled = true;
             button_stop.Enabled = false;
@@ -656,6 +681,9 @@ namespace AI_StreamingAI
             {
                 MessageBox.Show("Gagal membuka " + File.Text, "Error membuka file", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
+
+            watch.Start();
+            startChart();
 
             label_Alert.Text = "Recording.....!!!";
         }
