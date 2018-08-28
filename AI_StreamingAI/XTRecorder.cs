@@ -36,6 +36,7 @@ using System.Diagnostics;
 //itu
 using Automation.BDaq;
 using excel = Microsoft.Office.Interop.Excel;
+using System.Drawing.Imaging;
 
 
 namespace AI_StreamingAI
@@ -931,7 +932,16 @@ namespace AI_StreamingAI
         {
             try
             {
-                this.chartXY.SaveImage(File.Text+".png", ChartImageFormat.Png);
+                //this.chartXY.SaveImage(File.Text + ".png", ChartImageFormat.Png);
+
+                Bitmap printscreen = new Bitmap(1920, 1080);
+
+                Graphics graphics = Graphics.FromImage(printscreen as Image);
+
+                graphics.CopyFromScreen(0, 50, 0, 0, printscreen.Size);
+
+                printscreen.Save(File.Text + ".png", ImageFormat.Png);
+
                 MessageBox.Show("Sukses menyimpan chart", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch
@@ -994,24 +1004,53 @@ namespace AI_StreamingAI
         private void printToPrinterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Drawing.Printing.PrintDocument pd = new System.Drawing.Printing.PrintDocument();
+            pd.DefaultPageSettings.Landscape = true;
             pd.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(print_page);
+            CaptureScreen();
             pd.Print();
+        }
+
+        Bitmap memoryImage;
+        private void CaptureScreen()
+        {
+            Graphics myGraphics = this.CreateGraphics();
+            Size s = this.Size;
+            memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
+            Graphics memoryGraphics = Graphics.FromImage(memoryImage);
+            memoryGraphics.CopyFromScreen(0, 50, 0, 0, s);
         }
 
         private void print_page(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+            e.Graphics.DrawImage(memoryImage, 0, 0);
+            /*
+            int x = SystemInformation.WorkingArea.X;
+            int y = SystemInformation.WorkingArea.Y;
+            int width = this.Width;
+            int height = this.Height;
+
+            Rectangle bounds = new Rectangle(0, 0, 1500, 1000);
+
+            Bitmap img = new Bitmap(1500, 1000);
+
+            this.DrawToBitmap(img, bounds);
+            Point p = new Point(0, 0);
+            e.Graphics.DrawImage(img, p);
+
+            /*
             System.Drawing.Font printFont = new System.Drawing.Font("Arial", 12);
             Rectangle myRec = new System.Drawing.Rectangle(30, 100, 800, 500);
             e.Graphics.DrawString(TitleMain.Text, printFont, Brushes.Black, 30, 40);
             e.Graphics.DrawString(ConsumerMain.Text, printFont, Brushes.Black, 30, 60);
             e.Graphics.DrawString(SenseMain.Text, printFont, Brushes.Black, 30, 80);
             chartXY.Printing.PrintPaint(e.Graphics, myRec);
-            e.Graphics.DrawString("Garis biru: Sensor " + Sensor1.Text + " Y1", printFont, Brushes.Black, 30, 620);
-            e.Graphics.DrawString("Garis merah: Sensor " + Sensor2.Text + " Y2", printFont, Brushes.Black, 30, 640);
+            e.Graphics.DrawString("Garis biru: Sensor " + ValY1.Text, printFont, Brushes.Black, 30, 620);
+            e.Graphics.DrawString("Garis merah: Sensor " + ValY2.Text, printFont, Brushes.Black, 30, 640);
             e.Graphics.DrawString("Tanggal pengujian: " + Date.Text, printFont, Brushes.Black, 30, 660);
             e.Graphics.DrawString("Waktu pengujian: " + Waktu.Text, printFont, Brushes.Black, 30, 680);
+            */
         }
-
+        
         private void Date_Click(object sender, EventArgs e)
         {
 
@@ -1028,6 +1067,11 @@ namespace AI_StreamingAI
         }
 
         private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SenseMain_Click(object sender, EventArgs e)
         {
 
         }
