@@ -330,7 +330,7 @@ namespace AI_StreamingAI
         private void initChart()
         {
             //ini
-            max_x_chart = Convert.ToInt32(RangeX.Text) * 61 * 9 + 20;
+            max_x_chart = Convert.ToInt32(RangeX.Text) * 61 * 9;
             //itu
             min_x_chart = -max_x_chart;
             max_y_chart = Convert.ToInt32(RangeY.Text);
@@ -387,16 +387,16 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisY.Interval = max_y_chart / 10;
 
             label_chart_1 = Convert.ToDouble(max_x_chart) * 0;
-            label_chart_2 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10;
-            label_chart_3 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 2;
-            label_chart_4 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 3;
-            label_chart_5 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 4;
-            label_chart_6 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 5;
-            label_chart_7 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 6;
-            label_chart_8 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 7;
-            label_chart_9 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 8;
-            label_chart_10 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 9;
-            label_chart_11 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9;
+            label_chart_2 = (Convert.ToDouble(max_x_chart)) / 61 / 9 / 10;
+            label_chart_3 = (Convert.ToDouble(max_x_chart)) / 61 / 9 / 10 * 2;
+            label_chart_4 = (Convert.ToDouble(max_x_chart)) / 61 / 9 / 10 * 3;
+            label_chart_5 = (Convert.ToDouble(max_x_chart)) / 61 / 9 / 10 * 4;
+            label_chart_6 = (Convert.ToDouble(max_x_chart)) / 61 / 9 / 10 * 5;
+            label_chart_7 = (Convert.ToDouble(max_x_chart)) / 61 / 9 / 10 * 6;
+            label_chart_8 = (Convert.ToDouble(max_x_chart)) / 61 / 9 / 10 * 7;
+            label_chart_9 = (Convert.ToDouble(max_x_chart)) / 61 / 9 / 10 * 8;
+            label_chart_10 = (Convert.ToDouble(max_x_chart)) / 61 / 9 / 10 * 9;
+            label_chart_11 = (Convert.ToDouble(max_x_chart)) / 61 / 9;
 
 
             pos_label_1 = max_x_chart * 0;
