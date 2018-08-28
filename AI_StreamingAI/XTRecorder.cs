@@ -292,11 +292,13 @@ namespace AI_StreamingAI
 
                     if (checkBox_holdX.Checked)
                     {
+                        watch.Stop();
                         timer_hold.Start();
                         timer_holdX.Start();
                     }
                     if (!checkBox_holdX.Checked)
                     {
+                        watch.Start();
                         timer_holdX.Stop();
                         timer_holdX.Reset();
                         timer_hold.Stop();
