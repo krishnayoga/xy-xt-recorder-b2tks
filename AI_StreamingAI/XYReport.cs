@@ -69,19 +69,21 @@ namespace AI_StreamingAI
                 OpenFileDialog open = new OpenFileDialog();
                 open.Title = "Open File";
                 open.Filter = "CSV Files (*.csv)|*.csv";
-                open.ShowDialog();
-                File.Text = open.FileName.ToString();
-
-                load_judul();
+                if (open.ShowDialog() == DialogResult.OK)
+                {
+                    File.Text = open.FileName.ToString();
+                    loadDataToolStripMenuItem.Enabled = true;
+                    load_judul();
+                }
+                
             }
             catch
             {
                 MessageBox.Show("error!");
             }
-            loadDataToolStripMenuItem.Enabled = true;
+            
             //Date.Text = DateTime.Now.ToShortDateString();
             //Waktu.Text = DateTime.Now.ToLongTimeString();
-
             //load_judul();
 
         }

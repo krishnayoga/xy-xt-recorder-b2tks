@@ -509,18 +509,21 @@ namespace AI_StreamingAI
                 SaveFileDialog save = new SaveFileDialog();
                 save.Title = "Save File";
                 save.Filter = "CSV Files (*.csv)|*.csv|Text Files(*.txt)|*.txt";
-                save.ShowDialog();
-                File.Text = save.FileName.ToString();
-                Date.Text = DateTime.Now.ToShortDateString();
-                Waktu.Text = DateTime.Now.ToLongTimeString();
+                if (save.ShowDialog() == DialogResult.OK)
+                {
+                    File.Text = save.FileName.ToString();
+                    Date.Text = DateTime.Now.ToShortDateString();
+                    Waktu.Text = DateTime.Now.ToLongTimeString();
+                    startStripMenuItem1.Enabled = true;
+                    button_start.Enabled = false;
+                }
             }
             catch
             {
                 MessageBox.Show("Gagal menyimpan file " + File.Text, "Gagal menyimpan file", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
 
-            startStripMenuItem1.Enabled = true;
-            button_start.Enabled = false;
+            
         }
 
         //fungsi untuk menu balance
