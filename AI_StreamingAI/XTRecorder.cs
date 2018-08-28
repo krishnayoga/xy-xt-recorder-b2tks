@@ -55,10 +55,10 @@ namespace AI_StreamingAI
         string[] arrData;
         double[] arrSumData;
         double[] dataPrint;
-        double max_y_1 = 0;
+        double max_y_1 = -1000;
         double min_y_1 = 1000;
-        double max_y_2 = 0;
-        double min_y_2 = 0;
+        double max_y_2 = -1000;
+        double min_y_2 = 1000;
         double factor_baca_y_1 = 1, factor_baca_y_2 = 1;
         int max_x_chart;
         int min_x_chart;
@@ -642,10 +642,10 @@ namespace AI_StreamingAI
             timer_plot.Start();
 
 
-            max_y_1 = 0;
-            min_y_1 = 0;
-            max_y_2 = 0;
-            min_y_2 = 0;
+            max_y_1 = -1000;
+            min_y_1 = 1000;
+            max_y_2 = -1000;
+            min_y_2 = 1000;
             button_start.Enabled = true;
             watch.Reset();
 
@@ -684,6 +684,42 @@ namespace AI_StreamingAI
         //button start record menu
         private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            chartXY.ChartAreas[0].AxisX.CustomLabels.Clear();
+            startChart();
+            initChart();
+            if (check1.Checked)
+            {
+                chartXY.Series[0].Points.Clear();
+                balance_1 = dataPrint[0];
+            }
+            if (check2.Checked)
+            {
+                chartXY.Series[1].Points.Clear();
+                balance_2 = dataPrint[1];
+            }
+            Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
+
+            timer.Stop();
+            timer_plot.Stop();
+            watch.Stop();
+
+            last_x = 0;
+            last_x_holdX = 0;
+
+            timer_plot.Stop();
+            waveformAiCtrl1.Stop();
+
+            waveformAiCtrl1.Start();
+            timer_plot.Start();
+
+
+            max_y_1 = -1000;
+            min_y_1 = 1000;
+            max_y_2 = -1000;
+            min_y_2 = 1000;
+            button_start.Enabled = true;
+            watch.Reset();
+
             recordData = true;
             //ini
             timer.Start();
