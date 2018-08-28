@@ -540,12 +540,12 @@ namespace AI_StreamingAI
             }
             balance_3 = dataPrint[2];
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
-            max_x_1 = 0;
-            min_x_1 = 0;
-            max_x_2 = 0;
-            min_x_2 = 0;
-            max_y = 0;
-            min_y = 0;
+            max_x_1 = -1000;
+            min_x_1 = 1000;
+            max_x_2 = -1000;
+            min_x_2 = 1000;
+            max_y = -1000;
+            min_y = 1000;
             startStripMenuItem1.Enabled = true;
             button_stop.Enabled = true;
             watch.Reset();
@@ -630,12 +630,12 @@ namespace AI_StreamingAI
             }
             balance_3 = dataPrint[2];
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
-            max_x_1 = 0;
-            min_x_1 = 0;
-            max_x_2 = 0;
-            min_x_2 = 0;
-            max_y = 0;
-            min_y = 0;
+            max_x_1 = -1000;
+            min_x_1 = 1000;
+            max_x_2 = -1000;
+            min_x_2 = 1000;
+            max_y = -1000;
+            min_y = 1000;
             startStripMenuItem1.Enabled = true;
             button_stop.Enabled = true;
             watch.Reset();
