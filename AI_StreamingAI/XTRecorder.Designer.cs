@@ -275,14 +275,14 @@ namespace AI_StreamingAI
             // printToPNGToolStripMenuItem
             // 
             this.printToPNGToolStripMenuItem.Name = "printToPNGToolStripMenuItem";
-            this.printToPNGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printToPNGToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.printToPNGToolStripMenuItem.Text = "Print to .PNG";
             this.printToPNGToolStripMenuItem.Click += new System.EventHandler(this.printToPNGToolStripMenuItem_Click);
             // 
             // printToPrinterToolStripMenuItem
             // 
             this.printToPrinterToolStripMenuItem.Name = "printToPrinterToolStripMenuItem";
-            this.printToPrinterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printToPrinterToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.printToPrinterToolStripMenuItem.Text = "Print to Printer";
             this.printToPrinterToolStripMenuItem.Click += new System.EventHandler(this.printToPrinterToolStripMenuItem_Click);
             // 

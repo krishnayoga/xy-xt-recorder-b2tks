@@ -137,12 +137,13 @@ namespace AI_StreamingAI
 
             chartXY.Series[0].IsXValueIndexed = false;
 
+            //load awal setting parameter
             try
             {
                 string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 StreamReader read = new StreamReader(Path.Combine(file_path, "config.txt"));
 
-                for (int i = 1; i < 8; i++)
+                for (int i = 1; i < 14; i++)
                 {
                     if (i == 1)
                     {
@@ -293,12 +294,14 @@ namespace AI_StreamingAI
 
                     if (checkBox_holdX.Checked)
                     {
+                        recordData = false;
                         watch.Stop();
                         timer_hold.Start();
                         timer_holdX.Start();
                     }
                     if (!checkBox_holdX.Checked)
                     {
+                        recordData = true;
                         watch.Start();
                         timer_holdX.Stop();
                         timer_holdX.Reset();
@@ -326,8 +329,8 @@ namespace AI_StreamingAI
             chartXY.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chartXY.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             
-            chartXY.Series[0].Color = Color.Blue;
-            chartXY.Series[1].Color = Color.Red;
+            chartXY.Series[0].Color = Color.Red;
+            chartXY.Series[1].Color = Color.Blue;
         }
 
         private void initChart()
@@ -351,7 +354,11 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisY.Interval = 1;
             */
             chartXY.ChartAreas[0].AxisX.Title = "Waktu (Menit)";
-            chartXY.ChartAreas[0].AxisY.Title = Sensor1.Text + " (" + Unit1.Text + ")" + " & "+ Sensor2.Text + " (" + Unit2.Text + ")"; 
+            if(check1.Checked && !check2.Checked)
+            {
+                chartXY.ChartAreas[0].AxisY.Title = Sensor1.Text + " (" + Unit1.Text + ")" ;
+            }
+            //chartXY.ChartAreas[0].AxisY.Title = Sensor1.Text + " (" + Unit1.Text + ")" + " & "+ Sensor2.Text + " (" + Unit2.Text + ")"; 
             
 
             //ini
@@ -934,11 +941,11 @@ namespace AI_StreamingAI
             {
                 //this.chartXY.SaveImage(File.Text + ".png", ChartImageFormat.Png);
 
-                Bitmap printscreen = new Bitmap(1920, 1080);
+                Bitmap printscreen = new Bitmap(1364, 772);
 
                 Graphics graphics = Graphics.FromImage(printscreen as Image);
 
-                graphics.CopyFromScreen(0, 50, 0, 0, printscreen.Size);
+                graphics.CopyFromScreen(0, 50, 0, 90, printscreen.Size);
 
                 printscreen.Save(File.Text + ".png", ImageFormat.Png);
 
@@ -1017,7 +1024,7 @@ namespace AI_StreamingAI
             Size s = this.Size;
             memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
             Graphics memoryGraphics = Graphics.FromImage(memoryImage);
-            memoryGraphics.CopyFromScreen(0, 50, 0, 0, s);
+            memoryGraphics.CopyFromScreen(0, 50, 0, 90, s);
         }
 
         private void print_page(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -1145,7 +1152,16 @@ namespace AI_StreamingAI
         {
             TitleMain.Text = Title.Text;
             ConsumerMain.Text = Consumer.Text;
-            SenseMain.Text = Sensor1.Text + " dan " + Sensor2.Text + " vs Waktu";
+            if (check1.Checked&&!check2.Checked)
+            {
+                SenseMain.Text = Sensor1.Text + " vs Waktu";
+            } else if (!check1.Checked && check2.Checked)
+            {
+                SenseMain.Text = Sensor2.Text + " vs Waktu";
+            } else if (check1.Checked && check2.Checked)
+            {
+                SenseMain.Text = Sensor1.Text + " dan " + Sensor2.Text + " vs Waktu";
+            }
             if (check1.Checked)
             {
                 ValY1.Text = Sensor1.Text;
@@ -1172,6 +1188,12 @@ namespace AI_StreamingAI
                 write.WriteLine(Unit1.Text);
                 write.WriteLine(Sensor2.Text);
                 write.WriteLine(Unit2.Text);
+                write.WriteLine(Factor1.Text);
+                write.WriteLine(Factor2.Text);
+                write.WriteLine(RangeX.Text);
+                write.WriteLine(RangeY.Text);
+                write.WriteLine(Title.Text);
+                write.WriteLine(Consumer.Text);
                 write.Close();
             }
             catch

@@ -214,7 +214,7 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisY.Interval = max_y_chart / 10;
 
             label_chart_1 = Convert.ToDouble(max_x_chart) * 0;
-            label_chart_2 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10;
+            label_chart_2 = (Convert.ToDouble(max_x_chart)-20) / 61 / 9 / 10;
             label_chart_3 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 2;
             label_chart_4 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 3;
             label_chart_5 = (Convert.ToDouble(max_x_chart) - 20) / 61 / 9 / 10 * 4;
@@ -330,11 +330,11 @@ namespace AI_StreamingAI
             {
                 //this.chartXY.SaveImage(File.Text + ".png", ChartImageFormat.Png);
                 
-                Bitmap printscreen = new Bitmap(1920, 1080);
+                Bitmap printscreen = new Bitmap(1364, 723);
 
                 Graphics graphics = Graphics.FromImage(printscreen as Image);
 
-                graphics.CopyFromScreen(0, 50, 0, 0, printscreen.Size);
+                graphics.CopyFromScreen(0, 50, 0, 90, printscreen.Size);
 
                 printscreen.Save(File.Text+".png", ImageFormat.Png);
 
@@ -362,7 +362,7 @@ namespace AI_StreamingAI
             Size s = this.Size;
             memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
             Graphics memoryGraphics = Graphics.FromImage(memoryImage);
-            memoryGraphics.CopyFromScreen(0, 50, 0, 0, s);
+            memoryGraphics.CopyFromScreen(0, 50, 0, 90, s);
         }
 
         private void print_page(object sender, System.Drawing.Printing.PrintPageEventArgs e)
