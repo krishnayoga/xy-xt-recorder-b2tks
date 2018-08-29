@@ -117,7 +117,7 @@ namespace AI_StreamingAI
             {
                 string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 StreamReader read = new StreamReader(Path.Combine(file_path, "config.txt"));
-                for (int i = 1; i < 8; i++)
+                for (int i = 1; i < 15; i++)
                 {
                     load_data = read.ReadLine();
                     if (i == 1)
@@ -147,6 +147,34 @@ namespace AI_StreamingAI
                     else if (i == 7)
                     {
                         UnitX1.Text = load_data;
+                    }
+                    else if (i == 8)
+                    {
+                        factor_x_1.Text = load_data;
+                    }
+                    else if (i == 9)
+                    {
+                        factor_x_2.Text = load_data;
+                    }
+                    else if (i == 10)
+                    {
+                        factor_y.Text = load_data;
+                    }
+                    else if (i == 11)
+                    {
+                        rangeX_chart.Text = load_data;
+                    }
+                    else if (i == 12)
+                    {
+                        rangeY_chart.Text = load_data;
+                    }
+                    else if (i == 13)
+                    {
+                        Title.Text = load_data;
+                    }
+                    else if (i == 14)
+                    {
+                        Consumer.Text = load_data;
                     }
                 }
             }
@@ -310,14 +338,16 @@ namespace AI_StreamingAI
 
                     if (checkBox_holdX.Checked)
                     {
-                        timer_hold.Start();
-                        watch_holdx.Start();
-                    }
-                    if (!checkBox_holdX.Checked)
-                    {
+                        recordData = false;
                         watch_holdx.Stop();
                         watch_holdx.Reset();
                         timer_hold.Stop();
+                    }
+                    if (!checkBox_holdX.Checked)
+                    {
+                        recordData = true;
+                        timer_hold.Start();
+                        watch_holdx.Start();
                     }
                 }));
                 Console.WriteLine(dataCount / 3);
@@ -359,8 +389,8 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gainsboro;
             chartXY.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gainsboro;
 
-            chartXY.Series[0].Color = Color.Blue;
-            chartXY.Series[1].Color = Color.Red;
+            chartXY.Series[0].Color = Color.Red;
+            chartXY.Series[1].Color = Color.Blue;
 
         }
 
@@ -593,6 +623,13 @@ namespace AI_StreamingAI
                 write.WriteLine(UnitY.Text);
                 write.WriteLine(SensorX1.Text);
                 write.WriteLine(UnitX1.Text);
+                write.WriteLine(factor_x_1.Text);
+                write.WriteLine(factor_x_2.Text);
+                write.WriteLine(factor_y.Text);
+                write.WriteLine(rangeX_chart.Text);
+                write.WriteLine(rangeY_chart.Text);
+                write.WriteLine(Title.Text);
+                write.WriteLine(Consumer.Text);
                 write.Close();
             }
             catch

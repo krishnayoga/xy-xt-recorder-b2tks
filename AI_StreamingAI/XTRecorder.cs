@@ -173,6 +173,30 @@ namespace AI_StreamingAI
                     {
                         Unit2.Text = read.ReadLine();
                     }
+                    else if(i == 8)
+                    {
+                        Factor1.Text = read.ReadLine();
+                    }
+                    else if (i == 9)
+                    {
+                        Factor2.Text = read.ReadLine();
+                    }
+                    else if (i == 10)
+                    {
+                        RangeX.Text = read.ReadLine();
+                    }
+                    else if (i == 11)
+                    {
+                        RangeY.Text = read.ReadLine();
+                    }
+                    else if (i == 12)
+                    {
+                        Title.Text = read.ReadLine();
+                    }
+                    else if(i == 13)
+                    {
+                        Consumer.Text = read.ReadLine();
+                    }
                 }
             }
             catch
@@ -296,16 +320,16 @@ namespace AI_StreamingAI
                     {
                         recordData = false;
                         watch.Stop();
-                        timer_hold.Start();
-                        timer_holdX.Start();
+                        timer_holdX.Stop();
+                        timer_holdX.Reset();
+                        timer_hold.Stop();
                     }
                     if (!checkBox_holdX.Checked)
                     {
                         recordData = true;
                         watch.Start();
-                        timer_holdX.Stop();
-                        timer_holdX.Reset();
-                        timer_hold.Stop();
+                        timer_hold.Start();
+                        timer_holdX.Start();
                     }
                     //plotChart(dataPrint);
 
@@ -358,8 +382,16 @@ namespace AI_StreamingAI
             {
                 chartXY.ChartAreas[0].AxisY.Title = Sensor1.Text + " (" + Unit1.Text + ")" ;
             }
-            //chartXY.ChartAreas[0].AxisY.Title = Sensor1.Text + " (" + Unit1.Text + ")" + " & "+ Sensor2.Text + " (" + Unit2.Text + ")"; 
-            
+            if(!check1.Checked && check2.Checked)
+            {
+                chartXY.ChartAreas[0].AxisY.Title = Sensor2.Text + " (" + Unit2.Text + ")";
+            }
+            if(check1.Checked && check2.Checked)
+            {
+                chartXY.ChartAreas[0].AxisY.Title = Sensor1.Text + " (" + Unit1.Text + ")" + " & "+ Sensor2.Text + " (" + Unit2.Text + ")"; 
+            }
+
+
 
             //ini
             //chartXY.ChartAreas[0].AxisX.Crossing = 0;
@@ -1154,13 +1186,13 @@ namespace AI_StreamingAI
             ConsumerMain.Text = Consumer.Text;
             if (check1.Checked&&!check2.Checked)
             {
-                SenseMain.Text = Sensor1.Text + " vs Waktu";
+                SenseMain.Text = Sensor1.Text + " vs Time";
             } else if (!check1.Checked && check2.Checked)
             {
-                SenseMain.Text = Sensor2.Text + " vs Waktu";
+                SenseMain.Text = Sensor2.Text + " vs Time";
             } else if (check1.Checked && check2.Checked)
             {
-                SenseMain.Text = Sensor1.Text + " dan " + Sensor2.Text + " vs Waktu";
+                SenseMain.Text = Sensor1.Text + " dan " + Sensor2.Text + " vs Time";
             }
             if (check1.Checked)
             {
