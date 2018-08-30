@@ -1115,6 +1115,30 @@ namespace AI_StreamingAI
 
         }
 
+        private void checkBox_InvertY1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_InvertY1.Checked)
+            {
+                checkBox_InvertY1.ForeColor = Color.Red;
+            }
+            else
+            {
+                checkBox_InvertY1.ForeColor = Color.Black;
+            }
+        }
+
+        private void checkBox_InvertY2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_InvertY2.Checked)
+            {
+                checkBox_InvertY2.ForeColor = Color.Red;
+            }
+            else
+            {
+                checkBox_InvertY2.ForeColor = Color.Black;
+            }
+        }
+
         private void Sensor1_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValY1.Text = Sensor1.Text;
@@ -1372,7 +1396,14 @@ namespace AI_StreamingAI
 
         private void checkBox_holdX_CheckedChanged(object sender, EventArgs e)
         {
-            
+            if (checkBox_holdX.Checked)
+            {
+                checkBox_holdX.ForeColor = Color.Red;
+            }
+            else
+            {
+                checkBox_holdX.ForeColor = Color.Black;
+            }
         }
 
         private void button_start_Click(object sender, EventArgs e)

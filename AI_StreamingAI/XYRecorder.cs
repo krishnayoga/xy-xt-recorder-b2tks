@@ -1115,7 +1115,13 @@ namespace AI_StreamingAI
         }
         private void checkBox_holdX_CheckedChanged(object sender, EventArgs e)
         {
-           
+            if (checkBox_holdX.Checked)
+            {
+                checkBox_holdX.ForeColor = Color.Red;
+            } else
+            {
+                checkBox_holdX.ForeColor = Color.Black;
+            }
         }
         private void label21_Click(object sender, EventArgs e)
         {
@@ -1188,7 +1194,14 @@ namespace AI_StreamingAI
 
         private void checkBox_invertX2_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (checkBox_invertX2.Checked)
+            {
+                checkBox_invertX2.ForeColor = Color.Red;
+            }
+            else
+            {
+                checkBox_invertX2.ForeColor = Color.Black;
+            }
         }
 
         private void label_ColorX2_Click(object sender, EventArgs e)
@@ -1203,7 +1216,14 @@ namespace AI_StreamingAI
 
         private void checkBox_invertX1_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (checkBox_invertX1.Checked)
+            {
+                checkBox_invertX1.ForeColor = Color.Red;
+            }
+            else
+            {
+                checkBox_invertX1.ForeColor = Color.Black;
+            }
         }
 
         private void ConsumerMain_Click(object sender, EventArgs e)
@@ -1223,7 +1243,14 @@ namespace AI_StreamingAI
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (checkBox_invertY.Checked)
+            {
+                checkBox_invertY.ForeColor = Color.Red;
+            }
+            else
+            {
+                checkBox_invertY.ForeColor = Color.Black;
+            }
         }
         #endregion
     }
