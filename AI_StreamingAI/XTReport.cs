@@ -106,32 +106,32 @@ namespace AI_StreamingAI
             excel.Workbook book = ex.Workbooks.Open(File.Text);
             excel.Worksheet res = ex.ActiveSheet as excel.Worksheet;
 
-            TitleMain.Text = Convert.ToString(res.Cells[1, 2].Value2+res.Cells[1,3].Value2);
-            ConsumerMain.Text = Convert.ToString(res.Cells[2, 2].Value2);
-            SenseMain.Text = Convert.ToString(res.Cells[3, 2].Value2);
+            TitleMain.Text = Convert.ToString(res.Cells[1, 2].Value+res.Cells[1,3].Value);
+            ConsumerMain.Text = Convert.ToString(res.Cells[2, 2].Value);
+            SenseMain.Text = Convert.ToString(res.Cells[3, 2].Value);
 
-            ValY1.Text = Convert.ToString(res.Cells[6, 2].Value2);
-            U1.Text = Convert.ToString(res.Cells[7, 2].Value2);
-            ValY2.Text = Convert.ToString(res.Cells[8, 2].Value2);
-            U2.Text = Convert.ToString(res.Cells[9, 2].Value2);
+            ValY1.Text = Convert.ToString(res.Cells[6, 2].Value);
+            U1.Text = Convert.ToString(res.Cells[7, 2].Value);
+            ValY2.Text = Convert.ToString(res.Cells[8, 2].Value);
+            U2.Text = Convert.ToString(res.Cells[9, 2].Value);
           
-            MaxY1.Text = Convert.ToString(res.Cells[11, 2].Value2);
-            MinY1.Text = Convert.ToString(res.Cells[12, 2].Value2);
-            MaxY2.Text = Convert.ToString(res.Cells[13, 2].Value2);
-            MinY2.Text = Convert.ToString(res.Cells[14, 2].Value2);
+            MaxY1.Text = Convert.ToString(res.Cells[11, 2].Value);
+            MinY1.Text = Convert.ToString(res.Cells[12, 2].Value);
+            MaxY2.Text = Convert.ToString(res.Cells[13, 2].Value);
+            MinY2.Text = Convert.ToString(res.Cells[14, 2].Value);
 
-            datee = Convert.ToDateTime(res.Cells[4, 2].Value2);
+            datee = Convert.ToDateTime(res.Cells[4, 2].Value);
             Date.Text = datee.ToString("dd/MM/yyyy");
 
-            jam = double.Parse(Convert.ToString(res.Cells[5, 2].Value2));
+            jam = double.Parse(Convert.ToString(res.Cells[5, 2].Value));
             DateTime jam_text = DateTime.FromOADate(jam);
             Waktu.Text = jam_text.ToLongTimeString();
 
-            elapsed_time = double.Parse(Convert.ToString(res.Cells[15, 2].Value2));
+            elapsed_time = double.Parse(Convert.ToString(res.Cells[15, 2].Value));
             DateTime elapsed_time_text = DateTime.FromOADate(elapsed_time);
             Time.Text = elapsed_time_text.ToString("HH:mm:ss:fff");
 
-            jumlah_data = Convert.ToInt32(res.Cells[10,4].Value2);
+            jumlah_data = Convert.ToInt32(res.Cells[10,4].Value);
 
             book.Close();
             ex.Quit();
