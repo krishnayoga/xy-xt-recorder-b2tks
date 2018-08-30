@@ -328,8 +328,12 @@ namespace AI_StreamingAI
                     {
                         recordData = true;
                         watch.Start();
-                        timer_hold.Start();
-                        timer_holdX.Start();
+                        if (!firstChecked)
+                        {
+                            timer_hold.Start();
+                            timer_holdX.Start();
+                        }
+                        
                     }
                     //plotChart(dataPrint);
 
@@ -503,7 +507,7 @@ namespace AI_StreamingAI
             //TimeList.Add(now);
 
 
-            Time.Text = watch.Elapsed.ToString(); // ini untuk timer sejak di klik start, ganti nama labelnya itu
+            Time.Text = watch.Elapsed.ToString("hh\\:mm\\:ss\\.ff"); 
         }
         //itu
 
@@ -1024,7 +1028,7 @@ namespace AI_StreamingAI
         #region fungsi tambahan
         private void timer_hold_x(object sender, EventArgs e)
         {
-            textBox_HoldTime.Text = timer_holdX.Elapsed.ToString();
+            textBox_HoldTime.Text = timer_holdX.Elapsed.ToString("hh\\:mm\\:ss\\.ff");
         }
         private void waveformAiCtrl1_CacheOverflow(object sender, BfdAiEventArgs e)
         {
