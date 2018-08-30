@@ -117,7 +117,7 @@ namespace AI_StreamingAI
             try
             {
                 string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                StreamReader read = new StreamReader(Path.Combine(file_path, "config.txt"));
+                StreamReader read = new StreamReader(Path.Combine(file_path, "config_xy.txt"));
                 for (int i = 1; i < 15; i++)
                 {
                     load_data = read.ReadLine();
@@ -181,8 +181,8 @@ namespace AI_StreamingAI
             }
             catch
             {
-                MessageBox.Show("Tidak ditemukan config.txt pada Folder My Documents", "Config file tidak ada!", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                this.Close();
+                MessageBox.Show("Tidak ditemukan config_xy.txt pada Folder My Documents", "Config file tidak ada!", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                //this.Close();
             }
         }
 
@@ -616,7 +616,7 @@ namespace AI_StreamingAI
             try
             {
                 string file_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                StreamWriter write = new StreamWriter(Path.Combine(file_path, "config.txt"));
+                StreamWriter write = new StreamWriter(Path.Combine(file_path, "config_xy.txt"));
                 write.WriteLine(TitleMain.Text);
                 write.WriteLine(ConsumerMain.Text);
                 write.WriteLine(SenseMain.Text);

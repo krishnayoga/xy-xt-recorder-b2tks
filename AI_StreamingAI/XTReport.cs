@@ -184,8 +184,8 @@ namespace AI_StreamingAI
             chartXY.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gainsboro;
             chartXY.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gainsboro;
 
-            chartXY.Series[0].Color = Color.Blue;
-            chartXY.Series[1].Color = Color.Red;
+            chartXY.Series[0].Color = Color.Red;
+            chartXY.Series[1].Color = Color.Blue;
 
             chartXY.ChartAreas[0].AxisX.Crossing = 0;
             chartXY.ChartAreas[0].AxisY.Crossing = 0;
