@@ -20,7 +20,6 @@
  * Konfigurasi untuk sampling rate 10Hz (10 data per detik)
 */
 
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
