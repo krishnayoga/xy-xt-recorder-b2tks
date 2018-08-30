@@ -93,6 +93,7 @@ namespace AI_StreamingAI
         private void StreamingBufferedAiForm_Load(object sender, EventArgs e)
         {
             if (!waveformAiCtrl1.Initialized)
+
             {
                 MessageBox.Show("Device belum terpasang!", "XY Recorder",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 this.Close();
