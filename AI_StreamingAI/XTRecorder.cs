@@ -507,7 +507,7 @@ namespace AI_StreamingAI
             //TimeList.Add(now);
 
 
-            Time.Text = watch.Elapsed.ToString("hh\\:mm\\:ss\\.ff"); 
+            Time.Text = watch.Elapsed.ToString("hh\\:mm\\:ss\\.f"); 
         }
         //itu
 
@@ -1028,7 +1028,7 @@ namespace AI_StreamingAI
         #region fungsi tambahan
         private void timer_hold_x(object sender, EventArgs e)
         {
-            textBox_HoldTime.Text = timer_holdX.Elapsed.ToString("hh\\:mm\\:ss\\.ff");
+            textBox_HoldTime.Text = timer_holdX.Elapsed.ToString("hh\\:mm\\:ss\\.f");
         }
         private void waveformAiCtrl1_CacheOverflow(object sender, BfdAiEventArgs e)
         {

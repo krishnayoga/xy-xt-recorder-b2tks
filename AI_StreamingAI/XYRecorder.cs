@@ -335,11 +335,12 @@ namespace AI_StreamingAI
                     }
 
                     plotChart(dataPrint);
-                    textBox_stopwatch.Text = watch.Elapsed.ToString("hh\\:mm\\:ss\\.ff");
+                    textBox_stopwatch.Text = watch.Elapsed.ToString("hh\\:mm\\:ss\\.f");
 
                     if (checkBox_holdX.Checked)
                     {
                         recordData = false;
+                        watch.Stop();
                         watch_holdx.Stop();
                         watch_holdx.Reset();
                         timer_hold.Stop();
@@ -347,12 +348,9 @@ namespace AI_StreamingAI
                     if (!checkBox_holdX.Checked)
                     {
                         recordData = true;
-                        if (!firstChecked)
-                        {
-                            timer_hold.Start();
-                            watch_holdx.Start();
-                        }
-                        
+                        watch.Start();
+                        timer_hold.Start();
+                        watch_holdx.Start();
                     }
                 }));
                 Console.WriteLine(dataCount / 3);
@@ -789,7 +787,7 @@ namespace AI_StreamingAI
         #region unnecessary
         private void timer_holdX(object sender, EventArgs e)
         {
-            textBox_HoldTime.Text = watch_holdx.Elapsed.ToString("hh\\:mm\\:ss\\.ff");
+            textBox_HoldTime.Text = watch_holdx.Elapsed.ToString("hh\\:mm\\:ss\\.f");
         }
         private void check2_CheckedChanged(object sender, EventArgs e)
         {
