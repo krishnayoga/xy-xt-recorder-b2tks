@@ -15,7 +15,7 @@
  * Configuration waveformAICtrl1:
  * Channel Count = 3;
  * Frequency (Convert Clock Rate) = 8000;
- * Section Length = 32;
+ * Section Length = 512;
  * 
  * Konfigurasi untuk sampling rate 10Hz (10 data per detik)
 */
@@ -300,7 +300,7 @@ namespace AI_StreamingAI
 
                 Graphics graphics = Graphics.FromImage(printscreen as Image);
 
-                graphics.CopyFromScreen(0, 50, 0, 90, printscreen.Size);
+                graphics.CopyFromScreen(0, 40, 0, 60, printscreen.Size);
 
                 printscreen.Save(File.Text + ".png", ImageFormat.Png);
 

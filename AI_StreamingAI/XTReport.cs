@@ -15,7 +15,7 @@
  * Configuration waveformAICtrl1:
  * Channel Count = 3;
  * Frequency (Convert Clock Rate) = 8000;
- * Section Length = 32;
+ * Section Length = 512;
  * 
  * Konfigurasi untuk sampling rate 10Hz (10 data per detik)
 */
