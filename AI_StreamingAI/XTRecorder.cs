@@ -262,8 +262,8 @@ namespace AI_StreamingAI
                         dataCount++;
                     }
 
-                    dataPrint[0] = Convert.ToDouble(arrAvgData[0]) * factor_baca_y_1;
-                    dataPrint[1] = Convert.ToDouble(arrAvgData[1]) * factor_baca_y_2;
+                    dataPrint[0] = (Convert.ToDouble(arrAvgData[0]) * factor_baca_y_1) -  balance_1;
+                    dataPrint[1] = (Convert.ToDouble(arrAvgData[1]) * factor_baca_y_2) - balance_2;
 
                     if (checkBox_InvertY1.Checked)
                     {
@@ -274,29 +274,29 @@ namespace AI_StreamingAI
                         dataPrint[1] = -dataPrint[1];
                     }
                     
-                    ValueY1.Text = (dataPrint[0]-balance_1).ToString();
-                    ValueY2.Text = (dataPrint[1]-balance_2).ToString();
+                    ValueY1.Text = (dataPrint[0]).ToString();
+                    ValueY2.Text = (dataPrint[1]).ToString();
                     
                     //channel 0
                     if (dataPrint[0] > max_y_1)
                     {
-                        max_y_1 = dataPrint[0] - balance_1;
+                        max_y_1 = dataPrint[0];
                     }
 
                     if (dataPrint[0] < min_y_1)
                     {
-                        min_y_1 = dataPrint[0] - balance_1;
+                        min_y_1 = dataPrint[0];
                     }
 
                     //channel 1
                     if (dataPrint[1] > max_y_2)
                     {
-                        max_y_2 = dataPrint[1] - balance_2;
+                        max_y_2 = dataPrint[1];
                     }
 
                     if (dataPrint[1] < min_y_2)
                     {
-                        min_y_2 = dataPrint[1] - balance_2;
+                        min_y_2 = dataPrint[1];
                     }
                     
                     //chartXY.Series[0].Points.AddXY(arrAvgData[0], arrAvgData[1]);
@@ -517,12 +517,12 @@ namespace AI_StreamingAI
             {
                 if (check1.Checked)
                 {
-                    chartXY.Series[0].Points.AddXY(last_x_holdX, dataPrint[0]-balance_1);
+                    chartXY.Series[0].Points.AddXY(last_x_holdX, dataPrint[0]);
                 }
 
                 if (check2.Checked)
                 {
-                    chartXY.Series[1].Points.AddXY(last_x_holdX, dataPrint[1]-balance_2);
+                    chartXY.Series[1].Points.AddXY(last_x_holdX, dataPrint[1]);
                 }
 
             }
@@ -532,12 +532,12 @@ namespace AI_StreamingAI
                 last_x += 1;
                 if (check1.Checked)
                 {
-                    chartXY.Series[0].Points.AddXY(last_x, dataPrint[0]-balance_1);
+                    chartXY.Series[0].Points.AddXY(last_x, dataPrint[0]);
                 }
 
                 if (check2.Checked)
                 {
-                    chartXY.Series[1].Points.AddXY(last_x, dataPrint[1]-balance_2);
+                    chartXY.Series[1].Points.AddXY(last_x, dataPrint[1]);
                 }
                 firstChecked = true;
             }
@@ -611,6 +611,9 @@ namespace AI_StreamingAI
         //button start menu
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            balance_1 = 0;
+            balance_2 = 0;
+
             //ini untuk testing
             chartXY.Series[0].Points.Clear();
 
@@ -659,6 +662,9 @@ namespace AI_StreamingAI
         //button balance menu
         private void balanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            balance_1 = 0;
+            balance_2 = 0;
+
             chartXY.ChartAreas[0].AxisX.CustomLabels.Clear();
             startChart();
             initChart();
@@ -700,6 +706,9 @@ namespace AI_StreamingAI
         //button stop menu
         private void stopToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            balance_1 = 0;
+            balance_2 = 0;
+
             ErrorCode err = ErrorCode.Success;
             err = waveformAiCtrl1.Stop();
             if (err != ErrorCode.Success)
@@ -730,9 +739,13 @@ namespace AI_StreamingAI
         //button start record menu
         private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //balance_1 = 0;
+            //balance_2 = 0;
+
             chartXY.ChartAreas[0].AxisX.CustomLabels.Clear();
             startChart();
             initChart();
+            
             if (check1.Checked)
             {
                 chartXY.Series[0].Points.Clear();
@@ -743,6 +756,7 @@ namespace AI_StreamingAI
                 chartXY.Series[1].Points.Clear();
                 balance_2 = dataPrint[1];
             }
+            
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
 
             timer.Stop();
@@ -818,6 +832,9 @@ namespace AI_StreamingAI
         //button stop record menu
         private void stopRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            balance_1 = 0;
+            balance_2 = 0;
+
             recordData = false;
             ErrorCode err = ErrorCode.Success;
             err = waveformAiCtrl1.Stop();
