@@ -68,6 +68,7 @@ namespace AI_StreamingAI
         bool recordData;
         string load_data;
         double balance_1 = 0, balance_2 = 0, balance_3 = 0;
+        double[] dataBalance;
 
         #endregion
 
@@ -105,6 +106,7 @@ namespace AI_StreamingAI
             m_dataScaled = new double[chanCount * sectionLength];
 
             dataPrint = new double[3];
+            dataBalance = new double[3];
 
             this.Text = "XY Recorder(" + waveformAiCtrl1.SelectedDevice.Description + ")";
 
@@ -241,6 +243,10 @@ namespace AI_StreamingAI
                         //Console.WriteLine("i ke " + i + " arrsumdata :" + arrSumData[i]);
                         dataCount++;
                     }
+
+                    dataBalance[0] = (Convert.ToDouble(arrAvgData[0]) * factor_baca_x_1);
+                    dataBalance[1] = (Convert.ToDouble(arrAvgData[1]) * factor_baca_x_2);
+                    dataBalance[2] = (Convert.ToDouble(arrAvgData[2]) * factor_baca_y);
 
                     dataPrint[0] = (Convert.ToDouble(arrAvgData[0]) * factor_baca_x_1) - balance_1;
                     dataPrint[1] = (Convert.ToDouble(arrAvgData[1]) * factor_baca_x_2) - balance_2;
@@ -573,14 +579,14 @@ namespace AI_StreamingAI
             if (check1.Checked)
             {
                 chartXY.Series[0].Points.Clear();
-                balance_1 = dataPrint[0];
+                balance_1 = dataBalance[0];
             }
             if (check2.Checked)
             {
                 chartXY.Series[1].Points.Clear();
-                balance_2 = dataPrint[1];
+                balance_2 = dataBalance[1];
             }
-            balance_3 = dataPrint[2];
+            balance_3 = dataBalance[2];
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
             max_x_1 = -1000;
             min_x_1 = 1000;
@@ -588,7 +594,7 @@ namespace AI_StreamingAI
             min_x_2 = 1000;
             max_y = -1000;
             min_y = 1000;
-            startStripMenuItem1.Enabled = true;
+            startStripMenuItem1.Enabled = false;
             button_stop.Enabled = true;
             watch.Reset();
 
@@ -676,6 +682,7 @@ namespace AI_StreamingAI
         //fungsi untuk menu start record
         private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             balance_1 = 0;
             balance_2 = 0;
             balance_3 = 0;
@@ -683,14 +690,15 @@ namespace AI_StreamingAI
             if (check1.Checked)
             {
                 chartXY.Series[0].Points.Clear();
-                balance_1 = dataPrint[0];
+                balance_1 = dataBalance[0];
             }
             if (check2.Checked)
             {
                 chartXY.Series[1].Points.Clear();
-                balance_2 = dataPrint[1];
+                balance_2 = dataBalance[1];
             }
-            balance_3 = dataPrint[2];
+            balance_3 = dataBalance[2];
+            
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
             max_x_1 = -1000;
             min_x_1 = 1000;
@@ -698,8 +706,7 @@ namespace AI_StreamingAI
             min_x_2 = 1000;
             max_y = -1000;
             min_y = 1000;
-            startStripMenuItem1.Enabled = true;
-            button_stop.Enabled = true;
+            startStripMenuItem1.Enabled = false;
             watch.Reset();
 
             button_start.Enabled = false;
@@ -814,7 +821,7 @@ namespace AI_StreamingAI
             else
             {
                 factor_x_2.ReadOnly = true;
-                factor_x_2.Text = "-";
+                factor_x_2.Text = "";
                 ValX2.Text = "---";
                 star5.Text = " ";
                 label_ColorX2.Text = " ";
@@ -837,7 +844,7 @@ namespace AI_StreamingAI
             else
             {
                 factor_x_1.ReadOnly = true;
-                factor_x_1.Text = "-";
+                factor_x_1.Text = "";
                 label_ColorX1.Text = " ";
                 ValX1.Text = "---";
                 star2.Text = "*";

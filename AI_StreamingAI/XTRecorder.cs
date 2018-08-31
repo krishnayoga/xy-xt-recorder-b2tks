@@ -78,8 +78,9 @@ namespace AI_StreamingAI
         int batas_chart_7, batas_chart_8, batas_chart_9, batas_chart_10, batas_chart_11;
         //itu
         bool recordData;
-        string load_data;
+        double[] dataBalance;
         double balance_1 = 0, balance_2 = 0;
+
         #endregion
 
         //ini
@@ -128,6 +129,7 @@ namespace AI_StreamingAI
             m_dataScaled = new double[chanCount * sectionLength];
 
             dataPrint = new double[3];
+            dataBalance = new double[2];
 
             this.Text = "XT Recorder (" + waveformAiCtrl1.SelectedDevice.Description + ")";
 
@@ -261,6 +263,9 @@ namespace AI_StreamingAI
                         //Console.WriteLine("i ke " + i + " arrsumdata :" + arrSumData[i]);
                         dataCount++;
                     }
+
+                    dataBalance[0] = (Convert.ToDouble(arrAvgData[0]) * factor_baca_y_1);
+                    dataBalance[1] = (Convert.ToDouble(arrAvgData[1]) * factor_baca_y_2);
 
                     dataPrint[0] = (Convert.ToDouble(arrAvgData[0]) * factor_baca_y_1) -  balance_1;
                     dataPrint[1] = (Convert.ToDouble(arrAvgData[1]) * factor_baca_y_2) - balance_2;
@@ -555,7 +560,7 @@ namespace AI_StreamingAI
 
                 StreamWriter sw = new StreamWriter(File.Text, append: true);
 
-                sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), watch.Elapsed.ToString(), dataPrint[0]-balance_1, dataPrint[1]-balance_2);
+                sw.WriteLine("{0},{1},{2},{3}", DateTime.Now.ToString("hh:mm:ss:fff"), watch.Elapsed.ToString(), dataPrint[0], dataPrint[1]);
 
                 sw.Close();
                 recCount++;
@@ -671,12 +676,12 @@ namespace AI_StreamingAI
             if (check1.Checked)
             {
                 chartXY.Series[0].Points.Clear();
-                balance_1 = dataPrint[0];
+                balance_1 = dataBalance[0];
             }
             if (check2.Checked)
             {
                 chartXY.Series[1].Points.Clear();
-                balance_2 = dataPrint[1];
+                balance_2 = dataBalance[1];
             }
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
 
@@ -698,7 +703,7 @@ namespace AI_StreamingAI
             min_y_1 = 1000;
             max_y_2 = -1000;
             min_y_2 = 1000;
-            button_start.Enabled = true;
+            button_start.Enabled = false;
             watch.Reset();
 
         }
@@ -706,8 +711,7 @@ namespace AI_StreamingAI
         //button stop menu
         private void stopToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            balance_1 = 0;
-            balance_2 = 0;
+            
 
             ErrorCode err = ErrorCode.Success;
             err = waveformAiCtrl1.Stop();
@@ -739,8 +743,8 @@ namespace AI_StreamingAI
         //button start record menu
         private void startRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //balance_1 = 0;
-            //balance_2 = 0;
+            balance_1 = 0;
+            balance_2 = 0;
 
             chartXY.ChartAreas[0].AxisX.CustomLabels.Clear();
             startChart();
@@ -749,12 +753,12 @@ namespace AI_StreamingAI
             if (check1.Checked)
             {
                 chartXY.Series[0].Points.Clear();
-                balance_1 = dataPrint[0];
+                balance_1 = dataBalance[0];
             }
             if (check2.Checked)
             {
                 chartXY.Series[1].Points.Clear();
-                balance_2 = dataPrint[1];
+                balance_2 = dataBalance[1];
             }
             
             Array.Clear(m_dataScaled, 0, m_dataScaled.Length);
@@ -777,7 +781,7 @@ namespace AI_StreamingAI
             min_y_1 = 1000;
             max_y_2 = -1000;
             min_y_2 = 1000;
-            button_start.Enabled = true;
+            button_start.Enabled = false;
             watch.Reset();
 
             recordData = true;
@@ -904,8 +908,8 @@ namespace AI_StreamingAI
             } else
             {
                 Factor1.ReadOnly = true;
-                Factor1.Text = "-";
-                label_ColorY1.Text = " ";
+                Factor1.Text = "";
+                label_ColorY1.Text = "";
                 label_star1.Text = "";
                 label_star2.Text = "";
                 label_star3.Text = "";
@@ -932,7 +936,7 @@ namespace AI_StreamingAI
             else
             {
                 Factor2.ReadOnly = true;
-                Factor2.Text = "-";
+                Factor2.Text = "";
                 label_star5.Text = "";
                 label_star6.Text = "";
                 label_star7.Text = "";
